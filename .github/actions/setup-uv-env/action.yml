@@ -1,0 +1,40 @@
+name: "setup-uv-env"
+description: "Composite action to setup the Python and uv environment."
+
+inputs:
+  python-version:
+    required: false
+    description: "The python version to use"
+    default: "3.11"
+  is-server:
+    required: false
+    description: "Whether this is a server package"
+    default: "false"
+  working-directory:
+    required: false
+    description: "Working directory for the installation (used for servers)"
+    default: "."
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install server dependencies
+      if: inputs.is-server == 'true'
+      working-directory: ${{ inputs.working-directory }}
+      run: |
+        echo "Installing server dependencies for ${{ inputs.working-directory }}"
+        uv venv --python ${{ inputs.python-version}}
+        source .venv/bin/activate
+        make install
+      shell: bash
+
+    - name: Install libs dependencies
+      if: inputs.is-server != 'true'
+      working-directory: ${{ inputs.working-directory }}
+      run: uv sync --dev --extra all
+      shell: bash
