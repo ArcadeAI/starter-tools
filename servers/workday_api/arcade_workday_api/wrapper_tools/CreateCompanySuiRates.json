@@ -1,0 +1,117 @@
+{
+  "name": "CreateCompanySuiRates",
+  "fully_qualified_name": "WorkdayApi.CreateCompanySuiRates@0.1.0",
+  "description": "Create company State Unemployment Insurance (SUI) rates.\n\nThis tool is used to create one or multiple company SUI rates for USA Payroll. It requires specifying necessary fields like companyInstance, stateInstance, taxCode, and startDate. Use for managing payroll tax filings.",
+  "toolkit": {
+    "name": "ArcadeWorkdayApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "sui_rates_data",
+        "required": true,
+        "description": "JSON formatted data for creating SUI rates. Include companyInstance, stateInstance, taxCode, startDate. For bulk creation, use a JSON array.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "workday",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "workday_base_url"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Workday API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "{workday_base_url}/payroll/v2/taxRates",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "sui_rates_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "workday_base_url",
+        "parameter_name": "workday_base_url",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"allOf\": [\n          {\n            \"required\": [\n              \"companyInstance\",\n              \"startDate\",\n              \"stateInstance\",\n              \"taxCode\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"ein\": {\n                \"type\": \"string\",\n                \"description\": \"The payroll tax authority EIN field for company tax reporting.\",\n                \"example\": \"604-8144-7\",\n                \"x-workday-type\": \"Text\"\n              },\n              \"taxCode\": {\n                \"maxLength\": 20,\n                \"type\": \"string\",\n                \"description\": \"The deduction for company tax reporting.\",\n                \"example\": \"W_SUIER\",\n                \"x-workday-type\": \"Text\"\n              },\n              \"applicableRate\": {\n                \"type\": \"string\",\n                \"description\": \"The tax override rate for company tax reporting.\",\n                \"example\": \"9.9\",\n                \"x-workday-type\": \"Text\"\n              },\n              \"endDate\": {\n                \"type\": \"string\",\n                \"description\": \"The end date for company tax reporting.\",\n                \"format\": \"date\",\n                \"x-workday-type\": \"Date\"\n              },\n              \"stateInstance\": {\n                \"description\": \"The payroll tax authority object for company tax reporting.\",\n                \"allOf\": [\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/components/schemas/state_c15dfab2b81e10000960777a67000121\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/components/schemas/state_c15dfab2b81e10000960777a67000121\"\n                  },\n                  {\n                    \"type\": \"object\"\n                  }\n                ]\n              },\n              \"companyInstance\": {\n                \"description\": \"The company object for company tax reporting.\",\n                \"allOf\": [\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/components/schemas/company_c15dfab2b81e100008cee72ff399011e\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/components/schemas/company_c15dfab2b81e100008cee72ff399011e\"\n                  },\n                  {\n                    \"type\": \"object\"\n                  }\n                ]\n              },\n              \"exempt\": {\n                \"type\": \"boolean\",\n                \"description\": \"If true, the SUI rate is exempt.\",\n                \"example\": true,\n                \"x-workday-type\": \"Boolean\"\n              },\n              \"startDate\": {\n                \"type\": \"string\",\n                \"description\": \"The start date for company tax reporting.\",\n                \"format\": \"date\",\n                \"x-workday-type\": \"Date\"\n              },\n              \"id\": {\n                \"type\": \"string\",\n                \"description\": \"Id of the instance\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

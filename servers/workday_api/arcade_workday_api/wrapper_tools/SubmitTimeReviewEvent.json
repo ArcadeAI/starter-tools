@@ -1,0 +1,150 @@
+{
+  "name": "SubmitTimeReviewEvent",
+  "fully_qualified_name": "WorkdayApi.SubmitTimeReviewEvent@0.1.0",
+  "description": "Submit a time review event for a worker.\n\nUse this tool to create a time review event for a specific worker. Ideal for managers or administrators to submit time on behalf of employees, or for employees to submit their own time for approval. Ensure to specify the date for the time review period. Optionally, include a comment if it's allowed by the business process.",
+  "toolkit": {
+    "name": "ArcadeWorkdayApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "workday_worker_id",
+        "required": true,
+        "description": "The Workday ID of the worker for whom the time review event is being created.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the resource."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "ID"
+      },
+      {
+        "name": "time_review_event_details",
+        "required": true,
+        "description": "JSON object containing 'date' (required) and 'comment' (optional) for submitting a time review event. 'date' should follow the format YYYY-MM-DD. Include a 'comment' only if it is permitted by the business process.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "workday",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "workday_base_url"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Workday API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "{workday_base_url}/timeTracking/v5/workers/{ID}/timeReviewEvents",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "ID",
+        "tool_parameter_name": "workday_worker_id",
+        "description": "The Workday ID of the resource.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the resource."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "time_review_event_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "workday_base_url",
+        "parameter_name": "workday_base_url",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"allOf\": [\n          {\n            \"type\": \"object\",\n            \"properties\": {\n              \"date\": {\n                \"type\": \"string\",\n                \"description\": \"The date used to create the time review event. The date uses the format: yyyy-mm-dd. If Submit by Time Period is enabled on the worker's Time Entry Template as of the provided date, time is submitted for the pay period. Otherwise, time is submitted for the week.\",\n                \"format\": \"date\",\n                \"x-workday-type\": \"Date\"\n              },\n              \"timeReviewEvents\": {\n                \"type\": \"array\",\n                \"description\": \"Contains Time Review Events created in the Submit Time request.\",\n                \"items\": {\n                  \"allOf\": [\n                    {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"position\": {\n                          \"description\": \"Contains Position for Time Review Event if Independent Events for Multiple Jobs is enabled on the Time Entry Template.\",\n                          \"allOf\": [\n                            {\n                              \"required\": [\n                                \"id\"\n                              ],\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"id\": {\n                                  \"pattern\": \"^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\\\$[0-9]+)|(\\\\S+=\\\\S+))$\",\n                                  \"type\": \"string\",\n                                  \"description\": \"wid / id / reference id\"\n                                },\n                                \"descriptor\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"The display name of the instance\",\n                                  \"readOnly\": true\n                                },\n                                \"href\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"A link to the instance\",\n                                  \"readOnly\": true\n                                }\n                              }\n                            },\n                            {\n                              \"type\": \"object\"\n                            }\n                          ]\n                        },\n                        \"project\": {\n                          \"description\": \"Contains \\\\~Project\\\\~ for Time Review Event if Independent Events for \\\\~Project\\\\~ is enabled on the Time Entry Template.\",\n                          \"allOf\": [\n                            {\n                              \"required\": [\n                                \"id\"\n                              ],\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"id\": {\n                                  \"pattern\": \"^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\\\$[0-9]+)|(\\\\S+=\\\\S+))$\",\n                                  \"type\": \"string\",\n                                  \"description\": \"wid / id / reference id\"\n                                },\n                                \"descriptor\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"The display name of the instance\",\n                                  \"readOnly\": true\n                                },\n                                \"href\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"A link to the instance\",\n                                  \"readOnly\": true\n                                }\n                              }\n                            },\n                            {\n                              \"type\": \"object\"\n                            }\n                          ]\n                        },\n                        \"status\": {\n                          \"description\": \"Contains the current status of the business process.  For example: Successfully Completed, Denied, Terminated.\",\n                          \"allOf\": [\n                            {\n                              \"required\": [\n                                \"id\"\n                              ],\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"id\": {\n                                  \"pattern\": \"^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\\\$[0-9]+)|(\\\\S+=\\\\S+))$\",\n                                  \"type\": \"string\",\n                                  \"description\": \"wid / id / reference id\"\n                                },\n                                \"descriptor\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"The display name of the instance\",\n                                  \"readOnly\": true\n                                },\n                                \"href\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"A link to the instance\",\n                                  \"readOnly\": true\n                                }\n                              }\n                            },\n                            {\n                              \"type\": \"object\"\n                            }\n                          ]\n                        },\n                        \"descriptor\": {\n                          \"type\": \"string\",\n                          \"description\": \"The display name of the instance\",\n                          \"example\": \"Lorem ipsum dolor sit ame\"\n                        },\n                        \"id\": {\n                          \"type\": \"string\",\n                          \"description\": \"Id of the instance\"\n                        }\n                      }\n                    }\n                  ]\n                },\n                \"x-workday-type\": \"Multi-instance\"\n              },\n              \"comment\": {\n                \"type\": \"string\",\n                \"description\": \"The comment that persists on each time review event. Comments are not allowed if comments are disabled for the Enter Time business process or for all business processes in the tenant. For more information, see Reference: Edit Tenant Setup - Business Processes in the Admin Guide.\",\n                \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                \"x-workday-type\": \"Text\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

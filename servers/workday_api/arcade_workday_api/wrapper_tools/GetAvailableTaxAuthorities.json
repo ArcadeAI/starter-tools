@@ -1,0 +1,216 @@
+{
+  "name": "GetAvailableTaxAuthorities",
+  "fully_qualified_name": "WorkdayApi.GetAvailableTaxAuthorities@0.1.0",
+  "description": "Retrieve available tax authorities for minimum wage queries.\n\nThis tool fetches a list of tax authorities which can be used as query parameters when accessing minimum wage rates data.",
+  "toolkit": {
+    "name": "ArcadeWorkdayApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "country_id",
+        "required": false,
+        "description": "The Workday ID of the country for tax authorities. Use an ID from GET /values/minimumWageRatesGroup/countries.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the country for the tax authorities. You can use a returned id from GET /values/minimumWageRatesGroup/countries. You can specify 1 country query parameter. Example: country=country."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "country"
+      },
+      {
+        "name": "max_results",
+        "required": false,
+        "description": "The maximum number of tax authorities to return in the response. Default and maximum is 1000.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "limit"
+      },
+      {
+        "name": "response_start_index",
+        "required": false,
+        "description": "Index of the first object in the response collection, zero-based. Use with 'number_of_objects' for paging.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "offset"
+      },
+      {
+        "name": "include_local_tax_authorities",
+        "required": false,
+        "description": "Set to true to include local tax authorities (cities and counties) along with federal and state authorities. Default is false.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, returns local tax authorities, such as cities and counties, in addition to federal and state tax authorities. If false (default), only returns federal and state tax authorities."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "includeLocalTaxAuthorities"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "workday",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "workday_base_url"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Workday API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "{workday_base_url}/payroll/v2/values/minimumWageRatesGroup/taxAuthorities/",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "country",
+        "tool_parameter_name": "country_id",
+        "description": "The Workday ID of the country for the tax authorities. You can use a returned id from GET /values/minimumWageRatesGroup/countries. You can specify 1 country query parameter. Example: country=country.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the country for the tax authorities. You can use a returned id from GET /values/minimumWageRatesGroup/countries. You can specify 1 country query parameter. Example: country=country."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "includeLocalTaxAuthorities",
+        "tool_parameter_name": "include_local_tax_authorities",
+        "description": "If true, returns local tax authorities, such as cities and counties, in addition to federal and state tax authorities. If false (default), only returns federal and state tax authorities.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, returns local tax authorities, such as cities and counties, in addition to federal and state tax authorities. If false (default), only returns federal and state tax authorities."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "limit",
+        "tool_parameter_name": "max_results",
+        "description": "The maximum number of objects in a single response. The default and maximum is 1000.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of objects in a single response. The default and maximum is 1000."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "offset",
+        "tool_parameter_name": "response_start_index",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "workday_base_url",
+        "parameter_name": "workday_base_url",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

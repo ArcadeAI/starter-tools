@@ -1,0 +1,381 @@
+{
+  "name": "RetrieveWorkerTimeBlocks",
+  "fully_qualified_name": "WorkdayApi.RetrieveWorkerTimeBlocks@0.1.0",
+  "description": "Retrieve complete time blocks for specified workers.\n\nThis tool retrieves complete time blocks for specified workers over a given date range. It excludes incomplete time blocks, time offs, and overtime request blocks. Useful for accessing detailed time tracking information.",
+  "toolkit": {
+    "name": "ArcadeWorkdayApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "start_date_of_time_block_range",
+        "required": false,
+        "description": "The start date of the time block date range in yyyy-mm-dd format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The start date of the time block date range, using the yyyy-mm-dd format."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "fromDate"
+      },
+      {
+        "name": "max_response_objects",
+        "required": false,
+        "description": "Maximum number of objects in a response. Defaults to 20; up to 100 allowed.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "limit"
+      },
+      {
+        "name": "start_index_for_pagination",
+        "required": false,
+        "description": "The zero-based index of the first object in the response collection for pagination. Default is 0.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "offset"
+      },
+      {
+        "name": "project_phase_ids",
+        "required": false,
+        "description": "An array of Workday IDs for the project plan phases to retrieve time blocks. Specify one or more phase IDs using the IDs returned from the GET /planPhases endpoint.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the project plan phase for the time block.\nYou can specify 1 or more project plan phase query parameters. \nYou can use a returned id from the GET /planPhases endpoint in the Projects REST web service."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "phase"
+      },
+      {
+        "name": "project_workday_ids",
+        "required": false,
+        "description": "An array of Workday IDs for the project's time blocks. You can specify one or more project IDs, using those returned by the GET /projects endpoint.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the project for the time block.\nYou can specify 1 or more project query parameters.\nYou can use a returned id from the GET /projects endpoint in the Projects REST web service."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "project"
+      },
+      {
+        "name": "project_plan_task_ids",
+        "required": false,
+        "description": "A list of Workday IDs for project plan tasks. Specify one or more IDs using results from the GET /planTasks endpoint.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the project plan task for the time block.\nYou can specify 1 or more project plan task query parameters.\nYou can use a returned id from the GET /planTasks endpoint in the Projects REST web service."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "projectPlanTask"
+      },
+      {
+        "name": "approval_status_ids",
+        "required": false,
+        "description": "Array of Workday IDs representing the approval status of the worker time block. Valid IDs include Submitted, Unsubmitted, Approved, Denied, and Sent Back.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the approval status of the worker time block. Valid IDs are:\n\n* Submitted: dd817fe688db4ac7bf84e3ef79f72948\n\n* Unsubmitted (Not Submitted): ddf5968e6d4430ca4bce9a4cfaba337\n\n* Approved: 0391102bd1b542538d996936c8fa2fa7\n\n* Denied: 8fee8e9d07554b968bb1f19e679e5a05\n\n* Sent Back: 070b249867f747a19bca64f73eafc9b8\n\nYou can specify 1 or more status query parameters."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "status"
+      },
+      {
+        "name": "end_date",
+        "required": false,
+        "description": "The end date of the time block date range in yyyy-mm-dd format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The end date of the time block date range, using the yyyy-mm-dd format."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "toDate"
+      },
+      {
+        "name": "worker_ids",
+        "required": false,
+        "description": "Array of Workday IDs for the workers' time blocks to retrieve. Specify one or more IDs. Use only IDs accessible to the user.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the worker for the time block. Specify workers that the user has permission to access.\nYou can specify 1 or more worker query parameters.\nYou can use returned ids from GET /workers."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "worker"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "workday",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "workday_base_url"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Workday API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "{workday_base_url}/timeTracking/v5/workerTimeBlocks",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "fromDate",
+        "tool_parameter_name": "start_date_of_time_block_range",
+        "description": "The start date of the time block date range, using the yyyy-mm-dd format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The start date of the time block date range, using the yyyy-mm-dd format."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "limit",
+        "tool_parameter_name": "max_response_objects",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "offset",
+        "tool_parameter_name": "start_index_for_pagination",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "phase",
+        "tool_parameter_name": "project_phase_ids",
+        "description": "The Workday ID of the project plan phase for the time block.\nYou can specify 1 or more project plan phase query parameters. \nYou can use a returned id from the GET /planPhases endpoint in the Projects REST web service.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the project plan phase for the time block.\nYou can specify 1 or more project plan phase query parameters. \nYou can use a returned id from the GET /planPhases endpoint in the Projects REST web service."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "project",
+        "tool_parameter_name": "project_workday_ids",
+        "description": "The Workday ID of the project for the time block.\nYou can specify 1 or more project query parameters.\nYou can use a returned id from the GET /projects endpoint in the Projects REST web service.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the project for the time block.\nYou can specify 1 or more project query parameters.\nYou can use a returned id from the GET /projects endpoint in the Projects REST web service."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "projectPlanTask",
+        "tool_parameter_name": "project_plan_task_ids",
+        "description": "The Workday ID of the project plan task for the time block.\nYou can specify 1 or more project plan task query parameters.\nYou can use a returned id from the GET /planTasks endpoint in the Projects REST web service.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the project plan task for the time block.\nYou can specify 1 or more project plan task query parameters.\nYou can use a returned id from the GET /planTasks endpoint in the Projects REST web service."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "status",
+        "tool_parameter_name": "approval_status_ids",
+        "description": "The Workday ID of the approval status of the worker time block. Valid IDs are:\n\n* Submitted: dd817fe688db4ac7bf84e3ef79f72948\n\n* Unsubmitted (Not Submitted): ddf5968e6d4430ca4bce9a4cfaba337\n\n* Approved: 0391102bd1b542538d996936c8fa2fa7\n\n* Denied: 8fee8e9d07554b968bb1f19e679e5a05\n\n* Sent Back: 070b249867f747a19bca64f73eafc9b8\n\nYou can specify 1 or more status query parameters.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the approval status of the worker time block. Valid IDs are:\n\n* Submitted: dd817fe688db4ac7bf84e3ef79f72948\n\n* Unsubmitted (Not Submitted): ddf5968e6d4430ca4bce9a4cfaba337\n\n* Approved: 0391102bd1b542538d996936c8fa2fa7\n\n* Denied: 8fee8e9d07554b968bb1f19e679e5a05\n\n* Sent Back: 070b249867f747a19bca64f73eafc9b8\n\nYou can specify 1 or more status query parameters."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "toDate",
+        "tool_parameter_name": "end_date",
+        "description": "The end date of the time block date range, using the yyyy-mm-dd format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The end date of the time block date range, using the yyyy-mm-dd format."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "worker",
+        "tool_parameter_name": "worker_ids",
+        "description": "The Workday ID of the worker for the time block. Specify workers that the user has permission to access.\nYou can specify 1 or more worker query parameters.\nYou can use returned ids from GET /workers.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the worker for the time block. Specify workers that the user has permission to access.\nYou can specify 1 or more worker query parameters.\nYou can use returned ids from GET /workers."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "workday_base_url",
+        "parameter_name": "workday_base_url",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "name": "CreatePayrollInput",
+  "fully_qualified_name": "WorkdayApi.CreatePayrollInput@0.1.0",
+  "description": "Creates a payroll input instance with specified data.\n\nUse this tool to create a payroll input instance by specifying required fields such as worker, pay component, and start date. Additional requirements may include position, worktag, endDate, and type fields based on the input details.",
+  "toolkit": {
+    "name": "ArcadeWorkdayApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "payroll_input_data",
+        "required": true,
+        "description": "JSON object containing payroll input details such as worker, payComponent, startDate, and any additional fields required based on conditions (e.g., position, worktag, endDate, type).",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "workday",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "workday_base_url"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Workday API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "{workday_base_url}/payroll/v2/payrollInputs",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "payroll_input_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "workday_base_url",
+        "parameter_name": "workday_base_url",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"allOf\": [\n          {\n            \"type\": \"object\",\n            \"properties\": {\n              \"runCategories\": {\n                \"type\": \"array\",\n                \"description\": \"The run category for the payroll input.\",\n                \"items\": {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/runCategory_dc697bd5bc1b10001036377098ea0116\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/runCategory_dc697bd5bc1b10001036377098ea0116\"\n                },\n                \"x-workday-type\": \"Multi-instance\"\n              },\n              \"payComponent\": {\n                \"description\": \"The pay component for this payroll input.\",\n                \"allOf\": [\n                  {\n                    \"allOf\": [\n                      {\n                        \"type\": \"object\",\n                        \"properties\": {\n                          \"code\": {\n                            \"maxLength\": 20,\n                            \"type\": \"string\",\n                            \"description\": \"The payroll code of the pay component.\",\n                            \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                            \"x-workday-type\": \"Text\"\n                          },\n                          \"descriptor\": {\n                            \"type\": \"string\",\n                            \"description\": \"The display name of the instance\",\n                            \"example\": \"Lorem ipsum dolor sit ame\"\n                          },\n                          \"id\": {\n                            \"type\": \"string\",\n                            \"description\": \"Id of the instance\"\n                          }\n                        }\n                      }\n                    ]\n                  },\n                  {\n                    \"type\": \"object\"\n                  }\n                ]\n              },\n              \"comment\": {\n                \"type\": \"string\",\n                \"description\": \"The text comment for this input.\",\n                \"example\": \"Sample Data for Payroll Input\",\n                \"x-workday-type\": \"Text\"\n              },\n              \"startDate\": {\n                \"type\": \"string\",\n                \"description\": \"The start date before which this input does not apply.\",\n                \"format\": \"date\",\n                \"x-workday-type\": \"Date\"\n              },\n              \"currency\": {\n                \"description\": \"The currency for the payroll input. If no currency exists, the system assumes the Pay Group currency. The Pay Group currency is derived from the default currency for the Pay Group country.\",\n                \"allOf\": [\n                  {\n                    \"required\": [\n                      \"id\"\n                    ],\n                    \"type\": \"object\",\n                    \"properties\": {\n                      \"id\": {\n                        \"pattern\": \"^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\\\$[0-9]+)|(\\\\S+=\\\\S+))$\",\n                        \"type\": \"string\",\n                        \"description\": \"wid / id / reference id\"\n                      },\n                      \"descriptor\": {\n                        \"type\": \"string\",\n                        \"description\": \"The display name of the instance\",\n                        \"readOnly\": true\n                      },\n                      \"href\": {\n                        \"type\": \"string\",\n                        \"description\": \"A link to the instance\",\n                        \"readOnly\": true\n                      }\n                    }\n                  },\n                  {\n                    \"type\": \"object\"\n                  }\n                ]\n              },\n              \"worktags\": {\n                \"type\": \"array\",\n                \"description\": \"The worktags associated with the payroll input.\",\n                \"items\": {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/worktag_dc697bd5bc1b1000105a22eb21b8011b\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/worktag_dc697bd5bc1b1000105a22eb21b8011b\"\n                },\n                \"x-workday-type\": \"Multi-instance\"\n              },\n              \"inputDetails\": {\n                \"type\": \"array\",\n                \"description\": \"The details for this payroll input.\",\n                \"items\": {\n                  \"allOf\": [\n                    {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"value\": {\n                          \"type\": \"integer\",\n                          \"description\": \"The value for the input line.\",\n                          \"x-workday-type\": \"Numeric\"\n                        },\n                        \"type\": {\n                          \"description\": \"The related calculation type for the input line.\",\n                          \"allOf\": [\n                            {\n                              \"allOf\": [\n                                {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"name\": {\n                                      \"type\": \"string\",\n                                      \"description\": \"The alternate ID of the related calculation for the pay component and pay component related calculation.\",\n                                      \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                                      \"x-workday-type\": \"Text\"\n                                    },\n                                    \"descriptor\": {\n                                      \"type\": \"string\",\n                                      \"description\": \"The display name of the instance\",\n                                      \"example\": \"Lorem ipsum dolor sit ame\"\n                                    },\n                                    \"id\": {\n                                      \"type\": \"string\",\n                                      \"description\": \"Id of the instance\"\n                                    }\n                                  }\n                                }\n                              ]\n                            },\n                            {\n                              \"type\": \"object\"\n                            }\n                          ]\n                        },\n                        \"id\": {\n                          \"type\": \"string\",\n                          \"description\": \"Id of the instance\"\n                        }\n                      }\n                    }\n                  ]\n                },\n                \"x-workday-type\": \"Multi-instance\"\n              },\n              \"ongoing\": {\n                \"type\": \"boolean\",\n                \"description\": \"If true, the payroll input is ongoing.\",\n                \"example\": true,\n                \"x-workday-type\": \"Boolean\"\n              },\n              \"position\": {\n                \"description\": \"The worker's position the payroll input applies to if Multi Job Payroll is used.\",\n                \"allOf\": [\n                  {\n                    \"required\": [\n                      \"id\"\n                    ],\n                    \"type\": \"object\",\n                    \"properties\": {\n                      \"id\": {\n                        \"pattern\": \"^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\\\$[0-9]+)|(\\\\S+=\\\\S+))$\",\n                        \"type\": \"string\",\n                        \"description\": \"wid / id / reference id\"\n                      },\n                      \"descriptor\": {\n                        \"type\": \"string\",\n                        \"description\": \"The display name of the instance\",\n                        \"readOnly\": true\n                      },\n                      \"href\": {\n                        \"type\": \"string\",\n                        \"description\": \"A link to the instance\",\n                        \"readOnly\": true\n                      }\n                    }\n                  },\n                  {\n                    \"type\": \"object\"\n                  }\n                ]\n              },\n              \"fieldEditability\": {\n                \"type\": \"string\",\n                \"description\": \"The editability status indicating the fields that can be updated in the payroll input request. Possible values: all, none, endDateOnly\",\n                \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                \"x-workday-type\": \"Text\"\n              },\n              \"endDate\": {\n                \"type\": \"string\",\n                \"description\": \"The end date after which this input does not apply.\",\n                \"format\": \"date\",\n                \"x-workday-type\": \"Date\"\n              },\n              \"worker\": {\n                \"description\": \"The worker for this payroll input.\",\n                \"allOf\": [\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/components/schemas/worker_95417070df5210000dc1bb7f05b8012c\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/components/schemas/worker_95417070df5210000dc1bb7f05b8012c\"\n                  },\n                  {\n                    \"type\": \"object\"\n                  }\n                ]\n              },\n              \"adjustment\": {\n                \"type\": \"boolean\",\n                \"description\": \"If true, the input is for an adjustment as opposed to an override.\",\n                \"example\": true,\n                \"x-workday-type\": \"Boolean\"\n              },\n              \"descriptor\": {\n                \"type\": \"string\",\n                \"description\": \"The display name of the instance\",\n                \"example\": \"Lorem ipsum dolor sit ame\"\n              },\n              \"id\": {\n                \"type\": \"string\",\n                \"description\": \"Id of the instance\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

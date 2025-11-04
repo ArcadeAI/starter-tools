@@ -1,0 +1,150 @@
+{
+  "name": "UpdateCompensationScorecard",
+  "fully_qualified_name": "WorkdayApi.UpdateCompensationScorecard@0.1.0",
+  "description": "Update an existing compensation scorecard.\n\nUse this tool to update an existing compensation scorecard as of a specified effective date. You can modify the scorecard name, description, inactive status, and manage goals and profiles within the scorecard. Ensure you fetch the current scorecard data first using GET /scorecards/{ID} to populate the request body with existing data.",
+  "toolkit": {
+    "name": "ArcadeWorkdayApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "resource_workday_id",
+        "required": true,
+        "description": "The unique Workday ID for the compensation scorecard to be updated.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the resource."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "ID"
+      },
+      {
+        "name": "compensation_scorecard_data",
+        "required": true,
+        "description": "JSON object containing updated scorecard details. Includes fields like scorecardName, scorecardDescription, inactive status, defaultScorecardGoals, scorecardProfiles, and profileScorecardGoals.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "workday",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "workday_base_url"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Workday API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "{workday_base_url}/compensation/v2/scorecards/{ID}",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "ID",
+        "tool_parameter_name": "resource_workday_id",
+        "description": "The Workday ID of the resource.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the resource."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "compensation_scorecard_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "workday_base_url",
+        "parameter_name": "workday_base_url",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"allOf\": [\n          {\n            \"required\": [\n              \"defaultScorecardGoals\",\n              \"effectiveDate\",\n              \"scorecardName\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"scorecardProfiles\": {\n                \"type\": \"array\",\n                \"description\": \"Replaces the array of Profile Scorecard Goals and Eligibility Rules as of the specified effectiveDate.  Creates a new array if one does not exist.  Deletes the array if one exists as of the specified effectiveDate and the array is not included in the PUT.\",\n                \"items\": {\n                  \"allOf\": [\n                    {\n                      \"required\": [\n                        \"eligibilityRule\",\n                        \"profileScorecardGoals\"\n                      ],\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"profileScorecardGoals\": {\n                          \"type\": \"array\",\n                          \"description\": \"Replaces the array of Profile Scorecard Goal fields as of the specified effectiveDate.  Creates a new array if one does not exist.  Deletes the array if one exists as of the specified effectiveDate and the scorecardProfiles array is not included in the PUT.\",\n                          \"items\": {\n                            \"allOf\": [\n                              {\n                                \"required\": [\n                                  \"goalName\",\n                                  \"goalWeight\"\n                                ],\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"goalWeight\": {\n                                    \"type\": \"integer\",\n                                    \"description\": \"Replaces the weight of the Compensation Scorecard \\\\~Goal\\\\~ as of the specified effectiveDate.  [Weight should be entered as 0.9 for a goalWeight of 90%]\",\n                                    \"x-workday-type\": \"Numeric\"\n                                  },\n                                  \"goalName\": {\n                                    \"type\": \"string\",\n                                    \"description\": \"Replaces the name of the Compensation Scorecard Goal as of the specified effectiveDate.\",\n                                    \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                                    \"x-workday-type\": \"Text\"\n                                  },\n                                  \"goalDescription\": {\n                                    \"type\": \"string\",\n                                    \"description\": \"Replaces the description of the Compensation Scorecard Goal as of the specified effectiveDate.  Deletes the description if a description exists as of the specified effectiveDate and this field is not included in the PUT.\",\n                                    \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                                    \"x-workday-type\": \"Text\"\n                                  },\n                                  \"id\": {\n                                    \"type\": \"string\",\n                                    \"description\": \"Id of the instance\"\n                                  }\n                                }\n                              }\n                            ]\n                          },\n                          \"x-workday-type\": \"Multi-instance\"\n                        },\n                        \"eligibilityRule\": {\n                          \"description\": \"Replaces the Eligibility Rule object as of the specified effectiveDate.\",\n                          \"allOf\": [\n                            {\n                              \"required\": [\n                                \"id\"\n                              ],\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"id\": {\n                                  \"pattern\": \"^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\\\$[0-9]+)|(\\\\S+=\\\\S+))$\",\n                                  \"type\": \"string\",\n                                  \"description\": \"wid / id / reference id\"\n                                },\n                                \"descriptor\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"The display name of the instance\",\n                                  \"readOnly\": true\n                                },\n                                \"href\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"A link to the instance\",\n                                  \"readOnly\": true\n                                }\n                              }\n                            },\n                            {\n                              \"type\": \"object\"\n                            }\n                          ]\n                        },\n                        \"id\": {\n                          \"type\": \"string\",\n                          \"description\": \"Id of the instance\"\n                        }\n                      }\n                    }\n                  ]\n                },\n                \"x-workday-type\": \"Multi-instance\"\n              },\n              \"defaultScorecardGoals\": {\n                \"type\": \"array\",\n                \"description\": \"Replaces the array of Default Scorecard Goal fields as of the specified effectiveDate.\",\n                \"items\": {\n                  \"allOf\": [\n                    {\n                      \"required\": [\n                        \"goalName\",\n                        \"goalWeight\"\n                      ],\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"goalWeight\": {\n                          \"type\": \"integer\",\n                          \"description\": \"Replaces the weight of the Compensation Scorecard \\\\~Goal\\\\~ as of the specified effectiveDate.  [Weight should be entered as 0.9 for a goalWeight of 90%]\",\n                          \"x-workday-type\": \"Numeric\"\n                        },\n                        \"goalName\": {\n                          \"type\": \"string\",\n                          \"description\": \"Replaces the name of the Compensation Scorecard Goal as of the specified effectiveDate.\",\n                          \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                          \"x-workday-type\": \"Text\"\n                        },\n                        \"goalDescription\": {\n                          \"type\": \"string\",\n                          \"description\": \"Replaces the description of the Compensation Scorecard Goal as of the specified effectiveDate.  Deletes the description if a description exists as of the specified effectiveDate and this field is not included in the PUT.\",\n                          \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                          \"x-workday-type\": \"Text\"\n                        },\n                        \"id\": {\n                          \"type\": \"string\",\n                          \"description\": \"Id of the instance\"\n                        }\n                      }\n                    }\n                  ]\n                },\n                \"x-workday-type\": \"Multi-instance\"\n              },\n              \"scorecardName\": {\n                \"type\": \"string\",\n                \"description\": \"Replaces the name of the Compensation Scorecard as of the specified effectiveDate.\",\n                \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                \"x-workday-type\": \"Text\"\n              },\n              \"inactive\": {\n                \"type\": \"boolean\",\n                \"description\": \"Replaces the inactive status of the Compensation Scorecard as of the specified effectiveDate.  Default value: false.\",\n                \"example\": true,\n                \"x-workday-type\": \"Boolean\"\n              },\n              \"effectiveDate\": {\n                \"type\": \"string\",\n                \"description\": \"The Effective Date of the updates to the Compensation Scorecard.  Date must be entered in format: YYYY-MM-DD.\",\n                \"format\": \"date\",\n                \"x-workday-type\": \"Date\"\n              },\n              \"scorecardDescription\": {\n                \"type\": \"string\",\n                \"description\": \"Replaces the description of the Compensation Scorecard as of the specified effectiveDate.  Deletes the description if a description exists as of the specified effectiveDate and this field is not included in the PUT.\",\n                \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                \"x-workday-type\": \"Text\"\n              },\n              \"id\": {\n                \"type\": \"string\",\n                \"description\": \"Id of the instance\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}
