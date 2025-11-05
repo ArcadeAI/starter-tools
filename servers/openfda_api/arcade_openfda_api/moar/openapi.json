@@ -1,0 +1,781 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "OpenFDA API",
+    "description": "OpenFDA is an Elasticsearch-based API that serves public FDA data about drugs, devices, foods, and other products. The API provides access to adverse events, recalls, enforcement reports, and other public datasets.",
+    "version": "1.0.0",
+    "termsOfService": "https://open.fda.gov/terms/",
+    "contact": {
+      "name": "OpenFDA Support",
+      "url": "https://open.fda.gov/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.fda.gov",
+      "description": "OpenFDA Production API"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyQueryParam": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyQueryParam": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "api_key",
+        "description": "API key for authentication. Without a key: 240 requests/min and 1,000 requests/day per IP. With a key: 240 requests/min and 120,000 requests/day per key."
+      }
+    },
+    "schemas": {
+      "DrugAdverseEventFields": {
+        "type": "object",
+        "description": "Searchable fields in the Drug Adverse Events dataset",
+        "properties": {
+          "authoritynumb": {
+            "type": "string",
+            "format": "",
+            "x-is-exact": true,
+            "description": "Populated with the Regulatory Authority's case report number, when available."
+          },
+          "companynumb": {
+            "type": "string",
+            "format": "",
+            "x-is-exact": true,
+            "description": "Identifier for the company providing the report. This is self-assigned."
+          },
+          "duplicate": {
+            "type": "string",
+            "format": "",
+            "x-is-exact": false,
+            "description": "This value is `1` if earlier versions of this report were submitted to FDA. openFDA only shows the most recent version."
+          },
+          "fulfillexpeditecriteria": {
+            "type": "string",
+            "format": "int32",
+            "x-is-exact": false,
+            "description": "Identifies expedited reports (those that were processed within 15 days).",
+            "enum": [
+              "1",
+              "2"
+            ],
+            "x-enum-descriptions": {
+              "1": "Yes",
+              "2": "No"
+            }
+          },
+          "occurcountry": {
+            "type": "string",
+            "format": "",
+            "x-is-exact": true,
+            "pattern": "^[A-Z]{2}$",
+            "description": "The name of the country where the event occurred."
+          },
+          "patient": {
+            "type": "object",
+            "properties": {
+              "drug": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "actiondrug": {
+                      "type": "string",
+                      "format": "int64",
+                      "x-is-exact": false,
+                      "description": "Actions taken with the drug.",
+                      "enum": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6"
+                      ],
+                      "x-enum-descriptions": {
+                        "1": "Drug withdrawn",
+                        "2": "Dose reduced",
+                        "3": "Dose increased",
+                        "4": "Dose not changed",
+                        "5": "Unknown",
+                        "6": "Not applicable"
+                      }
+                    },
+                    "activesubstance": {
+                      "type": "object",
+                      "properties": {
+                        "activesubstancename": {
+                          "type": "string",
+                          "x-is-exact": true,
+                          "description": "Product active ingredient, which may be different than other drug identifiers (when provided)."
+                        }
+                      }
+                    },
+                    "drugadministrationroute": {
+                      "type": "string",
+                      "x-is-exact": true,
+                      "description": "The drug's route of administration."
+                    },
+                    "drugauthorizationnumb": {
+                      "type": "string",
+                      "x-is-exact": true,
+                      "pattern": "^[0-9]{6}$",
+                      "description": "Drug authorization or application number (NDA or ANDA), if provided."
+                    },
+                    "drugbatchnumb": {
+                      "type": "string",
+                      "x-is-exact": true,
+                      "description": "Drug product lot number, if provided."
+                    },
+                    "drugcharacterization": {
+                      "type": "string",
+                      "format": "int32",
+                      "x-is-exact": false,
+                      "description": "Reported role of the drug in the adverse event report. These values are not validated by FDA.",
+                      "enum": [
+                        "1",
+                        "2",
+                        "3"
+                      ],
+                      "x-enum-descriptions": {
+                        "1": "Suspect (the drug was considered by the reporter to be the cause)",
+                        "2": "Concomitant (the drug was reported as being taken along with the suspect drug)",
+                        "3": "Interacting (the drug was considered by the reporter to have interacted with the suspect drug)"
+                      }
+                    },
+                    "drugdosageform": {
+                      "type": "string",
+                      "x-is-exact": true,
+                      "description": "The drug's dosage form. There is no standard, but values may include terms like `tablet` or `solution for injection`."
+                    },
+                    "drugdosagetext": {
+                      "type": "string",
+                      "x-is-exact": true,
+                      "description": "Additional detail about the dosage taken. Frequently unknown, but occasionally including information like a brief textual description of the schedule of administration."
+                    },
+                    "drugenddate": {
+                      "type": "string",
+                      "format": "date",
+                      "x-is-exact": false,
+                      "description": "Date the patient stopped taking the drug."
+                    },
+                    "drugindication": {
+                      "type": "string",
+                      "x-is-exact": true,
+                      "description": "Indication for the drug's use."
+                    },
+                    "drugstartdate": {
+                      "type": "string",
+                      "format": "date",
+                      "x-is-exact": false,
+                      "description": "Date the patient began taking the drug."
+                    },
+                    "drugstructuredosagenumb": {
+                      "type": "string",
+                      "x-is-exact": true,
+                      "description": "The number portion of a dosage; when combined with `drugstructuredosageunit` the complete dosage information is represented. For example, *300* in `300 mg`."
+                    },
+                    "drugstructuredosageunit": {
+                      "type": "string",
+                      "x-is-exact": false,
+                      "description": "The unit for the field `drugstructuredosagenumb`. For example, *mg* in `300 mg`.",
+                      "enum": [
+                        "001",
+                        "002",
+                        "003",
+                        "004"
+                      ],
+                      "x-enum-descriptions": {
+                        "001": "kg (kilograms)",
+                        "002": "g (grams)",
+                        "003": "mg (milligrams)",
+                        "004": "\u00b5g (micrograms)"
+                      }
+                    },
+                    "drugtreatmentduration": {
+                      "type": "string",
+                      "x-is-exact": true,
+                      "description": "The interval of the field `drugtreatmentdurationunit` for which the patient was taking the drug."
+                    },
+                    "drugtreatmentdurationunit": {
+                      "type": "string",
+                      "x-is-exact": false,
+                      "enum": [
+                        "801",
+                        "802",
+                        "803",
+                        "804",
+                        "805",
+                        "806"
+                      ],
+                      "x-enum-descriptions": {
+                        "801": "Year",
+                        "802": "Month",
+                        "803": "Week",
+                        "804": "Day",
+                        "805": "Hour",
+                        "806": "Minute"
+                      }
+                    },
+                    "medicinalproduct": {
+                      "type": "string",
+                      "x-is-exact": true,
+                      "description": "Drug name. This may be the valid trade name of the product (such as `ADVIL` or `ALEVE`) or the generic name (such as `IBUPROFEN`). This field is not systematically normalized. It may contain misspellings or idiosyncratic descriptions of drugs, such as combination products such as those used for birth control."
+                    },
+                    "openfda": {
+                      "type": "object",
+                      "properties": {
+                        "application_number": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "pattern": "^[BLA|ANDA|NDA]{3,4}[0-9]{6}$",
+                            "description": "This corresponds to the NDA, ANDA, or BLA number reported by the labeler for products which have the corresponding Marketing Category designated."
+                          }
+                        },
+                        "brand_name": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "description": "Brand or trade name of the drug product."
+                          }
+                        },
+                        "generic_name": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "description": "Generic name(s) of the drug product."
+                          }
+                        },
+                        "manufacturer_name": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "description": "Name of manufacturer or company that makes this drug product, corresponding to the labeler code segment of the NDC."
+                          }
+                        },
+                        "pharm_class_cs": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "description": "Chemical structure classification of the drug product's pharmacologic class. Takes the form of the classification, followed by `[Chemical/Ingredient]`."
+                          }
+                        },
+                        "pharm_class_epc": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "description": "Established pharmacologic class associated with an approved indication of an active moiety (generic drug) that the FDA has determined to be scientifically valid and clinically meaningful. Takes the form of the pharmacologic class, followed by `[EPC]`."
+                          }
+                        },
+                        "pharm_class_pe": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "description": "Physiologic effect or pharmacodynamic effect\u2014tissue, organ, or organ system level functional activity\u2014of the drug's established pharmacologic class. Takes the form of the effect, followed by `[PE]`."
+                          }
+                        },
+                        "pharm_class_moa": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "description": "Mechanism of action of the drug\u2014molecular, subcellular, or cellular functional activity\u2014of the drug's established pharmacologic class. Takes the form of the mechanism of action, followed by `[MoA]`."
+                          }
+                        },
+                        "product_ndc": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "pattern": "^[0-9]{5,4}-[0-9]{4,3}$",
+                            "description": "The labeler manufacturer code and product code segments of the NDC number, separated by a hyphen."
+                          }
+                        },
+                        "route": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "description": "The route of administation of the drug product."
+                          }
+                        },
+                        "rxcui": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "pattern": "^[0-9]{6}$",
+                            "description": "The RxNorm Concept Unique Identifier. RxCUI is a unique number that describes a semantic concept about the drug product, including its ingredients, strength, and dose forms."
+                          }
+                        },
+                        "spl_id": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                            "description": "Unique identifier for a particular version of a Structured Product Label for a product. Also referred to as the document ID."
+                          }
+                        },
+                        "substance_name": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "description": "The list of active ingredients of a drug product."
+                          }
+                        },
+                        "unii": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "x-is-exact": true,
+                            "pattern": "^[A-Z0-9]{10}$",
+                            "description": "Unique Ingredient Identifier, which is a non-proprietary, free, unique, unambiguous, non-semantic, alphanumeric identifier based on a substance's molecular structure and/or descriptive information."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "patientagegroup": {
+                "type": "string",
+                "format": "int32",
+                "x-is-exact": false,
+                "description": "Populated with Patient Age Group code.",
+                "enum": [
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5",
+                  "6"
+                ],
+                "x-enum-descriptions": {
+                  "1": "Neonate",
+                  "2": "Infant",
+                  "3": "Child",
+                  "4": "Adolescent",
+                  "5": "Adult",
+                  "6": "Elderly"
+                }
+              },
+              "patientdeath": {
+                "type": "object",
+                "properties": {
+                  "patientdeathdate": {
+                    "type": "string",
+                    "format": "date",
+                    "x-is-exact": false,
+                    "description": "If the patient died, the date that the patient died."
+                  }
+                }
+              },
+              "patientonsetage": {
+                "type": "string",
+                "format": "float",
+                "x-is-exact": false,
+                "description": "Age of the patient when the event first occured."
+              },
+              "patientonsetageunit": {
+                "type": "string",
+                "x-is-exact": false,
+                "description": "The unit for the interval in the field `patientonsetage.`",
+                "enum": [
+                  "800",
+                  "801",
+                  "802",
+                  "803",
+                  "804",
+                  "805"
+                ],
+                "x-enum-descriptions": {
+                  "800": "Decade",
+                  "801": "Year",
+                  "802": "Month",
+                  "803": "Week",
+                  "804": "Day",
+                  "805": "Hour"
+                }
+              },
+              "patientsex": {
+                "type": "string",
+                "format": "int32",
+                "x-is-exact": false,
+                "description": "The sex of the patient.",
+                "enum": [
+                  "0",
+                  "1",
+                  "2"
+                ],
+                "x-enum-descriptions": {
+                  "0": "Unknown",
+                  "1": "Male",
+                  "2": "Female"
+                }
+              },
+              "patientweight": {
+                "type": "string",
+                "format": "float",
+                "x-is-exact": false,
+                "description": "The patient weight, in kg (kilograms)."
+              },
+              "reaction": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "reactionmeddrapt": {
+                      "type": "string",
+                      "x-is-exact": true,
+                      "description": "Patient reaction, as a MedDRA term. Note that these terms are encoded in British English. For instance, diarrhea is spelled `diarrohea`. MedDRA is a standardized medical terminology."
+                    },
+                    "reactionmeddraversionpt": {
+                      "type": "string",
+                      "x-is-exact": false,
+                      "description": "The version of MedDRA from which the term in `reactionmeddrapt` is drawn."
+                    },
+                    "reactionoutcome": {
+                      "type": "string",
+                      "format": "int32",
+                      "x-is-exact": false,
+                      "description": "Outcome of the reaction in `reactionmeddrapt` at the time of last observation.",
+                      "enum": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6"
+                      ],
+                      "x-enum-descriptions": {
+                        "1": "Recovered/resolved",
+                        "2": "Recovering/resolving",
+                        "3": "Not recovered/not resolved",
+                        "4": "Recovered/resolved with sequelae (consequent health issues)",
+                        "5": "Fatal",
+                        "6": "Unknown"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "primarysource": {
+            "type": "object",
+            "properties": {
+              "qualification": {
+                "type": "string",
+                "x-is-exact": false,
+                "description": "Category of individual who submitted the report.",
+                "enum": [
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5"
+                ],
+                "x-enum-descriptions": {
+                  "1": "Physician",
+                  "2": "Pharmacist",
+                  "3": "Other health professional",
+                  "4": "Lawyer",
+                  "5": "Consumer or non-health professional"
+                }
+              },
+              "reportercountry": {
+                "type": "string",
+                "x-is-exact": true,
+                "description": "Country from which the report was submitted."
+              }
+            }
+          },
+          "primarysourcecountry": {
+            "type": "string",
+            "x-is-exact": true,
+            "description": "Country of the reporter of the event."
+          },
+          "receiptdate": {
+            "type": "string",
+            "format": "date",
+            "x-is-exact": false,
+            "description": "Date that the _most recent_ information in the report was received by FDA."
+          },
+          "receivedate": {
+            "type": "string",
+            "format": "date",
+            "x-is-exact": false,
+            "description": "Date that the report was _first_ received by FDA. If this report has multiple versions, this will be the date the first version was received by FDA."
+          },
+          "reporttype": {
+            "type": "string",
+            "format": "int32",
+            "x-is-exact": false,
+            "description": "Code indicating the circumstances under which the report was generated.",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            "x-enum-descriptions": {
+              "1": "Spontaneous",
+              "2": "Report from study",
+              "3": "Other",
+              "4": "Not available to sender (unknown)"
+            }
+          },
+          "safetyreportid": {
+            "type": "string",
+            "x-is-exact": true,
+            "pattern": "^[0-9]{7}-[0-9]{1,2}$",
+            "description": "The 8-digit Safety Report ID number, also known as the case report number or case ID. The first 7 digits (before the hyphen) identify an individual report and the last digit (after the hyphen) is a checksum."
+          },
+          "safetyreportversion": {
+            "type": "string",
+            "format": "int32",
+            "x-is-exact": false,
+            "description": "The version number of the `safetyreportid`. Multiple versions of the same report may exist, it is generally best to only count the latest report and disregard others. openFDA will only return the latest version of a report."
+          },
+          "serious": {
+            "type": "string",
+            "format": "int32",
+            "x-is-exact": false,
+            "description": "Seriousness of the adverse event.",
+            "enum": [
+              "1",
+              "2"
+            ],
+            "x-enum-descriptions": {
+              "1": "The adverse event resulted in death, a life threatening condition, hospitalization, disability, congenital anomaly, or other serious condition",
+              "2": "The adverse event did not result in any of the above"
+            }
+          },
+          "seriousnesscongenitalanomali": {
+            "type": "string",
+            "format": "int32",
+            "x-is-exact": false,
+            "description": "This value is `1` if the adverse event resulted in a congenital anomaly, and absent otherwise."
+          },
+          "seriousnessdeath": {
+            "type": "string",
+            "format": "int32",
+            "x-is-exact": false,
+            "description": "This value is `1` if the adverse event resulted in death, and absent otherwise."
+          },
+          "seriousnessdisabling": {
+            "type": "string",
+            "format": "int32",
+            "x-is-exact": false,
+            "description": "This value is `1` if the adverse event resulted in disability, and absent otherwise."
+          },
+          "seriousnesshospitalization": {
+            "type": "string",
+            "format": "int32",
+            "x-is-exact": false,
+            "description": "This value is `1` if the adverse event resulted in a hospitalization, and absent otherwise."
+          },
+          "seriousnesslifethreatening": {
+            "type": "string",
+            "format": "int32",
+            "x-is-exact": false,
+            "description": "This value is `1` if the adverse event resulted in a life threatening condition, and absent otherwise."
+          },
+          "seriousnessother": {
+            "type": "string",
+            "format": "int32",
+            "x-is-exact": false,
+            "description": "This value is `1` if the adverse event resulted in some other serious condition, and absent otherwise."
+          },
+          "transmissiondate": {
+            "type": "string",
+            "format": "date",
+            "x-is-exact": false,
+            "description": "Date that the record was created. This may be earlier than the date the record was received by the FDA."
+          }
+        }
+      },
+      "DrugAdverseEventQuery": {
+        "type": "object",
+        "description": "Query parameters for searching drug adverse event reports. Use Elasticsearch query syntax to construct the search field.",
+        "x-searchable-fields": {
+          "$ref": "#/components/schemas/DrugAdverseEventFields"
+        },
+        "properties": {
+          "search": {
+            "type": "string",
+            "description": "Elasticsearch query string to filter adverse event records. Use the format 'field:term' for exact matches, 'field:term+AND+field:term' for AND logic, or 'field:term+field:term' for OR logic. Use brackets [a TO b] for ranges. Wrap phrases in quotes and replace spaces with + signs.\n\nExamples:\n- Search for headache reactions: patient.reaction.reactionmeddrapt:\"headache\"\n- Date range: receivedate:[20040101 TO 20081231]\n- Pharmacologic class: patient.drug.openfda.pharm_class_epc:\"nonsteroidal+anti-inflammatory+drug\"\n- Multiple conditions: patient.reaction.reactionmeddrapt:\"fatigue\"+AND+occurcountry:\"CA\"\n- Serious events only: serious:1\n- Deaths: seriousnessdeath:1\n\nRefer to the x-searchable-fields schema for all available fields, their types, and descriptions."
+          },
+          "sort": {
+            "type": "string",
+            "description": "Sort results by field. Format: 'field:asc' or 'field:desc'. Example: 'receivedate:desc' to get newest reports first."
+          },
+          "count": {
+            "type": "string",
+            "description": "Count unique values in a field across matching records. Returns the 1000 most frequent values. Use '.exact' suffix for exact phrase counting (e.g., 'patient.reaction.reactionmeddrapt.exact'). Cannot be used with 'limit' or 'skip'. Examples: 'patient.reaction.reactionmeddrapt.exact', 'patient.drug.openfda.pharm_class_epc.exact', 'occurcountry'."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000,
+            "default": 1,
+            "description": "Maximum number of records to return (1-1000). Default is 1 if not specified. Cannot be used with 'count'."
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 25000,
+            "default": 0,
+            "description": "Number of records to skip for pagination (0-25000). Use with 'limit' for pagination. Cannot be used with 'count'. Note: For datasets exceeding 25,000 records, use the search_after parameter with Link headers instead."
+          }
+        }
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/drug/event.json": {
+      "get": {
+        "operationId": "searchDrugAdverseEvents",
+        "summary": "Search drug adverse event reports",
+        "description": "Query the FDA Adverse Event Reporting System (FAERS) database for reports of adverse events related to drugs and therapeutic biologics. Returns adverse event data including patient information, drug details, reactions, and outcomes. The API uses Elasticsearch for querying, supporting complex search queries with boolean logic, ranges, and field-specific searches.",
+        "tags": [
+          "Drug",
+          "Adverse Events"
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "description": "Query parameters for searching drug adverse event reports. Use Elasticsearch query syntax to construct the search field.",
+                    "x-searchable-fields": {
+                      "$ref": "#/components/schemas/DrugAdverseEventFields"
+                    },
+                    "properties": {
+                      "search": {
+                        "type": "string",
+                        "description": "Elasticsearch query string to filter adverse event records. Use the format 'field:term' for exact matches, 'field:term+AND+field:term' for AND logic, or 'field:term+field:term' for OR logic. Use brackets [a TO b] for ranges. Wrap phrases in quotes and replace spaces with + signs.\n\nExamples:\n- Search for headache reactions: patient.reaction.reactionmeddrapt:\"headache\"\n- Date range: receivedate:[20040101 TO 20081231]\n- Pharmacologic class: patient.drug.openfda.pharm_class_epc:\"nonsteroidal+anti-inflammatory+drug\"\n- Multiple conditions: patient.reaction.reactionmeddrapt:\"fatigue\"+AND+occurcountry:\"CA\"\n- Serious events only: serious:1\n- Deaths: seriousnessdeath:1\n\nRefer to the x-searchable-fields schema for all available fields, their types, and descriptions."
+                      },
+                      "sort": {
+                        "type": "string",
+                        "description": "Sort results by field. Format: 'field:asc' or 'field:desc'. Example: 'receivedate:desc' to get newest reports first."
+                      },
+                      "count": {
+                        "type": "string",
+                        "description": "Count unique values in a field across matching records. Returns the 1000 most frequent values. Use '.exact' suffix for exact phrase counting (e.g., 'patient.reaction.reactionmeddrapt.exact'). Cannot be used with 'limit' or 'skip'. Examples: 'patient.reaction.reactionmeddrapt.exact', 'patient.drug.openfda.pharm_class_epc.exact', 'occurcountry'."
+                      },
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 1000,
+                        "default": 1,
+                        "description": "Maximum number of records to return (1-1000). Default is 1 if not specified. Cannot be used with 'count'."
+                      },
+                      "skip": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 25000,
+                        "default": 0,
+                        "description": "Number of records to skip for pagination (0-25000). Use with 'limit' for pagination. Cannot be used with 'count'. Note: For datasets exceeding 25,000 records, use the search_after parameter with Link headers instead."
+                      }
+                    }
+                  }
+                ],
+                "description": "Query parameters for searching adverse events. Use schema mode: first call get_request_schema to retrieve searchable fields and query syntax, then construct your query based on the user's requirements."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response with adverse event data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "meta": {
+                      "type": "object",
+                      "description": "Metadata about the query and response",
+                      "properties": {
+                        "disclaimer": {
+                          "type": "string",
+                          "description": "Important disclaimer about data usage"
+                        },
+                        "terms": {
+                          "type": "string",
+                          "description": "Link to terms of service"
+                        },
+                        "license": {
+                          "type": "string",
+                          "description": "Data license information"
+                        },
+                        "last_updated": {
+                          "type": "string",
+                          "description": "Date the dataset was last updated"
+                        },
+                        "results": {
+                          "type": "object",
+                          "properties": {
+                            "skip": {
+                              "type": "integer",
+                              "description": "Number of records skipped"
+                            },
+                            "limit": {
+                              "type": "integer",
+                              "description": "Maximum records returned"
+                            },
+                            "total": {
+                              "type": "integer",
+                              "description": "Total matching records"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "results": {
+                      "type": "array",
+                      "description": "Array of adverse event reports matching the query",
+                      "items": {
+                        "type": "object",
+                        "description": "Individual adverse event report with patient, drug, and reaction information"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid query syntax or parameters"
+          },
+          "404": {
+            "description": "No results found matching the query"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "x-moar-primitive-count": 5,
+        "x-moar-complexity-skipped": false
+      }
+    }
+  }
+}

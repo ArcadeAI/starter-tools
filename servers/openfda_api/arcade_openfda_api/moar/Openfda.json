@@ -1,0 +1,146 @@
+{
+  "name": "Openfda",
+  "spec_source": "openapi_spec",
+  "token_for_http_testing": "",
+  "package_name": "openfda_api",
+  "package_dir_path": "/Users/rb/arcade/starter-tools/servers/openfda_api/arcade_openfda_api",
+  "project_dir_path": "/Users/rb/arcade/starter-tools/servers/openfda_api",
+  "arcade_new_cmd_executed": true,
+  "api_endpoint_selection_customized": false,
+  "api_endpoint_for_http_testing": "",
+  "authorization_type": "api_key",
+  "auth_provider_id": "",
+  "where_to_provide_token": "unknown",
+  "token_key_name": "",
+  "token_value": "",
+  "secrets": [
+    {
+      "arcade_key_name": "OPENFDA_API_KEY",
+      "service_key_name": "api_key",
+      "where_to_provide": "query_string",
+      "formatted_value": null
+    }
+  ],
+  "global_base_url": null,
+  "global_headers": {},
+  "edit_operations": [],
+  "uuid": "6685c941-105f-4c55-a5cf-89ccafb88a1c",
+  "api_endpoints": [
+    {
+      "name": "searchDrugAdverseEvents",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "search_drug_adverse_events",
+        "description": {
+          "tagline": "Retrieve adverse event reports for drugs and biologics.",
+          "detailed": "Use this tool to query the FDA Adverse Event Reporting System (FAERS) for detailed reports on adverse events associated with specific drugs and therapeutic biologics. The tool returns comprehensive data on patient information, drug details, reactions, and outcomes, supporting complex search queries."
+        },
+        "return_annotation": "Adverse event data including patient, drug details, and outcomes.",
+        "arguments": [
+          {
+            "name": "search_query",
+            "alternative_names": [
+              "query_parameters",
+              "search_parameters"
+            ],
+            "description": "JSON object defining search filters, using boolean logic and field-specific queries to specify drug-related adverse events.",
+            "endpoint_argument_name": "requestBody"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/drug/event.json",
+      "tags": [
+        "Drug",
+        "Adverse Events"
+      ],
+      "summary": "Search drug adverse event reports",
+      "description": "Query the FDA Adverse Event Reporting System (FAERS) database for reports of adverse events related to drugs and therapeutic biologics. Returns adverse event data including patient information, drug details, reactions, and outcomes. The API uses Elasticsearch for querying, supporting complex search queries with boolean logic, ranges, and field-specific searches.",
+      "requires_security": true,
+      "oauth_scopes": [],
+      "security_schemes": [
+        "ApiKeyQueryParam"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "requestBody",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "object",
+              "description": "Query parameters for searching adverse events. Use schema mode: first call get_request_schema to retrieve searchable fields and query syntax, then construct your query based on the user's requirements.",
+              "properties": {},
+              "oneOf": [
+                {
+                  "type": "object",
+                  "description": "Query parameters for searching drug adverse event reports. Use Elasticsearch query syntax to construct the search field.",
+                  "properties": {
+                    "search": {
+                      "type": "string",
+                      "description": "Elasticsearch query string to filter adverse event records. Use the format 'field:term' for exact matches, 'field:term+AND+field:term' for AND logic, or 'field:term+field:term' for OR logic. Use brackets [a TO b] for ranges. Wrap phrases in quotes and replace spaces with + signs.\n\nExamples:\n- Search for headache reactions: patient.reaction.reactionmeddrapt:\"headache\"\n- Date range: receivedate:[20040101 TO 20081231]\n- Pharmacologic class: patient.drug.openfda.pharm_class_epc:\"nonsteroidal+anti-inflammatory+drug\"\n- Multiple conditions: patient.reaction.reactionmeddrapt:\"fatigue\"+AND+occurcountry:\"CA\"\n- Serious events only: serious:1\n- Deaths: seriousnessdeath:1\n\nRefer to the x-searchable-fields schema for all available fields, their types, and descriptions."
+                    },
+                    "sort": {
+                      "type": "string",
+                      "description": "Sort results by field. Format: 'field:asc' or 'field:desc'. Example: 'receivedate:desc' to get newest reports first."
+                    },
+                    "count": {
+                      "type": "string",
+                      "description": "Count unique values in a field across matching records. Returns the 1000 most frequent values. Use '.exact' suffix for exact phrase counting (e.g., 'patient.reaction.reactionmeddrapt.exact'). Cannot be used with 'limit' or 'skip'. Examples: 'patient.reaction.reactionmeddrapt.exact', 'patient.drug.openfda.pharm_class_epc.exact', 'occurcountry'."
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Maximum number of records to return (1-1000). Default is 1 if not specified. Cannot be used with 'count'.",
+                      "minimum": 1,
+                      "maximum": 1000
+                    },
+                    "skip": {
+                      "type": "integer",
+                      "description": "Number of records to skip for pagination (0-25000). Use with 'limit' for pagination. Cannot be used with 'count'. Note: For datasets exceeding 25,000 records, use the search_after parameter with Link headers instead.",
+                      "minimum": 0,
+                      "maximum": 25000
+                    }
+                  }
+                }
+              ]
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"required\": false,\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"oneOf\": [\n          {\n            \"type\": \"object\",\n            \"description\": \"Query parameters for searching drug adverse event reports. Use Elasticsearch query syntax to construct the search field.\",\n            \"x-searchable-fields\": {\n              \"$ref\": \"#/components/schemas/DrugAdverseEventFields\"\n            },\n            \"properties\": {\n              \"search\": {\n                \"type\": \"string\",\n                \"description\": \"Elasticsearch query string to filter adverse event records. Use the format 'field:term' for exact matches, 'field:term+AND+field:term' for AND logic, or 'field:term+field:term' for OR logic. Use brackets [a TO b] for ranges. Wrap phrases in quotes and replace spaces with + signs.\\n\\nExamples:\\n- Search for headache reactions: patient.reaction.reactionmeddrapt:\\\"headache\\\"\\n- Date range: receivedate:[20040101 TO 20081231]\\n- Pharmacologic class: patient.drug.openfda.pharm_class_epc:\\\"nonsteroidal+anti-inflammatory+drug\\\"\\n- Multiple conditions: patient.reaction.reactionmeddrapt:\\\"fatigue\\\"+AND+occurcountry:\\\"CA\\\"\\n- Serious events only: serious:1\\n- Deaths: seriousnessdeath:1\\n\\nRefer to the x-searchable-fields schema for all available fields, their types, and descriptions.\"\n              },\n              \"sort\": {\n                \"type\": \"string\",\n                \"description\": \"Sort results by field. Format: 'field:asc' or 'field:desc'. Example: 'receivedate:desc' to get newest reports first.\"\n              },\n              \"count\": {\n                \"type\": \"string\",\n                \"description\": \"Count unique values in a field across matching records. Returns the 1000 most frequent values. Use '.exact' suffix for exact phrase counting (e.g., 'patient.reaction.reactionmeddrapt.exact'). Cannot be used with 'limit' or 'skip'. Examples: 'patient.reaction.reactionmeddrapt.exact', 'patient.drug.openfda.pharm_class_epc.exact', 'occurcountry'.\"\n              },\n              \"limit\": {\n                \"type\": \"integer\",\n                \"minimum\": 1,\n                \"maximum\": 1000,\n                \"default\": 1,\n                \"description\": \"Maximum number of records to return (1-1000). Default is 1 if not specified. Cannot be used with 'count'.\"\n              },\n              \"skip\": {\n                \"type\": \"integer\",\n                \"minimum\": 0,\n                \"maximum\": 25000,\n                \"default\": 0,\n                \"description\": \"Number of records to skip for pagination (0-25000). Use with 'limit' for pagination. Cannot be used with 'count'. Note: For datasets exceeding 25,000 records, use the search_after parameter with Link headers instead.\"\n              }\n            }\n          }\n        ],\n        \"description\": \"Query parameters for searching adverse events. Use schema mode: first call get_request_schema to retrieve searchable fields and query syntax, then construct your query based on the user's requirements.\"\n      }\n    }\n  }\n}",
+      "use_request_body_schema_mode": true,
+      "validate_request_body_schema": true,
+      "use_flatten_mode": false,
+      "base_url": "https://api.fda.gov",
+      "original_servers": [
+        {
+          "url": "https://api.fda.gov",
+          "description": "OpenFDA Production API"
+        }
+      ]
+    }
+  ],
+  "security_scheme_key_selected": null,
+  "security_scheme_selected": {}
+}
