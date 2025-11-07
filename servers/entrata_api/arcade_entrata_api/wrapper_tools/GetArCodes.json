@@ -1,0 +1,292 @@
+{
+  "name": "GetArCodes",
+  "fully_qualified_name": "EntrataApi.GetArCodes@0.1.0",
+  "description": "Retrieve AR codes for a management company.\n\nFetches all AR codes associated with a specific management company, useful for property management and financial operations.",
+  "toolkit": {
+    "name": "EntrataApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "client_subdomain",
+        "required": true,
+        "description": "Client subdomain, used to specify the management company.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "orgs"
+      },
+      {
+        "name": "authentication_type",
+        "required": true,
+        "description": "Specify the authentication type, expected value is 'apikey'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "apikey"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "auth.type"
+      },
+      {
+        "name": "ar_codes_method_name",
+        "required": true,
+        "description": "Must be set to 'getArCodes' to specify the API method for retrieving AR codes.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "getArCodes"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "method.name"
+      },
+      {
+        "name": "response_identifier",
+        "required": false,
+        "description": "An arbitrary string value used to relate the request with the response.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "an arbitary value to relate with response."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestId"
+      },
+      {
+        "name": "api_method_version",
+        "required": false,
+        "description": "Specifies the version of the API method to use. Supported value is 'r1'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "r1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "method.version"
+      },
+      {
+        "name": "property_id",
+        "required": false,
+        "description": "Optional. Provide a valid property ID for which AR codes are required.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "This is an optional field. This field accepts single value. Provide a valid propertyid."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "method.params.propertyId"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ENTRATA_API_KEY"
+      },
+      {
+        "key": "ENTRATA_DOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Entrata API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://apis.{ENTRATA_DOMAIN}/ext/orgs/{orgs}/v1/arcodes",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "orgs",
+        "tool_parameter_name": "client_subdomain",
+        "description": "Client subdomain.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "auth.type",
+        "tool_parameter_name": "authentication_type",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "apikey"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestId",
+        "tool_parameter_name": "response_identifier",
+        "description": "an arbitary value to relate with response.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "an arbitary value to relate with response."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "method.name",
+        "tool_parameter_name": "ar_codes_method_name",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "getArCodes"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "method.version",
+        "tool_parameter_name": "api_method_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "r1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "method.params.propertyId",
+        "tool_parameter_name": "property_id",
+        "description": "This is an optional field. This field accepts single value. Provide a valid propertyid.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "This is an optional field. This field accepts single value. Provide a valid propertyid."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ENTRATA_API_KEY",
+        "parameter_name": "X-Api-Key",
+        "accepted_as": "header",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "ENTRATA_DOMAIN",
+        "parameter_name": "entrata_domain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"required\": true,\n  \"description\": \"Returns all AR codes for a specified management company.\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"auth\",\n          \"method\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"auth\": {\n            \"required\": [\n              \"type\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"type\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"apikey\"\n                ]\n              }\n            }\n          },\n          \"requestId\": {\n            \"type\": \"string\",\n            \"description\": \"an arbitary value to relate with response.\"\n          },\n          \"method\": {\n            \"required\": [\n              \"name\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"name\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"getArCodes\"\n                ]\n              },\n              \"version\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"r1\"\n                ]\n              },\n              \"params\": {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"propertyId\": {\n                    \"type\": \"integer\",\n                    \"format\": \"int64\",\n                    \"example\": 123456,\n                    \"description\": \"This is an optional field. This field accepts single value. Provide a valid propertyid.\"\n                  }\n                }\n              }\n            }\n          }\n        }\n      },\n      \"examples\": {\n        \"getArCodes\": {\n          \"$ref\": \"#/components/examples/getArCodesRequest\"\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

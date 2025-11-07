@@ -1,0 +1,148 @@
+{
+  "name": "SendCommunicationMessage",
+  "fully_qualified_name": "EntrataApi.SendCommunicationMessage@0.1.0",
+  "description": "Send communication messages via the Entrata Communications API.\n\nThis tool sends communication messages using the Entrata Communications API. It should be called when a user wants to send a message to a specified organization. The tool performs a POST request to the specified endpoint to deliver the message and receives a confirmation of the communication being sent.",
+  "toolkit": {
+    "name": "EntrataApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "client_subdomain",
+        "required": true,
+        "description": "The subdomain of the client organization where the communication message will be sent.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "orgs"
+      },
+      {
+        "name": "communication_messages_payload",
+        "required": true,
+        "description": "JSON array containing details for arPayment-related communications.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "json",
+          "enum": null,
+          "properties": null,
+          "inner_properties": {},
+          "description": "arPayment related APIs"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ENTRATA_API_KEY"
+      },
+      {
+        "key": "ENTRATA_DOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Entrata API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://apis.{ENTRATA_DOMAIN}/ext/orgs/{orgs}/v1/communications",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "orgs",
+        "tool_parameter_name": "client_subdomain",
+        "description": "Client subdomain.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "communication_messages_payload",
+        "description": "arPayment related APIs",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "json",
+          "enum": null,
+          "properties": null,
+          "inner_properties": {},
+          "description": "arPayment related APIs"
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ENTRATA_API_KEY",
+        "parameter_name": "X-Api-Key",
+        "accepted_as": "header",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "ENTRATA_DOMAIN",
+        "parameter_name": "entrata_domain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"required\": true,\n  \"description\": \"arPayment related APIs\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"array\",\n        \"items\": {\n          \"oneOf\": [\n            {\n              \"required\": [\n                \"auth\",\n                \"method\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"auth\": {\n                  \"required\": [\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"apikey\"\n                      ]\n                    }\n                  }\n                },\n                \"requestId\": {\n                  \"type\": \"string\",\n                  \"description\": \"an arbitary value to relate with response.\"\n                },\n                \"method\": {\n                  \"required\": [\n                    \"name\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"name\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"getMarketingPreferencePickList\"\n                      ]\n                    },\n                    \"version\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"r1\"\n                      ]\n                    }\n                  }\n                }\n              }\n            },\n            {\n              \"required\": [\n                \"auth\",\n                \"method\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"auth\": {\n                  \"required\": [\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"apikey\"\n                      ]\n                    }\n                  }\n                },\n                \"requestId\": {\n                  \"type\": \"string\",\n                  \"description\": \"an arbitary value to relate with response.\"\n                },\n                \"method\": {\n                  \"required\": [\n                    \"name\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"name\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"getMarketingPreferences\"\n                      ]\n                    },\n                    \"version\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"r1\"\n                      ]\n                    },\n                    \"params\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"propertyId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": 123456,\n                          \"description\": \"This is a required field. This field accepts single value.\"\n                        },\n                        \"customerIds\": {\n                          \"type\": \"string\",\n                          \"format\": \"string\",\n                          \"example\": \"1234,2342\",\n                          \"description\": \"This is a required field. This field accepts comma seperated multiple values. Customer Ids\"\n                        },\n                        \"recipientTypeId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": 11,\n                          \"description\": \"This is a required field. This field accepts single value. Possible values are 1 = Lead 2 = Resident\"\n                        }\n                      },\n                      \"required\": [\n                        \"propertyId\",\n                        \"customerIds\",\n                        \"arCodeId\"\n                      ]\n                    }\n                  }\n                }\n              }\n            }\n          ]\n        }\n      },\n      \"examples\": {\n        \"getMarketingPreferencePickList\": {\n          \"$ref\": \"#/components/examples/getMarketingPreferencePickListRequest\"\n        },\n        \"getMarketingPreferences\": {\n          \"$ref\": \"#/components/examples/getMarketingPreferencesRequest\"\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

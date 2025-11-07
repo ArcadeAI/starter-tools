@@ -1,0 +1,253 @@
+{
+  "name": "GetArTransactions",
+  "fully_qualified_name": "EntrataApi.GetArTransactions@0.1.0",
+  "description": "Fetches accounts receivable transactions for an organization.\n\nUse this tool to retrieve accounts receivable transactions by providing the organization identifier.",
+  "toolkit": {
+    "name": "EntrataApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "client_subdomain",
+        "required": true,
+        "description": "The unique subdomain identifying the client organization for which the accounts receivable transactions are being fetched.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "orgs"
+      },
+      {
+        "name": "ar_transactions_request_body",
+        "required": true,
+        "description": "Specify the array of transaction-related API request data in JSON format.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "json",
+          "enum": null,
+          "properties": null,
+          "inner_properties": {},
+          "description": "arTansactions related APIs"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      },
+      {
+        "name": "page_number",
+        "required": false,
+        "description": "The page number to retrieve for paginated responses.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The page number of paginated respons."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "page_no"
+      },
+      {
+        "name": "items_per_page",
+        "required": false,
+        "description": "Specifies the number of items returned in the response for each page of pagination.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of items returned in the respnose"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "per_page"
+      },
+      {
+        "name": "include_pagination_links",
+        "required": false,
+        "description": "Set to 1 to include pagination links in the response body, 0 to exclude.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": [
+            "0",
+            "1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Send Pagination Links in Response Body."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "X-Send-Pagination-Links"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ENTRATA_API_KEY"
+      },
+      {
+        "key": "ENTRATA_DOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Entrata API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://apis.{ENTRATA_DOMAIN}/ext/orgs/{orgs}/v1/artransactions",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "page_no",
+        "tool_parameter_name": "page_number",
+        "description": "The page number of paginated respons.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The page number of paginated respons."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "per_page",
+        "tool_parameter_name": "items_per_page",
+        "description": "The number of items returned in the respnose",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of items returned in the respnose"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "orgs",
+        "tool_parameter_name": "client_subdomain",
+        "description": "Client subdomain.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "X-Send-Pagination-Links",
+        "tool_parameter_name": "include_pagination_links",
+        "description": "Send Pagination Links in Response Body.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": [
+            "0",
+            "1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Send Pagination Links in Response Body."
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "ar_transactions_request_body",
+        "description": "arTansactions related APIs",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "json",
+          "enum": null,
+          "properties": null,
+          "inner_properties": {},
+          "description": "arTansactions related APIs"
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ENTRATA_API_KEY",
+        "parameter_name": "X-Api-Key",
+        "accepted_as": "header",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "ENTRATA_DOMAIN",
+        "parameter_name": "entrata_domain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"required\": true,\n  \"description\": \"arTansactions related APIs\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"array\",\n        \"items\": {\n          \"oneOf\": [\n            {\n              \"required\": [\n                \"auth\",\n                \"method\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"auth\": {\n                  \"required\": [\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"apikey\"\n                      ]\n                    }\n                  }\n                },\n                \"requestId\": {\n                  \"type\": \"string\",\n                  \"description\": \"an arbitary value to relate with response.\"\n                },\n                \"method\": {\n                  \"required\": [\n                    \"name\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"name\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"getArInvoices\"\n                      ]\n                    },\n                    \"version\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"r1\"\n                      ]\n                    },\n                    \"params\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"propertyId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": 123456,\n                          \"description\": \"This is a required field. This field accepts single value. propertyId\"\n                        },\n                        \"leaseIds\": {\n                          \"type\": \"string\",\n                          \"format\": \"string\",\n                          \"example\": 123456,\n                          \"description\": \"This is an optional field. This field accepts comma seperated multiple values. leaseIds\"\n                        },\n                        \"arInvoiceId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": 123456,\n                          \"description\": \"  This is an optional field. This field accepts single value. arInvoiceId\"\n                        },\n                        \"fromDate\": {\n                          \"type\": \"string\",\n                          \"format\": \"date\",\n                          \"example\": \"MM/DD/YYYY\",\n                          \"description\": \"This is an optional field. This field accepts single value. From date.\"\n                        },\n                        \"toDate\": {\n                          \"type\": \"string\",\n                          \"format\": \"date\",\n                          \"example\": \"MM/DD/YYYY\",\n                          \"description\": \"This is an optional field. This field accepts single value. To date\"\n                        }\n                      },\n                      \"required\": [\n                        \"propertyId\"\n                      ]\n                    }\n                  }\n                }\n              }\n            },\n            {\n              \"required\": [\n                \"auth\",\n                \"method\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"auth\": {\n                  \"required\": [\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"apikey\"\n                      ]\n                    }\n                  }\n                },\n                \"requestId\": {\n                  \"type\": \"string\",\n                  \"description\": \"an arbitary value to relate with response.\"\n                },\n                \"method\": {\n                  \"required\": [\n                    \"name\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"name\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"getLeaseArTransactions\"\n                      ]\n                    },\n                    \"version\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"r1\"\n                      ]\n                    },\n                    \"params\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"propertyId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": 123456,\n                          \"description\": \"This is a required field. This field accepts single value. PropertyId\"\n                        },\n                        \"leaseIds\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": \"1234,5678\",\n                          \"description\": \"This is an optional field. This field accepts comma seperated multiple values. leaseIds\"\n                        },\n                        \"leaseStatusTypeIds\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": \"3,4\",\n                          \"description\": \"This is an optional field. This field accepts comma seperated multiple values. If provided API returns data as per leaseStatusTypeIds, otherwise if N ot passed or passed as NULL/blank, returns all leases except canceled.\"\n                        },\n                        \"transactionTypeIds\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": \"12345,4567\",\n                          \"description\": \"This is an optional field. This field accepts comma seperated multiple values. Type of transactions on lease. Possible values 1-12\"\n                        },\n                        \"arCodeIds\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": \"12345,4567\",\n                          \"description\": \"This is an optional field. This field accepts comma seperated multiple values. arCodeIds\"\n                        },\n                        \"showFullLedger\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"enum\": [\n                            0,\n                            1\n                          ],\n                          \"description\": \"This is an optional field. This field accepts single value. This is parameter allows you to pull full ledger history. By default i t only returns open ledger items.\"\n                        },\n                        \"includeOtherIncomeLeases\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"enum\": [\n                            0,\n                            1\n                          ],\n                          \"description\": \"This is an optional field. This field accepts single value. This parameter is used to get the Other income leases in the response.\"\n                        },\n                        \"includeReversals\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"enum\": [\n                            0,\n                            1\n                          ],\n                          \"description\": \"This is an optional field. This field accepts single value. This parameter return reversal transactions in API response. Also to i nclude the reversal transaction in response \\\"showFullLedger\\\" must be t rue(1).\"\n                        },\n                        \"transactionFromDate\": {\n                          \"type\": \"string\",\n                          \"format\": \"date\",\n                          \"example\": \"MM/DD/YYYY\",\n                          \"description\": \"This is an optional field. This field accepts single value. This will return transactions starting from the provided date.\"\n                        },\n                        \"transactionToDate\": {\n                          \"type\": \"string\",\n                          \"format\": \"date\",\n                          \"example\": \"MM/DD/YYYY\",\n                          \"description\": \"This is an optional field. This field accepts single value. This will return transaction till the provided date.\"\n                        },\n                        \"ledgerIds\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": \"12345,4567\",\n                          \"description\": \"This is an optional field. This field accepts comma seperated multiple values. These ids we will get from getFinancialPickList.\"\n                        },\n                        \"residentFriendlyMode\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"enum\": [\n                            0,\n                            1\n                          ],\n                          \"description\": \"This is an optional field. This field accepts single value.\"\n                        }\n                      },\n                      \"required\": [\n                        \"propertyId\"\n                      ]\n                    }\n                  }\n                }\n              }\n            },\n            {\n              \"required\": [\n                \"auth\",\n                \"method\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"auth\": {\n                  \"required\": [\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"apikey\"\n                      ]\n                    }\n                  }\n                },\n                \"requestId\": {\n                  \"type\": \"string\",\n                  \"description\": \"an arbitary value to relate with response.\"\n                },\n                \"method\": {\n                  \"required\": [\n                    \"name\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"name\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"getMitsLeaseArTransactions\"\n                      ]\n                    },\n                    \"version\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"r1\"\n                      ]\n                    },\n                    \"params\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"propertyId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": 123456,\n                          \"description\": \"This is a required field. This field accepts single value. PropertyId\"\n                        },\n                        \"leaseId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": \"1234\",\n                          \"description\": \"This is an optional field. This field accepts single value. leaseId\"\n                        },\n                        \"leaseStatusTypeIds\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": \"3,4\",\n                          \"description\": \"This is an optional field. This field accepts comma seperated multiple values. If provided API returns data as per leaseStatusTypeIds, otherwise if N ot passed or passed as NULL/blank, returns all leases except canceled.\"\n                        },\n                        \"arCodeIds\": {\n                          \"type\": \"string\",\n                          \"format\": \"string\",\n                          \"example\": \"1234,5678\",\n                          \"description\": \"This is an optional field. This field accepts comma seperated multiple values. arCodeIds\"\n                        },\n                        \"showFullLedger\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"enum\": [\n                            0,\n                            1\n                          ],\n                          \"description\": \"This is an optional field. This field accepts single value. This is parameter allows you to pull full ledger history. By default i t only returns open ledger items.\"\n                        },\n                        \"includeReversals\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"enum\": [\n                            0,\n                            1\n                          ],\n                          \"description\": \"This is an optional field. This field accepts single value. This parameter return reversal transactions in API response. Also to i nclude the reversal transaction in response \\\"showFullLedger\\\" must be true(1).\"\n                        },\n                        \"residentFriendlyMode\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"enum\": [\n                            0,\n                            1\n                          ],\n                          \"description\": \"This is an optional field. This field accepts single value. This is parameter allows you to pull ledger history as displayed under resident portal\"\n                        },\n                        \"includeOtherIncomeLeases\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"enum\": [\n                            0,\n                            1\n                          ],\n                          \"description\": \"This is an optional field. This field accepts single value. This parameter is used to get the Other income leases in the response.\"\n                        },\n                        \"includePaymentsOnly\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"enum\": [\n                            0,\n                            1\n                          ],\n                          \"description\": \"This is an optional field. This field accepts single value. This parameter is used to retrieve payments transactions in the response\"\n                        },\n                        \"transactionFromDate\": {\n                          \"type\": \"string\",\n                          \"format\": \"date\",\n                          \"example\": \"MM/DD/YYYY\",\n                          \"description\": \"This is an optional field. This field accepts single value. transactionFromDate\"\n                        },\n                        \"transactionToDate\": {\n                          \"type\": \"string\",\n                          \"format\": \"date\",\n                          \"example\": \"MM/DD/YYYY\",\n                          \"description\": \"This is an optional field. This field accepts single value. transactionToDate\"\n                        }\n                      },\n                      \"required\": [\n                        \"propertyId\"\n                      ]\n                    }\n                  }\n                }\n              }\n            },\n            {\n              \"required\": [\n                \"auth\",\n                \"method\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"auth\": {\n                  \"required\": [\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"apikey\"\n                      ]\n                    }\n                  }\n                },\n                \"requestId\": {\n                  \"type\": \"string\",\n                  \"description\": \"an arbitary value to relate with response.\"\n                },\n                \"method\": {\n                  \"required\": [\n                    \"name\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"name\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"sendLeaseArTransactionReversals\"\n                      ]\n                    },\n                    \"version\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"r1\"\n                      ]\n                    },\n                    \"params\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"TransactionId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": 1234,\n                          \"description\": \"This is a required field. This field accepts single value. This ID represents the \\\"reference_id\\\" provided in the sendLeaseArTrans actions response or the \\\"TransactionID\\\" provided in getMitsLeaseArTran sactions.\"\n                        },\n                        \"TransactionAmount\": {\n                          \"type\": \"integer\",\n                          \"format\": \"float\",\n                          \"example\": \"100.50\",\n                          \"description\": \"This is a required field. This field accepts single value. The amount for which the original charge was posted. If the Original c harge was a negative charge, a credit, please send this amount as nega tive as well.\"\n                        },\n                        \"PropertyId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": 123456,\n                          \"description\": \"This is an optional field. This field accepts single value.\"\n                        },\n                        \"ReverseDate\": {\n                          \"type\": \"string\",\n                          \"format\": \"date\",\n                          \"example\": \"MM/DD/YYYY\",\n                          \"description\": \"This is an optional field. This field accepts single value. This is an optional parameter. If a date is sent in this parameter, we will set this value as postDate for the reversed transactions.\"\n                        },\n                        \"Description\": {\n                          \"type\": \"string\",\n                          \"format\": \"string\",\n                          \"example\": \"Test Description\",\n                          \"description\": \"This is an optional field. This field accepts single value. This is an optional parameter. We highly recommend that you provide a detailed description of the reason for which the charged is reversed.\"\n                        }\n                      },\n                      \"required\": [\n                        \"TransactionId\",\n                        \"TransactionAmount\"\n                      ]\n                    }\n                  }\n                }\n              }\n            },\n            {\n              \"required\": [\n                \"auth\",\n                \"method\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"auth\": {\n                  \"required\": [\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"apikey\"\n                      ]\n                    }\n                  }\n                },\n                \"requestId\": {\n                  \"type\": \"string\",\n                  \"description\": \"an arbitary value to relate with response.\"\n                },\n                \"method\": {\n                  \"required\": [\n                    \"name\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"name\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"sendLeaseArTransactions\"\n                      ]\n                    },\n                    \"version\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"r1\"\n                      ]\n                    },\n                    \"params\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"transactionId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": 1234,\n                          \"description\": \"This is a required field. This field accepts single value. Unique Transaction ID of client system\"\n                        },\n                        \"leaseId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"example\": \"2342\",\n                          \"description\": \"This is a required field. This field accepts single value. Lease ID\"\n                        },\n                        \"arCodeId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"int64\",\n                          \"example\": 11,\n                          \"description\": \"This is a required field. This field accepts single value. Ar Code ID\"\n                        },\n                        \"transactionAmount\": {\n                          \"type\": \"integer\",\n                          \"format\": \"float\",\n                          \"example\": \"1000.00\",\n                          \"description\": \"This is a required field. This field accepts single value. Transaction Amount\"\n                        },\n                        \"transactionDate\": {\n                          \"type\": \"string\",\n                          \"format\": \"date\",\n                          \"example\": \"MM/DD/YYYY\",\n                          \"description\": \"This is a required field. This field accepts single value. transactionDate\"\n                        },\n                        \"arPostMonth\": {\n                          \"type\": \"string\",\n                          \"format\": \"string\",\n                          \"example\": \"MM/YYYY\",\n                          \"description\": \"This is an optional field. This field accepts single value. Charge Posting Month\"\n                        }\n                      },\n                      \"required\": [\n                        \"transactionId\",\n                        \"leaseId\",\n                        \"arCodeId\",\n                        \"transactionAmount\",\n                        \"transactionDate\"\n                      ]\n                    }\n                  }\n                }\n              }\n            }\n          ]\n        }\n      },\n      \"examples\": {\n        \"getArInvoices\": {\n          \"$ref\": \"#/components/examples/getArInvoicesRequest\"\n        },\n        \"getLeaseArTransactions\": {\n          \"$ref\": \"#/components/examples/getLeaseArTransactionsRequest\"\n        },\n        \"getMitsLeaseArTransactions\": {\n          \"$ref\": \"#/components/examples/getMitsLeaseArTransactionsRequest\"\n        },\n        \"sendLeaseArTransactionReversals\": {\n          \"$ref\": \"#/components/examples/sendLeaseArTransactionReversalsRequest\"\n        },\n        \"sendLeaseArTransactions\": {\n          \"$ref\": \"#/components/examples/sendLeaseArTransactionsRequest\"\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}
