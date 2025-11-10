@@ -1,0 +1,332 @@
+{
+  "name": "ConvertVisitorToUser",
+  "fully_qualified_name": "IntercomApi.ConvertVisitorToUser@0.1.0",
+  "description": "Convert a Visitor into a User or merge with an existing User.\n\nUse this tool to convert a Visitor to a Contact of role type `lead` or `user`. If the User already exists, the Visitor will be merged into it and the User details will be returned. If the User does not exist, the Visitor will become a User, with their identifiers updated.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "intercom_version",
+        "required": false,
+        "description": "Specify the Intercom API version to use, e.g., '1.0', '2.9'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "conversion_details",
+        "required": false,
+        "description": "JSON object with visitor and user identifiers for conversion or merging. Includes role type ('lead' or 'user'), user ID, user external ID, email, and visitor details.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "type": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Represents the role of the Contact model. Accepts `lead` or `user`."
+            },
+            "user": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The unique identifier for the contact which is given by Intercom."
+                },
+                "user_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "A unique identifier for the contact which is given to Intercom, which will be represented as external_id."
+                },
+                "email": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The contact's email, retained by default if one is present."
+                }
+              },
+              "inner_properties": null,
+              "description": "The unique identifiers retained after converting or merging."
+            },
+            "visitor": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The unique identifier for the contact which is given by Intercom."
+                },
+                "user_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "A unique identifier for the contact which is given to Intercom."
+                },
+                "email": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The visitor's email."
+                }
+              },
+              "inner_properties": null,
+              "description": "The unique identifiers to convert a single Visitor."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'convertVisitor'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/visitors/convert",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "conversion_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "type": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Represents the role of the Contact model. Accepts `lead` or `user`."
+            },
+            "user": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The unique identifier for the contact which is given by Intercom."
+                },
+                "user_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "A unique identifier for the contact which is given to Intercom, which will be represented as external_id."
+                },
+                "email": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The contact's email, retained by default if one is present."
+                }
+              },
+              "inner_properties": null,
+              "description": "The unique identifiers retained after converting or merging."
+            },
+            "visitor": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The unique identifier for the contact which is given by Intercom."
+                },
+                "user_id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "A unique identifier for the contact which is given to Intercom."
+                },
+                "email": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The visitor's email."
+                }
+              },
+              "inner_properties": null,
+              "description": "The unique identifiers to convert a single Visitor."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"description\": \"You can merge a Visitor to a Contact of role type lead or user.\",\n        \"type\": \"object\",\n        \"title\": \"Convert Visitor Request Payload\",\n        \"properties\": {\n          \"type\": {\n            \"type\": \"string\",\n            \"description\": \"Represents the role of the Contact model. Accepts `lead` or `user`.\",\n            \"example\": \"user\"\n          },\n          \"user\": {\n            \"type\": \"object\",\n            \"description\": \"The unique identifiers retained after converting or merging.\",\n            \"properties\": {\n              \"id\": {\n                \"type\": \"string\",\n                \"description\": \"The unique identifier for the contact which is given by Intercom.\",\n                \"example\": \"8a88a590-e1c3-41e2-a502-e0649dbf721c\"\n              },\n              \"user_id\": {\n                \"type\": \"string\",\n                \"description\": \"A unique identifier for the contact which is given to Intercom, which will be represented as external_id.\",\n                \"example\": \"8a88a590-e1c3-41e2-a502-e0649dbf721c\"\n              },\n              \"email\": {\n                \"type\": \"string\",\n                \"description\": \"The contact's email, retained by default if one is present.\",\n                \"example\": \"joe@example.com\"\n              }\n            },\n            \"anyOf\": [\n              {\n                \"required\": [\n                  \"id\"\n                ]\n              },\n              {\n                \"required\": [\n                  \"user_id\"\n                ]\n              }\n            ]\n          },\n          \"visitor\": {\n            \"type\": \"object\",\n            \"description\": \"The unique identifiers to convert a single Visitor.\",\n            \"properties\": {\n              \"id\": {\n                \"type\": \"string\",\n                \"description\": \"The unique identifier for the contact which is given by Intercom.\",\n                \"example\": \"8a88a590-e1c3-41e2-a502-e0649dbf721c\"\n              },\n              \"user_id\": {\n                \"type\": \"string\",\n                \"description\": \"A unique identifier for the contact which is given to Intercom.\",\n                \"example\": \"8a88a590-e1c3-41e2-a502-e0649dbf721c\"\n              },\n              \"email\": {\n                \"type\": \"string\",\n                \"description\": \"The visitor's email.\",\n                \"example\": \"joe@example.com\"\n              }\n            },\n            \"anyOf\": [\n              {\n                \"required\": [\n                  \"id\"\n                ]\n              },\n              {\n                \"required\": [\n                  \"user_id\"\n                ]\n              },\n              {\n                \"required\": [\n                  \"email\"\n                ]\n              }\n            ]\n          }\n        },\n        \"required\": [\n          \"type\",\n          \"user\",\n          \"visitor\"\n        ]\n      },\n      \"examples\": {\n        \"successful\": {\n          \"summary\": \"successful\",\n          \"value\": {\n            \"visitor\": {\n              \"user_id\": \"3ecf64d0-9ed1-4e9f-88e1-da7d6e6782f3\"\n            },\n            \"user\": {\n              \"email\": \"foo@bar.com\"\n            },\n            \"type\": \"user\"\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

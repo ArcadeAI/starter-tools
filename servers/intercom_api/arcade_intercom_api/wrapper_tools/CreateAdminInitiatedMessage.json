@@ -1,0 +1,380 @@
+{
+  "name": "CreateAdminInitiatedMessage",
+  "fully_qualified_name": "IntercomApi.CreateAdminInitiatedMessage@0.1.0",
+  "description": "Create a message initiated by an admin via Intercom.\n\nThis tool allows you to create a message initiated by an admin, either as an in-app message or an email, using Intercom. Note that there might be a delay before a new contact can be messaged. The created message model is returned.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "intercom_version",
+        "required": false,
+        "description": "The version of the Intercom API to use for creating the message. Options include versions from 1.0 to 2.9.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "admin_initiated_message_details",
+        "required": false,
+        "description": "JSON object containing details like message type, subject, body, sender, recipient, etc. Required fields include `message_type`, `from`, and `to`. Use `in_app` or `email` for `message_type`. `from` should include admin type and ID. `to` should include role type (`user` or `lead`) and contact ID. Optionally define `subject`, `body`, `template`, and `create_conversation_without_contact_reply`.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "message_type": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "in_app",
+                "email"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The kind of message being created. Values: `in_app` or `email`."
+            },
+            "subject": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The title of the email."
+            },
+            "body": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The content of the message. HTML and plaintext are supported."
+            },
+            "template": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The style of the outgoing message. Possible values `plain` or `personal`."
+            },
+            "from": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "type": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "admin"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Always `admin`."
+                },
+                "id": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The identifier for the admin which is given by Intercom."
+                }
+              },
+              "inner_properties": null,
+              "description": "The sender of the message. If not provided, the default sender will be used."
+            },
+            "to": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "type": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "user",
+                    "lead"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The role associated to the contact - `user` or `lead`."
+                },
+                "id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The identifier for the contact which is given by Intercom."
+                }
+              },
+              "inner_properties": null,
+              "description": "The sender of the message. If not provided, the default sender will be used."
+            },
+            "create_conversation_without_contact_reply": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether a conversation should be opened in the inbox for the message without the contact replying. Defaults to false if not provided."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'createMessage'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/messages",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "admin_initiated_message_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "message_type": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "in_app",
+                "email"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The kind of message being created. Values: `in_app` or `email`."
+            },
+            "subject": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The title of the email."
+            },
+            "body": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The content of the message. HTML and plaintext are supported."
+            },
+            "template": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The style of the outgoing message. Possible values `plain` or `personal`."
+            },
+            "from": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "type": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "admin"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Always `admin`."
+                },
+                "id": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The identifier for the admin which is given by Intercom."
+                }
+              },
+              "inner_properties": null,
+              "description": "The sender of the message. If not provided, the default sender will be used."
+            },
+            "to": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "type": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "user",
+                    "lead"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The role associated to the contact - `user` or `lead`."
+                },
+                "id": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The identifier for the contact which is given by Intercom."
+                }
+              },
+              "inner_properties": null,
+              "description": "The sender of the message. If not provided, the default sender will be used."
+            },
+            "create_conversation_without_contact_reply": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether a conversation should be opened in the inbox for the message without the contact replying. Defaults to false if not provided."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"description\": \"You can create a message\",\n        \"type\": \"object\",\n        \"title\": \"Create Message Request Payload\",\n        \"nullable\": true,\n        \"properties\": {\n          \"message_type\": {\n            \"type\": \"string\",\n            \"description\": \"The kind of message being created. Values: `in_app` or `email`.\",\n            \"enum\": [\n              \"in_app\",\n              \"email\"\n            ],\n            \"example\": \"in_app\"\n          },\n          \"subject\": {\n            \"type\": \"string\",\n            \"description\": \"The title of the email.\",\n            \"example\": \"Thanks for everything\"\n          },\n          \"body\": {\n            \"type\": \"string\",\n            \"description\": \"The content of the message. HTML and plaintext are supported.\",\n            \"example\": \"Hello there\"\n          },\n          \"template\": {\n            \"type\": \"string\",\n            \"description\": \"The style of the outgoing message. Possible values `plain` or `personal`.\",\n            \"example\": \"plain\"\n          },\n          \"from\": {\n            \"type\": \"object\",\n            \"description\": \"The sender of the message. If not provided, the default sender will be used.\",\n            \"properties\": {\n              \"type\": {\n                \"type\": \"string\",\n                \"description\": \"Always `admin`.\",\n                \"enum\": [\n                  \"admin\"\n                ],\n                \"example\": \"admin\"\n              },\n              \"id\": {\n                \"type\": \"integer\",\n                \"description\": \"The identifier for the admin which is given by Intercom.\",\n                \"example\": 394051\n              }\n            },\n            \"required\": [\n              \"type\",\n              \"id\"\n            ]\n          },\n          \"to\": {\n            \"type\": \"object\",\n            \"description\": \"The sender of the message. If not provided, the default sender will be used.\",\n            \"properties\": {\n              \"type\": {\n                \"type\": \"string\",\n                \"description\": \"The role associated to the contact - `user` or `lead`.\",\n                \"enum\": [\n                  \"user\",\n                  \"lead\"\n                ],\n                \"example\": \"user\"\n              },\n              \"id\": {\n                \"type\": \"string\",\n                \"description\": \"The identifier for the contact which is given by Intercom.\",\n                \"example\": \"536e564f316c83104c000020\"\n              }\n            },\n            \"required\": [\n              \"type\",\n              \"id\"\n            ]\n          },\n          \"create_conversation_without_contact_reply\": {\n            \"type\": \"boolean\",\n            \"description\": \"Whether a conversation should be opened in the inbox for the message without the contact replying. Defaults to false if not provided.\",\n            \"default\": false,\n            \"example\": true\n          }\n        },\n        \"anyOf\": [\n          {\n            \"title\": \"message_type: `email`.\",\n            \"required\": [\n              \"message_type\",\n              \"subject\",\n              \"body\",\n              \"template\",\n              \"from\",\n              \"to\"\n            ]\n          },\n          {\n            \"title\": \"message_type: `inapp`.\",\n            \"required\": [\n              \"message_type\",\n              \"body\",\n              \"from\",\n              \"to\"\n            ]\n          }\n        ]\n      },\n      \"examples\": {\n        \"user_message_created\": {\n          \"summary\": \"user message created\",\n          \"value\": {\n            \"from\": {\n              \"type\": \"user\",\n              \"id\": \"6657abab6abd0164c24b0dc0\"\n            },\n            \"body\": \"heyy\",\n            \"referer\": \"https://twitter.com/bob\"\n          }\n        },\n        \"lead_message_created\": {\n          \"summary\": \"lead message created\",\n          \"value\": {\n            \"from\": {\n              \"type\": \"lead\",\n              \"id\": \"6657abac6abd0164c24b0dc1\"\n            },\n            \"body\": \"heyy\",\n            \"referer\": \"https://twitter.com/bob\"\n          }\n        },\n        \"admin_message_created\": {\n          \"summary\": \"admin message created\",\n          \"value\": {\n            \"from\": {\n              \"type\": \"admin\",\n              \"id\": \"991267575\"\n            },\n            \"to\": {\n              \"type\": \"user\",\n              \"id\": \"6657abad6abd0164c24b0dc2\"\n            },\n            \"message_type\": \"conversation\",\n            \"body\": \"heyy\"\n          }\n        },\n        \"no_body_supplied_for_message\": {\n          \"summary\": \"No body supplied for message\",\n          \"value\": {\n            \"from\": {\n              \"type\": \"admin\",\n              \"id\": \"991267577\"\n            },\n            \"to\": {\n              \"type\": \"user\",\n              \"id\": \"6657abaf6abd0164c24b0dc3\"\n            },\n            \"message_type\": \"inapp\",\n            \"body\": null,\n            \"subject\": \"heyy\"\n          }\n        },\n        \"no_subject_supplied_for_email_message\": {\n          \"summary\": \"No subject supplied for email message\",\n          \"value\": {\n            \"from\": {\n              \"type\": \"admin\",\n              \"id\": \"991267578\"\n            },\n            \"to\": {\n              \"type\": \"user\",\n              \"user_id\": \"70\"\n            },\n            \"message_type\": \"email\",\n            \"body\": \"hey there\"\n          }\n        },\n        \"no_body_supplied_for_email_message\": {\n          \"summary\": \"No body supplied for email message\",\n          \"value\": {\n            \"from\": {\n              \"type\": \"admin\",\n              \"id\": \"991267579\"\n            },\n            \"to\": {\n              \"type\": \"user\",\n              \"id\": \"6657abb06abd0164c24b0dc5\"\n            },\n            \"message_type\": \"email\",\n            \"body\": null,\n            \"subject\": \"heyy\"\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

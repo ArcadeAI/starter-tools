@@ -1,0 +1,355 @@
+{
+  "name": "UpdateSupportTicket",
+  "fully_qualified_name": "IntercomApi.UpdateSupportTicket@0.1.0",
+  "description": "Modify an existing support ticket in Intercom.\n\nUse this tool to update the details of a support ticket in Intercom, such as status, priority, or assigned agent. This is helpful for managing customer support requests efficiently.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "ticket_id",
+        "required": true,
+        "description": "The unique identifier for the ticket as provided by Intercom.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unique identifier for the ticket which is given by Intercom"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "id"
+      },
+      {
+        "name": "intercom_version",
+        "required": false,
+        "description": "Specify the version of the Intercom API to use. Options range from 1.0 to 2.9.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "ticket_details",
+        "required": false,
+        "description": "A JSON object containing key-value pairs of the ticket attributes to be updated, such as subject, priority, or tags.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The attributes set on the ticket."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "ticket_attributes"
+      },
+      {
+        "name": "ticket_state",
+        "required": false,
+        "description": "The current state of the ticket. Must be one of: 'in_progress', 'waiting_on_customer', or 'resolved'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "in_progress",
+            "waiting_on_customer",
+            "resolved"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The state of the ticket."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "state"
+      },
+      {
+        "name": "admin_id",
+        "required": false,
+        "description": "The ID of the admin performing the action on the ticket.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the admin performing the action."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "assignment.admin_id"
+      },
+      {
+        "name": "assignee_id",
+        "required": false,
+        "description": "The ID of the admin or team to which the ticket is assigned. Use '0' to unassign.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the admin or team to which the ticket is assigned. Set this 0 to unassign it."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "assignment.assignee_id"
+      },
+      {
+        "name": "ticket_visible_to_users",
+        "required": false,
+        "description": "Set to true to make the ticket visible to users; false to keep it hidden.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Specify whether the ticket is visible to users."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "is_shared"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'updateTicket'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/tickets/{id}",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "id",
+        "tool_parameter_name": "ticket_id",
+        "description": "The unique identifier for the ticket which is given by Intercom",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unique identifier for the ticket which is given by Intercom"
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "ticket_attributes",
+        "tool_parameter_name": "ticket_details",
+        "description": "The attributes set on the ticket.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The attributes set on the ticket."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "state",
+        "tool_parameter_name": "ticket_state",
+        "description": "The state of the ticket.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "in_progress",
+            "waiting_on_customer",
+            "resolved"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The state of the ticket."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "is_shared",
+        "tool_parameter_name": "ticket_visible_to_users",
+        "description": "Specify whether the ticket is visible to users.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Specify whether the ticket is visible to users."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "assignment.admin_id",
+        "tool_parameter_name": "admin_id",
+        "description": "The ID of the admin performing the action.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the admin performing the action."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "assignment.assignee_id",
+        "tool_parameter_name": "assignee_id",
+        "description": "The ID of the admin or team to which the ticket is assigned. Set this 0 to unassign it.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the admin or team to which the ticket is assigned. Set this 0 to unassign it."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"description\": \"You can update a Ticket\",\n        \"type\": \"object\",\n        \"title\": \"Update Ticket Request Payload\",\n        \"properties\": {\n          \"ticket_attributes\": {\n            \"type\": \"object\",\n            \"description\": \"The attributes set on the ticket.\",\n            \"example\": {\n              \"_default_title_\": \"example\",\n              \"_default_description_\": \"having a problem\"\n            }\n          },\n          \"state\": {\n            \"type\": \"string\",\n            \"enum\": [\n              \"in_progress\",\n              \"waiting_on_customer\",\n              \"resolved\"\n            ],\n            \"description\": \"The state of the ticket.\",\n            \"example\": \"submitted\"\n          },\n          \"is_shared\": {\n            \"type\": \"boolean\",\n            \"description\": \"Specify whether the ticket is visible to users.\",\n            \"example\": true\n          },\n          \"assignment\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"admin_id\": {\n                \"type\": \"string\",\n                \"description\": \"The ID of the admin performing the action.\",\n                \"example\": \"123\"\n              },\n              \"assignee_id\": {\n                \"type\": \"string\",\n                \"description\": \"The ID of the admin or team to which the ticket is assigned. Set this 0 to unassign it.\",\n                \"example\": \"123\"\n              }\n            }\n          }\n        }\n      },\n      \"examples\": {\n        \"successful_response\": {\n          \"summary\": \"Successful response\",\n          \"value\": {\n            \"ticket_attributes\": {\n              \"_default_title_\": \"example\",\n              \"_default_description_\": \"there is a problem\"\n            },\n            \"state\": \"in_progress\",\n            \"assignment\": {\n              \"admin_id\": \"991267719\",\n              \"assignee_id\": \"991267721\"\n            },\n            \"open\": true,\n            \"snoozed_until\": 1673609604\n          }\n        },\n        \"admin_not_found\": {\n          \"summary\": \"Admin not found\",\n          \"value\": {\n            \"ticket_attributes\": {\n              \"_default_title_\": \"example\",\n              \"_default_description_\": \"there is a problem\"\n            },\n            \"state\": \"in_progress\",\n            \"assignment\": {\n              \"admin_id\": \"123\",\n              \"assignee_id\": \"991267729\"\n            }\n          }\n        },\n        \"assignee_not_found\": {\n          \"summary\": \"Assignee not found\",\n          \"value\": {\n            \"ticket_attributes\": {\n              \"_default_title_\": \"example\",\n              \"_default_description_\": \"there is a problem\"\n            },\n            \"state\": \"in_progress\",\n            \"assignment\": {\n              \"admin_id\": \"991267735\",\n              \"assignee_id\": \"456\"\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

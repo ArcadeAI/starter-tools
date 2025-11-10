@@ -1,0 +1,328 @@
+{
+  "name": "CreateOrUpdateCompany",
+  "fully_qualified_name": "IntercomApi.CreateOrUpdateCompany@0.1.0",
+  "description": "Create or update a company in Intercom.\n\nThis tool is used to create or update a company in Intercom. The company is identified by a unique `company_id`. If a company with the given `company_id` exists, it will be updated; otherwise, a new company will be created. Note that a company will only be visible when associated with at least one user.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "intercom_version",
+        "required": false,
+        "description": "Specify the Intercom API version to use, such as '2.9'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "company_data",
+        "required": false,
+        "description": "A JSON object containing the company's details such as name, company_id, plan, size, website, industry, custom_attributes, remote_created_at, and monthly_spend.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the Company"
+            },
+            "company_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The company id you have defined for the company. Can't be updated"
+            },
+            "plan": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the plan you have associated with the company."
+            },
+            "size": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The number of employees in this company."
+            },
+            "website": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The URL for this company's website. Please note that the value specified here is not validated. Accepts any string."
+            },
+            "industry": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The industry that this company operates in."
+            },
+            "custom_attributes": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A hash of key/value pairs containing any other data about the company you want Intercom to store."
+            },
+            "remote_created_at": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The time the company was created by you."
+            },
+            "monthly_spend": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "How much revenue the company generates for your business. Note that this will truncate floats. i.e. it only allow for whole integers, 155.98 will be truncated to 155. Note that this has an upper limit of 2**31-1 or 2147483647.."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'createOrUpdateCompany'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/companies",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "company_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the Company"
+            },
+            "company_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The company id you have defined for the company. Can't be updated"
+            },
+            "plan": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the plan you have associated with the company."
+            },
+            "size": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The number of employees in this company."
+            },
+            "website": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The URL for this company's website. Please note that the value specified here is not validated. Accepts any string."
+            },
+            "industry": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The industry that this company operates in."
+            },
+            "custom_attributes": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A hash of key/value pairs containing any other data about the company you want Intercom to store."
+            },
+            "remote_created_at": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The time the company was created by you."
+            },
+            "monthly_spend": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "How much revenue the company generates for your business. Note that this will truncate floats. i.e. it only allow for whole integers, 155.98 will be truncated to 155. Note that this has an upper limit of 2**31-1 or 2147483647.."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"title\": \"Create Or Update Company Request Payload\",\n        \"description\": \"You can create or update a Company\",\n        \"nullable\": true,\n        \"properties\": {\n          \"name\": {\n            \"type\": \"string\",\n            \"description\": \"The name of the Company\",\n            \"example\": \"Intercom\"\n          },\n          \"company_id\": {\n            \"type\": \"string\",\n            \"description\": \"The company id you have defined for the company. Can't be updated\",\n            \"example\": \"625e90fc55ab113b6d92175f\"\n          },\n          \"plan\": {\n            \"type\": \"string\",\n            \"description\": \"The name of the plan you have associated with the company.\",\n            \"example\": \"Enterprise\"\n          },\n          \"size\": {\n            \"type\": \"integer\",\n            \"description\": \"The number of employees in this company.\",\n            \"example\": \"100\"\n          },\n          \"website\": {\n            \"type\": \"string\",\n            \"description\": \"The URL for this company's website. Please note that the value specified here is not validated. Accepts any string.\",\n            \"example\": \"https://www.example.com\"\n          },\n          \"industry\": {\n            \"type\": \"string\",\n            \"description\": \"The industry that this company operates in.\",\n            \"example\": \"Technology\"\n          },\n          \"custom_attributes\": {\n            \"type\": \"object\",\n            \"description\": \"A hash of key/value pairs containing any other data about the company you want Intercom to store.\",\n            \"additionalProperties\": {\n              \"type\": \"string\"\n            },\n            \"example\": {\n              \"paid_subscriber\": true,\n              \"monthly_spend\": 155.5,\n              \"team_mates\": 9\n            }\n          },\n          \"remote_created_at\": {\n            \"type\": \"integer\",\n            \"description\": \"The time the company was created by you.\",\n            \"example\": 1394531169\n          },\n          \"monthly_spend\": {\n            \"type\": \"integer\",\n            \"description\": \"How much revenue the company generates for your business. Note that this will truncate floats. i.e. it only allow for whole integers, 155.98 will be truncated to 155. Note that this has an upper limit of 2**31-1 or 2147483647..\",\n            \"example\": 1000\n          }\n        }\n      },\n      \"examples\": {\n        \"successful\": {\n          \"summary\": \"Successful\",\n          \"value\": {\n            \"company_id\": \"company_remote_id\",\n            \"name\": \"my company\",\n            \"remote_created_at\": 1374138000\n          }\n        },\n        \"bad_request\": {\n          \"summary\": \"Bad Request\",\n          \"value\": {\n            \"test\": \"invalid\"\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}
