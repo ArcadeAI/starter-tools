@@ -1,0 +1,204 @@
+{
+  "name": "FindWorkspaceObjects",
+  "fully_qualified_name": "CustomerioApi.FindWorkspaceObjects@0.1.0",
+  "description": "Find objects in your workspace using filter conditions.\n\nThis tool is used to find and return a list of object IDs based on specified filter conditions in your Customerio workspace. It allows paging through results and setting limits on the number of objects returned. Useful for locating, creating, or modifying objects based on specific criteria.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "page_start_token",
+        "required": false,
+        "description": "Token for the page of results to return. Use the `next` property from a prior response to continue paging.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "maximum_results_per_page",
+        "required": false,
+        "description": "The maximum number of results to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "limit"
+      },
+      {
+        "name": "filter_request",
+        "required": false,
+        "description": "JSON containing 'object_type_id' and 'filter' to specify object search and filter conditions. Both are required. Ensure 'object_attribute' type_id matches 'object_type_id'.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "object_type_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of object you want to search in. Object type IDs are integers passed as strings."
+            },
+            "filter": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "When filtering for objects, you can use `and` and `or` arrays to determine the logic for a group of filter conditions. `not` reverses the filter condition and matches when the condition is false. `object_attribute` represents the individual conditions you can filter objects by.\n\nThe top level of this object can only contain a single property, but you can nest `and` and `or` properties to produce complex filters.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": "The `object_type_id` you want to search in, and the `filter` you want to apply to find objects. Both are required. The object called `object_attribute` requires `type_id`, as well, which should match the `object_type_id`."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getObjectsFilter'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/objects",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "start",
+        "tool_parameter_name": "page_start_token",
+        "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "limit",
+        "tool_parameter_name": "maximum_results_per_page",
+        "description": "The maximum number of results you want to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "filter_request",
+        "description": "The `object_type_id` you want to search in, and the `filter` you want to apply to find objects. Both are required. The object called `object_attribute` requires `type_id`, as well, which should match the `object_type_id`.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "object_type_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of object you want to search in. Object type IDs are integers passed as strings."
+            },
+            "filter": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "When filtering for objects, you can use `and` and `or` arrays to determine the logic for a group of filter conditions. `not` reverses the filter condition and matches when the condition is false. `object_attribute` represents the individual conditions you can filter objects by.\n\nThe top level of this object can only contain a single property, but you can nest `and` and `or` properties to produce complex filters.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": "The `object_type_id` you want to search in, and the `filter` you want to apply to find objects. Both are required. The object called `object_attribute` requires `type_id`, as well, which should match the `object_type_id`."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"description\": \"The `object_type_id` you want to search in, and the `filter` you want to apply to find objects. Both are required. The object called `object_attribute` requires `type_id`, as well, which should match the `object_type_id`.\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"object_type_id\",\n          \"filter\"\n        ],\n        \"properties\": {\n          \"object_type_id\": {\n            \"type\": \"string\",\n            \"description\": \"The type of object you want to search in. Object type IDs are integers passed as strings.\",\n            \"example\": \"1\"\n          },\n          \"filter\": {\n            \"title\": \"Object Filter\",\n            \"description\": \"When filtering for objects, you can use `and` and `or` arrays to determine the logic for a group of filter conditions. `not` reverses the filter condition and matches when the condition is false. `object_attribute` represents the individual conditions you can filter objects by.\\n\\nThe top level of this object can only contain a single property, but you can nest `and` and `or` properties to produce complex filters.\\n\",\n            \"oneOf\": [\n              {\n                \"title\": \"and\",\n                \"type\": \"object\",\n                \"properties\": {\n                  \"and\": {\n                    \"type\": \"array\",\n                    \"description\": \"Match *all* conditions to return results.\",\n                    \"items\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"object_attribute\": {\n                          \"title\": \"object attribute\",\n                          \"description\": \"Filter your objects by their attributes.\",\n                          \"type\": \"object\",\n                          \"required\": [\n                            \"field\",\n                            \"operator\",\n                            \"type_id\"\n                          ],\n                          \"properties\": {\n                            \"field\": {\n                              \"type\": \"string\",\n                              \"description\": \"The name of the attribute you want to filter against.\",\n                              \"example\": \"location\"\n                            },\n                            \"operator\": {\n                              \"type\": \"string\",\n                              \"description\": \"Determine how to evaluate criteria against the field\\u2014`exists` returns results if an object has the attribute; `eq` returns results an object's attribute exists and the attribute has the `value` you specify.\",\n                              \"enum\": [\n                                \"eq\",\n                                \"exists\"\n                              ]\n                            },\n                            \"value\": {\n                              \"type\": \"string\",\n                              \"description\": \"The value you want to match for this attribute. You must include a value if you use the `eq` operator.\"\n                            },\n                            \"type_id\": {\n                              \"type\": \"string\",\n                              \"description\": \"The object type an object belongs to\\u2014like \\\"Companies\\\" or \\\"Accounts\\\". Object type IDs are string-formatted integers that begin at `1` and increment for each new type.\",\n                              \"nullable\": false,\n                              \"example\": \"1\"\n                            }\n                          },\n                          \"example\": {\n                            \"field\": \"cancelled\",\n                            \"operator\": \"eq\",\n                            \"value\": true,\n                            \"type_id\": 1\n                          }\n                        }\n                      }\n                    }\n                  }\n                }\n              },\n              {\n                \"title\": \"or\",\n                \"type\": \"object\",\n                \"properties\": {\n                  \"or\": {\n                    \"type\": \"array\",\n                    \"description\": \"Match *any* condition to return results.\",\n                    \"items\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"object_attribute\": {\n                          \"title\": \"object attribute\",\n                          \"description\": \"Filter your objects by their attributes.\",\n                          \"type\": \"object\",\n                          \"required\": [\n                            \"field\",\n                            \"operator\",\n                            \"type_id\"\n                          ],\n                          \"properties\": {\n                            \"field\": {\n                              \"type\": \"string\",\n                              \"description\": \"The name of the attribute you want to filter against.\",\n                              \"example\": \"location\"\n                            },\n                            \"operator\": {\n                              \"type\": \"string\",\n                              \"description\": \"Determine how to evaluate criteria against the field\\u2014`exists` returns results if an object has the attribute; `eq` returns results an object's attribute exists and the attribute has the `value` you specify.\",\n                              \"enum\": [\n                                \"eq\",\n                                \"exists\"\n                              ]\n                            },\n                            \"value\": {\n                              \"type\": \"string\",\n                              \"description\": \"The value you want to match for this attribute. You must include a value if you use the `eq` operator.\"\n                            },\n                            \"type_id\": {\n                              \"type\": \"string\",\n                              \"description\": \"The object type an object belongs to\\u2014like \\\"Companies\\\" or \\\"Accounts\\\". Object type IDs are string-formatted integers that begin at `1` and increment for each new type.\",\n                              \"nullable\": false,\n                              \"example\": \"1\"\n                            }\n                          },\n                          \"example\": {\n                            \"field\": \"cancelled\",\n                            \"operator\": \"eq\",\n                            \"value\": true,\n                            \"type_id\": 1\n                          }\n                        }\n                      }\n                    }\n                  }\n                }\n              },\n              {\n                \"title\": \"not\",\n                \"type\": \"object\",\n                \"properties\": {\n                  \"not\": {\n                    \"type\": \"object\",\n                    \"description\": \"Returns results if a condition is false. While and/or support an array of items, `not` supports a single condition.\",\n                    \"properties\": {\n                      \"object_attribute\": {\n                        \"title\": \"object attribute\",\n                        \"description\": \"Filter your objects by their attributes.\",\n                        \"type\": \"object\",\n                        \"required\": [\n                          \"field\",\n                          \"operator\",\n                          \"type_id\"\n                        ],\n                        \"properties\": {\n                          \"field\": {\n                            \"type\": \"string\",\n                            \"description\": \"The name of the attribute you want to filter against.\",\n                            \"example\": \"location\"\n                          },\n                          \"operator\": {\n                            \"type\": \"string\",\n                            \"description\": \"Determine how to evaluate criteria against the field\\u2014`exists` returns results if an object has the attribute; `eq` returns results an object's attribute exists and the attribute has the `value` you specify.\",\n                            \"enum\": [\n                              \"eq\",\n                              \"exists\"\n                            ]\n                          },\n                          \"value\": {\n                            \"type\": \"string\",\n                            \"description\": \"The value you want to match for this attribute. You must include a value if you use the `eq` operator.\"\n                          },\n                          \"type_id\": {\n                            \"type\": \"string\",\n                            \"description\": \"The object type an object belongs to\\u2014like \\\"Companies\\\" or \\\"Accounts\\\". Object type IDs are string-formatted integers that begin at `1` and increment for each new type.\",\n                            \"nullable\": false,\n                            \"example\": \"1\"\n                          }\n                        },\n                        \"example\": {\n                          \"field\": \"cancelled\",\n                          \"operator\": \"eq\",\n                          \"value\": true,\n                          \"type_id\": 1\n                        }\n                      }\n                    }\n                  }\n                }\n              },\n              {\n                \"title\": \"object attribute\",\n                \"type\": \"object\",\n                \"description\": \"A simple filter to find objects matching an attribute condition.\",\n                \"properties\": {\n                  \"object_attribute\": {\n                    \"title\": \"object attribute\",\n                    \"description\": \"Filter your objects by their attributes.\",\n                    \"type\": \"object\",\n                    \"required\": [\n                      \"field\",\n                      \"operator\",\n                      \"type_id\"\n                    ],\n                    \"properties\": {\n                      \"field\": {\n                        \"type\": \"string\",\n                        \"description\": \"The name of the attribute you want to filter against.\",\n                        \"example\": \"location\"\n                      },\n                      \"operator\": {\n                        \"type\": \"string\",\n                        \"description\": \"Determine how to evaluate criteria against the field\\u2014`exists` returns results if an object has the attribute; `eq` returns results an object's attribute exists and the attribute has the `value` you specify.\",\n                        \"enum\": [\n                          \"eq\",\n                          \"exists\"\n                        ]\n                      },\n                      \"value\": {\n                        \"type\": \"string\",\n                        \"description\": \"The value you want to match for this attribute. You must include a value if you use the `eq` operator.\"\n                      },\n                      \"type_id\": {\n                        \"type\": \"string\",\n                        \"description\": \"The object type an object belongs to\\u2014like \\\"Companies\\\" or \\\"Accounts\\\". Object type IDs are string-formatted integers that begin at `1` and increment for each new type.\",\n                        \"nullable\": false,\n                        \"example\": \"1\"\n                      }\n                    },\n                    \"example\": {\n                      \"field\": \"cancelled\",\n                      \"operator\": \"eq\",\n                      \"value\": true,\n                      \"type_id\": 1\n                    }\n                  }\n                }\n              }\n            ]\n          }\n        }\n      },\n      \"example\": {\n        \"object_type_id\": \"1\",\n        \"filter\": {\n          \"and\": [\n            {\n              \"object_attribute\": {\n                \"field\": \"name\",\n                \"operator\": \"exists\",\n                \"type_id\": \"1\"\n              }\n            },\n            {\n              \"not\": {\n                \"object_attribute\": {\n                  \"field\": \"name\",\n                  \"operator\": \"eq\",\n                  \"value\": \"acme corp\",\n                  \"type_id\": \"1\"\n                }\n              }\n            }\n          ]\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

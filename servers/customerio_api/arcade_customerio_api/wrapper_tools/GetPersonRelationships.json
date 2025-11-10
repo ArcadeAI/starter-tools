@@ -1,0 +1,170 @@
+{
+  "name": "GetPersonRelationships",
+  "fully_qualified_name": "CustomerioApi.GetPersonRelationships@0.1.0",
+  "description": "Retrieve a list of objects a person is related to.\n\nUse this tool to obtain a list of relationships associated with a specific person. It supports pagination for retrieving results in multiple pages. Note that duplicates may appear across pages.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "customer_id",
+        "required": true,
+        "description": "The unique identifier for the customer whose relationships you wish to retrieve.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the customer you want to perform an operation against."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "customer_id"
+      },
+      {
+        "name": "pagination_start_token",
+        "required": false,
+        "description": "Token to specify the page of results to return. Use the `next` property's value from a previous response to get subsequent pages.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "max_results_per_page",
+        "required": false,
+        "description": "The maximum number of results to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "limit"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getPersonRelationships'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/customers/{customer_id}/relationships",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_start_token",
+        "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "limit",
+        "tool_parameter_name": "max_results_per_page",
+        "description": "The maximum number of results you want to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "customer_id",
+        "tool_parameter_name": "customer_id",
+        "description": "The ID of the customer you want to perform an operation against.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the customer you want to perform an operation against."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

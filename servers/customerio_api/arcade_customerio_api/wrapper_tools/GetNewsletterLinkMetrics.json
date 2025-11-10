@@ -1,0 +1,213 @@
+{
+  "name": "GetNewsletterLinkMetrics",
+  "fully_qualified_name": "CustomerioApi.GetNewsletterLinkMetrics@0.1.0",
+  "description": "Retrieve metrics for link clicks in a newsletter.\n\nThis tool fetches metrics for link clicks within a newsletter, providing both total counts and series data over specified periods (e.g., days, weeks). Useful for analyzing newsletter performance over time.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "newsletter_identifier",
+        "required": true,
+        "description": "The identifier of the newsletter to retrieve metrics for. Must be an integer.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a newsletter."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "newsletter_id"
+      },
+      {
+        "name": "time_unit_for_report",
+        "required": false,
+        "description": "The unit of time for your report. Options are 'hours', 'days', 'weeks', or 'months'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "days",
+            "weeks",
+            "months"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unit of time for your report."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "period"
+      },
+      {
+        "name": "number_of_periods",
+        "required": false,
+        "description": "The number of periods to return metrics for. Defaults to maximum available, or 12 if in months. Maximums: 24 hours, 45 days, 12 weeks, or 121 months.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "steps"
+      },
+      {
+        "name": "include_unique_customers",
+        "required": false,
+        "description": "If true, response includes only unique customer results (each customer counted once); if false, includes total click results.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, the response contains only unique customer results, i.e. a customer who clicks a link twice is only counted once. If false, the response contains the total number of results without regard to uniqueness."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "unique"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getNewsletterLinks'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/newsletters/{newsletter_id}/metrics/links",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "period",
+        "tool_parameter_name": "time_unit_for_report",
+        "description": "The unit of time for your report.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "days",
+            "weeks",
+            "months"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unit of time for your report."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": "days",
+        "documentation_urls": []
+      },
+      {
+        "name": "steps",
+        "tool_parameter_name": "number_of_periods",
+        "description": "The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "unique",
+        "tool_parameter_name": "include_unique_customers",
+        "description": "If true, the response contains only unique customer results, i.e. a customer who clicks a link twice is only counted once. If false, the response contains the total number of results without regard to uniqueness.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, the response contains only unique customer results, i.e. a customer who clicks a link twice is only counted once. If false, the response contains the total number of results without regard to uniqueness."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": false,
+        "documentation_urls": []
+      },
+      {
+        "name": "newsletter_id",
+        "tool_parameter_name": "newsletter_identifier",
+        "description": "The identifier of a newsletter.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a newsletter."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

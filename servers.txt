@@ -1,2 +1,3 @@
 arcade-arcade-engine-api
+arcade-customerio-api
 arcade-intercom-api

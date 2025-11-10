@@ -1,0 +1,104 @@
+{
+  "name": "CreateNewCollection",
+  "fully_qualified_name": "CustomerioApi.CreateNewCollection@0.1.0",
+  "description": "Create a new data collection in Customerio.\n\nUse this tool to create a new collection in Customerio by either providing direct data or a URL for downloading CSV or JSON data. Ensure the collection does not exceed 10 MB, and individual rows are under 10 KB.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "collection_data_request",
+        "required": false,
+        "description": "JSON object containing either `data` or `url` for CSV/JSON data download.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'addCollection'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/collections",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "collection_data_request",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"oneOf\": [\n          {\n            \"title\": \"Local data\",\n            \"type\": \"object\",\n            \"required\": [\n              \"name\",\n              \"data\"\n            ],\n            \"properties\": {\n              \"name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the collection. This is how you'll reference your collection in messages\\u2014`{{collection_name.data-property}}`.\"\n              },\n              \"data\": {\n                \"type\": \"array\",\n                \"description\": \"An array of data objects that you want to reference in this collection.\",\n                \"items\": {\n                  \"type\": \"object\",\n                  \"additionalProperties\": {\n                    \"x-additionalPropertiesName\": \"collection data\"\n                  }\n                }\n              }\n            }\n          },\n          {\n            \"title\": \"Data by URL\",\n            \"type\": \"object\",\n            \"required\": [\n              \"name\",\n              \"url\"\n            ],\n            \"properties\": {\n              \"name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the collection. This is how you'll reference your collection in messages\\u2014`{{collection_name.data-property}}`.\"\n              },\n              \"url\": {\n                \"type\": \"string\",\n                \"format\": \"url\",\n                \"description\": \"The URL for your CSV or JSON data. If your URL does not return a `Content-Type`, we use the file extension; otherwise, Customer.io assumes your data is JSON.\\n\"\n              }\n            }\n          }\n        ]\n      },\n      \"example\": {\n        \"name\": \"events\",\n        \"data\": [\n          {\n            \"eventName\": \"christmas\",\n            \"eventDate\": \"2021-12-25T12:00:00.000Z\",\n            \"presents\": {\n              \"something_you_want\": \"toys\",\n              \"something_you_need\": \"socks\",\n              \"total\": 2\n            }\n          },\n          {\n            \"eventName\": \"birthday\",\n            \"eventDate\": \"2021-03-15T12:00:00.000Z\",\n            \"presents\": {\n              \"something_you_want\": \"video games\",\n              \"something_you_need\": \"books\",\n              \"total\": 2\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

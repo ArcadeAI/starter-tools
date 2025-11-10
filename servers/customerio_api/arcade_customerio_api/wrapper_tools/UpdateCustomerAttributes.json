@@ -1,0 +1,178 @@
+{
+  "name": "UpdateCustomerAttributes",
+  "fully_qualified_name": "CustomerioApi.UpdateCustomerAttributes@0.1.0",
+  "description": "Add or update customer attribute metadata in your workspace.\n\nUse this tool to add new customer attributes or update existing ones. It helps in managing customer data like names and emails, enhancing data understanding for AI tools, and setting sensitivity levels for premium users.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "customer_attribute_updates",
+        "required": true,
+        "description": "A JSON object containing an array of attribute updates. Each update includes the attribute's name, description, and privacy level (0 for not sensitive, 1 for sensitive).",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "attributes": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The name of the attribute to update"
+                },
+                "description": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The purpose of the attribute. This helps our AI tools understand your data."
+                },
+                "privacy_level": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": [
+                    "0",
+                    "1"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Available on Premium plans. This indicates whether an attribute is sensitive or not. \n\n0 means NOT sensitive. \n\n1 means sensitive.\n"
+                }
+              },
+              "description": "Array of attribute updates"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'updateAttributeMetadata'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/data_index/attributes",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "customer_attribute_updates",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "attributes": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The name of the attribute to update"
+                },
+                "description": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The purpose of the attribute. This helps our AI tools understand your data."
+                },
+                "privacy_level": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": [
+                    "0",
+                    "1"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Available on Premium plans. This indicates whether an attribute is sensitive or not. \n\n0 means NOT sensitive. \n\n1 means sensitive.\n"
+                }
+              },
+              "description": "Array of attribute updates"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"required\": true,\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"attributes\"\n        ],\n        \"properties\": {\n          \"attributes\": {\n            \"type\": \"array\",\n            \"description\": \"Array of attribute updates\",\n            \"minItems\": 1,\n            \"maxItems\": 100,\n            \"items\": {\n              \"type\": \"object\",\n              \"required\": [\n                \"name\"\n              ],\n              \"properties\": {\n                \"name\": {\n                  \"type\": \"string\",\n                  \"description\": \"The name of the attribute to update\",\n                  \"example\": \"last_active\"\n                },\n                \"description\": {\n                  \"type\": \"string\",\n                  \"maxLength\": 255,\n                  \"description\": \"The purpose of the attribute. This helps our AI tools understand your data.\",\n                  \"example\": \"The last time the user clicked something on our app after logging in.\"\n                },\n                \"privacy_level\": {\n                  \"type\": \"integer\",\n                  \"enum\": [\n                    0,\n                    1\n                  ],\n                  \"description\": \"Available on Premium plans. This indicates whether an attribute is sensitive or not. \\n\\n0 means NOT sensitive. \\n\\n1 means sensitive.\\n\",\n                  \"example\": 0\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

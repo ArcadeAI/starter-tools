@@ -1,0 +1,203 @@
+{
+  "name": "UpdateNewsletterTestTranslation",
+  "fully_qualified_name": "CustomerioApi.UpdateNewsletterTestTranslation@0.1.0",
+  "description": "Update a newsletter's translation for A/B testing.\n\nThis tool updates the translation of a specific newsletter variant within an A/B test. It's used when you need to modify the language content for different test groups in newsletter campaigns.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "newsletter_identifier",
+        "required": true,
+        "description": "The unique identifier for the newsletter. Use this to specify which newsletter to update.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a newsletter."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "newsletter_id"
+      },
+      {
+        "name": "ab_test_group_id",
+        "required": true,
+        "description": "The identifier for the A/B test group to update the newsletter translation for.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the A/B test group."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "test_group_id"
+      },
+      {
+        "name": "newsletter_language_tag",
+        "required": true,
+        "description": "Specify a language tag for the newsletter translation. Utilize an empty string to default to your system's language. Invalid tags result in an error.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "A [language tag](/journeys/unsubscribe-faqs/#currently-supported-languages) of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "language"
+      },
+      {
+        "name": "translation_content",
+        "required": false,
+        "description": "JSON object containing the translation details for the newsletter variant to be updated.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'updateNewsletterTestTranslation'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "newsletter_id",
+        "tool_parameter_name": "newsletter_identifier",
+        "description": "The identifier of a newsletter.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a newsletter."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "test_group_id",
+        "tool_parameter_name": "ab_test_group_id",
+        "description": "The ID of the A/B test group.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the A/B test group."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "language",
+        "tool_parameter_name": "newsletter_language_tag",
+        "description": "A [language tag](/journeys/unsubscribe-faqs/#currently-supported-languages) of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "A [language tag](/journeys/unsubscribe-faqs/#currently-supported-languages) of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "translation_content",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"allOf\": [\n          {\n            \"type\": \"object\",\n            \"properties\": {\n              \"id\": {\n                \"type\": \"integer\",\n                \"description\": \"The identifier of a newsletter variant\\u2014a language in a multi-language newsletter or a test in an A/B test.\",\n                \"readOnly\": true\n              },\n              \"newsletter_id\": {\n                \"readOnly\": true,\n                \"description\": \"The identifier for a newsletter.\",\n                \"type\": \"integer\",\n                \"example\": 10\n              },\n              \"deduplicate_id\": {\n                \"type\": \"string\",\n                \"readOnly\": true,\n                \"description\": \"An identifier in the format `id:timestamp` where the id is the id of the object you are working with (Campaigns, Deliveries, Exports, Identities, Newsletters, Segments, and Templates), and the timestamp is the last time the object was updated.\",\n                \"example\": \"15:1492548073\"\n              },\n              \"name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the variant, if it exists.\",\n                \"readOnly\": true,\n                \"example\": \"newsletter variant A\"\n              },\n              \"layout\": {\n                \"type\": \"string\",\n                \"description\": \"The layout used for the variant, if it exists.\",\n                \"example\": \"<html><body>{{ content }}</body></html>\",\n                \"readOnly\": true\n              },\n              \"body\": {\n                \"type\": \"string\",\n                \"description\": \"The body of the variant. You cannot modify the body if you created it with our drag-and-drop editor.\",\n                \"example\": \"<strong>Hello from the API</strong>\"\n              },\n              \"body_amp\": {\n                \"type\": \"string\",\n                \"description\": \"If your message is an email, this is the AMP-enabled body of your message. If your recipient's email client doesn't support AMP, the `body` represents your fallback message.\"\n              },\n              \"language\": {\n                \"type\": \"string\",\n                \"description\": \"The language variant for your message. If you don't use our [localization feature](/localization), or this is the default message, this value is an empty string.\",\n                \"example\": \"fr\",\n                \"readOnly\": true\n              },\n              \"type\": {\n                \"description\": \"The type of message/action.\",\n                \"type\": \"string\",\n                \"enum\": [\n                  \"email\",\n                  \"webhook\",\n                  \"twilio\",\n                  \"slack\",\n                  \"push\"\n                ],\n                \"readOnly\": true,\n                \"example\": \"email\"\n              },\n              \"from\": {\n                \"type\": \"string\",\n                \"description\": \"The address that the message is from, relevant if the action `type` is `email`.\",\n                \"readOnly\": true,\n                \"example\": \"sentFrom@example.com\"\n              },\n              \"from_id\": {\n                \"type\": \"integer\",\n                \"description\": \"The identifier of the `from` address, commonly known as the \\\"sender\\\". You can [list your sender identities](#operation/listSenders) to match the ID to a specific address.\",\n                \"example\": 1\n              },\n              \"reply_to\": {\n                \"type\": \"string\",\n                \"description\": \"The address that receives replies for the message, if applicable.\",\n                \"readOnly\": true,\n                \"example\": \"replyto@example.com\"\n              },\n              \"reply_to_id\": {\n                \"type\": \"integer\",\n                \"description\": \"The identifier for the `reply_to` address, if applicable. You can [list your sender identities](#operation/listSenders) to match the ID to a specific address.\",\n                \"nullable\": true,\n                \"example\": 38\n              },\n              \"preprocessor\": {\n                \"type\": \"string\",\n                \"description\": \"By default, we process CSS before emails leave Customer.io using Premailer. If your message included CSS and pre-processing is not disabled, this key indicates the pre-processor.\",\n                \"enum\": [\n                  \"premailer\"\n                ],\n                \"readOnly\": true\n              },\n              \"recipient\": {\n                \"description\": \"The recipient address for an action.\",\n                \"type\": \"string\",\n                \"example\": \"{{customer.email}}\"\n              },\n              \"subject\": {\n                \"type\": \"string\",\n                \"description\": \"The subject line for an `email` action.\",\n                \"example\": \"Did you get that thing I sent you?\"\n              },\n              \"bcc\": {\n                \"readOnly\": true,\n                \"description\": \"The blind-copy address(es) for this action.\",\n                \"type\": \"string\"\n              },\n              \"fake_bcc\": {\n                \"readOnly\": true,\n                \"type\": \"boolean\",\n                \"description\": \"If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).\\n\"\n              },\n              \"preheader_text\": {\n                \"type\": \"string\",\n                \"description\": \"Also known as \\\"preview text\\\", this specifies the small block of text shown in an end-user's email inbox, next to, or underneath, the subject line.\"\n              }\n            }\n          },\n          {\n            \"type\": \"object\",\n            \"properties\": {\n              \"headers\": {\n                \"description\": \"An array of objects containing headers, where each object contains a `name` and a `value`. Header names and values must be strings and cannot contain any non-ASCII characters or empty spaces. Some headers are reserved and cannot be overwritten.\\n\",\n                \"type\": \"array\",\n                \"items\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"name\": {\n                      \"type\": \"string\",\n                      \"description\": \"The name of the header.\"\n                    },\n                    \"value\": {\n                      \"type\": \"string\",\n                      \"description\": \"The value of the header.\"\n                    }\n                  },\n                  \"example\": [\n                    {\n                      \"name\": \"X-Mailgun-Tag\",\n                      \"value\": \"my-cool-tag\"\n                    }\n                  ]\n                }\n              }\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

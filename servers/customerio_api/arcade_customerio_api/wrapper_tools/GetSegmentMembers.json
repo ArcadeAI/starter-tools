@@ -1,0 +1,170 @@
+{
+  "name": "GetSegmentMembers",
+  "fully_qualified_name": "CustomerioApi.GetSegmentMembers@0.1.0",
+  "description": "Retrieve customer details from a specific segment.\n\nUse this tool to get a list of customer identifiers in a specified segment. It returns identifiers for each person in the segment, providing more comprehensive information than just IDs. Useful for understanding customer segmentation.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "segment_identifier",
+        "required": true,
+        "description": "The unique identifier for a segment. Find this ID on the segment's page in the dashboard, under *Usage*.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier for a segment. You can find your segment's ID on its page in the dashboard\u2014go to *Segments*, select your segment, and find the ID under *Usage*. Or you can find your segment using the [App API](#tag/Segments)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "segment_id"
+      },
+      {
+        "name": "pagination_token",
+        "required": false,
+        "description": "Token to specify the start of the page of results. Use the `next` value from a previous response to paginate.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "maximum_results_per_page",
+        "required": false,
+        "description": "Specify the maximum number of customer identifiers to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "limit"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getSegmentMembership'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/segments/{segment_id}/membership",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_token",
+        "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "limit",
+        "tool_parameter_name": "maximum_results_per_page",
+        "description": "The maximum number of results you want to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": 1000,
+        "documentation_urls": []
+      },
+      {
+        "name": "segment_id",
+        "tool_parameter_name": "segment_identifier",
+        "description": "The identifier for a segment. You can find your segment's ID on its page in the dashboard\u2014go to *Segments*, select your segment, and find the ID under *Usage*. Or you can find your segment using the [App API](#tag/Segments).",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier for a segment. You can find your segment's ID on its page in the dashboard\u2014go to *Segments*, select your segment, and find the ID under *Usage*. Or you can find your segment using the [App API](#tag/Segments)."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

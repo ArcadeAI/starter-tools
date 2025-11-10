@@ -1,0 +1,170 @@
+{
+  "name": "TranslateCampaignMessage",
+  "fully_qualified_name": "CustomerioApi.TranslateCampaignMessage@0.1.0",
+  "description": "Fetches a translated message for a specific campaign action.\n\nReturns a translated version of a message in a campaign using the action ID and specified language. Use when a translated version of a campaign message is needed.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "campaign_id",
+        "required": true,
+        "description": "The numeric ID of the campaign to get information about or trigger.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the campaign that you want to trigger or return information about."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "campaign_id"
+      },
+      {
+        "name": "campaign_action_id",
+        "required": true,
+        "description": "The ID of the action to look up or act on within the campaign.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The action you want to lookup or act on."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "action_id"
+      },
+      {
+        "name": "target_language",
+        "required": true,
+        "description": "A language tag for the language variant to translate to. Defaults to the default language if empty. Returns an error if the variant doesn't exist.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "A [language tag](/journeys/unsubscribe-faqs/#currently-supported-languages) of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "language"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getCampaignActionTranslation'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/campaigns/{campaign_id}/actions/{action_id}/language/{language}",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "campaign_id",
+        "tool_parameter_name": "campaign_id",
+        "description": "The ID of the campaign that you want to trigger or return information about.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the campaign that you want to trigger or return information about."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "action_id",
+        "tool_parameter_name": "campaign_action_id",
+        "description": "The action you want to lookup or act on.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The action you want to lookup or act on."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "language",
+        "tool_parameter_name": "target_language",
+        "description": "A [language tag](/journeys/unsubscribe-faqs/#currently-supported-languages) of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "A [language tag](/journeys/unsubscribe-faqs/#currently-supported-languages) of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

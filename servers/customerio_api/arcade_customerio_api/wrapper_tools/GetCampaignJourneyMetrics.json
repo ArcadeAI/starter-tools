@@ -1,0 +1,221 @@
+{
+  "name": "GetCampaignJourneyMetrics",
+  "fully_qualified_name": "CustomerioApi.GetCampaignJourneyMetrics@0.1.0",
+  "description": "Retrieve journey metrics for a specific campaign.\n\nThis tool retrieves a list of journey metrics for a specified campaign. It provides insights into how many people triggered the campaign and other related metrics within a specified time period and resolution. Useful for campaign performance analysis.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "start_timestamp",
+        "required": true,
+        "description": "The UNIX timestamp marking the start of the journey metrics report period.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unix timestamp for the beginning of your journey metrics report."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "end_timestamp",
+        "required": true,
+        "description": "The Unix timestamp marking the end of the journey metrics report period.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unix timestamp for the end of your journey metrics report."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "end"
+      },
+      {
+        "name": "metrics_resolution",
+        "required": true,
+        "description": "Determines the increment for metrics reporting: hourly, daily, weekly, or monthly.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "hourly",
+            "days",
+            "daily",
+            "weeks",
+            "weekly",
+            "months",
+            "monthly"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Determines increment for metrics\u2014hourly, daily, weekly, or monthly."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "res"
+      },
+      {
+        "name": "campaign_id",
+        "required": true,
+        "description": "The ID of the campaign to return journey metrics for.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the campaign that you want to trigger or return information about."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "campaign_id"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'campaignJourneyMetrics'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/campaigns/{campaign_id}/journey_metrics",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "start",
+        "tool_parameter_name": "start_timestamp",
+        "description": "The unix timestamp for the beginning of your journey metrics report.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unix timestamp for the beginning of your journey metrics report."
+        },
+        "accepted_as": "query",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "end",
+        "tool_parameter_name": "end_timestamp",
+        "description": "The unix timestamp for the end of your journey metrics report.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unix timestamp for the end of your journey metrics report."
+        },
+        "accepted_as": "query",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "res",
+        "tool_parameter_name": "metrics_resolution",
+        "description": "Determines increment for metrics\u2014hourly, daily, weekly, or monthly.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "hourly",
+            "days",
+            "daily",
+            "weeks",
+            "weekly",
+            "months",
+            "monthly"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Determines increment for metrics\u2014hourly, daily, weekly, or monthly."
+        },
+        "accepted_as": "query",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "campaign_id",
+        "tool_parameter_name": "campaign_id",
+        "description": "The ID of the campaign that you want to trigger or return information about.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the campaign that you want to trigger or return information about."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

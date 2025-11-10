@@ -1,0 +1,277 @@
+{
+  "name": "RetrieveCustomerMessages",
+  "fully_qualified_name": "CustomerioApi.RetrieveCustomerMessages@0.1.0",
+  "description": "Retrieve deliveries sent to a customer within a time range.\n\nUse parameters to specify the time range for the messages you want to retrieve. If no time range is provided, it defaults to the most recent 6 months. The tool returns data on when deliveries were created, which may differ from when they were sent.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "customer_identifier",
+        "required": true,
+        "description": "The unique ID of the customer whose message deliveries you want to retrieve.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the customer you want to perform an operation against."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "customer_id"
+      },
+      {
+        "name": "customer_id_type",
+        "required": false,
+        "description": "Specifies the type of customer_id used to reference a person. Options: 'id', 'email', 'cio_id'. Defaults to 'id' if not provided.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "id",
+            "email",
+            "cio_id"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of `customer_id` you want to use to reference a person. If you don't provide this parameter, we assume that the `customer_id` in your request is a person's `id`."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "id_type"
+      },
+      {
+        "name": "pagination_token",
+        "required": false,
+        "description": "Token for the page of results to return. Use the `next` property from previous responses to get the next page.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "max_results_per_page",
+        "required": false,
+        "description": "The maximum number of results to retrieve per page. This limits the number of messages returned in a single response.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "limit"
+      },
+      {
+        "name": "starting_timestamp",
+        "required": false,
+        "description": "The beginning timestamp for the query in integer format, used to filter messages by start date.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The beginning timestamp for your query."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start_ts"
+      },
+      {
+        "name": "query_end_timestamp",
+        "required": false,
+        "description": "The ending timestamp (in integer format) for the query to limit data retrieval to specific time ranges.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ending timestamp for your query."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "end_ts"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getPersonMessages'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/customers/{customer_id}/messages",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "id_type",
+        "tool_parameter_name": "customer_id_type",
+        "description": "The type of `customer_id` you want to use to reference a person. If you don't provide this parameter, we assume that the `customer_id` in your request is a person's `id`.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "id",
+            "email",
+            "cio_id"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of `customer_id` you want to use to reference a person. If you don't provide this parameter, we assume that the `customer_id` in your request is a person's `id`."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_token",
+        "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "limit",
+        "tool_parameter_name": "max_results_per_page",
+        "description": "The maximum number of results you want to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": 50,
+        "documentation_urls": []
+      },
+      {
+        "name": "start_ts",
+        "tool_parameter_name": "starting_timestamp",
+        "description": "The beginning timestamp for your query.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The beginning timestamp for your query."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "end_ts",
+        "tool_parameter_name": "query_end_timestamp",
+        "description": "The ending timestamp for your query.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ending timestamp for your query."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "customer_id",
+        "tool_parameter_name": "customer_identifier",
+        "description": "The ID of the customer you want to perform an operation against.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the customer you want to perform an operation against."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

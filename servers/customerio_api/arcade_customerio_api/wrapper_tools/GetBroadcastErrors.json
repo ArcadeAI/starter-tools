@@ -1,0 +1,203 @@
+{
+  "name": "GetBroadcastErrors",
+  "fully_qualified_name": "CustomerioApi.GetBroadcastErrors@0.1.0",
+  "description": "Retrieve details of broadcast validation errors.\n\nThis tool helps identify and understand validation errors in broadcast campaigns, focusing on issues within the broadcast audience and associated elements. Use it to diagnose and resolve broadcast errors.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "broadcast_id",
+        "required": true,
+        "description": "The ID of the broadcast to retrieve error information for. Use this to specify which broadcast's errors you want to investigate.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the broadcast that you want to return information about."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "broadcast_id"
+      },
+      {
+        "name": "campaign_trigger_id",
+        "required": true,
+        "description": "The ID of the campaign trigger to return information for. Use this to focus on specific trigger details.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the campaign trigger that you want to return information for."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "trigger_id"
+      },
+      {
+        "name": "page_start_token",
+        "required": false,
+        "description": "Token to specify which page of results to return. Use the `next` value from responses to navigate pages.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "results_per_page",
+        "required": false,
+        "description": "The maximum number of results to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "limit"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'broadcastErrors'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/campaigns/{broadcast_id}/triggers/{trigger_id}/errors",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "start",
+        "tool_parameter_name": "page_start_token",
+        "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "limit",
+        "tool_parameter_name": "results_per_page",
+        "description": "The maximum number of results you want to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "broadcast_id",
+        "tool_parameter_name": "broadcast_id",
+        "description": "The ID of the broadcast that you want to return information about.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the broadcast that you want to return information about."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "trigger_id",
+        "tool_parameter_name": "campaign_trigger_id",
+        "description": "The ID of the campaign trigger that you want to return information for.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the campaign trigger that you want to return information for."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

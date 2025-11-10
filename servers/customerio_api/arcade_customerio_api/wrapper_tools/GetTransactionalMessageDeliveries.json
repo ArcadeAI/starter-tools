@@ -1,0 +1,338 @@
+{
+  "name": "GetTransactionalMessageDeliveries",
+  "fully_qualified_name": "CustomerioApi.GetTransactionalMessageDeliveries@0.1.0",
+  "description": "Fetch delivery details for transactional messages.\n\nRetrieve information about individual message deliveries from a transactional message. Use optional parameters to specify a time range for the message data, otherwise, data from the last 6 months is returned by default.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "transactional_message_id",
+        "required": true,
+        "description": "The unique identifier for the transactional message, found in the UI or URL, e.g., '/transactional/3/templates/139' where the ID is 3.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of your transactional message. You'll find this in the UI or URL of your transactional message. For example, if this is the path of a transactional message URL - `/transactional/3/templates/139` - the `transactional_id` is 3."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "transactional_id"
+      },
+      {
+        "name": "page_token",
+        "required": false,
+        "description": "Specify the token for the page of results you want to return. Use the `next` property from previous responses as the value to paginate.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "max_results_per_page",
+        "required": false,
+        "description": "The maximum number of results to return per page, as an integer.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "limit"
+      },
+      {
+        "name": "return_metrics",
+        "required": false,
+        "description": "Specify one or more metrics to return, such as 'sent', 'delivered', or 'clicked'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "attempted",
+            "sent",
+            "delivered",
+            "opened",
+            "clicked",
+            "converted",
+            "bounced",
+            "spammed",
+            "unsubscribed",
+            "dropped",
+            "failed",
+            "undeliverable"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Determines the metric(s) you want to return."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "metric"
+      },
+      {
+        "name": "broadcast_state",
+        "required": false,
+        "description": "Specifies the state of the broadcast to filter results. Options are 'failed', 'sent', 'drafted', or 'attempted'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "failed",
+            "sent",
+            "drafted",
+            "attempted"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The state of a broadcast."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "state"
+      },
+      {
+        "name": "beginning_timestamp",
+        "required": false,
+        "description": "The start time for the query, specified as a Unix timestamp. Limits the query to data starting from this time.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The beginning timestamp for your query."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start_ts"
+      },
+      {
+        "name": "query_ending_timestamp",
+        "required": false,
+        "description": "The ending timestamp for the query, determining the end of the time range for message data retrieval.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ending timestamp for your query."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "end_ts"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'transactionalMessages'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/transactional/{transactional_id}/messages",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "start",
+        "tool_parameter_name": "page_token",
+        "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "limit",
+        "tool_parameter_name": "max_results_per_page",
+        "description": "The maximum number of results you want to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "metric",
+        "tool_parameter_name": "return_metrics",
+        "description": "Determines the metric(s) you want to return.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "attempted",
+            "sent",
+            "delivered",
+            "opened",
+            "clicked",
+            "converted",
+            "bounced",
+            "spammed",
+            "unsubscribed",
+            "dropped",
+            "failed",
+            "undeliverable"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Determines the metric(s) you want to return."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "state",
+        "tool_parameter_name": "broadcast_state",
+        "description": "The state of a broadcast.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "failed",
+            "sent",
+            "drafted",
+            "attempted"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The state of a broadcast."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start_ts",
+        "tool_parameter_name": "beginning_timestamp",
+        "description": "The beginning timestamp for your query.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The beginning timestamp for your query."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "end_ts",
+        "tool_parameter_name": "query_ending_timestamp",
+        "description": "The ending timestamp for your query.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ending timestamp for your query."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "transactional_id",
+        "tool_parameter_name": "transactional_message_id",
+        "description": "The identifier of your transactional message. You'll find this in the UI or URL of your transactional message. For example, if this is the path of a transactional message URL - `/transactional/3/templates/139` - the `transactional_id` is 3.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of your transactional message. You'll find this in the UI or URL of your transactional message. For example, if this is the path of a transactional message URL - `/transactional/3/templates/139` - the `transactional_id` is 3."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

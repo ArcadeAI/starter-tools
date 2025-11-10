@@ -1,0 +1,104 @@
+{
+  "name": "ExportDeliveryData",
+  "fully_qualified_name": "CustomerioApi.ExportDeliveryData@0.1.0",
+  "description": "Initiates export of delivery data for newsletters and campaigns.\n\nThis tool is used to start an export of delivery data for newsletters, campaigns, or actions based on given filters. Data spans a specified time range, with default and maximum limits. Use it to obtain delivery insights over a specified timeframe.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "delivery_data_filters",
+        "required": false,
+        "description": "JSON object containing filters such as `newsletter`, `campaign`, `action`, `start`, and `end` for delivery data export.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'exportDeliveriesData'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/exports/deliveries",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "delivery_data_filters",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"oneOf\": [\n          {\n            \"title\": \"Newsletter\",\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"required\": [\n                  \"newsletter_id\"\n                ],\n                \"properties\": {\n                  \"newsletter_id\": {\n                    \"type\": \"integer\",\n                    \"description\": \"The ID of a newsletter you want to export information from.\",\n                    \"example\": 999\n                  }\n                }\n              },\n              {\n                \"description\": \"Contains properties shared by export filters.\",\n                \"type\": \"object\",\n                \"properties\": {\n                  \"start\": {\n                    \"description\": \"The unix timestamp representing the beginning of the export.\",\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"example\": 1517529600\n                  },\n                  \"end\": {\n                    \"description\": \"The unix timestamp representing the end of the export.\",\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"example\": 1517702400\n                  },\n                  \"attributes\": {\n                    \"description\": \"The names of attributes you want to include in your export; each attribute name is an additional column in the export. If your message included liquid, you may add the attribute names used in your message so you can see the values populated for each delivery.\",\n                    \"type\": \"array\",\n                    \"items\": {\n                      \"type\": \"string\"\n                    }\n                  },\n                  \"metric\": {\n                    \"description\": \"Determines the metric(s) you want to return.\",\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"created\",\n                      \"attempted\",\n                      \"sent\",\n                      \"delivered\",\n                      \"opened\",\n                      \"clicked\",\n                      \"converted\",\n                      \"bounced\",\n                      \"spammed\",\n                      \"unsubscribed\",\n                      \"dropped\",\n                      \"failed\",\n                      \"undeliverable\"\n                    ]\n                  },\n                  \"drafts\": {\n                    \"description\": \"If true, your request returns both drafts and active/sent messages.\",\n                    \"type\": \"boolean\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"title\": \"Campaign\",\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"required\": [\n                  \"campaign_id\"\n                ],\n                \"properties\": {\n                  \"campaign_id\": {\n                    \"type\": \"integer\",\n                    \"description\": \"The ID of a campaign you want to export information from.\",\n                    \"example\": 46\n                  }\n                }\n              },\n              {\n                \"description\": \"Contains properties shared by export filters.\",\n                \"type\": \"object\",\n                \"properties\": {\n                  \"start\": {\n                    \"description\": \"The unix timestamp representing the beginning of the export.\",\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"example\": 1517529600\n                  },\n                  \"end\": {\n                    \"description\": \"The unix timestamp representing the end of the export.\",\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"example\": 1517702400\n                  },\n                  \"attributes\": {\n                    \"description\": \"The names of attributes you want to include in your export; each attribute name is an additional column in the export. If your message included liquid, you may add the attribute names used in your message so you can see the values populated for each delivery.\",\n                    \"type\": \"array\",\n                    \"items\": {\n                      \"type\": \"string\"\n                    }\n                  },\n                  \"metric\": {\n                    \"description\": \"Determines the metric(s) you want to return.\",\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"created\",\n                      \"attempted\",\n                      \"sent\",\n                      \"delivered\",\n                      \"opened\",\n                      \"clicked\",\n                      \"converted\",\n                      \"bounced\",\n                      \"spammed\",\n                      \"unsubscribed\",\n                      \"dropped\",\n                      \"failed\",\n                      \"undeliverable\"\n                    ]\n                  },\n                  \"drafts\": {\n                    \"description\": \"If true, your request returns both drafts and active/sent messages.\",\n                    \"type\": \"boolean\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"title\": \"Transactional Message\",\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"required\": [\n                  \"transactional_message_id\"\n                ],\n                \"properties\": {\n                  \"transactional_message_id\": {\n                    \"example\": 22,\n                    \"type\": \"integer\",\n                    \"description\": \"The ID of the transactional message you want to export information for.\"\n                  }\n                }\n              },\n              {\n                \"description\": \"Contains properties shared by export filters.\",\n                \"type\": \"object\",\n                \"properties\": {\n                  \"start\": {\n                    \"description\": \"The unix timestamp representing the beginning of the export.\",\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"example\": 1517529600\n                  },\n                  \"end\": {\n                    \"description\": \"The unix timestamp representing the end of the export.\",\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"example\": 1517702400\n                  },\n                  \"attributes\": {\n                    \"description\": \"The names of attributes you want to include in your export; each attribute name is an additional column in the export. If your message included liquid, you may add the attribute names used in your message so you can see the values populated for each delivery.\",\n                    \"type\": \"array\",\n                    \"items\": {\n                      \"type\": \"string\"\n                    }\n                  },\n                  \"metric\": {\n                    \"description\": \"Determines the metric(s) you want to return.\",\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"created\",\n                      \"attempted\",\n                      \"sent\",\n                      \"delivered\",\n                      \"opened\",\n                      \"clicked\",\n                      \"converted\",\n                      \"bounced\",\n                      \"spammed\",\n                      \"unsubscribed\",\n                      \"dropped\",\n                      \"failed\",\n                      \"undeliverable\"\n                    ]\n                  },\n                  \"drafts\": {\n                    \"description\": \"If true, your request returns both drafts and active/sent messages.\",\n                    \"type\": \"boolean\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"title\": \"Action\",\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"required\": [\n                  \"action_id\"\n                ],\n                \"properties\": {\n                  \"action_id\": {\n                    \"example\": 77,\n                    \"type\": \"integer\",\n                    \"description\": \"The ID of an action you want to export information from.\"\n                  }\n                }\n              },\n              {\n                \"description\": \"Contains properties shared by export filters.\",\n                \"type\": \"object\",\n                \"properties\": {\n                  \"start\": {\n                    \"description\": \"The unix timestamp representing the beginning of the export.\",\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"example\": 1517529600\n                  },\n                  \"end\": {\n                    \"description\": \"The unix timestamp representing the end of the export.\",\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"example\": 1517702400\n                  },\n                  \"attributes\": {\n                    \"description\": \"The names of attributes you want to include in your export; each attribute name is an additional column in the export. If your message included liquid, you may add the attribute names used in your message so you can see the values populated for each delivery.\",\n                    \"type\": \"array\",\n                    \"items\": {\n                      \"type\": \"string\"\n                    }\n                  },\n                  \"metric\": {\n                    \"description\": \"Determines the metric(s) you want to return.\",\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"created\",\n                      \"attempted\",\n                      \"sent\",\n                      \"delivered\",\n                      \"opened\",\n                      \"clicked\",\n                      \"converted\",\n                      \"bounced\",\n                      \"spammed\",\n                      \"unsubscribed\",\n                      \"dropped\",\n                      \"failed\",\n                      \"undeliverable\"\n                    ]\n                  },\n                  \"drafts\": {\n                    \"description\": \"If true, your request returns both drafts and active/sent messages.\",\n                    \"type\": \"boolean\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

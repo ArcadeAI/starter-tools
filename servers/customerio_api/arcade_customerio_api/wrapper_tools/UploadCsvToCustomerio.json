@@ -1,0 +1,122 @@
+{
+  "name": "UploadCsvToCustomerio",
+  "fully_qualified_name": "CustomerioApi.UploadCsvToCustomerio@0.1.0",
+  "description": "Upload a CSV file to Customerio for bulk data processing.\n\nUse this tool to upload a CSV file containing people, events, objects, or relationships to Customerio. The CSV must be hosted at a short-lived public URL, ideally expiring 2 hours after the upload. The endpoint performs basic validations and queues the import for processing, which occurs in multiple stages. You will receive a confirmation and a URL to check the import status. Any errors or warnings during the import can be accessed through downloadable CSV reports available via the export endpoints.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "csv_import_data",
+        "required": false,
+        "description": "JSON payload representing the import details. Include the public URL of the CSV file and specify the type of data (people, events, objects, or relationships).",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "import": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'import'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/imports",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "csv_import_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "import": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"import\"\n        ],\n        \"properties\": {\n          \"import\": {\n            \"oneOf\": [\n              {\n                \"title\": \"people\",\n                \"type\": \"object\",\n                \"description\": \"Contains your import parameters.\",\n                \"required\": [\n                  \"data_file_url\",\n                  \"name\",\n                  \"type\",\n                  \"identifier\"\n                ],\n                \"properties\": {\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"A friendly name for your import. This helps you identify your import.\"\n                  },\n                  \"data_file_url\": {\n                    \"type\": \"string\",\n                    \"description\": \"The URL or path to the CSV file you want to import.\"\n                  },\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of import.\",\n                    \"enum\": [\n                      \"people\"\n                    ]\n                  },\n                  \"identifier\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of identifier you want to use to identify people in your sheet\\u2014`id` or `email`. At least one column in the CSV must contain an identifier.\",\n                    \"enum\": [\n                      \"id\",\n                      \"email\"\n                    ]\n                  },\n                  \"data_to_process\": {\n                    \"type\": \"string\",\n                    \"description\": \"Determines whether your import operation performs `all` add/update operations, only adds items (`only_new`), or only updates existing items (`only_existing`). Defaults to `all`. If `import_type` is `event`, you can only use `all` or `only_existing`. \\n\\nThis field was previously called `people_to_process` - we still support it but will deprecate it soon.\\n\",\n                    \"enum\": [\n                      \"all\",\n                      \"only_new\",\n                      \"only_existing\"\n                    ]\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"A helpful description that can help you find and recognize your import operation.\"\n                  }\n                }\n              },\n              {\n                \"title\": \"event\",\n                \"type\": \"object\",\n                \"description\": \"Contains your import parameters.\",\n                \"required\": [\n                  \"data_file_url\",\n                  \"name\",\n                  \"type\",\n                  \"identifier\"\n                ],\n                \"properties\": {\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"A friendly name for your import. This helps you identify your import.\"\n                  },\n                  \"data_file_url\": {\n                    \"type\": \"string\",\n                    \"description\": \"The URL or path to the CSV file you want to import.\"\n                  },\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of import.\",\n                    \"enum\": [\n                      \"event\"\n                    ]\n                  },\n                  \"identifier\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of identifier you want to use to identify people in your sheet\\u2014`id` or `email`. At least one column in the CSV must contain an identifier.\",\n                    \"enum\": [\n                      \"id\",\n                      \"email\"\n                    ]\n                  },\n                  \"data_to_process\": {\n                    \"type\": \"string\",\n                    \"description\": \"Determines whether your import operation performs `all` add/update operations, only adds items (`only_new`), or only updates existing items (`only_existing`). Defaults to `all`. If `import_type` is `event`, you can only use `all` or `only_existing`. \\n\\nThis field was previously called `people_to_process` - we still support it but will deprecate it soon.\\n\",\n                    \"enum\": [\n                      \"all\",\n                      \"only_new\",\n                      \"only_existing\"\n                    ]\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"A helpful description that can help you find and recognize your import operation.\"\n                  }\n                }\n              },\n              {\n                \"title\": \"relationship\",\n                \"type\": \"object\",\n                \"description\": \"Contains your import parameters.\",\n                \"required\": [\n                  \"data_file_url\",\n                  \"name\",\n                  \"type\",\n                  \"identifier\",\n                  \"object_type_id\"\n                ],\n                \"properties\": {\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"A friendly name for your import. This helps you identify your import.\"\n                  },\n                  \"data_file_url\": {\n                    \"type\": \"string\",\n                    \"description\": \"The URL or path to the CSV file you want to import.\"\n                  },\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of import.\",\n                    \"enum\": [\n                      \"relationship\"\n                    ]\n                  },\n                  \"identifier\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of identifier you want to use to identify people in your sheet\\u2014`id` or `email`. At least one column in the CSV must contain an identifier.\",\n                    \"enum\": [\n                      \"id\",\n                      \"email\"\n                    ]\n                  },\n                  \"data_to_process\": {\n                    \"type\": \"string\",\n                    \"description\": \"Determines whether your import operation performs `all` add/update operations, only adds items (`only_new`), or only updates existing items (`only_existing`). Defaults to `all`. If `import_type` is `event`, you can only use `all` or `only_existing`. \\n\\nThis field was previously called `people_to_process` - we still support it but will deprecate it soon.\\n\",\n                    \"enum\": [\n                      \"all\",\n                      \"only_new\",\n                      \"only_existing\"\n                    ]\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"A helpful description that can help you find and recognize your import operation.\"\n                  }\n                }\n              },\n              {\n                \"title\": \"object\",\n                \"type\": \"object\",\n                \"description\": \"Contains your import parameters.\",\n                \"required\": [\n                  \"data_file_url\",\n                  \"name\",\n                  \"type\",\n                  \"object_type_id\"\n                ],\n                \"properties\": {\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"A friendly name for your import. This helps you identify your import.\"\n                  },\n                  \"data_file_url\": {\n                    \"type\": \"string\",\n                    \"description\": \"The URL or path to the CSV file you want to import.\"\n                  },\n                  \"object_type_id\": {\n                    \"type\": \"string\",\n                    \"description\": \"The object type an object belongs to\\u2014like \\\"Companies\\\" or \\\"Accounts\\\". Object type IDs are string-formatted integers that begin at `1` and increment for each new type.\",\n                    \"nullable\": false,\n                    \"example\": \"1\"\n                  },\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of import.\",\n                    \"enum\": [\n                      \"object\"\n                    ]\n                  },\n                  \"data_to_process\": {\n                    \"type\": \"string\",\n                    \"description\": \"Determines whether your import operation performs `all` add/update operations, only adds items (`only_new`), or only updates existing items (`only_existing`). Defaults to `all`. If `import_type` is `event`, you can only use `all` or `only_existing`. \\n\\nThis field was previously called `people_to_process` - we still support it but will deprecate it soon.\\n\",\n                    \"enum\": [\n                      \"all\",\n                      \"only_new\",\n                      \"only_existing\"\n                    ]\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"A helpful description that can help you find and recognize your import operation.\"\n                  }\n                }\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

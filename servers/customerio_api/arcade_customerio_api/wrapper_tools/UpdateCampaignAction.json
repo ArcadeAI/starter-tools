@@ -1,0 +1,170 @@
+{
+  "name": "UpdateCampaignAction",
+  "fully_qualified_name": "CustomerioApi.UpdateCampaignAction@0.1.0",
+  "description": "Update campaign action details and content.\n\nThis tool updates the contents of a specific campaign action, allowing modifications to messages and HTTP requests. Use it to edit existing campaign steps.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "campaign_id",
+        "required": true,
+        "description": "The numeric ID of the specific campaign to update or retrieve information about.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the campaign that you want to trigger or return information about."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "campaign_id"
+      },
+      {
+        "name": "action_id",
+        "required": true,
+        "description": "The identifier for the specific action within a campaign to be updated.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The action you want to lookup or act on."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "action_id"
+      },
+      {
+        "name": "campaign_action_body_update",
+        "required": false,
+        "description": "A JSON object describing the new content for the campaign action, such as message bodies and HTTP requests.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'updateCampaignAction'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/campaigns/{campaign_id}/actions/{action_id}",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "campaign_id",
+        "tool_parameter_name": "campaign_id",
+        "description": "The ID of the campaign that you want to trigger or return information about.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the campaign that you want to trigger or return information about."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "action_id",
+        "tool_parameter_name": "action_id",
+        "description": "The action you want to lookup or act on.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The action you want to lookup or act on."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "campaign_action_body_update",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"oneOf\": [\n          {\n            \"title\": \"Email / message\",\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"id\": {\n                    \"description\": \"The identifier for an action.\",\n                    \"type\": \"integer\",\n                    \"readOnly\": true,\n                    \"example\": 96\n                  },\n                  \"broadcast_id\": {\n                    \"readOnly\": true,\n                    \"type\": \"integer\",\n                    \"description\": \"The identifier for a broadcast.\",\n                    \"example\": 2\n                  },\n                  \"deduplicate_id\": {\n                    \"type\": \"string\",\n                    \"readOnly\": true,\n                    \"description\": \"An identifier in the format `id:timestamp` where the id is the id of the object you are working with (Campaigns, Deliveries, Exports, Identities, Newsletters, Segments, and Templates), and the timestamp is the last time the object was updated.\",\n                    \"example\": \"15:1492548073\"\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the action, if it exists.\",\n                    \"readOnly\": true,\n                    \"example\": \"Opening Message\"\n                  },\n                  \"layout\": {\n                    \"type\": \"string\",\n                    \"description\": \"The layout used for the action, if it exists.\",\n                    \"readOnly\": true\n                  },\n                  \"created\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The date time when the referenced ID was created.\",\n                    \"example\": 1552341937,\n                    \"readOnly\": true\n                  },\n                  \"updated\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The date time when the referenced ID was last updated.\",\n                    \"example\": 1552341937,\n                    \"readOnly\": true\n                  },\n                  \"body\": {\n                    \"type\": \"string\",\n                    \"description\": \"The body of the action. You cannot modify the body if you created it with our drag-and-drop editor.\"\n                  },\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of action.\",\n                    \"enum\": [\n                      \"email\",\n                      \"in_app\",\n                      \"push\",\n                      \"twilio\",\n                      \"slack\"\n                    ],\n                    \"readOnly\": true\n                  },\n                  \"sending_state\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"automatic\",\n                      \"draft\",\n                      \"off\"\n                    ],\n                    \"description\": \"Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action.\"\n                  },\n                  \"language\": {\n                    \"type\": \"string\",\n                    \"description\": \"The language variant for your message. If you don't use our [localization feature](/localization), or this is the default message, this value is an empty string.\",\n                    \"example\": \"fr\",\n                    \"readOnly\": true\n                  },\n                  \"from\": {\n                    \"type\": \"string\",\n                    \"description\": \"The address that the message is from, relevant if the action `type` is `email`.\",\n                    \"readOnly\": true,\n                    \"example\": \"sentFrom@example.com\"\n                  },\n                  \"from_id\": {\n                    \"type\": \"integer\",\n                    \"description\": \"The identifier of the `from` address, commonly known as the \\\"sender\\\". You can [list your sender identities](#operation/listSenders) to match the ID to a specific address.\",\n                    \"example\": 1\n                  },\n                  \"reply_to\": {\n                    \"type\": \"string\",\n                    \"description\": \"The address that receives replies for the message, if applicable.\",\n                    \"readOnly\": true,\n                    \"example\": \"replyto@example.com\"\n                  },\n                  \"reply_to_id\": {\n                    \"type\": \"integer\",\n                    \"description\": \"The identifier for the `reply_to` address, if applicable. You can [list your sender identities](#operation/listSenders) to match the ID to a specific address.\",\n                    \"nullable\": true,\n                    \"example\": 38\n                  },\n                  \"preprocessor\": {\n                    \"type\": \"string\",\n                    \"description\": \"By default, we process CSS before emails leave Customer.io using Premailer. If your message included CSS and pre-processing is not disabled, this key indicates the pre-processor.\",\n                    \"enum\": [\n                      \"premailer\"\n                    ],\n                    \"readOnly\": true\n                  },\n                  \"recipient\": {\n                    \"description\": \"The recipient address for an action.\",\n                    \"type\": \"string\",\n                    \"example\": \"{{customer.email}}\"\n                  },\n                  \"subject\": {\n                    \"type\": \"string\",\n                    \"description\": \"The subject line for an `email` action.\",\n                    \"example\": \"Did you get that thing I sent you?\"\n                  },\n                  \"bcc\": {\n                    \"readOnly\": true,\n                    \"description\": \"The blind-copy address(es) for this action.\",\n                    \"type\": \"string\"\n                  },\n                  \"fake_bcc\": {\n                    \"readOnly\": true,\n                    \"type\": \"boolean\",\n                    \"description\": \"If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).\\n\"\n                  },\n                  \"preheader_text\": {\n                    \"type\": \"string\",\n                    \"description\": \"Also known as \\\"preview text\\\", this specifies the small block of text shown in an end-user's email inbox, next to, or underneath, the subject line.\"\n                  },\n                  \"body_amp\": {\n                    \"type\": \"string\",\n                    \"description\": \"If your message is an email, this is the AMP-enabled body of your message. If your recipient's email client doesn't support AMP, the `body` represents your fallback message.\"\n                  }\n                }\n              },\n              {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"id\": {\n                    \"description\": \"The identifier for an action.\",\n                    \"type\": \"integer\",\n                    \"readOnly\": true,\n                    \"example\": 96\n                  },\n                  \"campaign_id\": {\n                    \"readOnly\": true,\n                    \"description\": \"The identifier for a campaign.\",\n                    \"type\": \"integer\",\n                    \"example\": 5\n                  },\n                  \"parent_action_id\": {\n                    \"type\": \"integer\",\n                    \"description\": \"The ID of the parent action, if the action occurred within a campaign and has a parent (like a randomized split, etc).\",\n                    \"example\": 1,\n                    \"readOnly\": true\n                  },\n                  \"headers\": {\n                    \"description\": \"A JSON string containing an array of header objects, where each object contains a `name` and a `value`. Header names and values must be strings and cannot contain any non-ASCII characters or empty spaces. Some headers are reserved and cannot be overwritten.\",\n                    \"type\": \"string\",\n                    \"format\": \"json\",\n                    \"example\": \"[{\\\"name\\\":\\\"X-Mailgun-Tag\\\",\\\"value\\\":\\\"my-cool-tag\\\"},{\\\"name\\\":\\\"X-Custom-Header\\\",\\\"value\\\":\\\"custom-value\\\"}]\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"title\": \"SMS/MMS\",\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"id\": {\n                    \"description\": \"The identifier for an action.\",\n                    \"type\": \"integer\",\n                    \"readOnly\": true,\n                    \"example\": 96\n                  },\n                  \"campaign_id\": {\n                    \"readOnly\": true,\n                    \"description\": \"The identifier for a campaign.\",\n                    \"type\": \"integer\",\n                    \"example\": 5\n                  },\n                  \"parent_action_id\": {\n                    \"type\": \"integer\",\n                    \"description\": \"The ID of the parent action, if the action occurred within a campaign and has a parent (like a randomized split, etc).\",\n                    \"example\": 1,\n                    \"readOnly\": true\n                  }\n                }\n              },\n              {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"deduplicate_id\": {\n                    \"type\": \"string\",\n                    \"readOnly\": true,\n                    \"description\": \"An identifier in the format `id:timestamp` where the id is the id of the object you are working with (Campaigns, Deliveries, Exports, Identities, Newsletters, Segments, and Templates), and the timestamp is the last time the object was updated.\",\n                    \"example\": \"15:1492548073\"\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the action.\",\n                    \"readOnly\": true,\n                    \"example\": \"Opening Message\"\n                  },\n                  \"layout\": {\n                    \"type\": \"string\",\n                    \"description\": \"The layout used for the action, if it exists.\",\n                    \"readOnly\": true\n                  },\n                  \"created\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The date time when the referenced ID was created.\",\n                    \"example\": 1552341937,\n                    \"readOnly\": true\n                  },\n                  \"updated\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The date time when the referenced ID was last updated.\",\n                    \"example\": 1552341937,\n                    \"readOnly\": true\n                  },\n                  \"body\": {\n                    \"type\": \"string\",\n                    \"description\": \"The body of your SMS.\"\n                  },\n                  \"language\": {\n                    \"type\": \"string\",\n                    \"description\": \"The language variant for your message. If you don't use our [localization feature](/localization), or this is the default message, this value is an empty string.\",\n                    \"example\": \"fr\",\n                    \"readOnly\": true\n                  },\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"For SMS/MMS messages, the `type` is always `twilio`.\",\n                    \"enum\": [\n                      \"twilio\"\n                    ],\n                    \"readOnly\": true\n                  },\n                  \"image_url\": {\n                    \"type\": \"string\",\n                    \"description\": \"The URL of the image in your SMS (MMS) message.\"\n                  },\n                  \"sending_state\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"automatic\",\n                      \"draft\",\n                      \"off\"\n                    ],\n                    \"description\": \"Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action.\"\n                  },\n                  \"recipient\": {\n                    \"type\": \"string\",\n                    \"description\": \"The recipient value. In general, your recipient is an attribute that you reference using liquid, like `{{customer.phone}}`, instead of a hard-coded value. If you set this field to a liquid statement like `{{customer.phone}}`, the field returns blank in `GET` requests because we populate the recipient from your liquid statement at send time.\",\n                    \"example\": \"\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"title\": \"Webhook\",\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"id\": {\n                    \"description\": \"The identifier for an action.\",\n                    \"type\": \"integer\",\n                    \"readOnly\": true,\n                    \"example\": 96\n                  },\n                  \"campaign_id\": {\n                    \"readOnly\": true,\n                    \"description\": \"The identifier for a campaign.\",\n                    \"type\": \"integer\",\n                    \"example\": 5\n                  },\n                  \"parent_action_id\": {\n                    \"type\": \"integer\",\n                    \"description\": \"The ID of the parent action, if the action occurred within a campaign and has a parent (like a randomized split, etc).\",\n                    \"example\": 1,\n                    \"readOnly\": true\n                  }\n                }\n              },\n              {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"deduplicate_id\": {\n                    \"type\": \"string\",\n                    \"readOnly\": true,\n                    \"description\": \"An identifier in the format `id:timestamp` where the id is the id of the object you are working with (Campaigns, Deliveries, Exports, Identities, Newsletters, Segments, and Templates), and the timestamp is the last time the object was updated.\",\n                    \"example\": \"15:1492548073\"\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the action, if it exists.\",\n                    \"readOnly\": true,\n                    \"example\": \"Opening Message\"\n                  },\n                  \"layout\": {\n                    \"type\": \"string\",\n                    \"description\": \"The layout used for the action, if it exists.\",\n                    \"readOnly\": true\n                  },\n                  \"created\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The date time when the referenced ID was created.\",\n                    \"example\": 1552341937,\n                    \"readOnly\": true\n                  },\n                  \"updated\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The date time when the referenced ID was last updated.\",\n                    \"example\": 1552341937,\n                    \"readOnly\": true\n                  },\n                  \"body\": {\n                    \"type\": \"string\",\n                    \"description\": \"The body of the action. You cannot modify the body if you created it with our drag-and-drop editor.\"\n                  },\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of action.\",\n                    \"enum\": [\n                      \"webhook\"\n                    ],\n                    \"readOnly\": true\n                  },\n                  \"url\": {\n                    \"type\": \"string\",\n                    \"description\": \"The URL to send a webhook to, applies to `webhook` type actions.\",\n                    \"example\": \"https://my.example.com/webhook\"\n                  },\n                  \"headers\": {\n                    \"description\": \"A JSON string containing an array of header objects, where each object contains a `name` and a `value`. Header names and values must be strings and cannot contain any non-ASCII characters or empty spaces. Some headers are reserved and cannot be overwritten.\",\n                    \"type\": \"string\",\n                    \"format\": \"json\",\n                    \"example\": \"[{\\\"name\\\":\\\"X-Mailgun-Tag\\\",\\\"value\\\":\\\"my-cool-tag\\\"},{\\\"name\\\":\\\"X-Custom-Header\\\",\\\"value\\\":\\\"custom-value\\\"}]\"\n                  },\n                  \"method\": {\n                    \"description\": \"The HTTP method for your webhook.\",\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"get\",\n                      \"post\",\n                      \"put\",\n                      \"delete\",\n                      \"patch\"\n                    ],\n                    \"example\": \"post\"\n                  },\n                  \"sending_state\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"automatic\",\n                      \"draft\",\n                      \"off\"\n                    ],\n                    \"description\": \"Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action.\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

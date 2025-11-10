@@ -1,0 +1,154 @@
+{
+  "name": "UpdateOrCreateSnippet",
+  "fully_qualified_name": "CustomerioApi.UpdateOrCreateSnippet@0.1.0",
+  "description": "Update or create a snippet with a unique name.\n\nUse this tool to update an existing snippet or create a new one. Pass a unique `name` and corresponding `value`. If the snippet already exists, its value will be updated; otherwise, a new snippet will be created.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "snippet_details",
+        "required": false,
+        "description": "A JSON object containing the unique snippet name and its value. Provide 'name' for the snippet identifier and 'value' for the snippet content, and optionally 'updated_at' for the last update timestamp.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the snippet, must be unique."
+            },
+            "value": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The contents of the snippet."
+            },
+            "updated_at": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The last date-time the snippet was updated."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'updateSnippets'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/snippets",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "snippet_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the snippet, must be unique."
+            },
+            "value": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The contents of the snippet."
+            },
+            "updated_at": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The last date-time the snippet was updated."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"description\": \"describes a piece of reusable content. You must provide a name for the snippet and the `value`\\u2014the content that appears in messages that use the snippet.\",\n        \"required\": [\n          \"name\",\n          \"value\"\n        ],\n        \"properties\": {\n          \"name\": {\n            \"type\": \"string\",\n            \"description\": \"The name of the snippet, must be unique.\"\n          },\n          \"value\": {\n            \"type\": \"string\",\n            \"description\": \"The contents of the snippet.\"\n          },\n          \"updated_at\": {\n            \"type\": \"integer\",\n            \"format\": \"unix timestamp\",\n            \"description\": \"The last date-time the snippet was updated.\",\n            \"readOnly\": true\n          }\n        },\n        \"example\": {\n          \"name\": \"address\",\n          \"value\": \"<strong>My Company</strong></br>1234 Fake St<br/>Fake,NY<br/>10111\",\n          \"updated_at\": 1582500000\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

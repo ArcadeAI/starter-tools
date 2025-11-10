@@ -1,0 +1,170 @@
+{
+  "name": "GetBroadcastTranslationInfo",
+  "fully_qualified_name": "CustomerioApi.GetBroadcastTranslationInfo@0.1.0",
+  "description": "Retrieve translation info for a broadcast message.\n\nUse this tool to get details about a specific translation of a message within a broadcast by providing the `action_id`. Useful for checking how a message is translated into a specific language.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "broadcast_identifier",
+        "required": true,
+        "description": "The unique identifier for a broadcast. Integer type is expected.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a broadcast."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "broadcast_id"
+      },
+      {
+        "name": "action_id",
+        "required": true,
+        "description": "The identifier for the action you want to lookup or act on. Used to retrieve specific translation details.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The action you want to lookup or act on."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "action_id"
+      },
+      {
+        "name": "language_tag",
+        "required": true,
+        "description": "The language tag for the translation. Use an empty string for the default language.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "A [language tag](/journeys/unsubscribe-faqs/#currently-supported-languages) of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "language"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getBroadcastActionLanguage'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "broadcast_id",
+        "tool_parameter_name": "broadcast_identifier",
+        "description": "The identifier of a broadcast.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a broadcast."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "action_id",
+        "tool_parameter_name": "action_id",
+        "description": "The action you want to lookup or act on.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The action you want to lookup or act on."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "language",
+        "tool_parameter_name": "language_tag",
+        "description": "A [language tag](/journeys/unsubscribe-faqs/#currently-supported-languages) of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "A [language tag](/journeys/unsubscribe-faqs/#currently-supported-languages) of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

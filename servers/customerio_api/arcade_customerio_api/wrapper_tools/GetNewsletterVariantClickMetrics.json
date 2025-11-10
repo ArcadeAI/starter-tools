@@ -1,0 +1,260 @@
+{
+  "name": "GetNewsletterVariantClickMetrics",
+  "fully_qualified_name": "CustomerioApi.GetNewsletterVariantClickMetrics@0.1.0",
+  "description": "Get link click metrics for a newsletter variant.\n\nRetrieve metrics related to link clicks for an individual newsletter variant, such as language variations or A/B test messages. By default, the data covers up to 45 days. Specify the period and steps to customize the data range.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "newsletter_identifier",
+        "required": true,
+        "description": "The unique integer identifier of a specific newsletter to retrieve click metrics.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a newsletter."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "newsletter_id"
+      },
+      {
+        "name": "message_content_identifier",
+        "required": true,
+        "description": "The ID of a specific message within a newsletter, useful for A/B tests or multilingual newsletters. Retrieve from newsletter details.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a message in a newsletter. If your newsletter is an A/B test or has multiple languages, you may have multiple `content_id` values for your newsletter. You can [get a newsletter](#operation/getNewsletters) to find your newsletter's content IDs."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "content_id"
+      },
+      {
+        "name": "time_unit_for_report",
+        "required": false,
+        "description": "The unit of time for generating the report. Options are: hours, days, weeks, months.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "days",
+            "weeks",
+            "months"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unit of time for your report."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "period"
+      },
+      {
+        "name": "number_of_periods",
+        "required": false,
+        "description": "Specify the number of time periods to retrieve data for. Defaults to the maximum if not specified, or 12 for months. Maximum limits: 24 hours, 45 days, 12 weeks, or 121 months.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "steps"
+      },
+      {
+        "name": "item_type_for_metrics",
+        "required": false,
+        "description": "The type of item to return metrics for. Options are: email, webhook, twilio, slack, push, in_app. When left empty, metrics for all types are included.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "email",
+            "webhook",
+            "twilio",
+            "slack",
+            "push",
+            "in_app"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "type"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getVariantLinks'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/newsletters/{newsletter_id}/contents/{content_id}/metrics/links",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "period",
+        "tool_parameter_name": "time_unit_for_report",
+        "description": "The unit of time for your report.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "days",
+            "weeks",
+            "months"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unit of time for your report."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": "days",
+        "documentation_urls": []
+      },
+      {
+        "name": "steps",
+        "tool_parameter_name": "number_of_periods",
+        "description": "The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "type",
+        "tool_parameter_name": "item_type_for_metrics",
+        "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "email",
+            "webhook",
+            "twilio",
+            "slack",
+            "push",
+            "in_app"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "newsletter_id",
+        "tool_parameter_name": "newsletter_identifier",
+        "description": "The identifier of a newsletter.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a newsletter."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "content_id",
+        "tool_parameter_name": "message_content_identifier",
+        "description": "The identifier of a message in a newsletter. If your newsletter is an A/B test or has multiple languages, you may have multiple `content_id` values for your newsletter. You can [get a newsletter](#operation/getNewsletters) to find your newsletter's content IDs.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a message in a newsletter. If your newsletter is an A/B test or has multiple languages, you may have multiple `content_id` values for your newsletter. You can [get a newsletter](#operation/getNewsletters) to find your newsletter's content IDs."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}
