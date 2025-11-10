@@ -1,0 +1,280 @@
+{
+  "name": "SendIntercomEvent",
+  "fully_qualified_name": "IntercomApi.SendIntercomEvent@0.1.0",
+  "description": "Submit events to Intercom for user activity tracking.\n\nThis tool is used to send events to Intercom, associating them with a user, lead, or visitor. It captures activities and actions taken by users in your application. Useful for tracking user interactions and behaviors, including metadata. Requires an Access Token with write permissions.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "intercom_version",
+        "required": false,
+        "description": "Specify the version of the Intercom API to use. Must be one of: '1.0', '1.1', '1.2', '1.3', '1.4', '2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', '2.9'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "event_request_body",
+        "required": false,
+        "description": "JSON object containing the event details: event name, timestamp, user ID, contact ID, email, and optional metadata.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "event_name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the event that occurred. This is presented to your App's admins when filtering and creating segments - a good event name is typically a past tense 'verb-noun' combination, to improve readability, for example `updated-plan`."
+            },
+            "created_at": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The time the event occurred as a UTC Unix timestamp"
+            },
+            "user_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Your identifier for the user."
+            },
+            "id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The unique identifier for the contact (lead or user) which is given by Intercom."
+            },
+            "email": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "An email address for your user. An email should only be used where your application uses email to uniquely identify users."
+            },
+            "metadata": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Optional metadata about the event."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'createDataEvent'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/events",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "event_request_body",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "event_name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the event that occurred. This is presented to your App's admins when filtering and creating segments - a good event name is typically a past tense 'verb-noun' combination, to improve readability, for example `updated-plan`."
+            },
+            "created_at": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The time the event occurred as a UTC Unix timestamp"
+            },
+            "user_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Your identifier for the user."
+            },
+            "id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The unique identifier for the contact (lead or user) which is given by Intercom."
+            },
+            "email": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "An email address for your user. An email should only be used where your application uses email to uniquely identify users."
+            },
+            "metadata": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Optional metadata about the event."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"description\": \"\",\n        \"type\": \"object\",\n        \"title\": \"Create Data Event Request\",\n        \"properties\": {\n          \"event_name\": {\n            \"type\": \"string\",\n            \"description\": \"The name of the event that occurred. This is presented to your App's admins when filtering and creating segments - a good event name is typically a past tense 'verb-noun' combination, to improve readability, for example `updated-plan`.\",\n            \"example\": \"invited-friend\"\n          },\n          \"created_at\": {\n            \"type\": \"integer\",\n            \"format\": \"date-time\",\n            \"description\": \"The time the event occurred as a UTC Unix timestamp\",\n            \"example\": 1671028894\n          },\n          \"user_id\": {\n            \"type\": \"string\",\n            \"description\": \"Your identifier for the user.\",\n            \"example\": \"314159\"\n          },\n          \"id\": {\n            \"type\": \"string\",\n            \"description\": \"The unique identifier for the contact (lead or user) which is given by Intercom.\",\n            \"example\": \"8a88a590-e1c3-41e2-a502-e0649dbf721c\"\n          },\n          \"email\": {\n            \"type\": \"string\",\n            \"description\": \"An email address for your user. An email should only be used where your application uses email to uniquely identify users.\",\n            \"example\": \"frodo.baggins@example.com\"\n          },\n          \"metadata\": {\n            \"type\": \"object\",\n            \"description\": \"Optional metadata about the event.\",\n            \"additionalProperties\": {\n              \"type\": \"string\"\n            },\n            \"example\": {\n              \"invite_code\": \"ADDAFRIEND\"\n            }\n          }\n        },\n        \"anyOf\": [\n          {\n            \"title\": \"id required\",\n            \"required\": [\n              \"event_name\",\n              \"created_at\",\n              \"id\"\n            ]\n          },\n          {\n            \"title\": \"user_id required\",\n            \"required\": [\n              \"event_name\",\n              \"created_at\",\n              \"user_id\"\n            ]\n          },\n          {\n            \"title\": \"email required\",\n            \"required\": [\n              \"event_name\",\n              \"created_at\",\n              \"email\"\n            ]\n          }\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

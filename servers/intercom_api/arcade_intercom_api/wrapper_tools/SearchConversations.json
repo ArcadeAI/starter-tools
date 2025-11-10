@@ -1,0 +1,250 @@
+{
+  "name": "SearchConversations",
+  "fully_qualified_name": "IntercomApi.SearchConversations@0.1.0",
+  "description": "Search conversations by specific attributes.\n\nThis tool allows users to search for conversations in Intercom by defining specific attributes and filters. Use operators like AND/OR to refine your search, controlling the number of results with pagination. Call this tool when you need specific conversation details filtered by attributes such as id, created date, or author info.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "intercom_api_version",
+        "required": false,
+        "description": "Specifies the version of the Intercom API to use. Choose from available versions like '1.0', '2.0', etc.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "search_criteria",
+        "required": false,
+        "description": "A JSON object specifying search filters such as attributes, operators, and pagination settings.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "query": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "pagination": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "per_page": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The number of results to fetch per page."
+                },
+                "starting_after": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The cursor to use in the next request to get the next page of results."
+                }
+              },
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'searchConversations'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/conversations/search",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_api_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "search_criteria",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "query": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "pagination": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "per_page": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The number of results to fetch per page."
+                },
+                "starting_after": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The cursor to use in the next request to get the next page of results."
+                }
+              },
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"description\": \"Search using Intercoms Search APIs.\",\n        \"type\": \"object\",\n        \"title\": \"Search data\",\n        \"properties\": {\n          \"query\": {\n            \"oneOf\": [\n              {\n                \"title\": \"Single Filter Search Request\",\n                \"description\": \"Search using Intercoms Search APIs with a single filter.\",\n                \"type\": \"object\",\n                \"properties\": {\n                  \"field\": {\n                    \"type\": \"string\",\n                    \"description\": \"The accepted field that you want to search on.\",\n                    \"example\": \"created_at\"\n                  },\n                  \"operator\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"=\",\n                      \"!=\",\n                      \"IN\",\n                      \"NIN\",\n                      \"<\",\n                      \">\",\n                      \"~\",\n                      \"!~\",\n                      \"^\",\n                      \"$\"\n                    ],\n                    \"description\": \"The accepted operators you can use to define how you want to search for the value.\",\n                    \"example\": \">\"\n                  },\n                  \"value\": {\n                    \"oneOf\": [\n                      {\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"type\": \"integer\"\n                      },\n                      {\n                        \"type\": \"array\",\n                        \"items\": {\n                          \"type\": \"string\"\n                        }\n                      },\n                      {\n                        \"type\": \"array\",\n                        \"items\": {\n                          \"type\": \"integer\"\n                        }\n                      }\n                    ],\n                    \"description\": \"The value that you want to search on.\",\n                    \"example\": \"73732934\",\n                    \"nullable\": true\n                  }\n                }\n              },\n              {\n                \"title\": \"Multiple Filter Search Request\",\n                \"description\": \"Search using Intercoms Search APIs with more than one filter.\",\n                \"type\": \"object\",\n                \"properties\": {\n                  \"operator\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"AND\",\n                      \"OR\"\n                    ],\n                    \"description\": \"An operator to allow boolean inspection between multiple fields.\",\n                    \"example\": \"AND\"\n                  },\n                  \"value\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                      \"title\": \"Multiple or Single Filter Search Request\",\n                      \"oneOf\": [\n                        {\n                          \"title\": \"Multiple Filter Search Request\",\n                          \"description\": \"Search using Intercoms Search APIs with more than one filter.\",\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"operator\": {\n                              \"type\": \"string\",\n                              \"enum\": [\n                                \"AND\",\n                                \"OR\"\n                              ],\n                              \"description\": \"An operator to allow boolean inspection between multiple fields.\",\n                              \"example\": \"AND\"\n                            },\n                            \"value\": {\n                              \"type\": \"array\",\n                              \"items\": {\n                                \"title\": \"Multiple or Single Filter Search Request\",\n                                \"oneOf\": [\n                                  {\n                                    \"$ref\": \"#/components/schemas/multiple_filter_search_request\",\n                                    \"has_circular_reference\": true\n                                  },\n                                  {\n                                    \"title\": \"Single Filter Search Request\",\n                                    \"description\": \"Search using Intercoms Search APIs with a single filter.\",\n                                    \"type\": \"object\",\n                                    \"properties\": {\n                                      \"field\": {\n                                        \"type\": \"string\",\n                                        \"description\": \"The accepted field that you want to search on.\",\n                                        \"example\": \"created_at\"\n                                      },\n                                      \"operator\": {\n                                        \"type\": \"string\",\n                                        \"enum\": [\n                                          \"=\",\n                                          \"!=\",\n                                          \"IN\",\n                                          \"NIN\",\n                                          \"<\",\n                                          \">\",\n                                          \"~\",\n                                          \"!~\",\n                                          \"^\",\n                                          \"$\"\n                                        ],\n                                        \"description\": \"The accepted operators you can use to define how you want to search for the value.\",\n                                        \"example\": \">\"\n                                      },\n                                      \"value\": {\n                                        \"oneOf\": [\n                                          {\n                                            \"type\": \"string\"\n                                          },\n                                          {\n                                            \"type\": \"integer\"\n                                          },\n                                          {\n                                            \"type\": \"array\",\n                                            \"items\": {\n                                              \"type\": \"string\"\n                                            }\n                                          },\n                                          {\n                                            \"type\": \"array\",\n                                            \"items\": {\n                                              \"type\": \"integer\"\n                                            }\n                                          }\n                                        ],\n                                        \"description\": \"The value that you want to search on.\",\n                                        \"example\": \"73732934\",\n                                        \"nullable\": true\n                                      }\n                                    }\n                                  }\n                                ]\n                              }\n                            }\n                          }\n                        },\n                        {\n                          \"title\": \"Single Filter Search Request\",\n                          \"description\": \"Search using Intercoms Search APIs with a single filter.\",\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"field\": {\n                              \"type\": \"string\",\n                              \"description\": \"The accepted field that you want to search on.\",\n                              \"example\": \"created_at\"\n                            },\n                            \"operator\": {\n                              \"type\": \"string\",\n                              \"enum\": [\n                                \"=\",\n                                \"!=\",\n                                \"IN\",\n                                \"NIN\",\n                                \"<\",\n                                \">\",\n                                \"~\",\n                                \"!~\",\n                                \"^\",\n                                \"$\"\n                              ],\n                              \"description\": \"The accepted operators you can use to define how you want to search for the value.\",\n                              \"example\": \">\"\n                            },\n                            \"value\": {\n                              \"oneOf\": [\n                                {\n                                  \"type\": \"string\"\n                                },\n                                {\n                                  \"type\": \"integer\"\n                                },\n                                {\n                                  \"type\": \"array\",\n                                  \"items\": {\n                                    \"type\": \"string\"\n                                  }\n                                },\n                                {\n                                  \"type\": \"array\",\n                                  \"items\": {\n                                    \"type\": \"integer\"\n                                  }\n                                }\n                              ],\n                              \"description\": \"The value that you want to search on.\",\n                              \"example\": \"73732934\",\n                              \"nullable\": true\n                            }\n                          }\n                        }\n                      ]\n                    }\n                  }\n                }\n              }\n            ]\n          },\n          \"pagination\": {\n            \"title\": \"Pagination: Starting After\",\n            \"type\": \"object\",\n            \"nullable\": true,\n            \"properties\": {\n              \"per_page\": {\n                \"type\": \"integer\",\n                \"description\": \"The number of results to fetch per page.\",\n                \"example\": 2\n              },\n              \"starting_after\": {\n                \"type\": \"string\",\n                \"description\": \"The cursor to use in the next request to get the next page of results.\",\n                \"nullable\": true,\n                \"example\": \"your-cursor-from-response\"\n              }\n            }\n          }\n        },\n        \"required\": [\n          \"query\"\n        ]\n      },\n      \"examples\": {\n        \"successful\": {\n          \"summary\": \"successful\",\n          \"value\": {\n            \"query\": {\n              \"operator\": \"AND\",\n              \"value\": [\n                {\n                  \"field\": \"created_at\",\n                  \"operator\": \">\",\n                  \"value\": \"1306054154\"\n                }\n              ]\n            },\n            \"pagination\": {\n              \"per_page\": 5\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": false
+  }
+}

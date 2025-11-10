@@ -1,0 +1,182 @@
+{
+  "name": "RedactConversationPartOrMessage",
+  "fully_qualified_name": "IntercomApi.RedactConversationPartOrMessage@0.1.0",
+  "description": "Redact specific parts or messages within a conversation.\n\nUse this tool to redact a specific part of a conversation or the original message source. Ensure the targeted part has a body if a conversation part is being redacted. For source messages, they must originate from a contact. If criteria are not met, an error will be returned.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "intercom_version",
+        "required": false,
+        "description": "Specify the version of the Intercom API to use. Accepts versions 1.0 to 2.9.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "redaction_details",
+        "required": false,
+        "description": "Provide a JSON object with details of the conversation part or message to be redacted. It should include the necessary identifiers and attributes such as the body of the conversation part or source message. Ensure the criteria for redaction are met: a body for conversation parts and origination from a contact for source messages.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'redactConversation'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/conversations/redact",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "redaction_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"oneOf\": [\n          {\n            \"title\": \"Redact Conversation Part Request\",\n            \"type\": \"object\",\n            \"description\": \"Payload of the request to redact a conversation part\",\n            \"properties\": {\n              \"type\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"conversation_part\"\n                ],\n                \"description\": \"The type of resource being redacted.\",\n                \"example\": \"conversation_part\"\n              },\n              \"conversation_id\": {\n                \"type\": \"string\",\n                \"description\": \"The id of the conversation.\",\n                \"example\": \"19894788788\"\n              },\n              \"conversation_part_id\": {\n                \"type\": \"string\",\n                \"description\": \"The id of the conversation_part.\",\n                \"example\": \"19381789428\"\n              }\n            },\n            \"required\": [\n              \"type\",\n              \"conversation_id\",\n              \"conversation_part_id\"\n            ]\n          },\n          {\n            \"title\": \"Redact Conversation Source Request\",\n            \"type\": \"object\",\n            \"description\": \"Payload of the request to redact a conversation source\",\n            \"properties\": {\n              \"type\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"source\"\n                ],\n                \"description\": \"The type of resource being redacted.\",\n                \"example\": \"source\"\n              },\n              \"conversation_id\": {\n                \"type\": \"string\",\n                \"description\": \"The id of the conversation.\",\n                \"example\": \"19894788788\"\n              },\n              \"source_id\": {\n                \"type\": \"string\",\n                \"description\": \"The id of the source.\",\n                \"example\": \"19894781231\"\n              }\n            },\n            \"required\": [\n              \"type\",\n              \"conversation_id\",\n              \"source_id\"\n            ]\n          }\n        ]\n      },\n      \"examples\": {\n        \"redact_a_conversation_part\": {\n          \"summary\": \"Redact a conversation part\",\n          \"value\": {\n            \"type\": \"conversation_part\",\n            \"conversation_id\": 437,\n            \"conversation_part_id\": 89\n          }\n        },\n        \"not_found\": {\n          \"summary\": \"Not found\",\n          \"value\": {\n            \"type\": \"conversation_part\",\n            \"conversation_id\": \"really_123_doesnt_exist\",\n            \"conversation_part_id\": \"really_123_doesnt_exist\"\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

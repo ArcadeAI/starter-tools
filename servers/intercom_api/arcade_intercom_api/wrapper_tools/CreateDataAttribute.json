@@ -1,0 +1,300 @@
+{
+  "name": "CreateDataAttribute",
+  "fully_qualified_name": "IntercomApi.CreateDataAttribute@0.1.0",
+  "description": "Create a data attribute for a contact or company.\n\nThis tool allows you to create a data attribute for a contact or company using the Intercom API. Use this when you need to add a new attribute to store additional information.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "intercom_api_version",
+        "required": false,
+        "description": "Specify the version of the Intercom API to use. Options range from '1.0' to '2.9'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "data_attribute_details",
+        "required": false,
+        "description": "A JSON object specifying the data attribute's properties: name, model, data type, description, options, and whether it's messenger writable.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the data attribute."
+            },
+            "model": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "contact",
+                "company"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The model that the data attribute belongs to."
+            },
+            "data_type": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "string",
+                "integer",
+                "float",
+                "boolean",
+                "datetime",
+                "date"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of data stored for this attribute."
+            },
+            "description": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The readable description you see in the UI for the attribute."
+            },
+            "options": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "To create list attributes. Provide a set of hashes with `value` as the key of the options you want to make. `data_type` must be `string`."
+            },
+            "messenger_writable": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Can this attribute be updated by the Messenger"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'createDataAttribute'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/data_attributes",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_api_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "data_attribute_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the data attribute."
+            },
+            "model": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "contact",
+                "company"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The model that the data attribute belongs to."
+            },
+            "data_type": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "string",
+                "integer",
+                "float",
+                "boolean",
+                "datetime",
+                "date"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of data stored for this attribute."
+            },
+            "description": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The readable description you see in the UI for the attribute."
+            },
+            "options": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "To create list attributes. Provide a set of hashes with `value` as the key of the options you want to make. `data_type` must be `string`."
+            },
+            "messenger_writable": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Can this attribute be updated by the Messenger"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"description\": \"\",\n        \"type\": \"object\",\n        \"title\": \"Create Data Attribute Request\",\n        \"properties\": {\n          \"name\": {\n            \"type\": \"string\",\n            \"description\": \"The name of the data attribute.\",\n            \"example\": \"My Data Attribute\"\n          },\n          \"model\": {\n            \"type\": \"string\",\n            \"description\": \"The model that the data attribute belongs to.\",\n            \"enum\": [\n              \"contact\",\n              \"company\"\n            ],\n            \"example\": \"contact\"\n          },\n          \"data_type\": {\n            \"type\": \"string\",\n            \"description\": \"The type of data stored for this attribute.\",\n            \"enum\": [\n              \"string\",\n              \"integer\",\n              \"float\",\n              \"boolean\",\n              \"datetime\",\n              \"date\"\n            ],\n            \"example\": \"string\"\n          },\n          \"description\": {\n            \"type\": \"string\",\n            \"description\": \"The readable description you see in the UI for the attribute.\",\n            \"example\": \"My Data Attribute Description\"\n          },\n          \"options\": {\n            \"type\": \"array\",\n            \"description\": \"To create list attributes. Provide a set of hashes with `value` as the key of the options you want to make. `data_type` must be `string`.\",\n            \"items\": {\n              \"type\": \"string\"\n            },\n            \"example\": [\n              \"option1\",\n              \"option2\"\n            ]\n          },\n          \"messenger_writable\": {\n            \"type\": \"boolean\",\n            \"description\": \"Can this attribute be updated by the Messenger\",\n            \"example\": false\n          }\n        },\n        \"required\": [\n          \"name\",\n          \"model\",\n          \"data_type\"\n        ]\n      },\n      \"examples\": {\n        \"successful\": {\n          \"summary\": \"Successful\",\n          \"value\": {\n            \"name\": \"Mithril Shirt\",\n            \"model\": \"company\",\n            \"data_type\": \"string\"\n          }\n        },\n        \"same_name_already_exists\": {\n          \"summary\": \"Same name already exists\",\n          \"value\": {\n            \"name\": \"The One Ring\",\n            \"model\": \"contact\",\n            \"data_type\": \"integer\"\n          }\n        },\n        \"invalid_name\": {\n          \"summary\": \"Invalid name\",\n          \"value\": {\n            \"name\": \"!nv@l!d n@me\",\n            \"model\": \"company\",\n            \"data_type\": \"string\"\n          }\n        },\n        \"attribute_already_exists\": {\n          \"summary\": \"Attribute already exists\",\n          \"value\": {\n            \"name\": \"The One Ring\",\n            \"model\": \"company\",\n            \"data_type\": \"string\"\n          }\n        },\n        \"invalid_data_type\": {\n          \"summary\": \"Invalid Data Type\",\n          \"value\": {\n            \"name\": \"The Second Ring\",\n            \"model\": \"company\",\n            \"data_type\": \"mithril\"\n          }\n        },\n        \"too_few_options_for_list\": {\n          \"summary\": \"Too few options for list\",\n          \"value\": {\n            \"description\": \"Just a plain old ring\",\n            \"options\": [\n              {\n                \"value\": \"1-10\"\n              }\n            ],\n            \"archived\": false\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}
