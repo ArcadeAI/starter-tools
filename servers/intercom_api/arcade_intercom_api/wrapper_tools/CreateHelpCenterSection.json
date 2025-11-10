@@ -1,0 +1,2920 @@
+{
+  "name": "CreateHelpCenterSection",
+  "fully_qualified_name": "IntercomApi.CreateHelpCenterSection@0.1.0",
+  "description": "Create a new section in the help center.\n\nThis tool calls the Intercom API to create a new section in the help center by making a POST request. Use this when you need to organize help center content into a new section.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "intercom_version",
+        "required": false,
+        "description": "Specify the version of the Intercom API to use. Options: '1.0' to '2.9'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "section_data",
+        "required": false,
+        "description": "JSON object containing details for a new section. Includes name, parent_id, and optional translated content for various locales.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the collection. For multilingual collections, this will be the name of the default language's content."
+            },
+            "parent_id": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The id for the collection this section will be within."
+            },
+            "translated_content": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "type": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "None",
+                    "group_translated_content"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The type of object - group_translated_content."
+                },
+                "ar": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "bg": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "bs": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "ca": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "cs": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "da": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "de": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "el": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "en": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "es": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "et": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "fi": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "fr": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "he": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "hr": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "hu": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "id": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "it": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "ja": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "ko": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "lt": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "lv": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "mn": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "nb": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "nl": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "pl": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "pt": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "ro": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "ru": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "sl": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "sr": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "sv": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "tr": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "vi": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "pt-BR": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "zh-CN": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "zh-TW": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                }
+              },
+              "inner_properties": null,
+              "description": "The Translated Content of an Group. The keys are the locale codes and the values are the translated content of the Group."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'createSection'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/help_center/sections",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "section_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the collection. For multilingual collections, this will be the name of the default language's content."
+            },
+            "parent_id": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The id for the collection this section will be within."
+            },
+            "translated_content": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "type": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "None",
+                    "group_translated_content"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The type of object - group_translated_content."
+                },
+                "ar": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "bg": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "bs": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "ca": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "cs": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "da": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "de": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "el": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "en": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "es": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "et": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "fi": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "fr": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "he": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "hr": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "hu": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "id": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "it": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "ja": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "ko": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "lt": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "lv": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "mn": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "nb": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "nl": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "pl": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "pt": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "ro": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "ru": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "sl": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "sr": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "sv": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "tr": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "vi": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "pt-BR": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "zh-CN": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                },
+                "zh-TW": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": [
+                        "None",
+                        "group_content"
+                      ],
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of object - `group_content` ."
+                    },
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The name of the collection or section."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The description of the collection. Only available for collections."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": "The Content of a Group."
+                }
+              },
+              "inner_properties": null,
+              "description": "The Translated Content of an Group. The keys are the locale codes and the values are the translated content of the Group."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"description\": \"You can create a Section\",\n        \"type\": \"object\",\n        \"title\": \"Create Section Request Payload\",\n        \"properties\": {\n          \"name\": {\n            \"type\": \"string\",\n            \"description\": \"The name of the collection. For multilingual collections, this will be the name of the default language's content.\",\n            \"example\": \"Section 51\"\n          },\n          \"parent_id\": {\n            \"type\": \"integer\",\n            \"description\": \"The id for the collection this section will be within.\",\n            \"example\": 18\n          },\n          \"translated_content\": {\n            \"title\": \"Group Translated Content\",\n            \"type\": \"object\",\n            \"description\": \"The Translated Content of an Group. The keys are the locale codes and the values are the translated content of the Group.\",\n            \"nullable\": true,\n            \"properties\": {\n              \"type\": {\n                \"type\": \"string\",\n                \"description\": \"The type of object - group_translated_content.\",\n                \"nullable\": true,\n                \"enum\": [\n                  null,\n                  \"group_translated_content\"\n                ],\n                \"example\": \"group_translated_content\"\n              },\n              \"ar\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"bg\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"bs\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"ca\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"cs\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"da\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"de\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"el\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"en\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"es\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"et\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"fi\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"fr\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"he\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"hr\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"hu\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"id\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"it\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"ja\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"ko\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"lt\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"lv\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"mn\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"nb\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"nl\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"pl\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"pt\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"ro\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"ru\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"sl\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"sr\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"sv\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"tr\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"vi\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"pt-BR\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"zh-CN\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              },\n              \"zh-TW\": {\n                \"title\": \"Group Content\",\n                \"type\": \"object\",\n                \"description\": \"The Content of a Group.\",\n                \"nullable\": true,\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"The type of object - `group_content` .\",\n                    \"enum\": [\n                      null,\n                      \"group_content\"\n                    ],\n                    \"example\": \"group_content\",\n                    \"nullable\": true\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"The name of the collection or section.\",\n                    \"example\": \"Collection name\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"The description of the collection. Only available for collections.\",\n                    \"example\": \" Collection description\"\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"required\": [\n          \"name\",\n          \"parent_id\"\n        ]\n      },\n      \"examples\": {\n        \"section_created\": {\n          \"summary\": \"section created\",\n          \"value\": {\n            \"name\": \"Thanks for everything\",\n            \"parent_id\": 194\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

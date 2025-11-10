@@ -1,0 +1,249 @@
+{
+  "name": "AttachContactToConversation",
+  "fully_qualified_name": "IntercomApi.AttachContactToConversation@0.1.0",
+  "description": "Attach a contact to a conversation in Intercom.\n\nUse this tool to add a contact as a participant to an Intercom conversation. If a contact is added via email and does not exist, a new contact with the role of 'lead' will be created. This is useful for managing participants in ongoing discussions.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "conversation_id",
+        "required": true,
+        "description": "The unique identifier for the conversation in Intercom.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier for the conversation as given by Intercom."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "id"
+      },
+      {
+        "name": "api_version",
+        "required": false,
+        "description": "Specify the version of the Intercom API to use. Select from available versions such as '1.0', '2.9', etc.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "contact_request_data",
+        "required": false,
+        "description": "JSON object containing 'admin_id' of the admin and 'customer' details for attaching a contact.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "admin_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The `id` of the admin who is adding the new participant."
+            },
+            "customer": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'attachContactToConversation'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/conversations/{id}/customers",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "id",
+        "tool_parameter_name": "conversation_id",
+        "description": "The identifier for the conversation as given by Intercom.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier for the conversation as given by Intercom."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "api_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "contact_request_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "admin_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The `id` of the admin who is adding the new participant."
+            },
+            "customer": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"title\": \"Assign Conversation Request\",\n        \"type\": \"object\",\n        \"description\": \"Payload of the request to assign a conversation\",\n        \"properties\": {\n          \"admin_id\": {\n            \"type\": \"string\",\n            \"description\": \"The `id` of the admin who is adding the new participant.\",\n            \"example\": \"12345\"\n          },\n          \"customer\": {\n            \"type\": \"object\",\n            \"oneOf\": [\n              {\n                \"title\": \"Intercom User ID\",\n                \"properties\": {\n                  \"intercom_user_id\": {\n                    \"type\": \"string\",\n                    \"description\": \"The identifier for the contact as given by Intercom.\",\n                    \"example\": \"6329bd9ffe4e2e91dac76188\"\n                  },\n                  \"customer\": {\n                    \"type\": \"object\",\n                    \"nullable\": true,\n                    \"oneOf\": [\n                      {\n                        \"title\": \"Intercom User ID\",\n                        \"properties\": {\n                          \"intercom_user_id\": {\n                            \"type\": \"string\",\n                            \"description\": \"The identifier for the contact as given by Intercom.\",\n                            \"example\": \"6329bd9ffe4e2e91dac76188\"\n                          }\n                        },\n                        \"required\": [\n                          \"intercom_user_id\"\n                        ]\n                      },\n                      {\n                        \"title\": \"User ID\",\n                        \"properties\": {\n                          \"user_id\": {\n                            \"type\": \"string\",\n                            \"description\": \"The external_id you have defined for the contact who is being added as a participant.\",\n                            \"example\": \"2e91dac761886329bd9ffe4e\"\n                          }\n                        },\n                        \"required\": [\n                          \"user_id\"\n                        ]\n                      },\n                      {\n                        \"title\": \"Email\",\n                        \"properties\": {\n                          \"email\": {\n                            \"type\": \"string\",\n                            \"description\": \"The email you have defined for the contact who is being added as a participant.\",\n                            \"example\": \"sam.sung@example.com\"\n                          }\n                        },\n                        \"required\": [\n                          \"email\"\n                        ]\n                      }\n                    ]\n                  }\n                },\n                \"required\": [\n                  \"intercom_user_id\"\n                ]\n              },\n              {\n                \"title\": \"User ID\",\n                \"properties\": {\n                  \"user_id\": {\n                    \"type\": \"string\",\n                    \"description\": \"The external_id you have defined for the contact who is being added as a participant.\",\n                    \"example\": \"6329bd9ffe4e2e91dac76188\"\n                  },\n                  \"customer\": {\n                    \"type\": \"object\",\n                    \"nullable\": true,\n                    \"oneOf\": [\n                      {\n                        \"title\": \"Intercom User ID\",\n                        \"properties\": {\n                          \"intercom_user_id\": {\n                            \"type\": \"string\",\n                            \"description\": \"The identifier for the contact as given by Intercom.\",\n                            \"example\": \"6329bd9ffe4e2e91dac76188\"\n                          }\n                        },\n                        \"required\": [\n                          \"intercom_user_id\"\n                        ]\n                      },\n                      {\n                        \"title\": \"User ID\",\n                        \"properties\": {\n                          \"user_id\": {\n                            \"type\": \"string\",\n                            \"description\": \"The external_id you have defined for the contact who is being added as a participant.\",\n                            \"example\": \"2e91dac761886329bd9ffe4e\"\n                          }\n                        },\n                        \"required\": [\n                          \"user_id\"\n                        ]\n                      },\n                      {\n                        \"title\": \"Email\",\n                        \"properties\": {\n                          \"email\": {\n                            \"type\": \"string\",\n                            \"description\": \"The email you have defined for the contact who is being added as a participant.\",\n                            \"example\": \"sam.sung@example.com\"\n                          }\n                        },\n                        \"required\": [\n                          \"email\"\n                        ]\n                      }\n                    ]\n                  }\n                },\n                \"required\": [\n                  \"user_id\"\n                ]\n              },\n              {\n                \"title\": \"Email\",\n                \"properties\": {\n                  \"email\": {\n                    \"type\": \"string\",\n                    \"description\": \"The email you have defined for the contact who is being added as a participant.\",\n                    \"example\": \"joe@example.com\"\n                  },\n                  \"customer\": {\n                    \"type\": \"object\",\n                    \"nullable\": true,\n                    \"oneOf\": [\n                      {\n                        \"title\": \"Intercom User ID\",\n                        \"properties\": {\n                          \"intercom_user_id\": {\n                            \"type\": \"string\",\n                            \"description\": \"The identifier for the contact as given by Intercom.\",\n                            \"example\": \"6329bd9ffe4e2e91dac76188\"\n                          }\n                        },\n                        \"required\": [\n                          \"intercom_user_id\"\n                        ]\n                      },\n                      {\n                        \"title\": \"User ID\",\n                        \"properties\": {\n                          \"user_id\": {\n                            \"type\": \"string\",\n                            \"description\": \"The external_id you have defined for the contact who is being added as a participant.\",\n                            \"example\": \"2e91dac761886329bd9ffe4e\"\n                          }\n                        },\n                        \"required\": [\n                          \"user_id\"\n                        ]\n                      },\n                      {\n                        \"title\": \"Email\",\n                        \"properties\": {\n                          \"email\": {\n                            \"type\": \"string\",\n                            \"description\": \"The email you have defined for the contact who is being added as a participant.\",\n                            \"example\": \"sam.sung@example.com\"\n                          }\n                        },\n                        \"required\": [\n                          \"email\"\n                        ]\n                      }\n                    ]\n                  }\n                },\n                \"required\": [\n                  \"email\"\n                ]\n              }\n            ]\n          }\n        }\n      },\n      \"examples\": {\n        \"attach_a_contact_to_a_conversation\": {\n          \"summary\": \"Attach a contact to a conversation\",\n          \"value\": {\n            \"admin_id\": 991267492,\n            \"customer\": {\n              \"intercom_user_id\": \"6657ab566abd0164c24b0d7d\"\n            }\n          }\n        },\n        \"not_found\": {\n          \"summary\": \"Not found\",\n          \"value\": {\n            \"admin_id\": 991267494,\n            \"customer\": {\n              \"intercom_user_id\": \"6657ab576abd0164c24b0d7e\"\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

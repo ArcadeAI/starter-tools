@@ -1,0 +1,385 @@
+{
+  "name": "UpdateNewsItem",
+  "fully_qualified_name": "IntercomApi.UpdateNewsItem@0.1.0",
+  "description": "Updates information for a specific news item.\n\nCall this tool to modify the details of an existing news item by its ID. Use it when you need to change or correct the content of a news article. The tool confirms whether the update was successful or not.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "news_item_id",
+        "required": true,
+        "description": "The unique identifier for the news item provided by Intercom.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unique identifier for the news item which is given by Intercom."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "id"
+      },
+      {
+        "name": "intercom_api_version",
+        "required": false,
+        "description": "Specify the API version to use for this update. Options range from 1.0 to 2.9.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "news_item_details",
+        "required": false,
+        "description": "A detailed object containing the news item's title, body (with optional HTML), sender ID, state, labels, reactions, and newsfeed assignments. Customize how the news item appears and functions.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "title": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The title of the news item."
+            },
+            "body": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The news item body, which may contain HTML."
+            },
+            "sender_id": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The id of the sender of the news item. Must be a teammate on the workspace."
+            },
+            "state": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "draft",
+                "live"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "News items will not be visible to your users in the assigned newsfeeds until they are set live."
+            },
+            "deliver_silently": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "When set to `true`, the news item will appear in the messenger newsfeed without showing a notification badge."
+            },
+            "labels": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Label names displayed to users to categorize the news item."
+            },
+            "reactions": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Ordered list of emoji reactions to the news item. When empty, reactions are disabled."
+            },
+            "newsfeed_assignments": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "newsfeed_id": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The unique identifier for the newsfeed which is given by Intercom. Publish dates cannot be in the future, to schedule news items use the dedicated feature in app (see this article)."
+                },
+                "published_at": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Publish date of the news item on the newsfeed, use this field if you want to set a publish date in the past (e.g. when importing existing news items). On write, this field will be ignored if the news item state is \"draft\"."
+                }
+              },
+              "description": "A list of newsfeed_assignments to assign to the specified newsfeed."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'updateNewsItem'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/news/news_items/{id}",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "id",
+        "tool_parameter_name": "news_item_id",
+        "description": "The unique identifier for the news item which is given by Intercom.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unique identifier for the news item which is given by Intercom."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_api_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "news_item_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "title": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The title of the news item."
+            },
+            "body": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The news item body, which may contain HTML."
+            },
+            "sender_id": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The id of the sender of the news item. Must be a teammate on the workspace."
+            },
+            "state": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "draft",
+                "live"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "News items will not be visible to your users in the assigned newsfeeds until they are set live."
+            },
+            "deliver_silently": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "When set to `true`, the news item will appear in the messenger newsfeed without showing a notification badge."
+            },
+            "labels": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Label names displayed to users to categorize the news item."
+            },
+            "reactions": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Ordered list of emoji reactions to the news item. When empty, reactions are disabled."
+            },
+            "newsfeed_assignments": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "newsfeed_id": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The unique identifier for the newsfeed which is given by Intercom. Publish dates cannot be in the future, to schedule news items use the dedicated feature in app (see this article)."
+                },
+                "published_at": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Publish date of the news item on the newsfeed, use this field if you want to set a publish date in the past (e.g. when importing existing news items). On write, this field will be ignored if the news item state is \"draft\"."
+                }
+              },
+              "description": "A list of newsfeed_assignments to assign to the specified newsfeed."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"description\": \"A News Item is a content type in Intercom enabling you to announce product updates, company news, promotions, events and more with your customers.\",\n        \"type\": \"object\",\n        \"title\": \"Create News Item Request\",\n        \"properties\": {\n          \"title\": {\n            \"type\": \"string\",\n            \"description\": \"The title of the news item.\",\n            \"example\": \"Halloween is here!\"\n          },\n          \"body\": {\n            \"type\": \"string\",\n            \"description\": \"The news item body, which may contain HTML.\",\n            \"example\": \"<p>New costumes in store for this spooky season</p>\"\n          },\n          \"sender_id\": {\n            \"type\": \"integer\",\n            \"description\": \"The id of the sender of the news item. Must be a teammate on the workspace.\",\n            \"example\": 123\n          },\n          \"state\": {\n            \"type\": \"string\",\n            \"description\": \"News items will not be visible to your users in the assigned newsfeeds until they are set live.\",\n            \"enum\": [\n              \"draft\",\n              \"live\"\n            ],\n            \"example\": \"live\"\n          },\n          \"deliver_silently\": {\n            \"type\": \"boolean\",\n            \"description\": \"When set to `true`, the news item will appear in the messenger newsfeed without showing a notification badge.\",\n            \"example\": true\n          },\n          \"labels\": {\n            \"type\": \"array\",\n            \"description\": \"Label names displayed to users to categorize the news item.\",\n            \"items\": {\n              \"type\": \"string\"\n            },\n            \"example\": [\n              \"Product\",\n              \"Update\",\n              \"New\"\n            ]\n          },\n          \"reactions\": {\n            \"type\": \"array\",\n            \"description\": \"Ordered list of emoji reactions to the news item. When empty, reactions are disabled.\",\n            \"items\": {\n              \"type\": \"string\",\n              \"nullable\": true\n            },\n            \"example\": [\n              \"\\ud83d\\ude06\",\n              \"\\ud83d\\ude05\"\n            ]\n          },\n          \"newsfeed_assignments\": {\n            \"type\": \"array\",\n            \"description\": \"A list of newsfeed_assignments to assign to the specified newsfeed.\",\n            \"items\": {\n              \"title\": \"Newsfeed Assignment\",\n              \"type\": \"object\",\n              \"x-tags\": [\n                \"News\"\n              ],\n              \"description\": \"Assigns a news item to a newsfeed.\",\n              \"properties\": {\n                \"newsfeed_id\": {\n                  \"type\": \"integer\",\n                  \"description\": \"The unique identifier for the newsfeed which is given by Intercom. Publish dates cannot be in the future, to schedule news items use the dedicated feature in app (see this article).\",\n                  \"example\": 198313\n                },\n                \"published_at\": {\n                  \"type\": \"integer\",\n                  \"format\": \"timestamp\",\n                  \"description\": \"Publish date of the news item on the newsfeed, use this field if you want to set a publish date in the past (e.g. when importing existing news items). On write, this field will be ignored if the news item state is \\\"draft\\\".\",\n                  \"example\": 1674917488\n                }\n              }\n            }\n          }\n        },\n        \"required\": [\n          \"title\",\n          \"sender_id\"\n        ]\n      },\n      \"examples\": {\n        \"successful\": {\n          \"summary\": \"successful\",\n          \"value\": {\n            \"title\": \"Christmas is here!\",\n            \"body\": \"<p>New gifts in store for the jolly season</p>\",\n            \"sender_id\": 991267604,\n            \"reactions\": [\n              \"\\ud83d\\ude1d\",\n              \"\\ud83d\\ude02\"\n            ]\n          }\n        },\n        \"news_item_not_found\": {\n          \"summary\": \"News Item Not Found\",\n          \"value\": {\n            \"title\": \"Christmas is here!\",\n            \"body\": \"<p>New gifts in store for the jolly season</p>\",\n            \"sender_id\": 991267607,\n            \"reactions\": [\n              \"\\ud83d\\ude1d\",\n              \"\\ud83d\\ude02\"\n            ]\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "name": "ManageTagOperations",
+  "fully_qualified_name": "IntercomApi.ManageTagOperations@0.1.0",
+  "description": "Create, update, or manage tags for companies and users.\n\nThis tool allows you to create or update tags, and manage tagging or untagging companies and users. It automatically creates new tags if they don't exist, while executing the tagging operations.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "intercom_version",
+        "required": false,
+        "description": "Specify the Intercom API version to use for this operation. Accepted values are \"1.0\" to \"2.9\".",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "tag_management_request_body",
+        "required": false,
+        "description": "JSON object detailing the operation (create, update, tag, or untag) and relevant entities. Include the tag name or ID and company or user details.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'createTag'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/tags",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "tag_management_request_body",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"oneOf\": [\n          {\n            \"description\": \"You can create or update an existing tag.\",\n            \"type\": \"object\",\n            \"title\": \"Create or Update Tag Request Payload\",\n            \"properties\": {\n              \"name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the tag, which will be created if not found, or the new name for the tag if this is an update request. Names are case insensitive.\",\n                \"example\": \"Independent\"\n              },\n              \"id\": {\n                \"type\": \"string\",\n                \"description\": \"The id of tag to updates.\",\n                \"example\": \"656452352\"\n              }\n            },\n            \"required\": [\n              \"name\"\n            ]\n          },\n          {\n            \"description\": \"You can tag a single company or a list of companies.\",\n            \"type\": \"object\",\n            \"title\": \"Tag Company Request Payload\",\n            \"properties\": {\n              \"name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the tag, which will be created if not found.\",\n                \"example\": \"Independent\"\n              },\n              \"companies\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"properties\": {\n                    \"id\": {\n                      \"type\": \"string\",\n                      \"description\": \"The Intercom defined id representing the company.\",\n                      \"example\": \"531ee472cce572a6ec000006\"\n                    },\n                    \"company_id\": {\n                      \"type\": \"string\",\n                      \"description\": \"The company id you have defined for the company.\",\n                      \"example\": \"6\"\n                    }\n                  }\n                },\n                \"description\": \"The id or company_id of the company can be passed as input parameters.\"\n              }\n            },\n            \"required\": [\n              \"name\",\n              \"companies\"\n            ]\n          },\n          {\n            \"description\": \"You can tag a single company or a list of companies.\",\n            \"type\": \"object\",\n            \"title\": \"Untag Company Request Payload\",\n            \"properties\": {\n              \"name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the tag which will be untagged from the company\",\n                \"example\": \"Independent\"\n              },\n              \"companies\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"properties\": {\n                    \"id\": {\n                      \"type\": \"string\",\n                      \"description\": \"The Intercom defined id representing the company.\",\n                      \"example\": \"531ee472cce572a6ec000006\"\n                    },\n                    \"company_id\": {\n                      \"type\": \"string\",\n                      \"description\": \"The company id you have defined for the company.\",\n                      \"example\": \"6\"\n                    },\n                    \"untag\": {\n                      \"type\": \"boolean\",\n                      \"description\": \"Always set to true\",\n                      \"example\": \"true\"\n                    }\n                  }\n                },\n                \"description\": \"The id or company_id of the company can be passed as input parameters.\"\n              }\n            },\n            \"required\": [\n              \"name\",\n              \"companies\"\n            ]\n          },\n          {\n            \"description\": \"You can tag a list of users.\",\n            \"type\": \"object\",\n            \"title\": \"Tag Users Request Payload\",\n            \"properties\": {\n              \"name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the tag, which will be created if not found.\",\n                \"example\": \"Independent\"\n              },\n              \"users\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"properties\": {\n                    \"id\": {\n                      \"type\": \"string\",\n                      \"description\": \"The Intercom defined id representing the user.\",\n                      \"example\": \"5f7f0d217289f8d2f4262080\"\n                    }\n                  }\n                }\n              }\n            },\n            \"required\": [\n              \"name\",\n              \"users\"\n            ]\n          }\n        ]\n      },\n      \"examples\": {\n        \"action_successful\": {\n          \"summary\": \"Action successful\",\n          \"value\": {\n            \"name\": \"test\"\n          }\n        },\n        \"invalid_parameters\": {\n          \"summary\": \"Invalid parameters\",\n          \"value\": {\n            \"test\": \"invalid\"\n          }\n        },\n        \"company_not_found\": {\n          \"summary\": \"Company not found\",\n          \"value\": {\n            \"name\": \"test\",\n            \"companies\": [\n              {\n                \"company_id\": \"123\"\n              }\n            ]\n          }\n        },\n        \"user_not_found\": {\n          \"summary\": \"User  not found\",\n          \"value\": {\n            \"name\": \"test\",\n            \"users\": [\n              {\n                \"id\": \"123\"\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

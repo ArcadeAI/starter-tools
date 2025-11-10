@@ -1,0 +1,314 @@
+{
+  "name": "CreateEventSummaries",
+  "fully_qualified_name": "IntercomApi.CreateEventSummaries@0.1.0",
+  "description": "Create event summaries for tracking user events.\n\nThis tool creates event summaries for a user, tracking the number of times an event has occurred along with the first and last occurrence.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "intercom_version",
+        "required": false,
+        "description": "Specify the version of the Intercom API to use. Options include versions 1.0 to 2.9.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "user_identifier",
+        "required": false,
+        "description": "The unique identifier for the user to create event summaries for.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Your identifier for the user."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "user_id"
+      },
+      {
+        "name": "event_name_for_summaries",
+        "required": false,
+        "description": "The name of the event, typically a past-tense verb-noun combination like 'updated-plan'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The name of the event that occurred. A good event name is typically a past tense 'verb-noun' combination, to improve readability, for example `updated-plan`."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "event_summaries.event_name"
+      },
+      {
+        "name": "event_occurrence_count",
+        "required": false,
+        "description": "The number of times the event occurred for the specified user.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of times the event occurred."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "event_summaries.count"
+      },
+      {
+        "name": "first_event_timestamp",
+        "required": false,
+        "description": "Timestamp for when the event first occurred. Use an integer representing Unix time.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The first time the event was sent"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "event_summaries.first"
+      },
+      {
+        "name": "event_last_occurrence",
+        "required": false,
+        "description": "The timestamp representing the last occurrence of the event.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The last time the event was sent"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "event_summaries.last"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'dataEventSummaries'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/events/summaries",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "user_id",
+        "tool_parameter_name": "user_identifier",
+        "description": "Your identifier for the user.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Your identifier for the user."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "event_summaries.event_name",
+        "tool_parameter_name": "event_name_for_summaries",
+        "description": "The name of the event that occurred. A good event name is typically a past tense 'verb-noun' combination, to improve readability, for example `updated-plan`.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The name of the event that occurred. A good event name is typically a past tense 'verb-noun' combination, to improve readability, for example `updated-plan`."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "event_summaries.count",
+        "tool_parameter_name": "event_occurrence_count",
+        "description": "The number of times the event occurred.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of times the event occurred."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "event_summaries.first",
+        "tool_parameter_name": "first_event_timestamp",
+        "description": "The first time the event was sent",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The first time the event was sent"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "event_summaries.last",
+        "tool_parameter_name": "event_last_occurrence",
+        "description": "The last time the event was sent",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The last time the event was sent"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"description\": \"You can send a list of event summaries for a user. Each event summary should contain the event name, the time the event occurred, and the number of times the event occurred. The event name should be a past tense \\\"verb-noun\\\" combination, to improve readability, for example `updated-plan`.\",\n        \"type\": \"object\",\n        \"title\": \"Create Data Event Summaries Request\",\n        \"properties\": {\n          \"user_id\": {\n            \"type\": \"string\",\n            \"description\": \"Your identifier for the user.\",\n            \"example\": \"314159\"\n          },\n          \"event_summaries\": {\n            \"type\": \"object\",\n            \"description\": \"A list of event summaries for the user. Each event summary should contain the event name, the time the event occurred, and the number of times the event occurred. The event name should be a past tense 'verb-noun' combination, to improve readability, for example `updated-plan`.\",\n            \"properties\": {\n              \"event_name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the event that occurred. A good event name is typically a past tense 'verb-noun' combination, to improve readability, for example `updated-plan`.\",\n                \"example\": \"invited-friend\"\n              },\n              \"count\": {\n                \"type\": \"integer\",\n                \"description\": \"The number of times the event occurred.\",\n                \"example\": 1\n              },\n              \"first\": {\n                \"type\": \"integer\",\n                \"format\": \"date-time\",\n                \"description\": \"The first time the event was sent\",\n                \"example\": 1671028894\n              },\n              \"last\": {\n                \"type\": \"integer\",\n                \"format\": \"date-time\",\n                \"description\": \"The last time the event was sent\",\n                \"example\": 1671028894\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

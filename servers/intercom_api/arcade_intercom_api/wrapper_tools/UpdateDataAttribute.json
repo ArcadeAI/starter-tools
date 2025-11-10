@@ -1,0 +1,314 @@
+{
+  "name": "UpdateDataAttribute",
+  "fully_qualified_name": "IntercomApi.UpdateDataAttribute@0.1.0",
+  "description": "Update a data attribute's value via the API.\n\nUse this tool to update a data attribute's value on Intercom. Note that changing the data type via the API is not supported; it must be done through the UI.",
+  "toolkit": {
+    "name": "ArcadeIntercomApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "data_attribute_id",
+        "required": true,
+        "description": "The unique identifier for the data attribute to be updated.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The data attribute id"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "id"
+      },
+      {
+        "name": "intercom_api_version",
+        "required": false,
+        "description": "Specify the version of the Intercom API to use. Valid versions include: 1.0 to 2.9.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Intercom-Version"
+      },
+      {
+        "name": "attribute_description",
+        "required": false,
+        "description": "The readable description for the attribute as seen in the UI. Provides context or additional information about the attribute.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The readable description you see in the UI for the attribute."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "description"
+      },
+      {
+        "name": "list_attribute_options",
+        "required": false,
+        "description": "An array of strings representing options for list attributes. Each option should be provided as a hash with `value` as the key and the data type must be `string`.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "To create list attributes. Provide a set of hashes with `value` as the key of the options you want to make. `data_type` must be `string`."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "options"
+      },
+      {
+        "name": "archive_attribute",
+        "required": false,
+        "description": "Indicate if the attribute should be archived. `True` to archive, `False` to keep unarchived.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether the attribute is to be archived or not."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "archived"
+      },
+      {
+        "name": "allow_messenger_updates",
+        "required": false,
+        "description": "Specify if the data attribute can be updated by the Messenger. Use 'true' to allow updates and 'false' to prevent them.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Can this attribute be updated by the Messenger"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "messenger_writable"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'updateDataAttribute'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-intercom",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "INTERCOM_API_SUBDOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Intercom API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://{intercom_api_subdomain}.intercom.io/data_attributes/{id}",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "id",
+        "tool_parameter_name": "data_attribute_id",
+        "description": "The data attribute id",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The data attribute id"
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "Intercom-Version",
+        "tool_parameter_name": "intercom_api_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2.0",
+            "2.1",
+            "2.2",
+            "2.3",
+            "2.4",
+            "2.5",
+            "2.6",
+            "2.7",
+            "2.8",
+            "2.9"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": "2.9",
+        "documentation_urls": []
+      },
+      {
+        "name": "archived",
+        "tool_parameter_name": "archive_attribute",
+        "description": "Whether the attribute is to be archived or not.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether the attribute is to be archived or not."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "description",
+        "tool_parameter_name": "attribute_description",
+        "description": "The readable description you see in the UI for the attribute.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The readable description you see in the UI for the attribute."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "options",
+        "tool_parameter_name": "list_attribute_options",
+        "description": "To create list attributes. Provide a set of hashes with `value` as the key of the options you want to make. `data_type` must be `string`.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "To create list attributes. Provide a set of hashes with `value` as the key of the options you want to make. `data_type` must be `string`."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "messenger_writable",
+        "tool_parameter_name": "allow_messenger_updates",
+        "description": "Can this attribute be updated by the Messenger",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Can this attribute be updated by the Messenger"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "INTERCOM_API_SUBDOMAIN",
+        "parameter_name": "intercom_api_subdomain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"description\": \"\",\n        \"type\": \"object\",\n        \"title\": \"Update Data Attribute Request\",\n        \"properties\": {\n          \"archived\": {\n            \"type\": \"boolean\",\n            \"description\": \"Whether the attribute is to be archived or not.\",\n            \"example\": false\n          },\n          \"description\": {\n            \"type\": \"string\",\n            \"description\": \"The readable description you see in the UI for the attribute.\",\n            \"example\": \"My Data Attribute Description\"\n          },\n          \"options\": {\n            \"type\": \"array\",\n            \"description\": \"To create list attributes. Provide a set of hashes with `value` as the key of the options you want to make. `data_type` must be `string`.\",\n            \"items\": {\n              \"type\": \"string\"\n            },\n            \"example\": [\n              \"option1\",\n              \"option2\"\n            ]\n          },\n          \"messenger_writable\": {\n            \"type\": \"boolean\",\n            \"description\": \"Can this attribute be updated by the Messenger\",\n            \"example\": false\n          }\n        }\n      },\n      \"examples\": {\n        \"successful\": {\n          \"summary\": \"Successful\",\n          \"value\": {\n            \"description\": \"Just a plain old ring\",\n            \"options\": [\n              {\n                \"value\": \"1-10\"\n              },\n              {\n                \"value\": \"11-20\"\n              }\n            ],\n            \"archived\": false\n          }\n        },\n        \"too_few_options_in_list\": {\n          \"summary\": \"Too few options in list\",\n          \"value\": {\n            \"description\": \"Too few options\",\n            \"options\": {\n              \"value\": \"1-10\"\n            },\n            \"archived\": false\n          }\n        },\n        \"attribute_not_found\": {\n          \"summary\": \"Attribute Not Found\",\n          \"value\": {\n            \"description\": \"Just a plain old ring\",\n            \"options\": [\n              {\n                \"value\": \"1-10\"\n              },\n              {\n                \"value\": \"11-20\"\n              }\n            ],\n            \"archived\": false\n          }\n        },\n        \"has_dependant_object\": {\n          \"summary\": \"Has Dependant Object\",\n          \"value\": {\n            \"description\": \"Trying to archieve\",\n            \"archived\": true\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}
