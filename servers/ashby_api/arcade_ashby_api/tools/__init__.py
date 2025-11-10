@@ -9,13 +9,12 @@ BE OVERWRITTEN BY THE TRANSPILER.
 
 import asyncio
 import json
-import jsonschema
 from enum import Enum
 from typing import Annotated, Any
 
 import httpx
-
-from arcade_tdk import tool, ToolContext
+import jsonschema
+from arcade_tdk import ToolContext, tool
 from arcade_tdk.errors import RetryableToolError
 
 from .request_body_schemas import REQUEST_BODY_SCHEMAS
@@ -73,7 +72,7 @@ async def make_request(
                 continue
             # Re-raise for 4xx errors or if max retries reached
             raise
-        except httpx.RequestError as e:
+        except httpx.RequestError:
             # Don't retry request errors (network issues are handled by transport)
             raise
         else:
@@ -1808,7 +1807,7 @@ async def add_candidate_to_project(
       JSON.
 
     If you need the schema, call with mode='get_request_schema' ONCE, then execute.
-    """  # noqa: E501
+    """
     if mode == ToolMode.GET_REQUEST_SCHEMA:
         return {
             "request_body_schema": REQUEST_BODY_SCHEMAS["ADDCANDIDATETOPROJECT"],
@@ -3229,7 +3228,7 @@ async def get_custom_field_info(
       JSON.
 
     If you need the schema, call with mode='get_request_schema' ONCE, then execute.
-    """  # noqa: E501
+    """
     if mode == ToolMode.GET_REQUEST_SCHEMA:
         return {
             "request_body_schema": REQUEST_BODY_SCHEMAS["GETCUSTOMFIELDINFO"],
@@ -4570,7 +4569,7 @@ async def list_hiring_team_roles(
     context: ToolContext,
     return_role_titles_only: Annotated[
         bool | None,
-        "Set to true to return only role titles. Set to false to return objects with id and title.",  # noqa: E501
+        "Set to true to return only role titles. Set to false to return objects with id and title.",
     ] = True,
 ) -> Annotated[dict[str, Any], "Response from the API endpoint 'hiringteamrolelist'."]:
     """Retrieve possible hiring team roles within an organization.
@@ -8798,7 +8797,7 @@ async def start_offer_process(
       JSON.
 
     If you need the schema, call with mode='get_request_schema' ONCE, then execute.
-    """  # noqa: E501
+    """
     if mode == ToolMode.GET_REQUEST_SCHEMA:
         return {
             "request_body_schema": REQUEST_BODY_SCHEMAS["STARTOFFERPROCESS"],
@@ -8968,7 +8967,7 @@ async def list_job_openings(
     ] = None,
     page_cursor: Annotated[
         str | None,
-        "String indicating which page of job openings results to fetch, used for pagination.",  # noqa: E501
+        "String indicating which page of job openings results to fetch, used for pagination.",
     ] = None,
 ) -> Annotated[dict[str, Any], "Response from the API endpoint 'openinglist'."]:
     """Retrieve a list of current job openings.
@@ -9095,11 +9094,11 @@ async def create_job_opening(
     ] = None,
     department_team_id: Annotated[
         str | None,
-        "The unique identifier for the department or team associated with the job opening.",  # noqa: E501
+        "The unique identifier for the department or team associated with the job opening.",
     ] = None,
     employment_start_date: Annotated[
         str | None,
-        "The date (in YYYY-MM-DD format) when the hired person is expected to start employment.",  # noqa: E501
+        "The date (in YYYY-MM-DD format) when the hired person is expected to start employment.",
     ] = None,
     employment_type: Annotated[
         str | None,
@@ -9111,11 +9110,11 @@ async def create_job_opening(
     ] = None,
     is_backfill: Annotated[
         bool | None,
-        "Indicate whether the job opening is intended to backfill a previous employee's position.",  # noqa: E501
+        "Indicate whether the job opening is intended to backfill a previous employee's position.",
     ] = False,
     job_description: Annotated[
         str | None,
-        "A detailed description of the job opening, including responsibilities and qualifications.",  # noqa: E501
+        "A detailed description of the job opening, including responsibilities and qualifications.",
     ] = None,
     location_ids: Annotated[
         list[str] | None, "A list of location IDs associated with the job opening."
@@ -9190,7 +9189,7 @@ async def add_job_to_opening(
       JSON.
 
     If you need the schema, call with mode='get_request_schema' ONCE, then execute.
-    """  # noqa: E501
+    """
     if mode == ToolMode.GET_REQUEST_SCHEMA:
         return {
             "request_body_schema": REQUEST_BODY_SCHEMAS["ADDJOBTOOPENING"],
@@ -9285,7 +9284,7 @@ async def remove_job_from_opening(
       JSON.
 
     If you need the schema, call with mode='get_request_schema' ONCE, then execute.
-    """  # noqa: E501
+    """
     if mode == ToolMode.GET_REQUEST_SCHEMA:
         return {
             "request_body_schema": REQUEST_BODY_SCHEMAS["REMOVEJOBFROMOPENING"],
@@ -9782,20 +9781,20 @@ async def list_projects(
     context: ToolContext,
     last_sync_token: Annotated[
         str | None,
-        "An opaque token from the last successful data sync. This is used to fetch updates.",  # noqa: E501
+        "An opaque token from the last successful data sync. This is used to fetch updates.",
     ] = None,
     max_items_to_return: Annotated[
         int | None,
-        "The maximum number of projects to return. The default and maximum value is 100.",  # noqa: E501
+        "The maximum number of projects to return. The default and maximum value is 100.",
     ] = None,
     page_results_cursor: Annotated[
         str | None,
-        "An opaque cursor indicating which page of results to fetch from the project list.",  # noqa: E501
+        "An opaque cursor indicating which page of results to fetch from the project list.",
     ] = None,
 ) -> Annotated[dict[str, Any], "Response from the API endpoint 'projectlist'."]:
     """Retrieve a list of projects.
 
-    Use this tool to obtain a list of projects. Requires the 'candidatesRead' permission."""  # noqa: E501
+    Use this tool to obtain a list of projects. Requires the 'candidatesRead' permission."""
     request_data: Any = {
         "cursor": page_results_cursor,
         "syncToken": last_sync_token,
@@ -11435,7 +11434,7 @@ async def delete_webhook_setting(
 ) -> Annotated[dict[str, Any], "Response from the API endpoint 'webhookdelete'."]:
     """Delete a webhook setting.
 
-    Use this tool to delete an existing webhook setting. Requires `apiKeysWrite` permission."""  # noqa: E501
+    Use this tool to delete an existing webhook setting. Requires `apiKeysWrite` permission."""
     request_data: Any = webhook_id
     if isinstance(request_data, dict):
         request_data = remove_none_values(request_data)
