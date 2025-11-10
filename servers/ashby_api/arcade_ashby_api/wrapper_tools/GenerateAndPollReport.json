@@ -1,0 +1,104 @@
+{
+  "name": "GenerateAndPollReport",
+  "fully_qualified_name": "AshbyApi.GenerateAndPollReport@0.1.0",
+  "description": "Generate a new report or poll status of report generation.\n\nThis tool generates a new report or checks the status of an existing report generation process in a two-step manner. Initially, call with a reportId to start report generation and receive a requestId. Then, poll using both reportId and requestId until the report's status is complete or failed. Ideal for asynchronous report operations that exceed 30 seconds. Requires `reportsRead` permission. If rate limits are exceeded, consider using the synchronous endpoint.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "report_information",
+        "required": true,
+        "description": "JSON object containing `reportId` and optionally `requestId` for generating or polling a report.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'reportGenerate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/report.generate",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "report_information",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"required\": true,\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"allOf\": [\n          {\n            \"type\": \"object\",\n            \"description\": \"Schema reference broken: #/paths/~1report.synchronous/post/requestBody/content/application~1json/schema\",\n            \"additionalProperties\": true,\n            \"x-moar-broken-reference\": \"#/paths/~1report.synchronous/post/requestBody/content/application~1json/schema\"\n          },\n          {\n            \"type\": \"object\",\n            \"properties\": {\n              \"requestId\": {\n                \"type\": \"string\",\n                \"description\": \"Request ID for polling existing report generation status (optional - only used when polling)\"\n              }\n            }\n          }\n        ]\n      },\n      \"examples\": {\n        \"start_generation\": {\n          \"summary\": \"Standard report request\",\n          \"value\": {\n            \"reportId\": \"f9e52a51-a075-4116-a7b8-484deba69004\"\n          }\n        },\n        \"start_generation_no_headers\": {\n          \"type\": \"object\",\n          \"description\": \"Schema reference broken: #/paths/~1report.synchronous/post/requestBody/content/application~1json/examples/no_headers_request\",\n          \"additionalProperties\": true,\n          \"x-moar-broken-reference\": \"#/paths/~1report.synchronous/post/requestBody/content/application~1json/examples/no_headers_request\"\n        },\n        \"poll_generation\": {\n          \"summary\": \"Poll generation status\",\n          \"value\": {\n            \"reportId\": \"f9e52a51-a075-4116-a7b8-484deba69004\",\n            \"requestId\": \"rep_result:12345abc\"\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

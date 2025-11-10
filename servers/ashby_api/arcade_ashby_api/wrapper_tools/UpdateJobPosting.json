@@ -1,0 +1,240 @@
+{
+  "name": "UpdateJobPosting",
+  "fully_qualified_name": "AshbyApi.UpdateJobPosting@0.1.0",
+  "description": "Update an existing job posting on the Ashby platform.\n\nUse this tool to update details of an existing job posting. Requires 'jobsWrite' permission. Note: To modify job description content, use `descriptionParts.descriptionBody` and set both suppressDescriptionOpening and suppressDescriptionClosing to true.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "update_job_request_body",
+        "required": false,
+        "description": "JSON object containing job posting details. Include fields like jobPostingId, title, workplaceType, description, suppressDescriptionOpening, and suppressDescriptionClosing.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "jobPostingId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "title": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A new title for the job posting."
+            },
+            "workplaceType": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "suppressDescriptionOpening": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "When true, the job description opening from the brand will be suppressed. descriptionOpening will be returned as null."
+            },
+            "suppressDescriptionClosing": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "When true, the job description closing from the brand will be suppressed. descriptionClosing will be returned as null."
+            },
+            "description": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "type": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "text/html"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "content": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The HTML content of the Job Posting. The following tags will accept updates. Updates to any other tags will be stripped out or not applied. \n- Headings - `<h[1-6]>`\n- Bold - `<b>`\n- Italic - `<i>`\n- Underline - `<u>`\n- Links - `<a>`\n- Bulleted Lists - `<ul>`, `<li>`\n- Ordered Lists - `<ol>`, `<li>`\n- Code - `<code>`\n- Code blocks - `<pre>`\n"
+                }
+              },
+              "inner_properties": null,
+              "description": "An HTML block of the job posting description. Please see below for supported tags.\n\n**Note**: When job description openings and closings are not suppressed, the `descriptionHtml` field returned in `jobPosting.info` may contain content that is not modifiable through the API. Only the content of the `descriptionParts.descriptionBody` field of the `jobPosting.info` endpoint is modifiable through this call. To completely customize the description, set both suppressDescriptionOpening and suppressDescriptionClosing to true.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'jobPostingUpdate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/jobPosting.update",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "update_job_request_body",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "jobPostingId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "title": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A new title for the job posting."
+            },
+            "workplaceType": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "suppressDescriptionOpening": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "When true, the job description opening from the brand will be suppressed. descriptionOpening will be returned as null."
+            },
+            "suppressDescriptionClosing": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "When true, the job description closing from the brand will be suppressed. descriptionClosing will be returned as null."
+            },
+            "description": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "type": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "text/html"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "content": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The HTML content of the Job Posting. The following tags will accept updates. Updates to any other tags will be stripped out or not applied. \n- Headings - `<h[1-6]>`\n- Bold - `<b>`\n- Italic - `<i>`\n- Underline - `<u>`\n- Links - `<a>`\n- Bulleted Lists - `<ul>`, `<li>`\n- Ordered Lists - `<ol>`, `<li>`\n- Code - `<code>`\n- Code blocks - `<pre>`\n"
+                }
+              },
+              "inner_properties": null,
+              "description": "An HTML block of the job posting description. Please see below for supported tags.\n\n**Note**: When job description openings and closings are not suppressed, the `descriptionHtml` field returned in `jobPosting.info` may contain content that is not modifiable through the API. Only the content of the `descriptionParts.descriptionBody` field of the `jobPosting.info` endpoint is modifiable through this call. To completely customize the description, set both suppressDescriptionOpening and suppressDescriptionClosing to true.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"jobPostingId\": {\n            \"allOf\": [\n              {\n                \"description\": \"The unique id of the job posting to update.\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              }\n            ]\n          },\n          \"title\": {\n            \"type\": \"string\",\n            \"example\": \"Software Engineer\",\n            \"description\": \"A new title for the job posting.\"\n          },\n          \"workplaceType\": {\n            \"allOf\": [\n              {\n                \"description\": \"The type of workplace. LocationHierarchies cannot be labeled with a workplaceType.\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1location.create/post/requestBody/content/application~1json/schema/properties/workplaceType/allOf/1\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1location.create/post/requestBody/content/application~1json/schema/properties/workplaceType/allOf/1\"\n              }\n            ]\n          },\n          \"suppressDescriptionOpening\": {\n            \"type\": \"boolean\",\n            \"example\": true,\n            \"description\": \"When true, the job description opening from the brand will be suppressed. descriptionOpening will be returned as null.\"\n          },\n          \"suppressDescriptionClosing\": {\n            \"type\": \"boolean\",\n            \"example\": true,\n            \"description\": \"When true, the job description closing from the brand will be suppressed. descriptionClosing will be returned as null.\"\n          },\n          \"description\": {\n            \"type\": \"object\",\n            \"description\": \"An HTML block of the job posting description. Please see below for supported tags.\\n\\n**Note**: When job description openings and closings are not suppressed, the `descriptionHtml` field returned in `jobPosting.info` may contain content that is not modifiable through the API. Only the content of the `descriptionParts.descriptionBody` field of the `jobPosting.info` endpoint is modifiable through this call. To completely customize the description, set both suppressDescriptionOpening and suppressDescriptionClosing to true.\\n\",\n            \"properties\": {\n              \"type\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"text/html\"\n                ]\n              },\n              \"content\": {\n                \"type\": \"string\",\n                \"description\": \"The HTML content of the Job Posting. The following tags will accept updates. Updates to any other tags will be stripped out or not applied. \\n- Headings - `<h[1-6]>`\\n- Bold - `<b>`\\n- Italic - `<i>`\\n- Underline - `<u>`\\n- Links - `<a>`\\n- Bulleted Lists - `<ul>`, `<li>`\\n- Ordered Lists - `<ol>`, `<li>`\\n- Code - `<code>`\\n- Code blocks - `<pre>`\\n\"\n              }\n            },\n            \"required\": [\n              \"type\",\n              \"content\"\n            ]\n          }\n        },\n        \"required\": [\n          \"jobPostingId\"\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

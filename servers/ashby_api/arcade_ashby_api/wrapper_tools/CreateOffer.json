@@ -1,0 +1,206 @@
+{
+  "name": "CreateOffer",
+  "fully_qualified_name": "AshbyApi.CreateOffer@0.1.0",
+  "description": "Create a new offer using specified form fields.\n\nThis tool is used to create a new offer by filling out various form fields. It requires the 'offersWrite' permission and supports field types such as Boolean, Currency, Date, Number, String, ValueSelect, and MultiValueSelect. Each field must be filled out with the accepted value type as per the specification.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "offer_details",
+        "required": false,
+        "description": "JSON object containing offerProcessId, offerFormId, and offerForm with field submissions, specifying the offer's process and form data.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "offerProcessId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "offerFormId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "offerForm": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "fieldSubmissions": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "path": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The form field's \"path\" value"
+                    },
+                    "value": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "This is often a primitive but the value depends on the type of field being submitted. See the description above for details on the values accepted in this field."
+                    }
+                  },
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'offerCreate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/offer.create",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "offer_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "offerProcessId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "offerFormId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "offerForm": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "fieldSubmissions": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "path": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The form field's \"path\" value"
+                    },
+                    "value": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "This is often a primitive but the value depends on the type of field being submitted. See the description above for details on the values accepted in this field."
+                    }
+                  },
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"offerProcessId\": {\n            \"allOf\": [\n              {\n                \"description\": \"The id of the offer process associated with the offer you're creating. \\nThis value is the id included in the response of the `offerProcess.start` API.\\n\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              }\n            ]\n          },\n          \"offerFormId\": {\n            \"allOf\": [\n              {\n                \"description\": \"The id of the form associated with the offer.\\nThis value is the id included in the response of the `offer.start` API.\\n\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              }\n            ]\n          },\n          \"offerForm\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"fieldSubmissions\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"properties\": {\n                    \"path\": {\n                      \"type\": \"string\",\n                      \"description\": \"The form field's \\\"path\\\" value\"\n                    },\n                    \"value\": {\n                      \"type\": \"string\",\n                      \"description\": \"This is often a primitive but the value depends on the type of field being submitted. See the description above for details on the values accepted in this field.\"\n                    }\n                  },\n                  \"required\": [\n                    \"path\",\n                    \"value\"\n                  ]\n                }\n              }\n            },\n            \"required\": [\n              \"fieldSubmissions\"\n            ]\n          }\n        },\n        \"required\": [\n          \"offerProcessId\",\n          \"offerFormId\",\n          \"offerForm\"\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

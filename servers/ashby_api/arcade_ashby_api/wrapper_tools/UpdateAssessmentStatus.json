@@ -1,0 +1,218 @@
+{
+  "name": "UpdateAssessmentStatus",
+  "fully_qualified_name": "AshbyApi.UpdateAssessmentStatus@0.1.0",
+  "description": "Update the status of a candidate assessment in Ashby.\n\nUse this tool to update the status of a started assessment in Ashby. Requires 'candidatesWrite' permission. Provide 'assessment_status' unless 'cancelled_reason' is given.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "assessment_update_details",
+        "required": false,
+        "description": "A JSON object containing details such as 'assessment_id', 'timestamp', 'assessment_status', 'assessment_profile_url', and optionally, 'assessment_result', 'cancelled_reason', and 'metadata'.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "assessment_id": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "timestamp": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1assessment.addCompletedToCandidate/post/requestBody/content/application~1json/schema/properties/timestamp/allOf/1"
+            },
+            "assessment_status": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "assessment_profile_url": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "assessment_result": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "cancelled_reason": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "metadata": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {},
+              "description": "Any other metadata about the assessment (e.g. ETA until complete). All assessment data should have unique identifiers."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'assessmentUpdate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/assessment.update",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "assessment_update_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "assessment_id": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "timestamp": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1assessment.addCompletedToCandidate/post/requestBody/content/application~1json/schema/properties/timestamp/allOf/1"
+            },
+            "assessment_status": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "assessment_profile_url": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "assessment_result": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "cancelled_reason": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "metadata": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {},
+              "description": "Any other metadata about the assessment (e.g. ETA until complete). All assessment data should have unique identifiers."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"assessment_id\",\n          \"timestamp\"\n        ],\n        \"properties\": {\n          \"assessment_id\": {\n            \"allOf\": [\n              {\n                \"description\": \"Identifier of the assessment being updated\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              }\n            ]\n          },\n          \"timestamp\": {\n            \"type\": \"object\",\n            \"description\": \"Schema reference broken: #/paths/~1assessment.addCompletedToCandidate/post/requestBody/content/application~1json/schema/properties/timestamp/allOf/1\",\n            \"additionalProperties\": true,\n            \"x-moar-broken-reference\": \"#/paths/~1assessment.addCompletedToCandidate/post/requestBody/content/application~1json/schema/properties/timestamp/allOf/1\"\n          },\n          \"assessment_status\": {\n            \"allOf\": [\n              {\n                \"description\": \"The current status of the assessment. Setting this with a value of \\\"Started\\\" will signal Ashby to store the timestamp the assessment started. Required when `cancelled_reason` is not set.\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\"\n              }\n            ]\n          },\n          \"assessment_profile_url\": {\n            \"allOf\": [\n              {\n                \"description\": \"The url back to the assessment/candidate on the partner's website. This value should always be of type url. Required when `assessment_result` is set.\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\"\n              }\n            ]\n          },\n          \"assessment_result\": {\n            \"allOf\": [\n              {\n                \"description\": \"The result of the assessment. Sending an update with this field will signal to Ashby that the assessment is complete.\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\"\n              }\n            ]\n          },\n          \"cancelled_reason\": {\n            \"allOf\": [\n              {\n                \"description\": \"The reason the assessment was cancelled. This field will signal to Ashby that the assessment is cancelled.\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\"\n              }\n            ]\n          },\n          \"metadata\": {\n            \"type\": \"array\",\n            \"description\": \"Any other metadata about the assessment (e.g. ETA until complete). All assessment data should have unique identifiers.\",\n            \"items\": {\n              \"type\": \"object\",\n              \"description\": \"Schema reference broken: #/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\",\n              \"additionalProperties\": true,\n              \"x-moar-broken-reference\": \"#/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\"\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

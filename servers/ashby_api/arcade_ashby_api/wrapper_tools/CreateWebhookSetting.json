@@ -1,0 +1,190 @@
+{
+  "name": "CreateWebhookSetting",
+  "fully_qualified_name": "AshbyApi.CreateWebhookSetting@0.1.0",
+  "description": "Creates a webhook setting in Ashby.\n\nUse this tool to set up a new webhook in Ashby. This action is necessary when you want to receive event notifications from Ashby. Make sure the required permissions are in place to perform this operation.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "webhook_configuration",
+        "required": false,
+        "description": "A JSON object containing configuration details for the webhook, including webhookType, requestUrl, and secretToken.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "webhookType": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "applicationSubmit",
+                "applicationUpdate",
+                "candidateHire",
+                "candidateStageChange",
+                "candidateDelete",
+                "candidateMerge",
+                "interviewPlanTransition",
+                "interviewScheduleCreate",
+                "interviewScheduleUpdate",
+                "jobPostingUpdate",
+                "jobPostingPublish",
+                "jobPostingUnpublish",
+                "offerCreate",
+                "offerUpdate",
+                "offerDelete",
+                "pushToHRIS",
+                "surveySubmit"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "requestUrl": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The URL the webhook will send requests to."
+            },
+            "secretToken": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The secret token used to sign the webhook request. See our documentation [here](https://developers.ashbyhq.com/docs/authenticating-webhooks) for more information.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'webhookcreate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/webhook.create",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "webhook_configuration",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "webhookType": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "applicationSubmit",
+                "applicationUpdate",
+                "candidateHire",
+                "candidateStageChange",
+                "candidateDelete",
+                "candidateMerge",
+                "interviewPlanTransition",
+                "interviewScheduleCreate",
+                "interviewScheduleUpdate",
+                "jobPostingUpdate",
+                "jobPostingPublish",
+                "jobPostingUnpublish",
+                "offerCreate",
+                "offerUpdate",
+                "offerDelete",
+                "pushToHRIS",
+                "surveySubmit"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "requestUrl": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The URL the webhook will send requests to."
+            },
+            "secretToken": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The secret token used to sign the webhook request. See our documentation [here](https://developers.ashbyhq.com/docs/authenticating-webhooks) for more information.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"properties\": {\n          \"webhookType\": {\n            \"type\": \"string\",\n            \"enum\": [\n              \"applicationSubmit\",\n              \"applicationUpdate\",\n              \"candidateHire\",\n              \"candidateStageChange\",\n              \"candidateDelete\",\n              \"candidateMerge\",\n              \"interviewPlanTransition\",\n              \"interviewScheduleCreate\",\n              \"interviewScheduleUpdate\",\n              \"jobPostingUpdate\",\n              \"jobPostingPublish\",\n              \"jobPostingUnpublish\",\n              \"offerCreate\",\n              \"offerUpdate\",\n              \"offerDelete\",\n              \"pushToHRIS\",\n              \"surveySubmit\"\n            ]\n          },\n          \"requestUrl\": {\n            \"type\": \"string\",\n            \"description\": \"The URL the webhook will send requests to.\"\n          },\n          \"secretToken\": {\n            \"type\": \"string\",\n            \"description\": \"The secret token used to sign the webhook request. See our documentation [here](https://developers.ashbyhq.com/docs/authenticating-webhooks) for more information.\\n\"\n          }\n        },\n        \"required\": [\n          \"webhookType\",\n          \"requestUrl\",\n          \"secretToken\"\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

@@ -1,0 +1,430 @@
+{
+  "name": "UpdateCandidateInfo",
+  "fully_qualified_name": "AshbyApi.UpdateCandidateInfo@0.1.0",
+  "description": "Update an existing candidate's information.\n\nUse this tool to update the details of an existing candidate. Make sure you have the required permissions. For setting custom field values, use the `customFields.setValue` endpoint.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "candidate_update_details",
+        "required": false,
+        "description": "JSON object containing details to update a candidate such as name, email, phone number, social links, etc. Includes 'candidateId' to specify which candidate to update. 'sendNotifications' (boolean) to notify subscribed users of the update, default is true.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "candidateId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The first and last name of the candidate to update."
+            },
+            "email": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "phoneNumber": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "linkedInUrl": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/linkedInUrl"
+            },
+            "githubUrl": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/githubUrl"
+            },
+            "websiteUrl": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/website"
+            },
+            "alternateEmail": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "An alternate email address to add to the candidate's profile."
+            },
+            "socialLinks": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "type": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "url": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": "An array of social links to set on the candidate. This value replaces existing socialLinks that have been set on the candidate. \nIf this value is submitted along with linkedInUrl, gitHubUrl or websiteUrl fields, those values will be ignored.\n"
+            },
+            "sourceId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "creditedToUserId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "location": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "type": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "description": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "additionalProperties": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "x-moar-broken-reference": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": "The location of the candidate."
+            },
+            "createdAt": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "sendNotifications": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether or not users who are subscribed to the candidate should be notified that candidate was updated. Default is true."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'candidateUpdate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/candidate.update",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "candidate_update_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "candidateId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The first and last name of the candidate to update."
+            },
+            "email": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "phoneNumber": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "linkedInUrl": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/linkedInUrl"
+            },
+            "githubUrl": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/githubUrl"
+            },
+            "websiteUrl": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/website"
+            },
+            "alternateEmail": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "An alternate email address to add to the candidate's profile."
+            },
+            "socialLinks": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "type": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "url": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": "An array of social links to set on the candidate. This value replaces existing socialLinks that have been set on the candidate. \nIf this value is submitted along with linkedInUrl, gitHubUrl or websiteUrl fields, those values will be ignored.\n"
+            },
+            "sourceId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "creditedToUserId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "location": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "type": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "description": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "additionalProperties": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "x-moar-broken-reference": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": "The location of the candidate."
+            },
+            "createdAt": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "sendNotifications": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether or not users who are subscribed to the candidate should be notified that candidate was updated. Default is true."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"candidateId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The unique id of the candidate to update.\"\n              }\n            ]\n          },\n          \"name\": {\n            \"type\": \"string\",\n            \"example\": \"Adam Hart\",\n            \"description\": \"The first and last name of the candidate to update.\"\n          },\n          \"email\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/email/allOf/0\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/email/allOf/0\"\n              },\n              {\n                \"description\": \"Primary, personal email of the candidate to update.\"\n              }\n            ]\n          },\n          \"phoneNumber\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/phoneNumber/allOf/0\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/phoneNumber/allOf/0\"\n              },\n              {\n                \"description\": \"Primary, personal phone number of the candidate to update.\"\n              }\n            ]\n          },\n          \"linkedInUrl\": {\n            \"type\": \"object\",\n            \"description\": \"Schema reference broken: #/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/linkedInUrl\",\n            \"additionalProperties\": true,\n            \"x-moar-broken-reference\": \"#/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/linkedInUrl\"\n          },\n          \"githubUrl\": {\n            \"type\": \"object\",\n            \"description\": \"Schema reference broken: #/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/githubUrl\",\n            \"additionalProperties\": true,\n            \"x-moar-broken-reference\": \"#/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/githubUrl\"\n          },\n          \"websiteUrl\": {\n            \"type\": \"object\",\n            \"description\": \"Schema reference broken: #/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/website\",\n            \"additionalProperties\": true,\n            \"x-moar-broken-reference\": \"#/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/website\"\n          },\n          \"alternateEmail\": {\n            \"type\": \"string\",\n            \"example\": \"test.email@ashbyhq.com\",\n            \"description\": \"An alternate email address to add to the candidate's profile.\"\n          },\n          \"socialLinks\": {\n            \"description\": \"An array of social links to set on the candidate. This value replaces existing socialLinks that have been set on the candidate. \\nIf this value is submitted along with linkedInUrl, gitHubUrl or websiteUrl fields, those values will be ignored.\\n\",\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"object\",\n              \"properties\": {\n                \"type\": {\n                  \"enum\": [\n                    \"LinkedIn\",\n                    \"GitHub\",\n                    \"Twitter\",\n                    \"Medium\",\n                    \"StackOverflow\",\n                    \"Website\"\n                  ]\n                },\n                \"url\": {\n                  \"type\": \"string\"\n                }\n              },\n              \"required\": [\n                \"type\",\n                \"url\"\n              ],\n              \"example\": {\n                \"url\": \"https://linkedin.com/in/user\",\n                \"type\": \"LinkedIn\"\n              }\n            }\n          },\n          \"sourceId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of source for this candidate.\"\n              }\n            ]\n          },\n          \"creditedToUserId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the user the candidate will be credited to.\"\n              }\n            ]\n          },\n          \"location\": {\n            \"type\": \"object\",\n            \"description\": \"The location of the candidate.\",\n            \"properties\": {\n              \"type\": \"object\",\n              \"description\": \"Schema reference broken: #/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/location/properties\",\n              \"additionalProperties\": true,\n              \"x-moar-broken-reference\": \"#/paths/~1candidate.create/post/requestBody/content/application~1json/schema/properties/location/properties\"\n            }\n          },\n          \"createdAt\": {\n            \"allOf\": [\n              {\n                \"description\": \"An ISO date string to set the candidate's `createdAt` timestamp.\\n\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1candidate.createNote/post/requestBody/content/application~1json/schema/properties/createdAt\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1candidate.createNote/post/requestBody/content/application~1json/schema/properties/createdAt\"\n              }\n            ]\n          },\n          \"sendNotifications\": {\n            \"type\": \"boolean\",\n            \"default\": true,\n            \"description\": \"Whether or not users who are subscribed to the candidate should be notified that candidate was updated. Default is true.\"\n          }\n        },\n        \"required\": [\n          \"candidateId\"\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

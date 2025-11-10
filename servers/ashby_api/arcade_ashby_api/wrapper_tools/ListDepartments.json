@@ -1,0 +1,170 @@
+{
+  "name": "ListDepartments",
+  "fully_qualified_name": "AshbyApi.ListDepartments@0.1.0",
+  "description": "Retrieve a list of all departments.\n\nUse this tool to get a complete list of all departments within the organization. Requires appropriate permissions.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "department_request_body",
+        "required": false,
+        "description": "A JSON object containing optional parameters: includeArchived (boolean to include archived departments), cursor (for pagination), syncToken (for incremental sync), and limit (maximum number of departments to return).",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "includeArchived": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1source.list/post/requestBody/content/application~1json/schema/properties/includeArchived"
+            },
+            "cursor": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1project.list/post/requestBody/content/application~1json/schema/properties/cursor"
+            },
+            "syncToken": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1project.list/post/requestBody/content/application~1json/schema/properties/syncToken"
+            },
+            "limit": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1project.list/post/requestBody/content/application~1json/schema/properties/limit"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'departmentList'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/department.list",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "department_request_body",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "includeArchived": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1source.list/post/requestBody/content/application~1json/schema/properties/includeArchived"
+            },
+            "cursor": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1project.list/post/requestBody/content/application~1json/schema/properties/cursor"
+            },
+            "syncToken": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1project.list/post/requestBody/content/application~1json/schema/properties/syncToken"
+            },
+            "limit": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1project.list/post/requestBody/content/application~1json/schema/properties/limit"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"includeArchived\": {\n            \"type\": \"object\",\n            \"description\": \"Schema reference broken: #/paths/~1source.list/post/requestBody/content/application~1json/schema/properties/includeArchived\",\n            \"additionalProperties\": true,\n            \"x-moar-broken-reference\": \"#/paths/~1source.list/post/requestBody/content/application~1json/schema/properties/includeArchived\"\n          },\n          \"cursor\": {\n            \"type\": \"object\",\n            \"description\": \"Schema reference broken: #/paths/~1project.list/post/requestBody/content/application~1json/schema/properties/cursor\",\n            \"additionalProperties\": true,\n            \"x-moar-broken-reference\": \"#/paths/~1project.list/post/requestBody/content/application~1json/schema/properties/cursor\"\n          },\n          \"syncToken\": {\n            \"type\": \"object\",\n            \"description\": \"Schema reference broken: #/paths/~1project.list/post/requestBody/content/application~1json/schema/properties/syncToken\",\n            \"additionalProperties\": true,\n            \"x-moar-broken-reference\": \"#/paths/~1project.list/post/requestBody/content/application~1json/schema/properties/syncToken\"\n          },\n          \"limit\": {\n            \"type\": \"object\",\n            \"description\": \"Schema reference broken: #/paths/~1project.list/post/requestBody/content/application~1json/schema/properties/limit\",\n            \"additionalProperties\": true,\n            \"x-moar-broken-reference\": \"#/paths/~1project.list/post/requestBody/content/application~1json/schema/properties/limit\"\n          }\n        },\n        \"example\": {\n          \"includeArchived\": false,\n          \"cursor\": \"qA\",\n          \"syncToken\": \"6W05prn4d\",\n          \"limit\": 25\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

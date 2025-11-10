@@ -1,0 +1,188 @@
+{
+  "name": "UpdateInterviewSchedule",
+  "fully_qualified_name": "AshbyApi.UpdateInterviewSchedule@0.1.0",
+  "description": "Update, add, or cancel interview schedule events.\n\nThis tool allows updating, adding, or canceling events in an interview schedule. It should be called to manage interview schedules effectively. Requires 'interviewsWrite' permission and the event's 'interviewEventId' to proceed with updates.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "interview_schedule_request",
+        "required": false,
+        "description": "JSON object specifying the interview schedule update details, including `interviewScheduleId`, event details, cancellation IDs, and feedback deletion flag.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "interviewScheduleId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "interviewEvent": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "interviewEventId": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": "An event on the interview schedule to create or update.\nTo update an event, the event's `interviewEventId` must be included in the request.\n"
+            },
+            "interviewEventIdToCancel": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The ids of interview events to cancel.\n"
+            },
+            "allowFeedbackDeletion": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "By default, we do not allow interview events with submitted feedback to be canceled because canceling an event causes its associated feedback to be deleted. If you want to allow events with submitted feedback to be canceled, this flag can be passed in and set to `true`. In this case, events with feedback will be canceled, and any associated feedback will be deleted."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'interviewScheduleUpdate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/interviewSchedule.update",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "interview_schedule_request",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "interviewScheduleId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "interviewEvent": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "interviewEventId": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": "An event on the interview schedule to create or update.\nTo update an event, the event's `interviewEventId` must be included in the request.\n"
+            },
+            "interviewEventIdToCancel": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The ids of interview events to cancel.\n"
+            },
+            "allowFeedbackDeletion": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "By default, we do not allow interview events with submitted feedback to be canceled because canceling an event causes its associated feedback to be deleted. If you want to allow events with submitted feedback to be canceled, this flag can be passed in and set to `true`. In this case, events with feedback will be canceled, and any associated feedback will be deleted."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"interviewScheduleId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the interview schedule to update.\\nOnly interview schedules created using the API key making the request can be updated.\\n\"\n              }\n            ]\n          },\n          \"interviewEvent\": {\n            \"description\": \"An event on the interview schedule to create or update.\\nTo update an event, the event's `interviewEventId` must be included in the request.\\n\",\n            \"oneOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewSchedule.create/post/requestBody/content/application~1json/schema/properties/interviewEvents/items\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewSchedule.create/post/requestBody/content/application~1json/schema/properties/interviewEvents/items\"\n              },\n              {\n                \"type\": \"array\",\n                \"items\": {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/paths/~1interviewSchedule.create/post/requestBody/content/application~1json/schema/properties/interviewEvents/items\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/paths/~1interviewSchedule.create/post/requestBody/content/application~1json/schema/properties/interviewEvents/items\"\n                }\n              }\n            ],\n            \"properties\": {\n              \"interviewEventId\": {\n                \"allOf\": [\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                  },\n                  {\n                    \"description\": \"The id of an interview event to update.\\n\"\n                  }\n                ]\n              }\n            }\n          },\n          \"interviewEventIdToCancel\": {\n            \"description\": \"The ids of interview events to cancel.\\n\",\n            \"oneOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"type\": \"array\",\n                \"items\": {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                }\n              }\n            ]\n          },\n          \"allowFeedbackDeletion\": {\n            \"type\": \"boolean\",\n            \"default\": false,\n            \"description\": \"By default, we do not allow interview events with submitted feedback to be canceled because canceling an event causes its associated feedback to be deleted. If you want to allow events with submitted feedback to be canceled, this flag can be passed in and set to `true`. In this case, events with feedback will be canceled, and any associated feedback will be deleted.\"\n          }\n        },\n        \"oneOf\": [\n          {\n            \"required\": [\n              \"interviewScheduleId\",\n              \"interviewEvent\"\n            ]\n          },\n          {\n            \"required\": [\n              \"interviewScheduleId\",\n              \"interviewEventIdToCancel\"\n            ]\n          }\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

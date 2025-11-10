@@ -1,0 +1,180 @@
+{
+  "name": "SetCustomFieldValue",
+  "fully_qualified_name": "AshbyApi.SetCustomFieldValue@0.1.0",
+  "description": "Update the value of a custom field for an object.\n\nUse this tool to set the value of a custom field for a specified object, requiring specific data types based on the field.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "custom_field_value_update_data",
+        "required": false,
+        "description": "JSON payload containing all necessary data to update a custom field: objectId, objectType, fieldId, fieldValue.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "objectId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "objectType": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "Application",
+                "Candidate",
+                "Job",
+                "Opening"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of object the field is associated with."
+            },
+            "fieldId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "fieldValue": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The value to store in the field"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'customFieldSetValue'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/customField.setValue",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "custom_field_value_update_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "objectId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "objectType": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "Application",
+                "Candidate",
+                "Job",
+                "Opening"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of object the field is associated with."
+            },
+            "fieldId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "fieldValue": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The value to store in the field"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"objectId\",\n          \"objectType\",\n          \"fieldId\",\n          \"fieldValue\"\n        ],\n        \"properties\": {\n          \"objectId\": {\n            \"allOf\": [\n              {\n                \"description\": \"The id of the object the field value is being set on.\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              }\n            ]\n          },\n          \"objectType\": {\n            \"type\": \"string\",\n            \"description\": \"The type of object the field is associated with.\",\n            \"enum\": [\n              \"Application\",\n              \"Candidate\",\n              \"Job\",\n              \"Opening\"\n            ]\n          },\n          \"fieldId\": {\n            \"allOf\": [\n              {\n                \"description\": \"The unique id of the Custom Field definition for the field\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              }\n            ]\n          },\n          \"fieldValue\": {\n            \"description\": \"The value to store in the field\",\n            \"oneOf\": [\n              {\n                \"type\": \"boolean\",\n                \"title\": \"Boolean\",\n                \"description\": \"A boolean value\"\n              },\n              {\n                \"type\": \"string\",\n                \"title\": \"Date\",\n                \"format\": \"date-time\",\n                \"description\": \"An ISO Date string\"\n              },\n              {\n                \"type\": \"string\",\n                \"title\": \"String, Email, LongText, Phone\",\n                \"description\": \"A string\"\n              },\n              {\n                \"type\": \"string\",\n                \"title\": \"Url\",\n                \"format\": \"uri\",\n                \"description\": \"A valid http or https URL (e.g., https://example.com)\"\n              },\n              {\n                \"type\": \"array\",\n                \"title\": \"MultiValueSelect\",\n                \"items\": {\n                  \"type\": \"string\",\n                  \"description\": \"An array of strings that exist in the MultiValueSelect field's options\"\n                }\n              },\n              {\n                \"type\": \"number\",\n                \"title\": \"Number\",\n                \"description\": \"A number\"\n              },\n              {\n                \"type\": \"string\",\n                \"title\": \"ValueSelect\",\n                \"description\": \"A string that matches the value of one of the ValueSelect field's options\"\n              },\n              {\n                \"type\": \"object\",\n                \"title\": \"NumberRange\",\n                \"required\": [\n                  \"type\",\n                  \"minValue\",\n                  \"maxValue\"\n                ],\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"example\": \"number-range\"\n                  },\n                  \"minValue\": {\n                    \"type\": \"number\",\n                    \"example\": 10000\n                  },\n                  \"maxValue\": {\n                    \"type\": \"number\",\n                    \"example\": 100000\n                  }\n                },\n                \"description\": \"An object describing the number range\"\n              },\n              {\n                \"type\": \"object\",\n                \"title\": \"CompensationRange\",\n                \"required\": [\n                  \"type\",\n                  \"minValue\",\n                  \"maxValue\",\n                  \"currencyCode\",\n                  \"interval\"\n                ],\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"example\": \"compensation-range\"\n                  },\n                  \"minValue\": {\n                    \"type\": \"number\",\n                    \"example\": 10000\n                  },\n                  \"maxValue\": {\n                    \"type\": \"number\",\n                    \"example\": 100000\n                  },\n                  \"currencyCode\": {\n                    \"type\": \"string\",\n                    \"example\": \"USD\"\n                  },\n                  \"interval\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"NONE\",\n                      \"1 TIME\",\n                      \"1 HOUR\",\n                      \"1 DAY\",\n                      \"1 WEEK\",\n                      \"2 WEEK\",\n                      \"1 MONTH\",\n                      \"2 MONTH\",\n                      \"1 YEAR\",\n                      \"6 MONTH\",\n                      \"0.5 MONTH\",\n                      \"3 MONTH\"\n                    ],\n                    \"example\": \"1 YEAR\"\n                  }\n                },\n                \"description\": \"An object describing the compensation range\"\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

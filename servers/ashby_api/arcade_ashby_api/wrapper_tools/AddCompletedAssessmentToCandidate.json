@@ -1,0 +1,252 @@
+{
+  "name": "AddCompletedAssessmentToCandidate",
+  "fully_qualified_name": "AshbyApi.AddCompletedAssessmentToCandidate@0.1.0",
+  "description": "Adds a completed assessment to a candidate's record.\n\nUse this tool to update a candidate's profile with a completed assessment. Requires the 'candidatesWrite' permission.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "completed_assessment_request",
+        "required": false,
+        "description": "JSON payload containing candidateId, partnerId, assessment details, and timestamp of completion.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "candidateId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "partnerId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "assessment": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "assessmentTypeId": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "assessmentId": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "assessmentName": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The name of the assessment that was taken that will be displayed in the UI"
+                },
+                "result": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "metadata": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {},
+                  "description": "An array of metadata associated with this completed assessment"
+                }
+              },
+              "inner_properties": null,
+              "description": "The completed assessment"
+            },
+            "timestamp": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'assessmentAddCompletedToCandidate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/assessment.addCompletedToCandidate",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "completed_assessment_request",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "candidateId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "partnerId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "assessment": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "assessmentTypeId": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "assessmentId": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "assessmentName": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The name of the assessment that was taken that will be displayed in the UI"
+                },
+                "result": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "metadata": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {},
+                  "description": "An array of metadata associated with this completed assessment"
+                }
+              },
+              "inner_properties": null,
+              "description": "The completed assessment"
+            },
+            "timestamp": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"candidateId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the candidate, to whom to add the completed assessment\"\n              }\n            ]\n          },\n          \"partnerId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the partner adding the assessment\"\n              }\n            ]\n          },\n          \"assessment\": {\n            \"type\": \"object\",\n            \"description\": \"The completed assessment\",\n            \"required\": [\n              \"assessmentTypeId\",\n              \"assessmentId\",\n              \"assessmentName\",\n              \"result\",\n              \"metadata\"\n            ],\n            \"properties\": {\n              \"assessmentTypeId\": {\n                \"allOf\": [\n                  {\n                    \"description\": \"An identifier that uniquely identifies the assessment type\"\n                  },\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                  }\n                ]\n              },\n              \"assessmentId\": {\n                \"allOf\": [\n                  {\n                    \"description\": \"An identifier that uniquely identifies the completed assessment\"\n                  },\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                  }\n                ]\n              },\n              \"assessmentName\": {\n                \"type\": \"string\",\n                \"example\": \"Node Assessment\",\n                \"description\": \"The name of the assessment that was taken that will be displayed in the UI\"\n              },\n              \"result\": {\n                \"allOf\": [\n                  {\n                    \"description\": \"The assessment's result\"\n                  },\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\"\n                  }\n                ]\n              },\n              \"metadata\": {\n                \"type\": \"array\",\n                \"description\": \"An array of metadata associated with this completed assessment\",\n                \"items\": {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/paths/~1assessment.addCompletedToCandidate/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results/properties/result\"\n                }\n              }\n            }\n          },\n          \"timestamp\": {\n            \"allOf\": [\n              {\n                \"description\": \"The timestamp in milliseconds since the unix epoch, when the assessment was completed\"\n              },\n              {\n                \"type\": \"integer\",\n                \"description\": \"The timestamp in milliseconds since the unix epoch, when the update occurred\",\n                \"format\": \"int64\",\n                \"example\": 1665680638489\n              }\n            ]\n          }\n        },\n        \"required\": [\n          \"candidateId\",\n          \"partnerId\",\n          \"assessment\",\n          \"timestamp\"\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}
