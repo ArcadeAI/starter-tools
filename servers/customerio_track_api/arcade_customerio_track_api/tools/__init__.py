@@ -195,7 +195,7 @@ def validate_json_against_schema(
         return False, f"Validation error: {e!s}"
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def get_track_api_region(
     context: ToolContext,
 ) -> Annotated[dict[str, Any], "Response from the API endpoint 'getRegion'."]:
@@ -207,10 +207,7 @@ async def get_track_api_region(
         request_data = remove_none_values(request_data)
     content = json.dumps(request_data) if request_data else None
     response = await make_request(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/accounts/region",
         method="GET",
         params=remove_none_values({}),
@@ -223,7 +220,7 @@ async def get_track_api_region(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def update_or_add_person(
     context: ToolContext,
     mode: Annotated[
@@ -321,10 +318,7 @@ async def update_or_add_person(
         ) from e
 
     response = await make_request_with_schema_validation(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/customers/{identifier}".format(  # noqa: UP032
             identifier=person_identifier
         ),
@@ -340,7 +334,7 @@ async def update_or_add_person(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def delete_customer(
     context: ToolContext,
     customer_identifier: Annotated[
@@ -356,10 +350,7 @@ async def delete_customer(
         request_data = remove_none_values(request_data)
     content = json.dumps(request_data) if request_data else None
     response = await make_request(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/customers/{identifier}".format(  # noqa: UP032
             identifier=customer_identifier
         ),
@@ -374,7 +365,7 @@ async def delete_customer(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def add_device_to_customer_profile(
     context: ToolContext,
     mode: Annotated[
@@ -476,10 +467,7 @@ async def add_device_to_customer_profile(
         ) from e
 
     response = await make_request_with_schema_validation(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/customers/{identifier}/devices".format(  # noqa: UP032
             identifier=unique_person_identifier
         ),
@@ -495,7 +483,7 @@ async def add_device_to_customer_profile(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def remove_customer_device(
     context: ToolContext,
     customer_identifier: Annotated[
@@ -514,10 +502,7 @@ async def remove_customer_device(
         request_data = remove_none_values(request_data)
     content = json.dumps(request_data) if request_data else None
     response = await make_request(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/customers/{identifier}/devices/{device_id}".format(  # noqa: UP032
             identifier=customer_identifier, device_id=device_unique_id
         ),
@@ -532,7 +517,7 @@ async def remove_customer_device(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def suppress_customer_profile(
     context: ToolContext,
     unique_person_identifier: Annotated[
@@ -548,10 +533,7 @@ async def suppress_customer_profile(
         request_data = remove_none_values(request_data)
     content = json.dumps(request_data) if request_data else None
     response = await make_request(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/customers/{identifier}/suppress".format(  # noqa: UP032
             identifier=unique_person_identifier
         ),
@@ -566,7 +548,7 @@ async def suppress_customer_profile(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def unsuppress_customer_profile(
     context: ToolContext,
     customer_identifier: Annotated[
@@ -582,10 +564,7 @@ async def unsuppress_customer_profile(
         request_data = remove_none_values(request_data)
     content = json.dumps(request_data) if request_data else None
     response = await make_request(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/customers/{identifier}/unsuppress".format(  # noqa: UP032
             identifier=customer_identifier
         ),
@@ -600,7 +579,7 @@ async def unsuppress_customer_profile(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def global_unsubscribe_user(
     context: ToolContext,
     delivery_id_for_unsubscription: Annotated[
@@ -620,10 +599,7 @@ async def global_unsubscribe_user(
         request_data = remove_none_values(request_data)
     content = json.dumps(request_data) if request_data else None
     response = await make_request(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/unsubscribe/{delivery_id}".format(  # noqa: UP032
             delivery_id=delivery_id_for_unsubscription
         ),
@@ -638,7 +614,7 @@ async def global_unsubscribe_user(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def send_customer_event(
     context: ToolContext,
     mode: Annotated[
@@ -736,10 +712,7 @@ async def send_customer_event(
         ) from e
 
     response = await make_request_with_schema_validation(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/customers/{identifier}/events".format(  # noqa: UP032
             identifier=customer_identifier
         ),
@@ -755,7 +728,7 @@ async def send_customer_event(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def track_anonymous_event(
     context: ToolContext,
     mode: Annotated[
@@ -832,10 +805,7 @@ async def track_anonymous_event(
         ) from e
 
     response = await make_request_with_schema_validation(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/events",
         method="POST",
         request_data=request_data,
@@ -849,7 +819,7 @@ async def track_anonymous_event(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def submit_form_response(
     context: ToolContext,
     mode: Annotated[
@@ -947,10 +917,7 @@ async def submit_form_response(
         ) from e
 
     response = await make_request_with_schema_validation(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/forms/{form_id}/submit".format(  # noqa: UP032
             form_id=form_identifier
         ),
@@ -966,7 +933,7 @@ async def submit_form_response(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def merge_customer_profiles(
     context: ToolContext,
     mode: Annotated[
@@ -1043,10 +1010,7 @@ async def merge_customer_profiles(
         ) from e
 
     response = await make_request_with_schema_validation(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/merge_customers",
         method="POST",
         request_data=request_data,
@@ -1060,7 +1024,7 @@ async def merge_customer_profiles(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def report_custom_metrics(
     context: ToolContext,
     mode: Annotated[
@@ -1137,10 +1101,7 @@ async def report_custom_metrics(
         ) from e
 
     response = await make_request_with_schema_validation(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/metrics",
         method="POST",
         request_data=request_data,
@@ -1154,7 +1115,7 @@ async def report_custom_metrics(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def add_people_to_segment(
     context: ToolContext,
     mode: Annotated[
@@ -1256,10 +1217,7 @@ async def add_people_to_segment(
         ) from e
 
     response = await make_request_with_schema_validation(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/segments/{segment_id}/add_customers".format(  # noqa: UP032
             segment_id=segment_identifier
         ),
@@ -1275,7 +1233,7 @@ async def add_people_to_segment(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def remove_user_from_segment(
     context: ToolContext,
     mode: Annotated[
@@ -1377,10 +1335,7 @@ async def remove_user_from_segment(
         ) from e
 
     response = await make_request_with_schema_validation(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v1/segments/{segment_id}/remove_customers".format(  # noqa: UP032
             segment_id=segment_identifier
         ),
@@ -1396,7 +1351,7 @@ async def remove_user_from_segment(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def manage_entity(
     context: ToolContext,
     mode: Annotated[
@@ -1473,10 +1428,7 @@ async def manage_entity(
         ) from e
 
     response = await make_request_with_schema_validation(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v2/entity",
         method="POST",
         request_data=request_data,
@@ -1490,7 +1442,7 @@ async def manage_entity(
         return {"response_text": response.text}
 
 
-@tool(requires_secrets=["CUSTOMERIO_TRACK_SITE_ID", "CUSTOMERIO_TRACK_API_KEY"])
+@tool(requires_secrets=["CUSTOMERIO_SITE_ID", "CUSTOMERIO_API_KEY"])
 async def batch_process_requests(
     context: ToolContext,
     mode: Annotated[
@@ -1567,10 +1519,7 @@ async def batch_process_requests(
         ) from e
 
     response = await make_request_with_schema_validation(
-        auth=(
-            context.get_secret("CUSTOMERIO_TRACK_SITE_ID"),
-            context.get_secret("CUSTOMERIO_TRACK_API_KEY"),
-        ),
+        auth=(context.get_secret("CUSTOMERIO_SITE_ID"), context.get_secret("CUSTOMERIO_API_KEY")),
         url="https://track.customer.io/api/v2/batch",
         method="POST",
         request_data=request_data,

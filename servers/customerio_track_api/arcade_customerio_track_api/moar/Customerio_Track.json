@@ -15,13 +15,13 @@
   "token_value": "",
   "secrets": [
     {
-      "arcade_key_name": "CUSTOMERIO_TRACK_SITE_ID",
+      "arcade_key_name": "CUSTOMERIO_SITE_ID",
       "service_key_name": "username",
       "where_to_provide": "basic_auth_username",
       "formatted_value": null
     },
     {
-      "arcade_key_name": "CUSTOMERIO_TRACK_API_KEY",
+      "arcade_key_name": "CUSTOMERIO_API_KEY",
       "service_key_name": "password",
       "where_to_provide": "basic_auth_password",
       "formatted_value": null
