@@ -1,0 +1,207 @@
+{
+  "name": "RemoveUserFromSegment",
+  "fully_qualified_name": "CustomerioTrackApi.RemoveUserFromSegment@0.1.0",
+  "description": "Remove users from a manual segment by ID.\n\nUse this tool to remove users from a manual segment by specifying their IDs. Note that this functionality requires each user to have an 'id' attribute, and cannot be used for data-driven segments.",
+  "toolkit": {
+    "name": "ArcadeCustomerioTrackApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "segment_identifier",
+        "required": true,
+        "description": "The unique identifier for the segment. Found on the segment's page in the dashboard under 'Usage'.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier for a segment. You can find your segment's ID on its page in the dashboard\u2014go to *Segments*, select your segment, and find the ID under *Usage*. Or you can find your segment using the [App API](#tag/Segments)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "segment_id"
+      },
+      {
+        "name": "identification_type",
+        "required": false,
+        "description": "The type of identifiers used for the users to be removed. Options are 'id', 'email', or 'cio_id'. Defaults to 'id' if not specified.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "id",
+            "email",
+            "cio_id"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of `ids` you want to use. All of the values in the `ids` array must be of this type. If you don't provide this parameter, we assume that the `ids` array contains `id` values."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "id_type"
+      },
+      {
+        "name": "customer_ids_to_remove",
+        "required": false,
+        "description": "A JSON array of customer IDs to be removed from the segment. Limited to 1000 IDs per request.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "ids": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The customer IDs you want to remove from the segment."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'remove_from_segment'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_SITE_ID"
+      },
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io Track API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://track.customer.io/api/v1/segments/{segment_id}/remove_customers",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "id_type",
+        "tool_parameter_name": "identification_type",
+        "description": "The type of `ids` you want to use. All of the values in the `ids` array must be of this type. If you don't provide this parameter, we assume that the `ids` array contains `id` values.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "id",
+            "email",
+            "cio_id"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of `ids` you want to use. All of the values in the `ids` array must be of this type. If you don't provide this parameter, we assume that the `ids` array contains `id` values."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": "id",
+        "documentation_urls": []
+      },
+      {
+        "name": "segment_id",
+        "tool_parameter_name": "segment_identifier",
+        "description": "The identifier for a segment. You can find your segment's ID on its page in the dashboard\u2014go to *Segments*, select your segment, and find the ID under *Usage*. Or you can find your segment using the [App API](#tag/Segments).",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier for a segment. You can find your segment's ID on its page in the dashboard\u2014go to *Segments*, select your segment, and find the ID under *Usage*. Or you can find your segment using the [App API](#tag/Segments)."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "customer_ids_to_remove",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "ids": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The customer IDs you want to remove from the segment."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_SITE_ID",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "password",
+        "accepted_as": "basic_auth_password",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"description\": \"The IDs of people you want to remove from the segment.\",\n        \"required\": [\n          \"ids\"\n        ],\n        \"properties\": {\n          \"ids\": {\n            \"type\": \"array\",\n            \"description\": \"The customer IDs you want to remove from the segment.\",\n            \"maxItems\": 1000,\n            \"minItems\": 1,\n            \"items\": {\n              \"description\": \"The customer IDs you want to remove from the segment.\",\n              \"type\": \"string\"\n            }\n          }\n        }\n      },\n      \"example\": {\n        \"ids\": [\n          \"customer_id1\",\n          \"customer_id2\"\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

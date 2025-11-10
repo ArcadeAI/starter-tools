@@ -1,0 +1,213 @@
+{
+  "name": "GetBroadcastLinkMetrics",
+  "fully_qualified_name": "CustomerioApi.GetBroadcastLinkMetrics@0.1.0",
+  "description": "Retrieve metrics for link clicks in a broadcast.\n\nThis tool returns metrics for link clicks within a specified broadcast, providing both total counts and series data over defined periods such as days or weeks. Useful for analyzing broadcast performance.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "broadcast_identifier",
+        "required": true,
+        "description": "The numeric identifier of the broadcast for which link metrics are needed.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a broadcast."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "broadcast_id"
+      },
+      {
+        "name": "report_period",
+        "required": false,
+        "description": "Defines the unit of time for the report. Options are 'hours', 'days', 'weeks', or 'months'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "days",
+            "weeks",
+            "months"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unit of time for your report."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "period"
+      },
+      {
+        "name": "period_steps",
+        "required": false,
+        "description": "Specify the number of time periods to return. Defaults to the maximum or 12 if the period is 'months'. Max: 24 hours, 45 days, 12 weeks, or 121 months.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "steps"
+      },
+      {
+        "name": "return_unique_customer_results",
+        "required": false,
+        "description": "Set to true to return only unique customer results, ensuring each customer is counted once regardless of clicks.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, the response contains only unique customer results, i.e. a customer who clicks a link twice is only counted once. If false, the response contains the total number of results without regard to uniqueness."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "unique"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'broadcastLinks'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/broadcasts/{broadcast_id}/metrics/links",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "period",
+        "tool_parameter_name": "report_period",
+        "description": "The unit of time for your report.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "days",
+            "weeks",
+            "months"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unit of time for your report."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": "days",
+        "documentation_urls": []
+      },
+      {
+        "name": "steps",
+        "tool_parameter_name": "period_steps",
+        "description": "The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "unique",
+        "tool_parameter_name": "return_unique_customer_results",
+        "description": "If true, the response contains only unique customer results, i.e. a customer who clicks a link twice is only counted once. If false, the response contains the total number of results without regard to uniqueness.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, the response contains only unique customer results, i.e. a customer who clicks a link twice is only counted once. If false, the response contains the total number of results without regard to uniqueness."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": false,
+        "documentation_urls": []
+      },
+      {
+        "name": "broadcast_id",
+        "tool_parameter_name": "broadcast_identifier",
+        "description": "The identifier of a broadcast.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a broadcast."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

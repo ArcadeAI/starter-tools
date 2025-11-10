@@ -1,0 +1,137 @@
+{
+  "name": "GetNewsletterVariantInfo",
+  "fully_qualified_name": "CustomerioApi.GetNewsletterVariantInfo@0.1.0",
+  "description": "Retrieve variant details of a specific newsletter.\n\nUse this tool to obtain details about a specific variant of a newsletter, which could represent a language option or part of an A/B test.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "newsletter_identifier",
+        "required": true,
+        "description": "The unique identifier for a newsletter. Required to retrieve specific variant information.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a newsletter."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "newsletter_id"
+      },
+      {
+        "name": "message_identifier_in_newsletter",
+        "required": true,
+        "description": "Identifier for a message within a newsletter, used for A/B tests or multi-language editions.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a message in a newsletter. If your newsletter is an A/B test or has multiple languages, you may have multiple `content_id` values for your newsletter. You can [get a newsletter](#operation/getNewsletters) to find your newsletter's content IDs."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "content_id"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getNewsletterVariant'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/newsletters/{newsletter_id}/contents/{content_id}",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "newsletter_id",
+        "tool_parameter_name": "newsletter_identifier",
+        "description": "The identifier of a newsletter.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a newsletter."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "content_id",
+        "tool_parameter_name": "message_identifier_in_newsletter",
+        "description": "The identifier of a message in a newsletter. If your newsletter is an A/B test or has multiple languages, you may have multiple `content_id` values for your newsletter. You can [get a newsletter](#operation/getNewsletters) to find your newsletter's content IDs.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a message in a newsletter. If your newsletter is an A/B test or has multiple languages, you may have multiple `content_id` values for your newsletter. You can [get a newsletter](#operation/getNewsletters) to find your newsletter's content IDs."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

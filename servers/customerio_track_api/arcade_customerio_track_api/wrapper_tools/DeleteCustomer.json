@@ -1,0 +1,115 @@
+{
+  "name": "DeleteCustomer",
+  "fully_qualified_name": "CustomerioTrackApi.DeleteCustomer@0.1.0",
+  "description": "Delete a customer and all associated information.\n\nThis tool deletes a customer and their information from Customer.io. It should be called when you want to completely remove a customer from the database. Note: After deletion, customers may be accidentally recreated if new data is sent through other means.",
+  "toolkit": {
+    "name": "ArcadeCustomerioTrackApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "customer_identifier",
+        "required": true,
+        "description": "The unique identifier for a person, which can be an ID, email, or 'cio_id'. Use 'cio_' prefix for 'cio_id'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unique value representing a person. The values you use to identify a person may be an `id`, `email` address, or the `cio_id` (when updating people), depending on your workspace settings. When you reference people by `cio_id`, you must prefix the value with `cio_`.\n"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "identifier"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'delete'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_SITE_ID"
+      },
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io Track API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://track.customer.io/api/v1/customers/{identifier}",
+    "http_method": "DELETE",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "identifier",
+        "tool_parameter_name": "customer_identifier",
+        "description": "The unique value representing a person. The values you use to identify a person may be an `id`, `email` address, or the `cio_id` (when updating people), depending on your workspace settings. When you reference people by `cio_id`, you must prefix the value with `cio_`.\n",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unique value representing a person. The values you use to identify a person may be an `id`, `email` address, or the `cio_id` (when updating people), depending on your workspace settings. When you reference people by `cio_id`, you must prefix the value with `cio_`.\n"
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_SITE_ID",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "password",
+        "accepted_as": "basic_auth_password",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

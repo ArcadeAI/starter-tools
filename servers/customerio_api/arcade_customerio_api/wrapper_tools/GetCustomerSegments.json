@@ -1,0 +1,145 @@
+{
+  "name": "GetCustomerSegments",
+  "fully_qualified_name": "CustomerioApi.GetCustomerSegments@0.1.0",
+  "description": "Retrieve segments of a specific customer from Customerio.\n\nUse this tool to get a list of segments that a specified customer profile is a part of. This can be useful for understanding customer categorization and targeting within the Customerio platform.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "customer_identifier",
+        "required": true,
+        "description": "The unique ID of the customer for segment retrieval in Customerio.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the customer you want to perform an operation against."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "customer_id"
+      },
+      {
+        "name": "customer_id_type",
+        "required": false,
+        "description": "Specifies the type of customer identifier to use ('id', 'email', or 'cio_id'). Default is 'id'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "id",
+            "email",
+            "cio_id"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of `customer_id` you want to use to reference a person. If you don't provide this parameter, we assume that the `customer_id` in your request is a person's `id`."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "id_type"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getPersonSegments'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/customers/{customer_id}/segments",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "id_type",
+        "tool_parameter_name": "customer_id_type",
+        "description": "The type of `customer_id` you want to use to reference a person. If you don't provide this parameter, we assume that the `customer_id` in your request is a person's `id`.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "id",
+            "email",
+            "cio_id"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of `customer_id` you want to use to reference a person. If you don't provide this parameter, we assume that the `customer_id` in your request is a person's `id`."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "customer_id",
+        "tool_parameter_name": "customer_identifier",
+        "description": "The ID of the customer you want to perform an operation against.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the customer you want to perform an operation against."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

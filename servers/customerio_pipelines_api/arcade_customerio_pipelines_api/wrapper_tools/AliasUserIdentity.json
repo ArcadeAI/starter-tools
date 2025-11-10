@@ -1,0 +1,195 @@
+{
+  "name": "AliasUserIdentity",
+  "fully_qualified_name": "CustomerioPipelinesApi.AliasUserIdentity@0.1.0",
+  "description": "Reconcile anonymous and identified user IDs for select destinations.\n\nThe tool is used to reconcile identifiers in systems that don't automatically handle identity changes, such as when transitioning from an anonymous to an identified user. It is typically used before identifying a user with a `userId`, particularly for destinations like Mixpanel that don't automatically associate data between anonymous and identified states.",
+  "toolkit": {
+    "name": "ArcadeCustomerioPipelinesApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "enable_strict_validation",
+        "required": false,
+        "description": "Set to 'True' to enable strict validation, returning HTTP error codes (400/401) for validation failures. Defaults to permissive mode if not set.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "When set to `1`, enables strict validation that returns proper HTTP error codes (400/401) for validation failures. When not set or set to any other value, the API operates in permissive mode, logging errors but returning HTTP 200. [Learn more](/integrations/api/track-vs-cdp-api#pipelines-strict-mode)\n"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "X-Strict-Mode"
+      },
+      {
+        "name": "user_identity_transition_payload",
+        "required": false,
+        "description": "JSON object containing 'type', 'previousId', and 'userId'. Use to reconcile user IDs explicitly, with 'type' set to 'alias', 'previousId' as the merging ID, and 'userId' as the retained ID.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "type": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "alias"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The event type. This is set automatically by the request method/endpoint."
+            },
+            "previousId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The userId that you want to merge into the canonical profile."
+            },
+            "userId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The userId that you want to keep. This is required if you haven't already identified someone with one of our web or server-side libraries.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'alias'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_TRACK_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io Track API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://cdp.customer.io/v1/alias",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "X-Strict-Mode",
+        "tool_parameter_name": "enable_strict_validation",
+        "description": "When set to `1`, enables strict validation that returns proper HTTP error codes (400/401) for validation failures. When not set or set to any other value, the API operates in permissive mode, logging errors but returning HTTP 200. [Learn more](/integrations/api/track-vs-cdp-api#pipelines-strict-mode)\n",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "When set to `1`, enables strict validation that returns proper HTTP error codes (400/401) for validation failures. When not set or set to any other value, the API operates in permissive mode, logging errors but returning HTTP 200. [Learn more](/integrations/api/track-vs-cdp-api#pipelines-strict-mode)\n"
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "user_identity_transition_payload",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "type": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "alias"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The event type. This is set automatically by the request method/endpoint."
+            },
+            "previousId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The userId that you want to merge into the canonical profile."
+            },
+            "userId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The userId that you want to keep. This is required if you haven't already identified someone with one of our web or server-side libraries.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_TRACK_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"previousId\",\n          \"userId\"\n        ],\n        \"properties\": {\n          \"type\": {\n            \"type\": \"string\",\n            \"readOnly\": true,\n            \"enum\": [\n              \"alias\"\n            ],\n            \"description\": \"The event type. This is set automatically by the request method/endpoint.\"\n          },\n          \"previousId\": {\n            \"type\": \"string\",\n            \"description\": \"The userId that you want to merge into the canonical profile.\"\n          },\n          \"userId\": {\n            \"type\": \"string\",\n            \"description\": \"The userId that you want to keep. This is required if you haven't already identified someone with one of our web or server-side libraries.\\n\"\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

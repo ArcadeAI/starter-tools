@@ -1,0 +1,166 @@
+{
+  "name": "AddDeviceToCustomerProfile",
+  "fully_qualified_name": "CustomerioTrackApi.AddDeviceToCustomerProfile@0.1.0",
+  "description": "Add or update a device for a customer profile.\n\nUse this tool to add or update iOS and Android devices linked to a customer's profile. Ideal for managing multiple devices associated with a customer.",
+  "toolkit": {
+    "name": "ArcadeCustomerioTrackApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "unique_person_identifier",
+        "required": true,
+        "description": "A unique identifier for a person, such as `id`, `email`, or `cio_id` prefixed with `cio_`.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unique value representing a person. The values you use to identify a person may be an `id`, `email` address, or the `cio_id` (when updating people), depending on your workspace settings. When you reference people by `cio_id`, you must prefix the value with `cio_`.\n"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "identifier"
+      },
+      {
+        "name": "device_info",
+        "required": false,
+        "description": "JSON object containing properties for an iOS or Android device. Gathered automatically unless `autoTrackDeviceAttributes` is disabled.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "device": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The properties representing an individual device. [Our SDK's](/integrations/sdk/) gather all the properties defined below automatically, unless you disable the `autoTrackDeviceAttributes` setting. You can reference the properties outside the `attributes` object in segments or in Liquid."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'add_device'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_SITE_ID"
+      },
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io Track API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://track.customer.io/api/v1/customers/{identifier}/devices",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "identifier",
+        "tool_parameter_name": "unique_person_identifier",
+        "description": "The unique value representing a person. The values you use to identify a person may be an `id`, `email` address, or the `cio_id` (when updating people), depending on your workspace settings. When you reference people by `cio_id`, you must prefix the value with `cio_`.\n",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unique value representing a person. The values you use to identify a person may be an `id`, `email` address, or the `cio_id` (when updating people), depending on your workspace settings. When you reference people by `cio_id`, you must prefix the value with `cio_`.\n"
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "device_info",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "device": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The properties representing an individual device. [Our SDK's](/integrations/sdk/) gather all the properties defined below automatically, unless you disable the `autoTrackDeviceAttributes` setting. You can reference the properties outside the `attributes` object in segments or in Liquid."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_SITE_ID",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "password",
+        "accepted_as": "basic_auth_password",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"device\"\n        ],\n        \"description\": \"Define the device you want to add to the customer profile.\",\n        \"properties\": {\n          \"device\": {\n            \"description\": \"The properties representing an individual device. [Our SDK's](/integrations/sdk/) gather all the properties defined below automatically, unless you disable the `autoTrackDeviceAttributes` setting. You can reference the properties outside the `attributes` object in segments or in Liquid.\",\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"required\": [\n                  \"id\"\n                ],\n                \"properties\": {\n                  \"id\": {\n                    \"description\": \"The device token.\",\n                    \"type\": \"string\"\n                  }\n                }\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Device information common to the v1 and v2 APIs.\",\n                \"required\": [\n                  \"platform\"\n                ],\n                \"properties\": {\n                  \"last_used\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The `timestamp` when you last identified this device. If you don't pass a timestamp when you add or update a device, we use the time of the request itself. Our SDKs identify a device when a person launches their app.\"\n                  },\n                  \"platform\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"ios\",\n                      \"android\"\n                    ],\n                    \"description\": \"The device/messaging platform.\"\n                  },\n                  \"attributes\": {\n                    \"type\": \"object\",\n                    \"description\": \"Attributes that you can reference to segment your audience\\u2014like a person's attributes, but specific to a device. These can be either the attributes defined below or custom key-value attributes.\",\n                    \"properties\": {\n                      \"device_os\": {\n                        \"type\": \"string\",\n                        \"description\": \"The operating system, including the version, on the device.\"\n                      },\n                      \"device_model\": {\n                        \"type\": \"string\",\n                        \"description\": \"The model of the device a person uses.\"\n                      },\n                      \"app_version\": {\n                        \"type\": \"string\",\n                        \"description\": \"The version of your app that a customer uses. You might target app versions to let people know when they need to update, or expose them to new features when they do.\"\n                      },\n                      \"cio_sdk_version\": {\n                        \"type\": \"string\",\n                        \"description\": \"The version of the Customer.io SDK in the app.\"\n                      },\n                      \"_last_status\": {\n                        \"type\": \"string\",\n                        \"readOnly\": true,\n                        \"description\": \"The delivery status of the last message sent to the device\\u2014sent, bounced, or suppressed. An empty string indicates that that the device hasn't received a push yet.\",\n                        \"enum\": [\n                          \"\",\n                          \"bounced\",\n                          \"sent\",\n                          \"suppressed\"\n                        ]\n                      },\n                      \"device_locale\": {\n                        \"type\": \"string\",\n                        \"description\": \"The four-letter [IETF language code](/localization/#supported-languages) for the device. For example, `en-MX` (indicating an app in Spanish formatted for a user in Mexico) or `es-ES` (indicating an app in Spanish formatted for a user in Spain).\"\n                      },\n                      \"push_enabled\": {\n                        \"type\": \"string\",\n                        \"description\": \"If `\\\"true\\\"`, the device is opted-in and can receive push notifications.\",\n                        \"enum\": [\n                          \"true\",\n                          \"false\"\n                        ]\n                      }\n                    },\n                    \"additionalProperties\": {\n                      \"x-additionalPropertiesName\": \"Custom Device Attributes\",\n                      \"description\": \"Custom properties that you want to associate with the device.\",\n                      \"type\": \"string\"\n                    }\n                  }\n                }\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

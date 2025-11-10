@@ -1,0 +1,211 @@
+{
+  "name": "GetSubscriptionPreferences",
+  "fully_qualified_name": "CustomerioApi.GetSubscriptionPreferences@0.1.0",
+  "description": "Retrieve a person's subscription preferences.\n\nReturns a list of a person's subscription preferences, including headers, topic names, and descriptions. The data is translated if a language is specified in the query.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "customer_identifier",
+        "required": true,
+        "description": "The ID of the customer to retrieve subscription preferences for.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the customer you want to perform an operation against."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "customer_id"
+      },
+      {
+        "name": "customer_id_type",
+        "required": false,
+        "description": "Type of customer_id used to reference a person, e.g., 'id', 'email', or 'cio_id'. Defaults to 'id'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "id",
+            "email",
+            "cio_id"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of `customer_id` you want to use to reference a person. If you don't provide this parameter, we assume that the `customer_id` in your request is a person's `id`."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "id_type"
+      },
+      {
+        "name": "translation_language",
+        "required": false,
+        "description": "Specify the language tag for translating the subscription preferences content. If not provided, the default language is used.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "A [language tag](/journeys/unsubscribe-faqs/#currently-supported-languages) you want the content translated in. If none is provided, the content will be sent in the default language of your subscription center."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "language"
+      },
+      {
+        "name": "accept_language",
+        "required": false,
+        "description": "Language tag for translating content. If not specified, defaults to the subscription center's language.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "Accept-Language"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getPersonSubscriptionPreferences'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/customers/{customer_id}/subscription_preferences",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "id_type",
+        "tool_parameter_name": "customer_id_type",
+        "description": "The type of `customer_id` you want to use to reference a person. If you don't provide this parameter, we assume that the `customer_id` in your request is a person's `id`.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "id",
+            "email",
+            "cio_id"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of `customer_id` you want to use to reference a person. If you don't provide this parameter, we assume that the `customer_id` in your request is a person's `id`."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "language",
+        "tool_parameter_name": "translation_language",
+        "description": "A [language tag](/journeys/unsubscribe-faqs/#currently-supported-languages) you want the content translated in. If none is provided, the content will be sent in the default language of your subscription center.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "A [language tag](/journeys/unsubscribe-faqs/#currently-supported-languages) you want the content translated in. If none is provided, the content will be sent in the default language of your subscription center."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "customer_id",
+        "tool_parameter_name": "customer_identifier",
+        "description": "The ID of the customer you want to perform an operation against.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the customer you want to perform an operation against."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "Accept-Language",
+        "tool_parameter_name": "accept_language",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

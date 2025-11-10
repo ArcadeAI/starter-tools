@@ -1,0 +1,148 @@
+{
+  "name": "GlobalUnsubscribeUser",
+  "fully_qualified_name": "CustomerioTrackApi.GlobalUnsubscribeUser@0.1.0",
+  "description": "Set a user's global unsubscribe status in Customer.io.\n\nUse this tool to set a person's global unsubscribe status to true in Customer.io, attributed to a specific email delivery. Ideal when managing unsubscribe actions outside the default subscription pathways. It helps in segmenting audiences based on unsubscribe actions. Note: For custom subscription centers, additional requests are needed to manage custom attributes.",
+  "toolkit": {
+    "name": "ArcadeCustomerioTrackApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "delivery_id_for_unsubscription",
+        "required": true,
+        "description": "The unique identifier of the delivery associated with the unsubscription request. This links the unsubscribe action to a specific email or message delivery.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The delivery resulting in a request to unsubscribe."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "delivery_id"
+      },
+      {
+        "name": "set_unsubscribed_attribute",
+        "required": false,
+        "description": "If true, sets a person's `unsubscribed` attribute to true, associated with a specific delivery.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, a person's `unsubscribed` attribute is set to true and the unsubscription is attributed to the delivery."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "unsubscribe"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'unsubscribe'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_SITE_ID"
+      },
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io Track API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://track.customer.io/unsubscribe/{delivery_id}",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "delivery_id",
+        "tool_parameter_name": "delivery_id_for_unsubscription",
+        "description": "The delivery resulting in a request to unsubscribe.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The delivery resulting in a request to unsubscribe."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "unsubscribe",
+        "tool_parameter_name": "set_unsubscribed_attribute",
+        "description": "If true, a person's `unsubscribed` attribute is set to true and the unsubscription is attributed to the delivery.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, a person's `unsubscribed` attribute is set to true and the unsubscription is attributed to the delivery."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_SITE_ID",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "password",
+        "accepted_as": "basic_auth_password",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"unsubscribe\": {\n            \"type\": \"boolean\",\n            \"description\": \"If true, a person's `unsubscribed` attribute is set to true and the unsubscription is attributed to the delivery.\",\n            \"example\": true\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

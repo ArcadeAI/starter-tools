@@ -1,0 +1,149 @@
+{
+  "name": "MergeCustomerProfiles",
+  "fully_qualified_name": "CustomerioTrackApi.MergeCustomerProfiles@0.1.0",
+  "description": "Merge two customer profiles into one primary profile.\n\nUse this tool to merge two customer profiles. The primary profile remains and the secondary is deleted. Ensure the primary profile exists in Customer.io before calling this tool. The merge includes unfilled attributes, recent events, segments, and campaign journeys from the secondary to the primary.",
+  "toolkit": {
+    "name": "ArcadeCustomerioTrackApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "customer_profiles_to_merge",
+        "required": false,
+        "description": "JSON object containing `primary` and `secondary` profiles. Specify each profile by `id`, `email`, or `cio_id`. The `primary` is retained and the `secondary` is removed.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "primary": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The person that you want to remain after the merge, identified by one of `id`, `email`, or `cio_id`. This person receives information from the secondary person in the merge. \n\nIf email is disabled as an identifier in your [workspace settings](https://fly.customer.io/workspaces/last/settings/edit), then you must reference people by `id` or `cio_id`. Under How to Modify, `id` must be set to \"Reference people by cio_id\" for a successful merge. \n"
+            },
+            "secondary": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The person that you want to delete after the merge, identified by one of `id`, `email`, or `cio_id`. This person's information is merged into the primary person's profile and then it is deleted.\n\nIf email is disabled as an identifier in your [workspace settings](https://fly.customer.io/workspaces/last/settings/edit), then you must reference people by `id` or `cio_id`. Under How to Modify, `id` must be set to \"Reference people by cio_id\" for a successful merge.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'merge'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_SITE_ID"
+      },
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io Track API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://track.customer.io/api/v1/merge_customers",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "customer_profiles_to_merge",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "primary": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The person that you want to remain after the merge, identified by one of `id`, `email`, or `cio_id`. This person receives information from the secondary person in the merge. \n\nIf email is disabled as an identifier in your [workspace settings](https://fly.customer.io/workspaces/last/settings/edit), then you must reference people by `id` or `cio_id`. Under How to Modify, `id` must be set to \"Reference people by cio_id\" for a successful merge. \n"
+            },
+            "secondary": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The person that you want to delete after the merge, identified by one of `id`, `email`, or `cio_id`. This person's information is merged into the primary person's profile and then it is deleted.\n\nIf email is disabled as an identifier in your [workspace settings](https://fly.customer.io/workspaces/last/settings/edit), then you must reference people by `id` or `cio_id`. Under How to Modify, `id` must be set to \"Reference people by cio_id\" for a successful merge.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_SITE_ID",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "password",
+        "accepted_as": "basic_auth_password",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"description\": \"Provide identifiers for the `primary` and `secondary` people you want to merge together.\",\n        \"required\": [\n          \"primary\",\n          \"secondary\"\n        ],\n        \"properties\": {\n          \"primary\": {\n            \"description\": \"The person that you want to remain after the merge, identified by one of `id`, `email`, or `cio_id`. This person receives information from the secondary person in the merge. \\n\\nIf email is disabled as an identifier in your [workspace settings](https://fly.customer.io/workspaces/last/settings/edit), then you must reference people by `id` or `cio_id`. Under How to Modify, `id` must be set to \\\"Reference people by cio_id\\\" for a successful merge. \\n\",\n            \"oneOf\": [\n              {\n                \"title\": \"ID\",\n                \"type\": \"object\",\n                \"maxProperties\": 1,\n                \"properties\": {\n                  \"id\": {\n                    \"type\": \"string\",\n                    \"description\": \"The ID of a customer profile, analogous to a \\\"person\\\" in the UI.\",\n                    \"example\": \"42\"\n                  }\n                }\n              },\n              {\n                \"title\": \"email\",\n                \"type\": \"object\",\n                \"maxProperties\": 1,\n                \"properties\": {\n                  \"email\": {\n                    \"type\": \"string\",\n                    \"description\": \"The email address of the customer.\",\n                    \"example\": \"test@example.com\"\n                  }\n                }\n              },\n              {\n                \"title\": \"cio_id\",\n                \"type\": \"object\",\n                \"maxProperties\": 1,\n                \"properties\": {\n                  \"cio_id\": {\n                    \"type\": \"string\",\n                    \"description\": \"A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.\",\n                    \"example\": \"a3000001\"\n                  }\n                }\n              }\n            ]\n          },\n          \"secondary\": {\n            \"description\": \"The person that you want to delete after the merge, identified by one of `id`, `email`, or `cio_id`. This person's information is merged into the primary person's profile and then it is deleted.\\n\\nIf email is disabled as an identifier in your [workspace settings](https://fly.customer.io/workspaces/last/settings/edit), then you must reference people by `id` or `cio_id`. Under How to Modify, `id` must be set to \\\"Reference people by cio_id\\\" for a successful merge.\\n\",\n            \"oneOf\": [\n              {\n                \"title\": \"ID\",\n                \"type\": \"object\",\n                \"maxProperties\": 1,\n                \"properties\": {\n                  \"id\": {\n                    \"type\": \"string\",\n                    \"description\": \"The ID of a customer profile, analogous to a \\\"person\\\" in the UI.\",\n                    \"example\": \"42\"\n                  }\n                }\n              },\n              {\n                \"title\": \"email\",\n                \"type\": \"object\",\n                \"maxProperties\": 1,\n                \"properties\": {\n                  \"email\": {\n                    \"type\": \"string\",\n                    \"description\": \"The email address of the customer.\",\n                    \"example\": \"test@example.com\"\n                  }\n                }\n              },\n              {\n                \"title\": \"cio_id\",\n                \"type\": \"object\",\n                \"maxProperties\": 1,\n                \"properties\": {\n                  \"cio_id\": {\n                    \"type\": \"string\",\n                    \"description\": \"A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.\",\n                    \"example\": \"a3000001\"\n                  }\n                }\n              }\n            ]\n          }\n        }\n      },\n      \"example\": {\n        \"primary\": {\n          \"email\": \"cool.person@company.com\"\n        },\n        \"secondary\": {\n          \"email\": \"cperson@gmail.com\"\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

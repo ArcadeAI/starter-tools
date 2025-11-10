@@ -1,0 +1,213 @@
+{
+  "name": "GetCampaignLinkMetrics",
+  "fully_qualified_name": "CustomerioApi.GetCampaignLinkMetrics@0.1.0",
+  "description": "Get link click metrics for a campaign over specified periods.\n\nThis tool fetches metrics for link clicks within a specified campaign, providing both total and period-specific data (like days or weeks). It's useful for analyzing campaign performance over time.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "campaign_identifier",
+        "required": true,
+        "description": "The unique identifier for the campaign you want metrics for. Use this ID to specify the target campaign.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the campaign that you want to trigger or return information about."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "campaign_id"
+      },
+      {
+        "name": "report_time_unit",
+        "required": false,
+        "description": "The unit of time for the report. Options are: 'hours', 'days', 'weeks', 'months'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "days",
+            "weeks",
+            "months"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unit of time for your report."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "period"
+      },
+      {
+        "name": "number_of_periods",
+        "required": false,
+        "description": "The number of periods to return metrics for. Defaults to the maximum available, or 12 if the period is in months. Maximums are 24 hours, 45 days, 12 weeks, or 121 months.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "steps"
+      },
+      {
+        "name": "count_unique_customers",
+        "required": false,
+        "description": "Set to true to only include unique customer results. Set to false to count all clicks.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, the response contains only unique customer results, i.e. a customer who clicks a link twice is only counted once. If false, the response contains the total number of results without regard to uniqueness."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "unique"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'campaignLinkMetrics'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/campaigns/{campaign_id}/metrics/links",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "period",
+        "tool_parameter_name": "report_time_unit",
+        "description": "The unit of time for your report.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "days",
+            "weeks",
+            "months"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unit of time for your report."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": "days",
+        "documentation_urls": []
+      },
+      {
+        "name": "steps",
+        "tool_parameter_name": "number_of_periods",
+        "description": "The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "unique",
+        "tool_parameter_name": "count_unique_customers",
+        "description": "If true, the response contains only unique customer results, i.e. a customer who clicks a link twice is only counted once. If false, the response contains the total number of results without regard to uniqueness.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, the response contains only unique customer results, i.e. a customer who clicks a link twice is only counted once. If false, the response contains the total number of results without regard to uniqueness."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": false,
+        "documentation_urls": []
+      },
+      {
+        "name": "campaign_id",
+        "tool_parameter_name": "campaign_identifier",
+        "description": "The ID of the campaign that you want to trigger or return information about.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the campaign that you want to trigger or return information about."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

@@ -1,0 +1,441 @@
+{
+  "name": "FetchMessageDeliveries",
+  "fully_qualified_name": "CustomerioApi.FetchMessageDeliveries@0.1.0",
+  "description": "Retrieve a list of message deliveries and their metrics.\n\nThis tool retrieves a list of message deliveries, including metrics, within a specified time range in your workspace. Use it to analyze message performance over the most recent six months or a defined period. If no specific time range is provided, it defaults to the last six months.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "page_token",
+        "required": false,
+        "description": "The token to fetch the specified page of delivery results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "results_per_page_limit",
+        "required": false,
+        "description": "Specifies the maximum number of results to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "limit"
+      },
+      {
+        "name": "item_type_for_metrics",
+        "required": false,
+        "description": "Specify the item type to return metrics for, such as 'email', 'webhook', 'twilio', 'slack', 'push', or 'in_app'. Leave empty for all types.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "email",
+            "webhook",
+            "twilio",
+            "slack",
+            "push",
+            "in_app"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "type"
+      },
+      {
+        "name": "desired_metrics",
+        "required": false,
+        "description": "Specifies the metrics to retrieve. Options include: attempted, sent, delivered, opened, clicked, converted, bounced, spammed, unsubscribed, dropped, failed, undeliverable.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "attempted",
+            "sent",
+            "delivered",
+            "opened",
+            "clicked",
+            "converted",
+            "bounced",
+            "spammed",
+            "unsubscribed",
+            "dropped",
+            "failed",
+            "undeliverable"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Determines the metric(s) you want to return."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "metric"
+      },
+      {
+        "name": "filter_by_campaign_id",
+        "required": false,
+        "description": "The ID of the campaign to filter message deliveries. Use this to retrieve data for a specific campaign only.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The campaign you want to filter for."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "campaign_id"
+      },
+      {
+        "name": "filter_by_newsletter_id",
+        "required": false,
+        "description": "An integer representing the ID of the newsletter to filter deliveries for.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The newsletter you want to filter for."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "newsletter_id"
+      },
+      {
+        "name": "filter_by_action_id",
+        "required": false,
+        "description": "Specify the action ID to filter the message deliveries. This narrows the results to messages associated with the given action.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The action you want to filter for."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "action_id"
+      },
+      {
+        "name": "beginning_timestamp",
+        "required": false,
+        "description": "The beginning timestamp in Unix format for your query. Returns deliveries created after this time.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The beginning timestamp for your query."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start_ts"
+      },
+      {
+        "name": "ending_timestamp_for_query",
+        "required": false,
+        "description": "The ending timestamp for your query. If not specified, it defaults to the current time.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ending timestamp for your query."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "end_ts"
+      },
+      {
+        "name": "return_drafts_only",
+        "required": false,
+        "description": "Set to true to return drafts instead of active or sent messages.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, your request returns drafts rather than active/sent messages."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "drafts"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'listMessages'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/messages",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "start",
+        "tool_parameter_name": "page_token",
+        "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "limit",
+        "tool_parameter_name": "results_per_page_limit",
+        "description": "The maximum number of results you want to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": 50,
+        "documentation_urls": []
+      },
+      {
+        "name": "type",
+        "tool_parameter_name": "item_type_for_metrics",
+        "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "email",
+            "webhook",
+            "twilio",
+            "slack",
+            "push",
+            "in_app"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "metric",
+        "tool_parameter_name": "desired_metrics",
+        "description": "Determines the metric(s) you want to return.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "attempted",
+            "sent",
+            "delivered",
+            "opened",
+            "clicked",
+            "converted",
+            "bounced",
+            "spammed",
+            "unsubscribed",
+            "dropped",
+            "failed",
+            "undeliverable"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Determines the metric(s) you want to return."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "drafts",
+        "tool_parameter_name": "return_drafts_only",
+        "description": "If true, your request returns drafts rather than active/sent messages.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, your request returns drafts rather than active/sent messages."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "campaign_id",
+        "tool_parameter_name": "filter_by_campaign_id",
+        "description": "The campaign you want to filter for.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The campaign you want to filter for."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "newsletter_id",
+        "tool_parameter_name": "filter_by_newsletter_id",
+        "description": "The newsletter you want to filter for.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The newsletter you want to filter for."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "action_id",
+        "tool_parameter_name": "filter_by_action_id",
+        "description": "The action you want to filter for.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The action you want to filter for."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start_ts",
+        "tool_parameter_name": "beginning_timestamp",
+        "description": "The beginning timestamp for your query.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The beginning timestamp for your query."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "end_ts",
+        "tool_parameter_name": "ending_timestamp_for_query",
+        "description": "The ending timestamp for your query.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ending timestamp for your query."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

@@ -1,0 +1,352 @@
+{
+  "name": "UpdateOrAddPerson",
+  "fully_qualified_name": "CustomerioTrackApi.UpdateOrAddPerson@0.1.0",
+  "description": "Add or update a person's information in the database.\n\nUse this tool to add a new person or update existing person details based on identifiers. If no individual is found with the given identifiers, a new person is added. If existing identifiers match, the person's information is updated. For identifier updates, use `cio_id`. If identifiers conflict, the request may result in an Attribute Update Failure warning.",
+  "toolkit": {
+    "name": "ArcadeCustomerioTrackApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "person_identifier",
+        "required": true,
+        "description": "The unique value used to identify a person, such as an ID, email, or `cio_id` (with `cio_` prefix for updates).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unique value representing a person. The values you use to identify a person may be an `id`, `email` address, or the `cio_id` (when updating people), depending on your workspace settings. When you reference people by `cio_id`, you must prefix the value with `cio_`.\n"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "identifier"
+      },
+      {
+        "name": "person_information_payload",
+        "required": false,
+        "description": "A JSON object containing detailed information to update or add a person, including identifiers like `id`, `email`, or `cio_id`, timestamps, subscription preferences, and relationships.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A customer's ID. You can set a person's ID if you identify them by email (in the path); you can update this value if you identify a person by `cio_id`."
+            },
+            "email": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The email address of the customer."
+            },
+            "anonymous_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "An identifier for an anonymous event, like a cookie. If set as an attribute on a person, any events bearing the same anonymous value are associated with this person. This value must be unique and is not reusable."
+            },
+            "created_at": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The Unix timestamp when the user was created."
+            },
+            "_timestamp": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The Unix timestamp for when the attribute update occurred. This can be used to control the order of attribute updates when multiple requests are sent in rapid succession."
+            },
+            "_update": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "If you perform multiple requests in rapid succession when you create a person, there's a danger that you could create multiple profiles. If you know that a profile already exists and you want to update it, set `_update:true`, and Customer.io will _not_ create a new profile, even if the `identifier` in the path isn't found.\n\nIf the identifiers in your path or request don't belong to an existing person, the request produces a *Failed Attribute Change* event in your activity log.\n"
+            },
+            "cio_relationships": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "action": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "add_relationships",
+                    "delete_relationships"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "This determines whether the `relationships` array adds relationships to a person or removes them from a person."
+                },
+                "relationships": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {},
+                  "description": "Each object in the array represents a relationship you want to add to, or remove from, a person."
+                }
+              },
+              "inner_properties": null,
+              "description": "Describes relationships to an entity\u2014a non-person object in Customer.io, like a company, educational course, job board, etc."
+            },
+            "unsubscribed": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "If true, a person is unsubscribed from all messages. If false, or absent, a person is eligible to receive messages as determined by their `cio_subscription_preferences`. Like subscription preferences, this attribute is automatically set or updated when a person clicks the \"unsubscribe\" link in your emails. We support any case of true (i.e. TRUE, true, tRUe, etc.), 1, or \"1\" to represent unsubscribed. Any other value is considered \u201cfalse\u201d, or subscribed."
+            },
+            "cio_subscription_preferences": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "topics": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Contains active topics in your workspace, named `topic_<id>`."
+                }
+              },
+              "inner_properties": null,
+              "description": "Stores your audience's subscription preferences if you enable our [subscription center](/subscription-center/) feature. These items are set automatically when people use the unsubscribe link in your messages, but you can set preferences outside the subscription flow. To update select topic preferences while preserving those set for other topics, use JSON dot notation `\"cio_subscription_preferences.topics.topic_<topic ID>\":<boolean>`."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'identify'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_SITE_ID"
+      },
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io Track API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://track.customer.io/api/v1/customers/{identifier}",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "identifier",
+        "tool_parameter_name": "person_identifier",
+        "description": "The unique value representing a person. The values you use to identify a person may be an `id`, `email` address, or the `cio_id` (when updating people), depending on your workspace settings. When you reference people by `cio_id`, you must prefix the value with `cio_`.\n",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The unique value representing a person. The values you use to identify a person may be an `id`, `email` address, or the `cio_id` (when updating people), depending on your workspace settings. When you reference people by `cio_id`, you must prefix the value with `cio_`.\n"
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "person_information_payload",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A customer's ID. You can set a person's ID if you identify them by email (in the path); you can update this value if you identify a person by `cio_id`."
+            },
+            "email": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The email address of the customer."
+            },
+            "anonymous_id": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "An identifier for an anonymous event, like a cookie. If set as an attribute on a person, any events bearing the same anonymous value are associated with this person. This value must be unique and is not reusable."
+            },
+            "created_at": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The Unix timestamp when the user was created."
+            },
+            "_timestamp": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The Unix timestamp for when the attribute update occurred. This can be used to control the order of attribute updates when multiple requests are sent in rapid succession."
+            },
+            "_update": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "If you perform multiple requests in rapid succession when you create a person, there's a danger that you could create multiple profiles. If you know that a profile already exists and you want to update it, set `_update:true`, and Customer.io will _not_ create a new profile, even if the `identifier` in the path isn't found.\n\nIf the identifiers in your path or request don't belong to an existing person, the request produces a *Failed Attribute Change* event in your activity log.\n"
+            },
+            "cio_relationships": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "action": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "add_relationships",
+                    "delete_relationships"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "This determines whether the `relationships` array adds relationships to a person or removes them from a person."
+                },
+                "relationships": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {},
+                  "description": "Each object in the array represents a relationship you want to add to, or remove from, a person."
+                }
+              },
+              "inner_properties": null,
+              "description": "Describes relationships to an entity\u2014a non-person object in Customer.io, like a company, educational course, job board, etc."
+            },
+            "unsubscribed": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "If true, a person is unsubscribed from all messages. If false, or absent, a person is eligible to receive messages as determined by their `cio_subscription_preferences`. Like subscription preferences, this attribute is automatically set or updated when a person clicks the \"unsubscribe\" link in your emails. We support any case of true (i.e. TRUE, true, tRUe, etc.), 1, or \"1\" to represent unsubscribed. Any other value is considered \u201cfalse\u201d, or subscribed."
+            },
+            "cio_subscription_preferences": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "topics": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Contains active topics in your workspace, named `topic_<id>`."
+                }
+              },
+              "inner_properties": null,
+              "description": "Stores your audience's subscription preferences if you enable our [subscription center](/subscription-center/) feature. These items are set automatically when people use the unsubscribe link in your messages, but you can set preferences outside the subscription flow. To update select topic preferences while preserving those set for other topics, use JSON dot notation `\"cio_subscription_preferences.topics.topic_<topic ID>\":<boolean>`."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_SITE_ID",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "password",
+        "accepted_as": "basic_auth_password",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"description\": \"The body of the request contains key-value pairs representing attributes that you want to assign to, or update for, a person.\\n\\nIf your request body contains \\\"identifiers\\\" (like `id` or `email`), your request attempts to update that person. If the identifier in the path and identifiers in the request body belong to different people, your request will produce an *Attribute Update Failure*.\\n\",\n        \"additionalProperties\": {\n          \"x-additionalPropertiesName\": \"Attributes\",\n          \"description\": \"Set attributes on customers. Attributes can have string, integer, or boolean values.\",\n          \"oneOf\": [\n            {\n              \"type\": \"string\"\n            },\n            {\n              \"type\": \"integer\"\n            },\n            {\n              \"type\": \"boolean\"\n            }\n          ]\n        },\n        \"properties\": {\n          \"id\": {\n            \"type\": \"string\",\n            \"description\": \"A customer's ID. You can set a person's ID if you identify them by email (in the path); you can update this value if you identify a person by `cio_id`.\"\n          },\n          \"email\": {\n            \"type\": \"string\",\n            \"format\": \"email\",\n            \"description\": \"The email address of the customer.\"\n          },\n          \"anonymous_id\": {\n            \"type\": \"string\",\n            \"description\": \"An identifier for an anonymous event, like a cookie. If set as an attribute on a person, any events bearing the same anonymous value are associated with this person. This value must be unique and is not reusable.\"\n          },\n          \"created_at\": {\n            \"type\": \"integer\",\n            \"description\": \"The Unix timestamp when the user was created.\"\n          },\n          \"_timestamp\": {\n            \"type\": \"integer\",\n            \"description\": \"The Unix timestamp for when the attribute update occurred. This can be used to control the order of attribute updates when multiple requests are sent in rapid succession.\"\n          },\n          \"_update\": {\n            \"type\": \"boolean\",\n            \"description\": \"If you perform multiple requests in rapid succession when you create a person, there's a danger that you could create multiple profiles. If you know that a profile already exists and you want to update it, set `_update:true`, and Customer.io will _not_ create a new profile, even if the `identifier` in the path isn't found.\\n\\nIf the identifiers in your path or request don't belong to an existing person, the request produces a *Failed Attribute Change* event in your activity log.\\n\"\n          },\n          \"cio_relationships\": {\n            \"type\": \"object\",\n            \"description\": \"Describes relationships to an entity\\u2014a non-person object in Customer.io, like a company, educational course, job board, etc.\",\n            \"properties\": {\n              \"action\": {\n                \"type\": \"string\",\n                \"description\": \"This determines whether the `relationships` array adds relationships to a person or removes them from a person.\",\n                \"enum\": [\n                  \"add_relationships\",\n                  \"delete_relationships\"\n                ]\n              },\n              \"relationships\": {\n                \"type\": \"array\",\n                \"description\": \"Each object in the array represents a relationship you want to add to, or remove from, a person.\",\n                \"items\": {\n                  \"allOf\": [\n                    {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"identifiers\": {\n                          \"description\": \"The identifiers for a particular object. You can use either the `object_type_id` and `object_id` (where `object_type_id` represents the type of object and the `object_id` is the individual identifier for the object) or the `cio_object_id`.\",\n                          \"oneOf\": [\n                            {\n                              \"title\": \"Object ID\",\n                              \"type\": \"object\",\n                              \"required\": [\n                                \"object_type_id\",\n                                \"object_id\"\n                              ],\n                              \"properties\": {\n                                \"object_type_id\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"The object type an object belongs to\\u2014like \\\"Companies\\\" or \\\"Accounts\\\". Object type IDs are string-formatted integers that begin at `1` and increment for each new type.\",\n                                  \"nullable\": false,\n                                  \"example\": \"1\"\n                                },\n                                \"object_id\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"The unique identifier for an object. If you use an `object_id` that already exists, we'll update the object accordingly.\",\n                                  \"nullable\": false,\n                                  \"example\": \"acme\"\n                                }\n                              }\n                            },\n                            {\n                              \"title\": \"CIO Object ID\",\n                              \"type\": \"object\",\n                              \"required\": [\n                                \"cio_object_id\"\n                              ],\n                              \"properties\": {\n                                \"cio_object_id\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"A unique value that Customer.io sets for an object when you create it. This ID is immutable.\",\n                                  \"example\": \"obb7fd050101\"\n                                }\n                              }\n                            }\n                          ]\n                        }\n                      }\n                    },\n                    {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"relationship_attributes\": {\n                          \"type\": \"object\",\n                          \"description\": \"The attributes associated with a relationship. Passing null or an empty string removes the attribute from the relationship.\\n\",\n                          \"additionalProperties\": {\n                            \"x-additionalPropertiesName\": \"Relationship Attributes\"\n                          },\n                          \"example\": {\n                            \"role\": \"admin\"\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          },\n          \"unsubscribed\": {\n            \"type\": \"boolean\",\n            \"description\": \"If true, a person is unsubscribed from all messages. If false, or absent, a person is eligible to receive messages as determined by their `cio_subscription_preferences`. Like subscription preferences, this attribute is automatically set or updated when a person clicks the \\\"unsubscribe\\\" link in your emails. We support any case of true (i.e. TRUE, true, tRUe, etc.), 1, or \\\"1\\\" to represent unsubscribed. Any other value is considered \\u201cfalse\\u201d, or subscribed.\"\n          },\n          \"cio_subscription_preferences\": {\n            \"description\": \"Stores your audience's subscription preferences if you enable our [subscription center](/subscription-center/) feature. These items are set automatically when people use the unsubscribe link in your messages, but you can set preferences outside the subscription flow. To update select topic preferences while preserving those set for other topics, use JSON dot notation `\\\"cio_subscription_preferences.topics.topic_<topic ID>\\\":<boolean>`.\",\n            \"type\": \"object\",\n            \"properties\": {\n              \"topics\": {\n                \"type\": \"object\",\n                \"description\": \"Contains active topics in your workspace, named `topic_<id>`.\",\n                \"additionalProperties\": {\n                  \"x-additionalPropertiesName\": \"topic_<id>\",\n                  \"description\": \"Each property is a boolean named `topic_<id>`. Topic `id` values begin at `1` and increment for each new topic. You can find your topic ids in [Workspace Settings](https://fly.customer.io/workspaces/last/settings/subscription_center/topics) or by querying our [App API](https://customer.io/api/app/#operation/getTopics). For each boolean, `true` means that a person is subscribed to the topic; false means they are unsubscribed. An empty or missing value reverts to the default preference for the topic (opt-in or opt-out).\",\n                  \"type\": \"boolean\"\n                }\n              }\n            }\n          }\n        }\n      },\n      \"example\": {\n        \"email\": \"customer@example.com\",\n        \"created_at\": 1361205308,\n        \"first_name\": \"Bob\",\n        \"plan\": \"basic\",\n        \"cio_relationships\": {\n          \"action\": \"add_relationships\",\n          \"relationships\": [\n            {\n              \"identifiers\": {\n                \"object_type_id\": \"1\",\n                \"object_id\": \"01H5Q5SZVQDJ71SBME2SMDXS88\"\n              },\n              \"relationship_attributes\": {\n                \"role\": \"admin\"\n              }\n            },\n            {\n              \"identifiers\": {\n                \"object_type_id\": \"2\",\n                \"object_id\": \"1171SBME\"\n              },\n              \"relationship_attributes\": {\n                \"role\": \"viewer\"\n              }\n            }\n          ]\n        },\n        \"cio_subscription_preferences\": {\n          \"topics\": {\n            \"topic_1\": true,\n            \"topic_2\": true,\n            \"topic_3\": false\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

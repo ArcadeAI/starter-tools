@@ -1,0 +1,137 @@
+{
+  "name": "UpdateCollectionInfo",
+  "fully_qualified_name": "CustomerioApi.UpdateCollectionInfo@0.1.0",
+  "description": "Update collection name or replace its contents in Customerio.\n\nUse this tool to update the name or fully replace the contents of a specific collection in Customerio. Be careful when changing the collection name if it's referenced in active campaigns, as it will cause the references to return an empty data set. Ensure the collection size is within 10 MB and individual rows are no more than 10 KB.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "collection_identifier",
+        "required": true,
+        "description": "The unique identifier for the collection to be updated.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier for a collection."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "collection_id"
+      },
+      {
+        "name": "collection_update_data",
+        "required": false,
+        "description": "JSON object containing the new name or contents for the collection. Be cautious with name changes if referenced in campaigns. Ensure total size is under 10 MB and individual rows not exceeding 10 KB.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'updateCollection'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/collections/{collection_id}",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "collection_id",
+        "tool_parameter_name": "collection_identifier",
+        "description": "The identifier for a collection.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier for a collection."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "collection_update_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"oneOf\": [\n          {\n            \"title\": \"Local data\",\n            \"type\": \"object\",\n            \"properties\": {\n              \"name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the collection. This is how you'll reference your collection in messages\\u2014`{{collection_name.data-property}}`.\"\n              },\n              \"data\": {\n                \"type\": \"array\",\n                \"description\": \"An array of data objects that you want to reference in this collection.\",\n                \"items\": {\n                  \"type\": \"object\",\n                  \"additionalProperties\": {\n                    \"x-additionalPropertiesName\": \"collection data\"\n                  }\n                }\n              }\n            }\n          },\n          {\n            \"title\": \"Data by URL\",\n            \"type\": \"object\",\n            \"properties\": {\n              \"name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the collection. This is how you'll reference your collection in messages\\u2014`{{collection_name.data-property}}`.\"\n              },\n              \"url\": {\n                \"type\": \"string\",\n                \"format\": \"url\",\n                \"description\": \"The URL for your CSV or JSON data. If your URL does not return a `Content-Type`, we use the file extension; otherwise, Customer.io assumes your data is JSON.\\n\"\n              }\n            }\n          }\n        ]\n      },\n      \"example\": {\n        \"name\": \"events\",\n        \"data\": [\n          {\n            \"eventName\": \"christmas\",\n            \"eventDate\": \"2021-12-25T12:00:00.000Z\",\n            \"presents\": {\n              \"something_you_want\": \"toys\",\n              \"something_you_need\": \"socks\",\n              \"total\": 2\n            }\n          },\n          {\n            \"eventName\": \"birthday\",\n            \"eventDate\": \"2021-03-15T12:00:00.000Z\",\n            \"presents\": {\n              \"something_you_want\": \"video games\",\n              \"something_you_need\": \"books\",\n              \"total\": 2\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

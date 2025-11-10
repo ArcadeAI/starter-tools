@@ -1,0 +1,115 @@
+{
+  "name": "TrackAnonymousEvent",
+  "fully_qualified_name": "CustomerioTrackApi.TrackAnonymousEvent@0.1.0",
+  "description": "Log anonymous events for unidentified users.\n\nUse this tool to log anonymous events for individuals who have not been identified yet. Events can be of type `page`, `screen`, or `event` and are useful for tracking website page views, app screen views, or other activities. Helps in associating events with users for triggering campaigns if merged later.",
+  "toolkit": {
+    "name": "ArcadeCustomerioTrackApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "event_details",
+        "required": false,
+        "description": "JSON object containing the event type and details. Include fields like `type`, `name`, and any additional event data necessary for logging the anonymous event.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'trackAnonymous'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_SITE_ID"
+      },
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io Track API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://track.customer.io/api/v1/events",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "event_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_SITE_ID",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "password",
+        "accepted_as": "basic_auth_password",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"description\": \"An event attributed to an unknown person. If you provide an `anonymous_id` with the event, you can associate the event with a person later (using the anonymous ID).\",\n        \"oneOf\": [\n          {\n            \"title\": \"Standard anonymous event\",\n            \"type\": \"object\",\n            \"required\": [\n              \"name\"\n            ],\n            \"properties\": {\n              \"anonymous_id\": {\n                \"type\": \"string\",\n                \"description\": \"An identifier for an anonymous event, like a cookie. If set as an attribute on a person, any events bearing the same anonymous value are associated with this person. This value must be unique and is not reusable.\"\n              },\n              \"name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the event. This is how you'll reference the event in campaigns or segments.\"\n              },\n              \"id\": {\n                \"type\": \"string\",\n                \"format\": \"ulid\",\n                \"description\": \"An identifier used to deduplicate events. This value must be a [ULID](https://github.com/ulid/spec). If an event has the same value as an event we previously received, we won't show or process the duplicate. Note - our Python and Ruby libraries do not pass this id.\"\n              },\n              \"type\": {\n                \"type\": \"string\",\n                \"description\": \"Sets the event type. If your event isn't a `page` or `screen` type event, we automatically set this property to `event`.\",\n                \"enum\": [\n                  \"event\",\n                  \"page\",\n                  \"screen\"\n                ]\n              },\n              \"timestamp\": {\n                \"type\": \"integer\",\n                \"format\": \"unix timestamp\",\n                \"description\": \"The unix timestamp when the event took place. If you don't provide this value, we use the date-time when we receive the event.\\n\"\n              },\n              \"data\": {\n                \"type\": \"object\",\n                \"description\": \"Additional information that you might want to reference in a message using liquid or use to set attributes on your customer (referenced by `customer_id`). You can include `from_address` and `reply_to`, but the event can only trigger a campaign if it is associated with a person within 72 hours of its timestamp.\",\n                \"additionalProperties\": {\n                  \"x-additionalPropertiesName\": \"liquid merge data\",\n                  \"description\": \"Insert key-values that you want to reference in messages or convert to attributes if/when you associate this event with a person.\"\n                },\n                \"properties\": {\n                  \"from_address\": {\n                    \"type\": \"string\",\n                    \"format\": \"email\",\n                    \"description\": \"The address you want to trigger messages from, overriding the `from` field in emails triggered by the event.\"\n                  },\n                  \"reply_to\": {\n                    \"type\": \"string\",\n                    \"description\": \"The address that receives replies for the message, if applicable.\",\n                    \"example\": \"replyto@example.com\"\n                  }\n                }\n              }\n            },\n            \"example\": {\n              \"name\": \"watched_video\",\n              \"anonymous_id\": \"abc123\",\n              \"data\": {\n                \"video\": \"intro-to-platform\"\n              }\n            }\n          },\n          {\n            \"title\": \"Page view\",\n            \"type\": \"object\",\n            \"required\": [\n              \"name\",\n              \"type\"\n            ],\n            \"properties\": {\n              \"anonymous_id\": {\n                \"type\": \"string\",\n                \"description\": \"An identifier for an anonymous event, like a cookie. If set as an attribute on a person, any events bearing the same anonymous value are associated with this person. This value must be unique and is not reusable.\"\n              },\n              \"name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the event. In general, this should be the URL of the page a person visited, making it easy to segment your audience or trigger campaigns using this event. Make sure you trim leading and trailing spaces from this field.\"\n              },\n              \"id\": {\n                \"type\": \"string\",\n                \"format\": \"ulid\",\n                \"description\": \"An identifier used to deduplicate events. This value must be a [ULID](https://github.com/ulid/spec). If an event has the same value as an event we previously received, we won't show or process the duplicate. Note - our Python and Ruby libraries do not pass this id.\"\n              },\n              \"type\": {\n                \"type\": \"string\",\n                \"description\": \"Indicates that the event represents a page view. See [\\\"page view\\\" events](/integrations/data-in/connections/javascript/legacy-js/events/#page-view-events), for more information.\",\n                \"enum\": [\n                  \"page\"\n                ]\n              },\n              \"timestamp\": {\n                \"type\": \"integer\",\n                \"format\": \"unix timestamp\",\n                \"description\": \"The unix timestamp when the event took place. If you don't provide this value, we use the date-time when we receive the event.\\n\"\n              },\n              \"data\": {\n                \"type\": \"object\",\n                \"description\": \"Additional information that you might want to reference in a message using liquid or use to set attributes on your customer (referenced by `customer_id`).\",\n                \"additionalProperties\": {\n                  \"x-additionalPropertiesName\": \"liquid merge data\",\n                  \"description\": \"Insert key-values that you want to reference in messages or convert to attributes if/when you associate this event with a person.\"\n                }\n              }\n            },\n            \"example\": {\n              \"name\": \"https://mysite.com/page\",\n              \"type\": \"page\",\n              \"anonymous_id\": \"abc123\",\n              \"data\": {\n                \"first_name\": \"Person\"\n              }\n            }\n          },\n          {\n            \"title\": \"Mobile screen view\",\n            \"type\": \"object\",\n            \"required\": [\n              \"name\",\n              \"type\"\n            ],\n            \"properties\": {\n              \"anonymous_id\": {\n                \"type\": \"string\",\n                \"description\": \"An identifier for an anonymous event, like a cookie. If set as an attribute on a person, any events bearing the same anonymous value are associated with this person. This value must be unique and is not reusable.\"\n              },\n              \"name\": {\n                \"type\": \"string\",\n                \"description\": \"The name of the event. In general, this should be the name of the screen or deep link path that a person viewed, making it easy to segment your audience or trigger campaigns using this event. Make sure you trim leading and trailing spaces from this field.\"\n              },\n              \"id\": {\n                \"type\": \"string\",\n                \"format\": \"ulid\",\n                \"description\": \"An identifier used to deduplicate events. This value must be a [ULID](https://github.com/ulid/spec). If an event has the same value as an event we previously received, we won't show or process the duplicate. Note - our Python and Ruby libraries do not pass this id.\"\n              },\n              \"type\": {\n                \"type\": \"string\",\n                \"description\": \"Indicates that the event represents a mobile screen view. You can also capture screen events directly with [our iOS SDK](/integrations/sdk/ios/track-events/#screen-view-events).\",\n                \"enum\": [\n                  \"screen\"\n                ]\n              },\n              \"timestamp\": {\n                \"type\": \"integer\",\n                \"format\": \"unix timestamp\",\n                \"description\": \"The unix timestamp when the event took place. If you don't provide this value, we use the date-time when we receive the event.\\n\"\n              },\n              \"data\": {\n                \"type\": \"object\",\n                \"description\": \"Additional information that you might want to reference in a message using liquid or use to set attributes on your customer (referenced by `customer_id`).\",\n                \"additionalProperties\": {\n                  \"x-additionalPropertiesName\": \"liquid merge data\",\n                  \"description\": \"Insert key-values that you want to reference in messages or convert to attributes if/when you associate this event with a person.\"\n                }\n              }\n            },\n            \"example\": {\n              \"name\": \"homepage\",\n              \"type\": \"screen\",\n              \"anonymous_id\": \"abc123\"\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

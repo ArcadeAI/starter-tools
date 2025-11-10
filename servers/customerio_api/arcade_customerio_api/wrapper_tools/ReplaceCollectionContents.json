@@ -1,0 +1,137 @@
+{
+  "name": "ReplaceCollectionContents",
+  "fully_qualified_name": "CustomerioApi.ReplaceCollectionContents@0.1.0",
+  "description": "Replace the entire contents of a data collection.\n\nUse this tool to completely replace the existing contents of a data collection by specifying the new keys and values. Ideal for cases where a full update is required. Keep in mind the size limitations: collections must not exceed 10 MB and no single row more than 10 KB.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "collection_identifier",
+        "required": true,
+        "description": "The unique identifier for the collection whose contents are being replaced. This is required for identifying the specific collection to update.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier for a collection."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "collection_id"
+      },
+      {
+        "name": "collection_contents",
+        "required": false,
+        "description": "A JSON object with the keys and values for the entire collection. This replaces all existing contents, so include everything you want to keep.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Your request is a free form object representing the contents of your collection. This request replaces the contents of the collection entirely, so include all contents that you want to remain in the collection\u2014whether they change or not."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'updateCollectionContents'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/collections/{collection_id}/content",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "collection_id",
+        "tool_parameter_name": "collection_identifier",
+        "description": "The identifier for a collection.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier for a collection."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "collection_contents",
+        "description": "Your request is a free form object representing the contents of your collection. This request replaces the contents of the collection entirely, so include all contents that you want to remain in the collection\u2014whether they change or not.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Your request is a free form object representing the contents of your collection. This request replaces the contents of the collection entirely, so include all contents that you want to remain in the collection\u2014whether they change or not."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"description\": \"Your request is a free form object representing the contents of your collection. This request replaces the contents of the collection entirely, so include all contents that you want to remain in the collection\\u2014whether they change or not.\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"additionalProperties\": {\n          \"x-additionalPropertiesName\": \"collection contents\"\n        }\n      },\n      \"example\": {\n        \"eventName\": \"christmas\",\n        \"eventDate\": \"2021-12-25T12:00:00.000Z\",\n        \"presents\": {\n          \"something_you_want\": \"toys\",\n          \"something_you_need\": \"socks\",\n          \"total\": 2\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

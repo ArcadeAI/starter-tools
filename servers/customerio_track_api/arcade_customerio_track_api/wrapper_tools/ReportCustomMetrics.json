@@ -1,0 +1,115 @@
+{
+  "name": "ReportCustomMetrics",
+  "fully_qualified_name": "CustomerioTrackApi.ReportCustomMetrics@0.1.0",
+  "description": "Report metrics from non-native Customer.io channels.\n\nUse this tool to report metrics from channels not supported natively by Customer.io or those not using their SDKs. It is useful for tracking user interactions like clicks or conversions using the CIO-Delivery-ID as a UTM parameter.",
+  "toolkit": {
+    "name": "ArcadeCustomerioTrackApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "custom_metrics_data",
+        "required": false,
+        "description": "JSON object containing metrics data to report, including any relevant tracking identifiers like CIO-Delivery-ID.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'metrics'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_SITE_ID"
+      },
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io Track API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://track.customer.io/api/v1/metrics",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "custom_metrics_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_SITE_ID",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "password",
+        "accepted_as": "basic_auth_password",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"oneOf\": [\n          {\n            \"title\": \"Email\",\n            \"allOf\": [\n              {\n                \"description\": \"The base properties shared across multiple metric types.\",\n                \"type\": \"object\",\n                \"required\": [\n                  \"delivery_id\"\n                ],\n                \"properties\": {\n                  \"delivery_id\": {\n                    \"type\": \"string\",\n                    \"description\": \"The CIO-Delivery-ID from the notification that you want to associate the `event` with.\",\n                    \"example\": \"RPILAgUBcRhIBqSfeiIwdIYJKxTY\"\n                  },\n                  \"timestamp\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The unix timestamp when the event occurred.\",\n                    \"example\": 1613063089\n                  }\n                }\n              },\n              {\n                \"type\": \"object\",\n                \"required\": [\n                  \"metric\"\n                ],\n                \"properties\": {\n                  \"metric\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"bounced\",\n                      \"clicked\",\n                      \"converted\",\n                      \"deferred\",\n                      \"delivered\",\n                      \"dropped\",\n                      \"opened\",\n                      \"spammed\"\n                    ],\n                    \"description\": \"The email metric you want to report back to Customer.io.\"\n                  },\n                  \"recipient\": {\n                    \"type\": \"string\",\n                    \"description\": \"The email of the person who received the message.\"\n                  },\n                  \"reason\": {\n                    \"type\": \"string\",\n                    \"description\": \"For metrics indicating a failure (like `bounced`), this field provides the reason for the failure.\"\n                  },\n                  \"href\": {\n                    \"type\": \"string\",\n                    \"description\": \"For `clicked` metrics, this is the link the recipient clicked.\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"title\": \"In-app\",\n            \"allOf\": [\n              {\n                \"description\": \"The base properties shared across multiple metric types.\",\n                \"type\": \"object\",\n                \"required\": [\n                  \"delivery_id\"\n                ],\n                \"properties\": {\n                  \"delivery_id\": {\n                    \"type\": \"string\",\n                    \"description\": \"The CIO-Delivery-ID from the notification that you want to associate the `event` with.\",\n                    \"example\": \"RPILAgUBcRhIBqSfeiIwdIYJKxTY\"\n                  },\n                  \"timestamp\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The unix timestamp when the event occurred.\",\n                    \"example\": 1613063089\n                  }\n                }\n              },\n              {\n                \"type\": \"object\",\n                \"required\": [\n                  \"metric\"\n                ],\n                \"properties\": {\n                  \"metric\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"clicked\",\n                      \"converted\",\n                      \"opened\"\n                    ],\n                    \"description\": \"The type of device-side event you want to report back to Customer.io.\"\n                  },\n                  \"recipient\": {\n                    \"type\": \"string\",\n                    \"description\": \"The email address or ID of the recipient (depending on the value you use to target in-app messages).\"\n                  },\n                  \"href\": {\n                    \"type\": \"string\",\n                    \"description\": \"For `clicked` metrics, this is the link the recipient clicked.\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"title\": \"Push\",\n            \"allOf\": [\n              {\n                \"description\": \"The base properties shared across multiple metric types.\",\n                \"type\": \"object\",\n                \"required\": [\n                  \"delivery_id\"\n                ],\n                \"properties\": {\n                  \"delivery_id\": {\n                    \"type\": \"string\",\n                    \"description\": \"The CIO-Delivery-ID from the notification that you want to associate the `event` with.\",\n                    \"example\": \"RPILAgUBcRhIBqSfeiIwdIYJKxTY\"\n                  },\n                  \"timestamp\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The unix timestamp when the event occurred.\",\n                    \"example\": 1613063089\n                  }\n                }\n              },\n              {\n                \"type\": \"object\",\n                \"required\": [\n                  \"metric\"\n                ],\n                \"properties\": {\n                  \"metric\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"converted\",\n                      \"delivered\",\n                      \"opened\"\n                    ],\n                    \"description\": \"The type of device-side event you want to report back to Customer.io.\"\n                  },\n                  \"recipient\": {\n                    \"type\": \"string\",\n                    \"description\": \"The device ID that the message was sent to.\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"title\": \"Slack\",\n            \"allOf\": [\n              {\n                \"description\": \"The base properties shared across multiple metric types.\",\n                \"type\": \"object\",\n                \"required\": [\n                  \"delivery_id\"\n                ],\n                \"properties\": {\n                  \"delivery_id\": {\n                    \"type\": \"string\",\n                    \"description\": \"The CIO-Delivery-ID from the notification that you want to associate the `event` with.\",\n                    \"example\": \"RPILAgUBcRhIBqSfeiIwdIYJKxTY\"\n                  },\n                  \"timestamp\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The unix timestamp when the event occurred.\",\n                    \"example\": 1613063089\n                  }\n                }\n              },\n              {\n                \"type\": \"object\",\n                \"required\": [\n                  \"metric\"\n                ],\n                \"properties\": {\n                  \"metric\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"clicked\",\n                      \"converted\",\n                      \"delivered\",\n                      \"opened\"\n                    ],\n                    \"description\": \"The metric you want to report back to Customer.io.\"\n                  },\n                  \"href\": {\n                    \"type\": \"string\",\n                    \"description\": \"For `clicked` metrics, this is the link the recipient clicked.\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"title\": \"SMS\",\n            \"allOf\": [\n              {\n                \"description\": \"The base properties shared across multiple metric types.\",\n                \"type\": \"object\",\n                \"required\": [\n                  \"delivery_id\"\n                ],\n                \"properties\": {\n                  \"delivery_id\": {\n                    \"type\": \"string\",\n                    \"description\": \"The CIO-Delivery-ID from the notification that you want to associate the `event` with.\",\n                    \"example\": \"RPILAgUBcRhIBqSfeiIwdIYJKxTY\"\n                  },\n                  \"timestamp\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The unix timestamp when the event occurred.\",\n                    \"example\": 1613063089\n                  }\n                }\n              },\n              {\n                \"type\": \"object\",\n                \"required\": [\n                  \"metric\"\n                ],\n                \"properties\": {\n                  \"metric\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"bounced\",\n                      \"clicked\",\n                      \"delivered\",\n                      \"opened\"\n                    ],\n                    \"description\": \"The SMS metric you want to report back to Customer.io.\"\n                  },\n                  \"recipient\": {\n                    \"type\": \"integer\",\n                    \"description\": \"The phone number of the person who received the message.\"\n                  },\n                  \"reason\": {\n                    \"type\": \"string\",\n                    \"description\": \"For metrics indicating a failure (like `bounced`), this field provides the reason for the failure.\"\n                  },\n                  \"href\": {\n                    \"type\": \"string\",\n                    \"description\": \"For `clicked` metrics, this is the link the recipient clicked.\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"title\": \"Webhook\",\n            \"allOf\": [\n              {\n                \"description\": \"The base properties shared across multiple metric types.\",\n                \"type\": \"object\",\n                \"required\": [\n                  \"delivery_id\"\n                ],\n                \"properties\": {\n                  \"delivery_id\": {\n                    \"type\": \"string\",\n                    \"description\": \"The CIO-Delivery-ID from the notification that you want to associate the `event` with.\",\n                    \"example\": \"RPILAgUBcRhIBqSfeiIwdIYJKxTY\"\n                  },\n                  \"timestamp\": {\n                    \"type\": \"integer\",\n                    \"format\": \"unix timestamp\",\n                    \"description\": \"The unix timestamp when the event occurred.\",\n                    \"example\": 1613063089\n                  }\n                }\n              },\n              {\n                \"type\": \"object\",\n                \"required\": [\n                  \"metric\"\n                ],\n                \"properties\": {\n                  \"metric\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"bounced\",\n                      \"clicked\",\n                      \"converted\",\n                      \"deferred\",\n                      \"delivered\",\n                      \"dropped\",\n                      \"opened\",\n                      \"spammed\"\n                    ],\n                    \"description\": \"The type of device-side event you want to report back to Customer.io.\"\n                  },\n                  \"reason\": {\n                    \"type\": \"string\",\n                    \"description\": \"For metrics indicating a failure (like `bounced`), this field provides the reason for the failure.\"\n                  },\n                  \"href\": {\n                    \"type\": \"string\",\n                    \"description\": \"For `clicked` metrics, this is the link the recipient clicked.\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "name": "GetRelatedPeople",
+  "fully_qualified_name": "CustomerioApi.GetRelatedPeople@0.1.0",
+  "description": "Retrieve people related to a specified object.\n\nUse this tool to get a list of people related to a specific object by providing the object type and object ID. Useful for exploring object relationships in Customerio.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "object_type_identifier",
+        "required": true,
+        "description": "The ID representing the object type, such as 'Companies' or 'Accounts'. Starts from 1 and increments for each new type.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The object type an object belongs to\u2014like \"Companies\" or \"Accounts\". Object type IDs begin at `1` and increment for each new type."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "object_type_id"
+      },
+      {
+        "name": "object_identifier",
+        "required": true,
+        "description": "The ID of the object. This can be `object_id` or `cio_object_id` based on the `id_type` query parameter. Defaults to `object_id`.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The `object_id` or `cio_object_id` of an object, depending on the `id_type` specified in query params. `id_type` defaults to `object_id`."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "object_id"
+      },
+      {
+        "name": "pagination_start_token",
+        "required": false,
+        "description": "Token for starting the page of results. Use the 'next' property from a response to paginate.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "maximum_results_per_page",
+        "required": false,
+        "description": "The maximum number of results to retrieve per page. Specify an integer value.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "limit"
+      },
+      {
+        "name": "identification_type",
+        "required": false,
+        "description": "Specifies whether the object identifier is an `object_id` or a `cio_object_id`. Choose between these two options.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "object_id",
+            "cio_object_id"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "id_type"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getObjectRelationships'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/objects/{object_type_id}/{object_id}/relationships",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_start_token",
+        "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "limit",
+        "tool_parameter_name": "maximum_results_per_page",
+        "description": "The maximum number of results you want to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "id_type",
+        "tool_parameter_name": "identification_type",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "object_id",
+            "cio_object_id"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": "object_id",
+        "documentation_urls": []
+      },
+      {
+        "name": "object_type_id",
+        "tool_parameter_name": "object_type_identifier",
+        "description": "The object type an object belongs to\u2014like \"Companies\" or \"Accounts\". Object type IDs begin at `1` and increment for each new type.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The object type an object belongs to\u2014like \"Companies\" or \"Accounts\". Object type IDs begin at `1` and increment for each new type."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "object_id",
+        "tool_parameter_name": "object_identifier",
+        "description": "The `object_id` or `cio_object_id` of an object, depending on the `id_type` specified in query params. `id_type` defaults to `object_id`.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The `object_id` or `cio_object_id` of an object, depending on the `id_type` specified in query params. `id_type` defaults to `object_id`."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

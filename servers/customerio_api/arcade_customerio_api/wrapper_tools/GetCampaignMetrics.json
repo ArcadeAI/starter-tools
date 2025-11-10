@@ -1,0 +1,416 @@
+{
+  "name": "GetCampaignMetrics",
+  "fully_qualified_name": "CustomerioApi.GetCampaignMetrics@0.1.0",
+  "description": "Fetch metrics for an individual campaign.\n\nUse this tool to retrieve a list of metrics for a specific campaign. It supports flexible time-based metrics by utilizing parameters like resolution, time zone, start, and end times. The recommended version 2 provides greater flexibility with these options. This tool is ideal for analyzing campaign performance over time.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "metrics_api_version",
+        "required": true,
+        "description": "Specify the version of the metrics API to use. Recommended value is '2'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1",
+            "2"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The version of the metrics API to use."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "version"
+      },
+      {
+        "name": "campaign_id",
+        "required": true,
+        "description": "The unique ID of the campaign to retrieve metrics for.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the campaign that you want to trigger or return information about."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "campaign_id"
+      },
+      {
+        "name": "metrics_item_type",
+        "required": false,
+        "description": "Specify the type of item for metrics: email, webhook, twilio, slack, push, in_app. Leave empty for all types.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "email",
+            "webhook",
+            "twilio",
+            "slack",
+            "push",
+            "in_app"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "type"
+      },
+      {
+        "name": "resolution",
+        "required": false,
+        "description": "Determines increment for metrics\u2014hourly, daily, weekly, or monthly. Only for Version 2.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "hourly",
+            "days",
+            "daily",
+            "weeks",
+            "weekly",
+            "months",
+            "monthly"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "**Version 2 only.** Determines increment for metrics\u2014hourly, daily, weekly, or monthly."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "res"
+      },
+      {
+        "name": "timezone_for_metrics",
+        "required": false,
+        "description": "For version 2 only. Specify the time zone for the metrics requested. Defaults to EST if not provided. Use the region format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "**Version 2 only.** The time zone for the metrics you are requesting. If you do not provide a time zone, we use EST. You must use the [region format](/journeys/example-timezones/#region-format)."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "tz"
+      },
+      {
+        "name": "metrics_start_timestamp",
+        "required": false,
+        "description": "Unix timestamp marking the start of the metrics period for version 2.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "**Version 2 only.** The unix timestamp for the beginning of your metrics."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "end_time_unix",
+        "required": false,
+        "description": "Unix timestamp marking the end of the metrics period. Use only with version 2. Limited to 10 years from the start parameter.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "**Version 2 only.** The unix timestamp for the end of your metrics. Limited to 10 years from the `start` parameter."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "end"
+      },
+      {
+        "name": "version_1_time_unit",
+        "required": false,
+        "description": "For Version 1 only, specify the time unit for the report. Options include hours, days, weeks, or months.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "days",
+            "weeks",
+            "months"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "**Version 1 only.** The unit of time for your report."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "period"
+      },
+      {
+        "name": "number_of_steps",
+        "required": false,
+        "description": "(Version 1 only) The number of periods to return, with defaults and maximum limits based on the period unit (e.g., hours, days).",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "**Version 1 only.** The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 120 months."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "steps"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'campaignMetrics'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/campaigns/{campaign_id}/metrics",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "version",
+        "tool_parameter_name": "metrics_api_version",
+        "description": "The version of the metrics API to use.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "1",
+            "2"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The version of the metrics API to use."
+        },
+        "accepted_as": "query",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "type",
+        "tool_parameter_name": "metrics_item_type",
+        "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "email",
+            "webhook",
+            "twilio",
+            "slack",
+            "push",
+            "in_app"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "res",
+        "tool_parameter_name": "resolution",
+        "description": "**Version 2 only.** Determines increment for metrics\u2014hourly, daily, weekly, or monthly.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "hourly",
+            "days",
+            "daily",
+            "weeks",
+            "weekly",
+            "months",
+            "monthly"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "**Version 2 only.** Determines increment for metrics\u2014hourly, daily, weekly, or monthly."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "tz",
+        "tool_parameter_name": "timezone_for_metrics",
+        "description": "**Version 2 only.** The time zone for the metrics you are requesting. If you do not provide a time zone, we use EST. You must use the [region format](/journeys/example-timezones/#region-format).",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "**Version 2 only.** The time zone for the metrics you are requesting. If you do not provide a time zone, we use EST. You must use the [region format](/journeys/example-timezones/#region-format)."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start",
+        "tool_parameter_name": "metrics_start_timestamp",
+        "description": "**Version 2 only.** The unix timestamp for the beginning of your metrics.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "**Version 2 only.** The unix timestamp for the beginning of your metrics."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "end",
+        "tool_parameter_name": "end_time_unix",
+        "description": "**Version 2 only.** The unix timestamp for the end of your metrics. Limited to 10 years from the `start` parameter.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "**Version 2 only.** The unix timestamp for the end of your metrics. Limited to 10 years from the `start` parameter."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "period",
+        "tool_parameter_name": "version_1_time_unit",
+        "description": "**Version 1 only.** The unit of time for your report.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "hours",
+            "days",
+            "weeks",
+            "months"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "**Version 1 only.** The unit of time for your report."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": "days",
+        "documentation_urls": []
+      },
+      {
+        "name": "steps",
+        "tool_parameter_name": "number_of_steps",
+        "description": "**Version 1 only.** The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 120 months.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "**Version 1 only.** The number of periods you want to return. Defaults to the maximum available, or `12` if the period is in `months`. Maximums are 24 hours, 45 days, 12 weeks, or 120 months."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "campaign_id",
+        "tool_parameter_name": "campaign_id",
+        "description": "The ID of the campaign that you want to trigger or return information about.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ID of the campaign that you want to trigger or return information about."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

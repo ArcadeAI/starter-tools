@@ -1,0 +1,104 @@
+{
+  "name": "CheckEmailSuppression",
+  "fully_qualified_name": "CustomerioApi.CheckEmailSuppression@0.1.0",
+  "description": "Retrieve suppression status and reason for an email.\n\nUse this tool to find out if an email address has been suppressed by the email service provider (ESP) and the reasons for its suppression.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "email_to_check_suppression",
+        "required": true,
+        "description": "The email address to check for suppression status and reasons.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The email address of the person you want to look up."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "email_address"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'getSuppression'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/esp/search_suppression/{email_address}",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "email_address",
+        "tool_parameter_name": "email_to_check_suppression",
+        "description": "The email address of the person you want to look up.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The email address of the person you want to look up."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

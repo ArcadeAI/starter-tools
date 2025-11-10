@@ -1,0 +1,104 @@
+{
+  "name": "SendTransactionalSms",
+  "fully_qualified_name": "CustomerioApi.SendTransactionalSms@0.1.0",
+  "description": "Send a transactional SMS message using a template.\n\nSend a transactional SMS by providing a `transactional_message_id`, which can be the numerical ID or *Trigger Name* of your message template. This allows you to automate SMS communications using predefined templates.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "transactional_message_details",
+        "required": false,
+        "description": "Provide the JSON payload containing details necessary for sending the SMS, such as `transactional_message_id`, recipient information, and any dynamic content required by the template.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'sendSMS'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/send/sms",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "transactional_message_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"description\": \"The payload of a transactional SMS.\",\n        \"allOf\": [\n          {\n            \"type\": \"object\",\n            \"required\": [\n              \"transactional_message_id\"\n            ],\n            \"properties\": {\n              \"transactional_message_id\": {\n                \"description\": \"The transactional message template that you want to use for your message. You can call the template by its numerical ID or by the *Trigger Name* that you assigned the template (case insensitive).\",\n                \"oneOf\": [\n                  {\n                    \"title\": \"ID (integer)\",\n                    \"type\": \"integer\",\n                    \"description\": \"The ID of the transactional message you want to send.\",\n                    \"example\": 44\n                  },\n                  {\n                    \"title\": \"Trigger Name (string)\",\n                    \"type\": \"string\",\n                    \"description\": \"The name of trigger for the transactional message you want to send; you set the trigger name in the *Configure Settings* step when setting up your message. This is case insensitive.\",\n                    \"example\": \"verification_code\"\n                  }\n                ]\n              }\n            }\n          },\n          {\n            \"type\": \"object\",\n            \"required\": [\n              \"to\"\n            ],\n            \"properties\": {\n              \"to\": {\n                \"type\": \"string\",\n                \"description\": \"The phone number you want to send your SMS to. Phone numbers must be in E.164 format (e.g., +15551234567), but you can also use liquid syntax if you store users phone numbers as attributes; you don't have to pass an E.164 formatted phone number in the call.\",\n                \"example\": \"{{customer.phone}}\"\n              },\n              \"from\": {\n                \"type\": \"string\",\n                \"description\": \"The phone number or sender ID that your SMS is from. This must be a verified phone number in your Twilio account. This overrides the from address set within the transactional template (referenced by `transactional_message_id`). Phone numbers must be in E.164 format (e.g., +15551234567).\",\n                \"example\": \"+15551234567\"\n              },\n              \"language\": {\n                \"type\": \"string\",\n                \"description\": \"Overrides language preferences for the person you want to send your transactional message to. Use one of our [supported two- or four-letter language codes](/localization-getting-started/#supported-languages).\"\n              }\n            }\n          },\n          {\n            \"type\": \"object\",\n            \"required\": [\n              \"to\",\n              \"identifiers\"\n            ],\n            \"properties\": {\n              \"identifiers\": {\n                \"description\": \"Identifies the person represented by your transactional message by one of, and only one of, `id`, `email`, or `cio_id`.\",\n                \"oneOf\": [\n                  {\n                    \"title\": \"id\",\n                    \"type\": \"object\",\n                    \"required\": [\n                      \"id\"\n                    ],\n                    \"properties\": {\n                      \"id\": {\n                        \"type\": \"string\",\n                        \"description\": \"The identifier for the person represented by the transactional message. **NOTE**: If your workspace identifies people by email, use the `email` identifier instead.\\n\",\n                        \"example\": 12345\n                      }\n                    }\n                  },\n                  {\n                    \"title\": \"email\",\n                    \"type\": \"object\",\n                    \"required\": [\n                      \"email\"\n                    ],\n                    \"properties\": {\n                      \"email\": {\n                        \"type\": \"string\",\n                        \"description\": \"The identifier for the person represented by the transactional message. Use this option if your workspace identifies people by email rather than by `id`.\",\n                        \"example\": \"cool.person@example.com\"\n                      }\n                    }\n                  },\n                  {\n                    \"title\": \"cio_id\",\n                    \"type\": \"object\",\n                    \"required\": [\n                      \"cio_id\"\n                    ],\n                    \"properties\": {\n                      \"cio_id\": {\n                        \"type\": \"string\",\n                        \"description\": \"A unique, immutable identifier for a person, set by Customer.io when you add a person.\",\n                        \"example\": 3000001\n                      }\n                    }\n                  }\n                ]\n              },\n              \"message_data\": {\n                \"type\": \"object\",\n                \"description\": \"An object containing the key-value pairs referenced using liquid in your message.\",\n                \"additionalProperties\": {\n                  \"x-additionalPropertiesName\": \"Liquid Data\",\n                  \"description\": \"Insert key-values that you want to reference in your message here.\"\n                },\n                \"example\": {\n                  \"password_reset_token\": \"abcde-12345-fghij-d888\",\n                  \"account_id\": \"123dj\"\n                }\n              },\n              \"send_at\": {\n                \"type\": \"integer\",\n                \"description\": \"A unix timestamp (seconds since epoch) determining when the message will be sent. The timestamp can be up to 90 days in the future. If this value is in the past, your message is sent immediately.\"\n              },\n              \"disable_message_retention\": {\n                \"type\": \"boolean\",\n                \"default\": false,\n                \"description\": \"If true, the message body is not retained in delivery history. Setting this value overrides the value set in the settings of your `transactional_message_id`.\"\n              },\n              \"send_to_unsubscribed\": {\n                \"type\": \"boolean\",\n                \"default\": true,\n                \"description\": \"If false, your message is not sent to unsubscribed recipients. Setting this value overrides the value set in the settings of your `transactional_message_id`.\"\n              },\n              \"queue_draft\": {\n                \"type\": \"boolean\",\n                \"description\": \"If true, your transactional message is held as a draft in Customer.io and not sent directly to your audience. You must go to the Deliveries and Drafts page to send your message.\",\n                \"default\": false\n              }\n            }\n          }\n        ],\n        \"example\": {\n          \"transactional_message_id\": \"confirmation code\",\n          \"to\": \"+15559876543\",\n          \"from\": \"+15551234567\",\n          \"body\": \"Your verification code is {{trigger.confirmation_code}}\",\n          \"identifiers\": {\n            \"id\": \"123456\"\n          },\n          \"message_data\": {\n            \"confirmation_code\": \"123456\",\n            \"account_name\": \"Jane Doe\"\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

@@ -1,0 +1,385 @@
+{
+  "name": "GetBroadcastMessageInfo",
+  "fully_qualified_name": "CustomerioApi.GetBroadcastMessageInfo@0.1.0",
+  "description": "Retrieve details about broadcast message deliveries.\n\nThis tool returns information about message deliveries from an API-triggered broadcast. Use it to get insights on individual deliveries within a specific time range by providing `start_ts` and `end_ts`. If not specified, data for one month post-trigger is returned. The information reflects when the deliveries were created, with a possible delay to actual send time.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "broadcast_identifier",
+        "required": true,
+        "description": "The ID used to identify the specific broadcast to retrieve information about.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a broadcast."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "broadcast_id"
+      },
+      {
+        "name": "pagination_start_token",
+        "required": false,
+        "description": "Token for the page of results to return. Use the 'next' property from responses for this value to get the next page.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start"
+      },
+      {
+        "name": "maximum_results_per_page",
+        "required": false,
+        "description": "Specify the maximum number of message deliveries to retrieve per page. Adjust to control the pagination size for results.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "limit"
+      },
+      {
+        "name": "metric_type",
+        "required": false,
+        "description": "Select the metric(s) to be returned. Options include: 'attempted', 'sent', 'delivered', 'opened', 'clicked', 'converted', 'bounced', 'spammed', 'unsubscribed', 'dropped', 'failed', 'undeliverable'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "attempted",
+            "sent",
+            "delivered",
+            "opened",
+            "clicked",
+            "converted",
+            "bounced",
+            "spammed",
+            "unsubscribed",
+            "dropped",
+            "failed",
+            "undeliverable"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Determines the metric(s) you want to return."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "metric"
+      },
+      {
+        "name": "broadcast_state",
+        "required": false,
+        "description": "Specifies the state of a broadcast message. Options are: 'failed', 'sent', 'drafted', or 'attempted'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "failed",
+            "sent",
+            "drafted",
+            "attempted"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The state of a broadcast."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "state"
+      },
+      {
+        "name": "item_type",
+        "required": false,
+        "description": "Specify the type of item to return metrics for (e.g., email, webhook). Leave empty for all types.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "email",
+            "webhook",
+            "twilio",
+            "slack",
+            "push",
+            "in_app"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "type"
+      },
+      {
+        "name": "beginning_timestamp",
+        "required": false,
+        "description": "The start timestamp for the query, defining the beginning of the time range for message retrieval.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The beginning timestamp for your query."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "start_ts"
+      },
+      {
+        "name": "ending_timestamp",
+        "required": false,
+        "description": "The endpoint of the time range for the query. It must be an integer representing a timestamp.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ending timestamp for your query."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "end_ts"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'broadcastMessages'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/broadcasts/{broadcast_id}/messages",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "start",
+        "tool_parameter_name": "pagination_start_token",
+        "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "limit",
+        "tool_parameter_name": "maximum_results_per_page",
+        "description": "The maximum number of results you want to retrieve per page.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of results you want to retrieve per page."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "metric",
+        "tool_parameter_name": "metric_type",
+        "description": "Determines the metric(s) you want to return.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "attempted",
+            "sent",
+            "delivered",
+            "opened",
+            "clicked",
+            "converted",
+            "bounced",
+            "spammed",
+            "unsubscribed",
+            "dropped",
+            "failed",
+            "undeliverable"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Determines the metric(s) you want to return."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "state",
+        "tool_parameter_name": "broadcast_state",
+        "description": "The state of a broadcast.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "failed",
+            "sent",
+            "drafted",
+            "attempted"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The state of a broadcast."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "type",
+        "tool_parameter_name": "item_type",
+        "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "email",
+            "webhook",
+            "twilio",
+            "slack",
+            "push",
+            "in_app"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "start_ts",
+        "tool_parameter_name": "beginning_timestamp",
+        "description": "The beginning timestamp for your query.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The beginning timestamp for your query."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "end_ts",
+        "tool_parameter_name": "ending_timestamp",
+        "description": "The ending timestamp for your query.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ending timestamp for your query."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "broadcast_id",
+        "tool_parameter_name": "broadcast_identifier",
+        "description": "The identifier of a broadcast.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a broadcast."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

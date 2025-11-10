@@ -1,0 +1,251 @@
+{
+  "name": "UpdateReportingWebhook",
+  "fully_qualified_name": "CustomerioApi.UpdateReportingWebhook@0.1.0",
+  "description": "Update the configuration of a reporting webhook.\n\nUse this tool to modify the settings of a reporting webhook, such as enabling or disabling events or changing the webhook URL.",
+  "toolkit": {
+    "name": "ArcadeCustomerioApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "webhook_identifier",
+        "required": true,
+        "description": "The unique identifier for the specific webhook to be updated.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a webhook."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "webhook_id"
+      },
+      {
+        "name": "webhook_configuration",
+        "required": false,
+        "description": "A JSON object containing the configuration details for the webhook, including name, ID, URL, event settings, and more.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of your webhook."
+            },
+            "id": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The identifier for the webhook."
+            },
+            "endpoint": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The webhook URL."
+            },
+            "disabled": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Set to `true` to quit sending events to the webhook URL. Set to `false` to enable the webhook."
+            },
+            "full_resolution": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Set to `false` to send unique open and click events to the webhook. Set to `true` to send all events."
+            },
+            "with_content": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Set to `true` to include the message `body` in `_sent` events."
+            },
+            "events": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/api/webhooks/#operation/reportingWebhook) for more information about event types and the information they return."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'updateWebhook'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io App API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.customer.io/v1/reporting_webhooks/{webhook_id}",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "webhook_id",
+        "tool_parameter_name": "webhook_identifier",
+        "description": "The identifier of a webhook.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier of a webhook."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "webhook_configuration",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of your webhook."
+            },
+            "id": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The identifier for the webhook."
+            },
+            "endpoint": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The webhook URL."
+            },
+            "disabled": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Set to `true` to quit sending events to the webhook URL. Set to `false` to enable the webhook."
+            },
+            "full_resolution": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Set to `false` to send unique open and click events to the webhook. Set to `true` to send all events."
+            },
+            "with_content": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Set to `true` to include the message `body` in `_sent` events."
+            },
+            "events": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/api/webhooks/#operation/reportingWebhook) for more information about event types and the information they return."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"name\",\n          \"endpoint\",\n          \"events\"\n        ],\n        \"properties\": {\n          \"name\": {\n            \"type\": \"string\",\n            \"description\": \"The name of your webhook.\",\n            \"example\": \"my cool webhook\"\n          },\n          \"id\": {\n            \"type\": \"integer\",\n            \"description\": \"The identifier for the webhook.\",\n            \"readOnly\": true,\n            \"example\": 4\n          },\n          \"endpoint\": {\n            \"type\": \"string\",\n            \"format\": \"url\",\n            \"description\": \"The webhook URL.\",\n            \"example\": \"https://example.com/webhook\"\n          },\n          \"disabled\": {\n            \"type\": \"boolean\",\n            \"description\": \"Set to `true` to quit sending events to the webhook URL. Set to `false` to enable the webhook.\",\n            \"example\": false\n          },\n          \"full_resolution\": {\n            \"type\": \"boolean\",\n            \"description\": \"Set to `false` to send unique open and click events to the webhook. Set to `true` to send all events.\",\n            \"default\": false,\n            \"example\": true\n          },\n          \"with_content\": {\n            \"type\": \"boolean\",\n            \"description\": \"Set to `true` to include the message `body` in `_sent` events.\",\n            \"example\": false\n          },\n          \"events\": {\n            \"description\": \"Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/api/webhooks/#operation/reportingWebhook) for more information about event types and the information they return.\",\n            \"type\": \"array\",\n            \"minItems\": 1,\n            \"items\": {\n              \"type\": \"string\",\n              \"enum\": [\n                \"customer_subscribed\",\n                \"customer_unsubscribed\",\n                \"customer_subscription_preferences_changed\",\n                \"email_drafted\",\n                \"email_attempted\",\n                \"email_sent\",\n                \"email_delivered\",\n                \"email_opened\",\n                \"email_clicked\",\n                \"email_converted\",\n                \"email_bounced\",\n                \"email_dropped\",\n                \"email_deferred\",\n                \"email_spammed\",\n                \"email_failed\",\n                \"email_unsubscribed\",\n                \"email_undeliverable\",\n                \"push_drafted\",\n                \"push_attempted\",\n                \"push_sent\",\n                \"push_delivered\",\n                \"push_opened\",\n                \"push_clicked\",\n                \"push_converted\",\n                \"push_bounced\",\n                \"push_dropped\",\n                \"push_failed\",\n                \"push_undeliverable\",\n                \"slack_drafted\",\n                \"slack_attempted\",\n                \"slack_sent\",\n                \"slack_clicked\",\n                \"slack_converted\",\n                \"slack_failed\",\n                \"sms_drafted\",\n                \"sms_attempted\",\n                \"sms_sent\",\n                \"sms_delivered\",\n                \"sms_clicked\",\n                \"sms_converted\",\n                \"sms_bounced\",\n                \"sms_failed\",\n                \"sms_undeliverable\",\n                \"webhook_drafted\",\n                \"webhook_attempted\",\n                \"webhook_sent\",\n                \"webhook_clicked\",\n                \"webhook_converted\",\n                \"webhook_failed\",\n                \"webhook_undeliverable\"\n              ]\n            },\n            \"example\": [\n              \"email_failed\",\n              \"webhook_failed\"\n            ]\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

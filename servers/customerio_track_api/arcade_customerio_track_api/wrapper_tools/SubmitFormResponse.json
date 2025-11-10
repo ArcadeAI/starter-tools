@@ -1,0 +1,166 @@
+{
+  "name": "SubmitFormResponse",
+  "fully_qualified_name": "CustomerioTrackApi.SubmitFormResponse@0.1.0",
+  "description": "Submit and record form responses with Customer.io.\n\nUse this tool to submit form responses to Customer.io. It creates or updates a form connection if the `form_id` is unfamiliar. Ensure `data` includes identifiers like `id` or `email` to recognize the respondent. Additional data fields map directly to user attributes.",
+  "toolkit": {
+    "name": "ArcadeCustomerioTrackApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "form_identifier",
+        "required": true,
+        "description": "The unique identifier for the form. If unrecognized, a new form connection is created. Choose a meaningful or traceable value.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier for a form. If Customer.io does not recognize the `form_id`, we create a new form connection (found on the *Data & Integrations* > *Forms* page). Use a value that makes sense to you, or something that you can trace to your backend system."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "form_id"
+      },
+      {
+        "name": "form_response_data",
+        "required": false,
+        "description": "JSON object containing form response data. Must include 'id' or 'email' to identify the respondent. Additional fields map to user attributes.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "data": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Represents your form data. By default, we assume that form fields map directly to attributes (e.g. if your form field is called `name`, we assume it represents an attribute called \"name\"). However, you can re-map form fields to attributes on the **Forms** page in your workspace.\n\nValues for form fields _must_ be formatted as strings.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'submitForm'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "CUSTOMERIO_SITE_ID"
+      },
+      {
+        "key": "CUSTOMERIO_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Customer.io Track API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://track.customer.io/api/v1/forms/{form_id}/submit",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "form_id",
+        "tool_parameter_name": "form_identifier",
+        "description": "The identifier for a form. If Customer.io does not recognize the `form_id`, we create a new form connection (found on the *Data & Integrations* > *Forms* page). Use a value that makes sense to you, or something that you can trace to your backend system.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The identifier for a form. If Customer.io does not recognize the `form_id`, we create a new form connection (found on the *Data & Integrations* > *Forms* page). Use a value that makes sense to you, or something that you can trace to your backend system."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "form_response_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "data": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Represents your form data. By default, we assume that form fields map directly to attributes (e.g. if your form field is called `name`, we assume it represents an attribute called \"name\"). However, you can re-map form fields to attributes on the **Forms** page in your workspace.\n\nValues for form fields _must_ be formatted as strings.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "CUSTOMERIO_SITE_ID",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "CUSTOMERIO_API_KEY",
+        "parameter_name": "password",
+        "accepted_as": "basic_auth_password",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"description\": \"The body of the request contains key-value pairs representing form fields; these values are mapped to attributes. Your request must contain one of\\u2014and only one of\\u2014`email` or `id` to identify a person (depending on the identifiers supported in your workspace). If the person who filled out your form does not already exist, the request creates them. If your request includes more than one identifier, you'll receive an error.\\n\\n**NOTE**: If your form field is called something like `email_address`, you'll receive a `400`, but we'll still add your form on the **Data & Integrations** > **Integrations** > **Forms** page. You can then re-map your `email_address` field to `email`, and your form will begin working normally.\\n \\nAdditional keys in the `data` object represent form fields from the form that a person submitted. By default, we map form fields in your request directly to attributes, e.g. if you have a form field called `first_name`, we map that field to the `first_name` attribute. However, if you added or edited this form on the *Data & Integration* > *Forms* page, you can re-map form fields to attributes. If you turned off a form field on the *Forms* page, you can still include it in your request, but it is not applied to the person your form identifies.\\n\",\n        \"required\": [\n          \"data\"\n        ],\n        \"properties\": {\n          \"data\": {\n            \"description\": \"Represents your form data. By default, we assume that form fields map directly to attributes (e.g. if your form field is called `name`, we assume it represents an attribute called \\\"name\\\"). However, you can re-map form fields to attributes on the **Forms** page in your workspace.\\n\\nValues for form fields _must_ be formatted as strings.\\n\",\n            \"oneOf\": [\n              {\n                \"title\": \"identify by email\",\n                \"type\": \"object\",\n                \"description\": \"Identify the person who submitted your form by email.\",\n                \"required\": [\n                  \"email\"\n                ],\n                \"properties\": {\n                  \"email\": {\n                    \"type\": \"string\",\n                    \"description\": \"The email address of the customer.\",\n                    \"nullable\": true,\n                    \"example\": \"test@example.com\"\n                  }\n                },\n                \"additionalProperties\": {\n                  \"x-additionalPropertiesName\": \"Form fields\",\n                  \"type\": \"string\",\n                  \"description\": \"Fields from the form and associated values; values _must_ be formatted as strings. Each key represents an a form field. You can map form fields to attributes in the UI; by default, we assume that a form field maps directly to an attribute name.\\n\\nCustomer.io reserves `form_id`, `form_name`, `form_type`, `form_url`, and `form_url_param` keys. If your request includes these keys, Customer.io ignores them.\\n\"\n                },\n                \"example\": {\n                  \"email\": \"cool.person@example.com\",\n                  \"first_name\": \"cool\",\n                  \"last_name\": \"person\",\n                  \"fav_food\": \"pizza\"\n                }\n              },\n              {\n                \"title\": \"identify by id\",\n                \"type\": \"object\",\n                \"required\": [\n                  \"id\"\n                ],\n                \"description\": \"Identify the person who submitted your form by ID.\",\n                \"properties\": {\n                  \"id\": {\n                    \"type\": \"string\",\n                    \"description\": \"The ID of a customer profile, analogous to a \\\"person\\\" in the UI. If your workspace supports multiple identifiers (email and ID), this value can be null.\",\n                    \"nullable\": true,\n                    \"example\": \"42\"\n                  }\n                },\n                \"additionalProperties\": {\n                  \"x-additionalPropertiesName\": \"Form fields\",\n                  \"type\": \"string\",\n                  \"description\": \"Fields from the form and associated values; values _must_ be formatted as strings. Each key represents an a form field. You can map form fields to attributes in the UI; by default, we assume that a form field maps directly to an attribute name.\\n\\nCustomer.io reserves `form_id`, `form_name`, and `form_type` keys. If your request includes these keys, Customer.io ignores them.\\n\"\n                },\n                \"example\": {\n                  \"id\": 12345,\n                  \"first_name\": \"cool\",\n                  \"last_name\": \"person\",\n                  \"fav_food\": \"pizza\"\n                }\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}
