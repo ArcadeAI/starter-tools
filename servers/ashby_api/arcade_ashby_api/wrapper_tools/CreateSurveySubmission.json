@@ -1,0 +1,170 @@
+{
+  "name": "CreateSurveySubmission",
+  "fully_qualified_name": "AshbyApi.CreateSurveySubmission@0.1.0",
+  "description": "Create a new survey submission.\n\nThis tool creates a new survey submission and should be called when you need to record a survey response. Requires appropriate permissions.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "survey_submission_data",
+        "required": false,
+        "description": "JSON object containing candidateId, applicationId, surveyFormDefinitionId, and submittedValues. Contains the survey response details.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "candidateId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "applicationId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "surveyFormDefinitionId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "submittedValues": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The values that the candidate submitted in the survey form. \nThe keys of this object should be the IDs from the associated survey's form definition, and the values should be the answers to the questions.\nThe information on what values are expected can be obtained by calling the `surveyFormDefinition.info` endpoint.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'surveySubmissionCreate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/surveySubmission.create",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "survey_submission_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "candidateId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "applicationId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "surveyFormDefinitionId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "submittedValues": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The values that the candidate submitted in the survey form. \nThe keys of this object should be the IDs from the associated survey's form definition, and the values should be the answers to the questions.\nThe information on what values are expected can be obtained by calling the `surveyFormDefinition.info` endpoint.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"candidateId\",\n          \"applicationId\",\n          \"surveyFormDefinitionId\",\n          \"submittedValues\"\n        ],\n        \"properties\": {\n          \"candidateId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the candidate to create a survey submission for.\"\n              }\n            ]\n          },\n          \"applicationId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the application to associate with the survey submission.\"\n              }\n            ]\n          },\n          \"surveyFormDefinitionId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The ID of the survey form definition that submissions are being provided for.\\n\"\n              }\n            ]\n          },\n          \"submittedValues\": {\n            \"type\": \"object\",\n            \"description\": \"The values that the candidate submitted in the survey form. \\nThe keys of this object should be the IDs from the associated survey's form definition, and the values should be the answers to the questions.\\nThe information on what values are expected can be obtained by calling the `surveyFormDefinition.info` endpoint.\\n\",\n            \"additionalProperties\": true,\n            \"example\": {\n              \"_systemfield_name\": \"Gob Bluth\"\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "name": "SetOpeningState",
+  "fully_qualified_name": "AshbyApi.SetOpeningState@0.1.0",
+  "description": "Update the state of a job opening.\n\nThis tool updates the state of a job opening in the Ashby platform. It should be called when it's necessary to change the status of an opening, requiring the `jobsWrite` permission.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "opening_id",
+        "required": false,
+        "description": "The unique identifier of the job opening to be updated.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The id of the opening you want to update"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "openingId"
+      },
+      {
+        "name": "new_opening_state",
+        "required": false,
+        "description": "The new state to update the job opening to. Accepted values are 'Draft', 'Approved', 'Open', 'Closed'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "Draft",
+            "Approved",
+            "Open",
+            "Closed"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The new state you want to update the opening to"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "openingState"
+      },
+      {
+        "name": "close_reason_id",
+        "required": false,
+        "description": "The ID for the reason why the opening is closed, required when setting the state to closed.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The id of the close reason if you are setting the state to closed"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "closeReasonId"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'openingsetopeningstate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/opening.setOpeningState",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "openingId",
+        "tool_parameter_name": "opening_id",
+        "description": "The id of the opening you want to update",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The id of the opening you want to update"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "openingState",
+        "tool_parameter_name": "new_opening_state",
+        "description": "The new state you want to update the opening to",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "Draft",
+            "Approved",
+            "Open",
+            "Closed"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The new state you want to update the opening to"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "closeReasonId",
+        "tool_parameter_name": "close_reason_id",
+        "description": "The id of the close reason if you are setting the state to closed",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The id of the close reason if you are setting the state to closed"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"openingId\": {\n            \"type\": \"string\",\n            \"description\": \"The id of the opening you want to update\"\n          },\n          \"openingState\": {\n            \"type\": \"string\",\n            \"description\": \"The new state you want to update the opening to\",\n            \"enum\": [\n              \"Draft\",\n              \"Approved\",\n              \"Open\",\n              \"Closed\"\n            ]\n          },\n          \"closeReasonId\": {\n            \"type\": \"string\",\n            \"description\": \"The id of the close reason if you are setting the state to closed\"\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

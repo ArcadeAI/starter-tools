@@ -1,0 +1,234 @@
+{
+  "name": "CreateJobApplication",
+  "fully_qualified_name": "AshbyApi.CreateJobApplication@0.1.0",
+  "description": "Create a job application for a candidate.\n\nThis tool is used to create a new job application for a candidate, typically when sourcing them for a job posting. It is not intended for job board submissions, which should use a different endpoint. This tool requires 'candidatesWrite' permission for access.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "job_application_data",
+        "required": false,
+        "description": "JSON object containing candidateId, jobId, interviewPlanId, interviewStageId, sourceId, creditedToUserId, createdAt, and applicationHistory for the job application.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "candidateId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "jobId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "interviewPlanId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "interviewStageId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "sourceId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "creditedToUserId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "createdAt": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "applicationHistory": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'applicationCreate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/application.create",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "job_application_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "candidateId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "jobId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "interviewPlanId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "interviewStageId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "sourceId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "creditedToUserId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "createdAt": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "applicationHistory": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"properties\": {\n          \"candidateId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the candidate to consider for a job\"\n              }\n            ]\n          },\n          \"jobId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the job to consider the candidate for\"\n              }\n            ]\n          },\n          \"interviewPlanId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the interview plan to place the application in. If none is provided, the default interview plan is used.\\n\"\n              }\n            ]\n          },\n          \"interviewStageId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The interview stage of the interview plan (either default or provided) to place the application in. \\nIf none is provided, the application is placed in the first \\\"Lead\\\" stage. \\nYou can also supply the special string \\\"FirstPreInterviewScreen\\\", which will choose the first pre-interview-screen stage on the specified job's interview plan.\\n\"\n              }\n            ]\n          },\n          \"sourceId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The source to set on the application being created.\"\n              }\n            ]\n          },\n          \"creditedToUserId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the user the application will be credited to.\"\n              }\n            ]\n          },\n          \"createdAt\": {\n            \"allOf\": [\n              {\n                \"description\": \"An ISO date string to set the application's `createdAt` timestamp. When this value isn't provided, the `createdAt` timestamp defaults to the time the call was made.\\n\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1candidate.createNote/post/requestBody/content/application~1json/schema/properties/createdAt\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1candidate.createNote/post/requestBody/content/application~1json/schema/properties/createdAt\"\n              }\n            ]\n          },\n          \"applicationHistory\": {\n            \"allOf\": [\n              {\n                \"type\": \"array\",\n                \"description\": \"An array of objects representing the application history.\",\n                \"items\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"stageId\": {\n                      \"allOf\": [\n                        {\n                          \"type\": \"object\",\n                          \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                          \"additionalProperties\": true,\n                          \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                        },\n                        {\n                          \"description\": \"The ID of the interview stage for this history event. This stage must belong to the interview plan associated with the application.\"\n                        }\n                      ]\n                    },\n                    \"stageNumber\": {\n                      \"allOf\": [\n                        {\n                          \"type\": \"integer\"\n                        },\n                        {\n                          \"description\": \"The sort order of this event. 0 is the first, the highest number will be the current stage.\"\n                        }\n                      ]\n                    },\n                    \"enteredStageAt\": {\n                      \"allOf\": [\n                        {\n                          \"type\": \"string\",\n                          \"format\": \"date-time\",\n                          \"example\": \"2022-07-21T17:32:28Z\"\n                        },\n                        {\n                          \"description\": \"An ISO date string representing the time the application entered this stage.\"\n                        }\n                      ]\n                    },\n                    \"archiveReasonId\": {\n                      \"allOf\": [\n                        {\n                          \"type\": \"object\",\n                          \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                          \"additionalProperties\": true,\n                          \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                        },\n                        {\n                          \"description\": \"The ID of the archive reason. If the interview stage is an `Archived` stage type, this field is required.\"\n                        }\n                      ]\n                    }\n                  },\n                  \"required\": [\n                    \"stageId\",\n                    \"stageNumber\",\n                    \"enteredStageAt\"\n                  ]\n                }\n              },\n              {\n                \"description\": \"An array of objects representing the application history.\\n\"\n              }\n            ]\n          }\n        },\n        \"required\": [\n          \"candidateId\",\n          \"jobId\"\n        ],\n        \"example\": {\n          \"candidateId\": \"3ae2b801-19f6-41ef-ad28-214bd731948f\",\n          \"jobId\": \"2c6991c5-c9e2-4af8-879e-29c5a9d26509\"\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

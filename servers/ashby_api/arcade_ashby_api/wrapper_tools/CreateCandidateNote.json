@@ -1,0 +1,186 @@
+{
+  "name": "CreateCandidateNote",
+  "fully_qualified_name": "AshbyApi.CreateCandidateNote@0.1.0",
+  "description": "Add a note to a candidate's profile in Ashby.\n\nThis tool allows for the creation of a note on a candidate's profile, supporting HTML formatted text. It's useful for recruiters and interviewers to document additional information or insights about a candidate.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "candidate_note_data",
+        "required": false,
+        "description": "The JSON object containing note details such as candidateId, note content, sendNotifications flag, isPrivate flag, and createdAt timestamp.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "candidateId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId"
+            },
+            "note": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "sendNotifications": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether or not users who are subscribed to the candidate should be notified that the note was posted. Default is false."
+            },
+            "isPrivate": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether the note should be marked as private. Private notes require \"Allow access to non-offer private fields?\" API key permission to create and view. Default is false."
+            },
+            "createdAt": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'candidateCreateNote'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/candidate.createNote",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "candidate_note_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "candidateId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId"
+            },
+            "note": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "sendNotifications": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether or not users who are subscribed to the candidate should be notified that the note was posted. Default is false."
+            },
+            "isPrivate": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether the note should be marked as private. Private notes require \"Allow access to non-offer private fields?\" API key permission to create and view. Default is false."
+            },
+            "createdAt": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"candidateId\": {\n            \"type\": \"object\",\n            \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n            \"additionalProperties\": true,\n            \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n          },\n          \"note\": {\n            \"oneOf\": [\n              {\n                \"type\": \"string\",\n                \"description\": \"The note to add to the candidate\",\n                \"example\": \"Strong candidate, very interested in the company\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Note content\",\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                      \"text/plain\",\n                      \"text/html\"\n                    ],\n                    \"description\": \"The content type of the note. For notes submitted with a type of text/html we support the elements listed below. Any unsupported elements will be stripped out of the note's content before posting.\\n- Bold `<b>`\\n- Italic `<i>`\\n- Underline `<u>`\\n- Links `<a>`\\n- Bulleted Lists - `<ul>`, `<li>`\\n- Ordered Lists - `<ol>`, `<li>`\\n- Code - `<code>`\\n- Code Block - `<pre>`\\n\"\n                  },\n                  \"value\": {\n                    \"type\": \"string\"\n                  }\n                },\n                \"required\": [\n                  \"type\",\n                  \"value\"\n                ]\n              }\n            ]\n          },\n          \"sendNotifications\": {\n            \"type\": \"boolean\",\n            \"description\": \"Whether or not users who are subscribed to the candidate should be notified that the note was posted. Default is false.\",\n            \"default\": false\n          },\n          \"isPrivate\": {\n            \"type\": \"boolean\",\n            \"description\": \"Whether the note should be marked as private. Private notes require \\\"Allow access to non-offer private fields?\\\" API key permission to create and view. Default is false.\",\n            \"default\": false\n          },\n          \"createdAt\": {\n            \"type\": \"string\",\n            \"example\": \"2022-08-12T20:29:56.964Z\",\n            \"format\": \"date-time\"\n          }\n        },\n        \"required\": [\n          \"candidateId\",\n          \"note\"\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

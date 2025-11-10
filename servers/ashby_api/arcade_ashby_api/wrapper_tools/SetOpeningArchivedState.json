@@ -1,0 +1,137 @@
+{
+  "name": "SetOpeningArchivedState",
+  "fully_qualified_name": "AshbyApi.SetOpeningArchivedState@0.1.0",
+  "description": "Set or unset the archived state of a job opening.\n\nUse this tool to change the archived status of a specific job opening. Useful when needing to manage the visibility or status of job opportunities in a system, requiring 'jobsWrite' permission.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "opening_id",
+        "required": false,
+        "description": "The ID of the job opening to archive or unarchive.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The id of the opening you want to archive"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "openingId"
+      },
+      {
+        "name": "set_archived_state",
+        "required": false,
+        "description": "Boolean to set the archived state of a job opening. Use true to archive and false to unarchive.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The new archived state you want to update the opening to"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "archive"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'openingsetarchived'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/opening.setArchived",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "openingId",
+        "tool_parameter_name": "opening_id",
+        "description": "The id of the opening you want to archive",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The id of the opening you want to archive"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "archive",
+        "tool_parameter_name": "set_archived_state",
+        "description": "The new archived state you want to update the opening to",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The new archived state you want to update the opening to"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"openingId\": {\n            \"type\": \"string\",\n            \"description\": \"The id of the opening you want to archive\"\n          },\n          \"archive\": {\n            \"type\": \"boolean\",\n            \"description\": \"The new archived state you want to update the opening to\"\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

@@ -1,0 +1,332 @@
+{
+  "name": "CreateCandidate",
+  "fully_qualified_name": "AshbyApi.CreateCandidate@0.1.0",
+  "description": "Create a new candidate entry.\n\nUse this tool to create a new candidate in the system. Requires permissions to write candidates. For setting custom field values, use the custom fields endpoint.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "candidate_details",
+        "required": false,
+        "description": "JSON object containing details about the candidate such as name, email, phone number, LinkedIn URL, GitHub URL, website, alternate email addresses, source ID, credited user ID, location, and creation date.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The first and last name of the candidate to be created."
+            },
+            "email": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "phoneNumber": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "linkedInUrl": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Url to the candidate's LinkedIn profile. Must be a valid Url."
+            },
+            "githubUrl": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Url to the candidate's Github profile. Must be a valid Url."
+            },
+            "website": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Url of the candidate's website. Must be a valid Url."
+            },
+            "alternateEmailAddresses": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Array of alternate email address to add to the candidate's profile."
+            },
+            "sourceId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "creditedToUserId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "location": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "city": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The city of the candidate's location."
+                },
+                "region": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The region (state, province, etc.) of the candidate's location."
+                },
+                "country": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The country of the candidate's location."
+                }
+              },
+              "inner_properties": null,
+              "description": "The location of the candidate."
+            },
+            "createdAt": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'candidateCreate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/candidate.create",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "candidate_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The first and last name of the candidate to be created."
+            },
+            "email": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "phoneNumber": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "linkedInUrl": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Url to the candidate's LinkedIn profile. Must be a valid Url."
+            },
+            "githubUrl": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Url to the candidate's Github profile. Must be a valid Url."
+            },
+            "website": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Url of the candidate's website. Must be a valid Url."
+            },
+            "alternateEmailAddresses": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Array of alternate email address to add to the candidate's profile."
+            },
+            "sourceId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "creditedToUserId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "location": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "city": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The city of the candidate's location."
+                },
+                "region": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The region (state, province, etc.) of the candidate's location."
+                },
+                "country": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The country of the candidate's location."
+                }
+              },
+              "inner_properties": null,
+              "description": "The location of the candidate."
+            },
+            "createdAt": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"name\": {\n            \"type\": \"string\",\n            \"example\": \"Adam Hart\",\n            \"description\": \"The first and last name of the candidate to be created.\"\n          },\n          \"email\": {\n            \"allOf\": [\n              {\n                \"type\": \"string\",\n                \"example\": \"test@ashbyhq.com\"\n              },\n              {\n                \"description\": \"Primary, personal email of the candidate to be created.\"\n              }\n            ]\n          },\n          \"phoneNumber\": {\n            \"allOf\": [\n              {\n                \"type\": \"string\",\n                \"example\": \"555-555-5555\"\n              },\n              {\n                \"description\": \"Primary, personal phone number of the candidate to be created.\"\n              }\n            ]\n          },\n          \"linkedInUrl\": {\n            \"type\": \"string\",\n            \"example\": \"https://linkedin.com/in/user\",\n            \"description\": \"Url to the candidate's LinkedIn profile. Must be a valid Url.\"\n          },\n          \"githubUrl\": {\n            \"type\": \"string\",\n            \"example\": \"https://github.com/user\",\n            \"description\": \"Url to the candidate's Github profile. Must be a valid Url.\"\n          },\n          \"website\": {\n            \"type\": \"string\",\n            \"example\": \"https://twitter.com/user\",\n            \"description\": \"Url of the candidate's website. Must be a valid Url.\"\n          },\n          \"alternateEmailAddresses\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"string\"\n            },\n            \"example\": [\n              \"test.email@ashbyhq.com\"\n            ],\n            \"description\": \"Array of alternate email address to add to the candidate's profile.\"\n          },\n          \"sourceId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The source to set on the candidate being created.\"\n              }\n            ]\n          },\n          \"creditedToUserId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the user the candidate will be credited to.\"\n              }\n            ]\n          },\n          \"location\": {\n            \"type\": \"object\",\n            \"description\": \"The location of the candidate.\",\n            \"properties\": {\n              \"city\": {\n                \"type\": \"string\",\n                \"example\": \"San Francisco\",\n                \"description\": \"The city of the candidate's location.\"\n              },\n              \"region\": {\n                \"type\": \"string\",\n                \"example\": \"California\",\n                \"description\": \"The region (state, province, etc.) of the candidate's location.\"\n              },\n              \"country\": {\n                \"type\": \"string\",\n                \"example\": \"United States\",\n                \"description\": \"The country of the candidate's location.\"\n              }\n            }\n          },\n          \"createdAt\": {\n            \"allOf\": [\n              {\n                \"description\": \"An ISO date string to set the candidate's `createdAt` timestamp. When this value isn't provided, the `createdAt` timestamp defaults to the time the call was made.\\n\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1candidate.createNote/post/requestBody/content/application~1json/schema/properties/createdAt\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1candidate.createNote/post/requestBody/content/application~1json/schema/properties/createdAt\"\n              }\n            ]\n          }\n        },\n        \"required\": [\n          \"name\"\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

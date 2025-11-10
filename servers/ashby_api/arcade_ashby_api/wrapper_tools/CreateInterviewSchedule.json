@@ -1,0 +1,254 @@
+{
+  "name": "CreateInterviewSchedule",
+  "fully_qualified_name": "AshbyApi.CreateInterviewSchedule@0.1.0",
+  "description": "Create a scheduled interview in Ashby.\n\nUse this tool to create a new interview schedule in Ashby. This requires the `interviewsWrite` permission.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "interview_schedule_request",
+        "required": false,
+        "description": "JSON object containing application ID, interview events, and extra data. Events include start time, end time, and interviewers.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "applicationId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "interviewEvents": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "startTime": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The start time of this event"
+                },
+                "endTime": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The end time of this event"
+                },
+                "interviewers": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "email": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The email address of the user in Ashby"
+                    },
+                    "feedbackRequired": {
+                      "val_type": "boolean",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Whether this interviewer is required to provide feedback"
+                    }
+                  },
+                  "description": "The interviewers for this event"
+                },
+                "extraData": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "This field stores information, structured as key-value pairs, for your own use and reference, for example a unique identifier for your own system.\nDo not store personally identifiable information (PII) in this field. In addition, the following constraints apply:\n- Keys must be strings of at most 100 characters.\n- Values must be strings of at most 512 characters.\n- The total size of the extra data must be less than 1kb.\n\nWe recommend using a prefix for your keys to avoid collisions with other systems, as data stored in this field is available to all API users with permission to access the underlying object.\n"
+                },
+                "interviewId": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": "The list of events that make up this interview schedule"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'interviewScheduleCreate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/interviewSchedule.create",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "interview_schedule_request",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "applicationId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "interviewEvents": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "startTime": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The start time of this event"
+                },
+                "endTime": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The end time of this event"
+                },
+                "interviewers": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "email": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The email address of the user in Ashby"
+                    },
+                    "feedbackRequired": {
+                      "val_type": "boolean",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Whether this interviewer is required to provide feedback"
+                    }
+                  },
+                  "description": "The interviewers for this event"
+                },
+                "extraData": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "This field stores information, structured as key-value pairs, for your own use and reference, for example a unique identifier for your own system.\nDo not store personally identifiable information (PII) in this field. In addition, the following constraints apply:\n- Keys must be strings of at most 100 characters.\n- Values must be strings of at most 512 characters.\n- The total size of the extra data must be less than 1kb.\n\nWe recommend using a prefix for your keys to avoid collisions with other systems, as data stored in this field is available to all API users with permission to access the underlying object.\n"
+                },
+                "interviewId": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": "The list of events that make up this interview schedule"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"properties\": {\n          \"applicationId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the application for this interview schedule\"\n              }\n            ]\n          },\n          \"interviewEvents\": {\n            \"type\": \"array\",\n            \"description\": \"The list of events that make up this interview schedule\",\n            \"items\": {\n              \"type\": \"object\",\n              \"required\": [\n                \"startTime\",\n                \"endTime\",\n                \"interviewers\"\n              ],\n              \"properties\": {\n                \"startTime\": {\n                  \"type\": \"string\",\n                  \"description\": \"The start time of this event\",\n                  \"example\": \"2023-01-30T15:00:00.000Z\"\n                },\n                \"endTime\": {\n                  \"type\": \"string\",\n                  \"description\": \"The end time of this event\",\n                  \"example\": \"2023-01-30T16:00:00.000Z\"\n                },\n                \"interviewers\": {\n                  \"type\": \"array\",\n                  \"description\": \"The interviewers for this event\",\n                  \"items\": {\n                    \"type\": \"object\",\n                    \"required\": [\n                      \"email\"\n                    ],\n                    \"properties\": {\n                      \"email\": {\n                        \"type\": \"string\",\n                        \"description\": \"The email address of the user in Ashby\",\n                        \"example\": \"test@ashbyhq.com\"\n                      },\n                      \"feedbackRequired\": {\n                        \"type\": \"boolean\",\n                        \"description\": \"Whether this interviewer is required to provide feedback\"\n                      }\n                    }\n                  }\n                },\n                \"extraData\": {\n                  \"type\": \"object\",\n                  \"description\": \"This field stores information, structured as key-value pairs, for your own use and reference, for example a unique identifier for your own system.\\nDo not store personally identifiable information (PII) in this field. In addition, the following constraints apply:\\n- Keys must be strings of at most 100 characters.\\n- Values must be strings of at most 512 characters.\\n- The total size of the extra data must be less than 1kb.\\n\\nWe recommend using a prefix for your keys to avoid collisions with other systems, as data stored in this field is available to all API users with permission to access the underlying object.\\n\",\n                  \"additionalProperties\": {\n                    \"type\": \"string\"\n                  },\n                  \"example\": {\n                    \"partner_external_object_id\": \"12345\",\n                    \"partner_additional_data\": \"f763ba0e4\"\n                  }\n                },\n                \"interviewId\": {\n                  \"allOf\": [\n                    {\n                      \"type\": \"object\",\n                      \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                      \"additionalProperties\": true,\n                      \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                    },\n                    {\n                      \"description\": \"The id of the interview used in this event. If no value is provided, the organization's default interview will be used.\"\n                    },\n                    {\n                      \"example\": \"46648e83-f28f-43c4-a2a0-58e0599cff41\"\n                    }\n                  ]\n                }\n              }\n            }\n          }\n        },\n        \"required\": [\n          \"applicationId\",\n          \"interviewEvents\"\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

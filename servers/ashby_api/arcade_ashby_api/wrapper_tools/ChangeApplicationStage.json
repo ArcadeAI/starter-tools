@@ -1,0 +1,204 @@
+{
+  "name": "ChangeApplicationStage",
+  "fully_qualified_name": "AshbyApi.ChangeApplicationStage@0.1.0",
+  "description": "Change the stage of a candidate's application.\n\nThis tool changes the stage of an application in the hiring process. Requires appropriate permissions to execute.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "application_stage_change_details",
+        "required": false,
+        "description": "A JSON object containing applicationId, interviewStageId, and optional archiveReasonId and archiveEmail details, to change the application stage.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "applicationId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "interviewStageId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "archiveReasonId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "archiveEmail": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "communicationTemplateId": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "sendAt": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The date and time to send the email as an ISO 8601 date and time string, e.g. `2025-02-24T08:27:01Z`.\nIf omitted, the email will be scheduled for the following morning at 9:32am in your default timezone.\nIf the time is in the past, the email will be sent immediately.\nNote: If a timezone is not specified, timestamps will be interpreted in UTC, regardless of your timezone setting.\n"
+                }
+              },
+              "inner_properties": null,
+              "description": "Email to send to the candidate when moving to an Interview Stage with type: `Archived`.\nNote: If application is already archived, the email will not be sent.\nNote: If email send fails, the application stage will not be updated. If this is the case, you can retry the request without this parameter.\nNote: You may only pass this parameter if the application is moving to an Interview Stage with type: `Archived`.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'applicationChangeStage'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/application.changeStage",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "application_stage_change_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "applicationId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "interviewStageId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "archiveReasonId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "archiveEmail": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "communicationTemplateId": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "sendAt": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The date and time to send the email as an ISO 8601 date and time string, e.g. `2025-02-24T08:27:01Z`.\nIf omitted, the email will be scheduled for the following morning at 9:32am in your default timezone.\nIf the time is in the past, the email will be sent immediately.\nNote: If a timezone is not specified, timestamps will be interpreted in UTC, regardless of your timezone setting.\n"
+                }
+              },
+              "inner_properties": null,
+              "description": "Email to send to the candidate when moving to an Interview Stage with type: `Archived`.\nNote: If application is already archived, the email will not be sent.\nNote: If email send fails, the application stage will not be updated. If this is the case, you can retry the request without this parameter.\nNote: You may only pass this parameter if the application is moving to an Interview Stage with type: `Archived`.\n"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"properties\": {\n          \"applicationId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The id of the application to update the stage of\"\n              }\n            ]\n          },\n          \"interviewStageId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"The interview stage to move the application to.\"\n              }\n            ]\n          },\n          \"archiveReasonId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"Archive Reason to set when moving to an Interview Stage with type: `Archived`. \\nNote: You must pass this parameter when moving to an Interview Stage with type: `Archived`\\n\"\n              }\n            ]\n          },\n          \"archiveEmail\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"communicationTemplateId\": {\n                \"allOf\": [\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                  },\n                  {\n                    \"description\": \"The id of the communication template to use for the email.\\nNote: This communication template's intendedTypes must include: `email`.\\n\"\n                  }\n                ]\n              },\n              \"sendAt\": {\n                \"type\": \"string\",\n                \"format\": \"date-time\",\n                \"description\": \"The date and time to send the email as an ISO 8601 date and time string, e.g. `2025-02-24T08:27:01Z`.\\nIf omitted, the email will be scheduled for the following morning at 9:32am in your default timezone.\\nIf the time is in the past, the email will be sent immediately.\\nNote: If a timezone is not specified, timestamps will be interpreted in UTC, regardless of your timezone setting.\\n\"\n              }\n            },\n            \"description\": \"Email to send to the candidate when moving to an Interview Stage with type: `Archived`.\\nNote: If application is already archived, the email will not be sent.\\nNote: If email send fails, the application stage will not be updated. If this is the case, you can retry the request without this parameter.\\nNote: You may only pass this parameter if the application is moving to an Interview Stage with type: `Archived`.\\n\",\n            \"required\": [\n              \"communicationTemplateId\"\n            ]\n          }\n        },\n        \"required\": [\n          \"applicationId\",\n          \"interviewStageId\"\n        ],\n        \"example\": {\n          \"applicationId\": \"3ae2b801-19f6-41ef-ad28-214bd731948f\",\n          \"interviewStageId\": \"2c6991c5-c9e2-4af8-879e-29c5a9d26509\"\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

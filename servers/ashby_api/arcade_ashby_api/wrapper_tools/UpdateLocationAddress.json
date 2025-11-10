@@ -1,0 +1,238 @@
+{
+  "name": "UpdateLocationAddress",
+  "fully_qualified_name": "AshbyApi.UpdateLocationAddress@0.1.0",
+  "description": "Update the address of a location.\n\nThis tool updates the address of a specified location or location hierarchy. It should be called when an address change is needed. Requires organization write permissions.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "location_address_update",
+        "required": false,
+        "description": "JSON object containing the locationId and the new address details, such as country, region, locality, postal code, and street address, for updating the location.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "locationId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The id of the location"
+            },
+            "address": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "postalAddress": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "addressCountry": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The country of the location. Must be a valid country name or two-letter country code."
+                    },
+                    "addressRegion": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The region of the location (for instance, a state or province)."
+                    },
+                    "addressLocality": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The city or town of the location."
+                    },
+                    "postalCode": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The postal code of the location."
+                    },
+                    "streetAddress": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The street address of the location."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": "The address of the location"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'locationupdateaddress'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/location.updateAddress",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "location_address_update",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "locationId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The id of the location"
+            },
+            "address": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "postalAddress": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "addressCountry": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The country of the location. Must be a valid country name or two-letter country code."
+                    },
+                    "addressRegion": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The region of the location (for instance, a state or province)."
+                    },
+                    "addressLocality": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The city or town of the location."
+                    },
+                    "postalCode": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The postal code of the location."
+                    },
+                    "streetAddress": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The street address of the location."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": "The address of the location"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"locationId\",\n          \"address\"\n        ],\n        \"properties\": {\n          \"locationId\": {\n            \"type\": \"string\",\n            \"description\": \"The id of the location\"\n          },\n          \"address\": {\n            \"type\": \"object\",\n            \"description\": \"The address of the location\",\n            \"properties\": {\n              \"postalAddress\": {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"addressCountry\": {\n                    \"type\": \"string\",\n                    \"description\": \"The country of the location. Must be a valid country name or two-letter country code.\"\n                  },\n                  \"addressRegion\": {\n                    \"type\": \"string\",\n                    \"description\": \"The region of the location (for instance, a state or province).\"\n                  },\n                  \"addressLocality\": {\n                    \"type\": \"string\",\n                    \"description\": \"The city or town of the location.\"\n                  },\n                  \"postalCode\": {\n                    \"type\": \"string\",\n                    \"description\": \"The postal code of the location.\"\n                  },\n                  \"streetAddress\": {\n                    \"type\": \"string\",\n                    \"description\": \"The street address of the location.\"\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

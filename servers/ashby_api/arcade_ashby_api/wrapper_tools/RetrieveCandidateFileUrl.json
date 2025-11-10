@@ -1,0 +1,122 @@
+{
+  "name": "RetrieveCandidateFileUrl",
+  "fully_qualified_name": "AshbyApi.RetrieveCandidateFileUrl@0.1.0",
+  "description": "Retrieve the URL of a candidate's associated file.\n\nUse this tool to retrieve the URL of a file linked to a specific candidate. Ensure you have the required 'candidatesRead' permission. Note that using Ashby demo data may cause errors; create a test candidate for testing.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "candidate_file_handle",
+        "required": false,
+        "description": "The file handle string retrieved from the public API, used to identify and access the candidate's associated file.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "fileHandle": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A file handle retrieved from the public API"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'fileInfo'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/file.info",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "candidate_file_handle",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "fileHandle": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A file handle retrieved from the public API"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"fileHandle\": {\n            \"type\": \"string\",\n            \"description\": \"A file handle retrieved from the public API\",\n            \"example\": \"eyJoYW5kbGUiOnsidHlwZSI6IkNhbmRpZGF0ZUZpbGUiLCJmaWxlSWQiOiIxNTk1ZTRmYy04MTQwLTQ1NGUtYTI1ZC04NTNiOTQ3ZWNmYzgiLCJvd25lcklkIjoiYmY5NGZlNmMtMjU3MS00NzQ1LWE1OWEtNTA5MjE3ODI3MDVlIn0sInNpZ25hdHVyZSI6IkFqclpjT0VlTXUwdWxLZlRCS05iMWRkbDdHcjVIWFVmZzNrS0NPL1dWWjg9IiwidmVyc2lvbiI6IjEilQ\\n\"\n          }\n        },\n        \"required\": [\n          \"fileHandle\"\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

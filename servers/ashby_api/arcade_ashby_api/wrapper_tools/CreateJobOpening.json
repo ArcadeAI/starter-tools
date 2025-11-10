@@ -1,0 +1,425 @@
+{
+  "name": "CreateJobOpening",
+  "fully_qualified_name": "AshbyApi.CreateJobOpening@0.1.0",
+  "description": "Create a new job opening in the system.\n\nUse this tool to create a new job opening. Requires 'jobsWrite' permission. For setting custom fields, use the 'customFields.setValue' endpoint.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "identifiers",
+        "required": false,
+        "description": "Comma-separated list of jobIds, targetHireDate, targetStartDate, isBackfill, and employmentType to define job details.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "jobIds,     targetHireDate,     targetStartDate,     isBackfill,     employmentType,"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "identifier"
+      },
+      {
+        "name": "job_description",
+        "required": false,
+        "description": "A detailed description of the job opening, including responsibilities and qualifications.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "description"
+      },
+      {
+        "name": "department_team_id",
+        "required": false,
+        "description": "The unique identifier for the department or team associated with the job opening.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The id of the department or team associated with the opening."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "teamId"
+      },
+      {
+        "name": "location_ids",
+        "required": false,
+        "description": "A list of location IDs associated with the job opening.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ids of the locations associated with the opening."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "locationIds"
+      },
+      {
+        "name": "associated_job_ids",
+        "required": false,
+        "description": "Array of job IDs related to the opening.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ids of the jobs associated with the opening"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "jobIds"
+      },
+      {
+        "name": "target_hire_date",
+        "required": false,
+        "description": "Specify the date (YYYY-MM-DD) by which the hire is intended to be made for the job opening.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The date (in YYYY-MM-DD format) by which you intend to hire against this opening."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "targetHireDate"
+      },
+      {
+        "name": "employment_start_date",
+        "required": false,
+        "description": "The date (in YYYY-MM-DD format) when the hired person is expected to start employment.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The date (in YYYY-MM-DD format) by which you intend someone hired against this opening will start employment."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "targetStartDate"
+      },
+      {
+        "name": "employment_type",
+        "required": false,
+        "description": "The employment type for this opening. Options include: FullTime, PartTime, Intern, Contract, Temporary.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "FullTime",
+            "PartTime",
+            "Intern",
+            "Contract",
+            "Temporary",
+            ""
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The employment type for this opening"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "employmentType"
+      },
+      {
+        "name": "opening_state",
+        "required": false,
+        "description": "Specifies the state of the job opening. Options: Draft, Approved, Open, Closed. Defaults to Draft. Additional validation may be needed if not Draft.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "Draft",
+            "Approved",
+            "Open",
+            "Closed"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The state the opening should be created in. Defaults to `Draft`. If not Draft, additional validation will be performed."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "openingState"
+      },
+      {
+        "name": "is_backfill",
+        "required": false,
+        "description": "Indicate whether the job opening is intended to backfill a previous employee's position.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether this opening is intended to backfill a previous employee"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "isBackfill"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'openingcreate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/opening.create",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "identifier",
+        "tool_parameter_name": "identifiers",
+        "description": "jobIds,     targetHireDate,     targetStartDate,     isBackfill,     employmentType,",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "jobIds,     targetHireDate,     targetStartDate,     isBackfill,     employmentType,"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "description",
+        "tool_parameter_name": "job_description",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "teamId",
+        "tool_parameter_name": "department_team_id",
+        "description": "The id of the department or team associated with the opening.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The id of the department or team associated with the opening."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "locationIds",
+        "tool_parameter_name": "location_ids",
+        "description": "The ids of the locations associated with the opening.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ids of the locations associated with the opening."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "jobIds",
+        "tool_parameter_name": "associated_job_ids",
+        "description": "The ids of the jobs associated with the opening",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The ids of the jobs associated with the opening"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "targetHireDate",
+        "tool_parameter_name": "target_hire_date",
+        "description": "The date (in YYYY-MM-DD format) by which you intend to hire against this opening.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The date (in YYYY-MM-DD format) by which you intend to hire against this opening."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "targetStartDate",
+        "tool_parameter_name": "employment_start_date",
+        "description": "The date (in YYYY-MM-DD format) by which you intend someone hired against this opening will start employment.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The date (in YYYY-MM-DD format) by which you intend someone hired against this opening will start employment."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "isBackfill",
+        "tool_parameter_name": "is_backfill",
+        "description": "Whether this opening is intended to backfill a previous employee",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether this opening is intended to backfill a previous employee"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": false,
+        "documentation_urls": []
+      },
+      {
+        "name": "employmentType",
+        "tool_parameter_name": "employment_type",
+        "description": "The employment type for this opening",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "FullTime",
+            "PartTime",
+            "Intern",
+            "Contract",
+            "Temporary",
+            ""
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The employment type for this opening"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": "FullTime",
+        "documentation_urls": []
+      },
+      {
+        "name": "openingState",
+        "tool_parameter_name": "opening_state",
+        "description": "The state the opening should be created in. Defaults to `Draft`. If not Draft, additional validation will be performed.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "Draft",
+            "Approved",
+            "Open",
+            "Closed"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The state the opening should be created in. Defaults to `Draft`. If not Draft, additional validation will be performed."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"identifier\": {\n            \"type\": \"string\",\n            \"description\": \"jobIds,     targetHireDate,     targetStartDate,     isBackfill,     employmentType,\"\n          },\n          \"description\": {\n            \"type\": \"string\"\n          },\n          \"teamId\": {\n            \"type\": \"string\",\n            \"description\": \"The id of the department or team associated with the opening.\"\n          },\n          \"locationIds\": {\n            \"type\": \"array\",\n            \"description\": \"The ids of the locations associated with the opening.\",\n            \"items\": {\n              \"type\": \"string\"\n            }\n          },\n          \"jobIds\": {\n            \"type\": \"array\",\n            \"description\": \"The ids of the jobs associated with the opening\",\n            \"items\": {\n              \"type\": \"string\"\n            }\n          },\n          \"targetHireDate\": {\n            \"type\": \"string\",\n            \"description\": \"The date (in YYYY-MM-DD format) by which you intend to hire against this opening.\"\n          },\n          \"targetStartDate\": {\n            \"type\": \"string\",\n            \"description\": \"The date (in YYYY-MM-DD format) by which you intend someone hired against this opening will start employment.\"\n          },\n          \"isBackfill\": {\n            \"type\": \"boolean\",\n            \"description\": \"Whether this opening is intended to backfill a previous employee\",\n            \"default\": false\n          },\n          \"employmentType\": {\n            \"type\": \"string\",\n            \"description\": \"The employment type for this opening\",\n            \"default\": \"FullTime\",\n            \"enum\": [\n              \"FullTime\",\n              \"PartTime\",\n              \"Intern\",\n              \"Contract\",\n              \"Temporary\",\n              \"\"\n            ]\n          },\n          \"openingState\": {\n            \"type\": \"string\",\n            \"description\": \"The state the opening should be created in. Defaults to `Draft`. If not Draft, additional validation will be performed.\",\n            \"enum\": [\n              \"Draft\",\n              \"Approved\",\n              \"Open\",\n              \"Closed\"\n            ]\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

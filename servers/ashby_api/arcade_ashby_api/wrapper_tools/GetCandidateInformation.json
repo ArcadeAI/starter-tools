@@ -1,0 +1,104 @@
+{
+  "name": "GetCandidateInformation",
+  "fully_qualified_name": "AshbyApi.GetCandidateInformation@0.1.0",
+  "description": "Retrieve detailed information of a candidate using their ID.\n\nThis tool retrieves comprehensive information about a candidate based on their unique ID, ensuring the caller has the necessary permissions.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "candidate_id",
+        "required": true,
+        "description": "The unique identifier for the candidate whose information is being requested.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'candidateInfo'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/candidate.info",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "candidate_id",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"required\": true,\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"oneOf\": [\n          {\n            \"type\": \"object\",\n            \"properties\": {\n              \"id\": {\n                \"type\": \"string\",\n                \"format\": \"uuid\",\n                \"description\": \"The id of the candidate to fetch\"\n              }\n            },\n            \"required\": [\n              \"id\"\n            ],\n            \"example\": {\n              \"id\": \"f9e52a51-a075-4116-a7b8-484deba69004\"\n            }\n          },\n          {\n            \"type\": \"object\",\n            \"properties\": {\n              \"externalMappingId\": {\n                \"type\": \"string\",\n                \"description\": \"An id assigned to a candidate outside of Ashby. \\nUsed to associate Ashby candidates with their profiles in external systems (BambooHR, Rippling, Gusto, etc.)\\n\"\n              }\n            },\n            \"required\": [\n              \"externalMappingId\"\n            ],\n            \"example\": {\n              \"externalMappingId\": \"f9e52a51-a075-4116-a7b8-484deba69004\"\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}
