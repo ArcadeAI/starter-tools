@@ -1,0 +1,290 @@
+{
+  "name": "CreateCustomField",
+  "fully_qualified_name": "AshbyApi.CreateCustomField@0.1.0",
+  "description": "Creates a new custom field in Ashby.\n\nUse this tool to create a new custom field in Ashby, granted the necessary permissions are available.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "custom_field_details",
+        "required": false,
+        "description": "JSON object detailing the custom field attributes: type, associated object, title, description, selectable values, and exposure settings.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "fieldType": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "Boolean",
+                "CompensationRange",
+                "Date",
+                "LongText",
+                "MultiValueSelect",
+                "Number",
+                "NumberRange",
+                "String",
+                "ValueSelect",
+                "Url"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of field being created. This value is case-sensitive."
+            },
+            "objectType": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "Application",
+                "Candidate",
+                "Job",
+                "Employee",
+                "Talent_Project",
+                "Opening_Version",
+                "Offer_Version"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of object the field can be associated with."
+            },
+            "title": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the field"
+            },
+            "description": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A description for the field"
+            },
+            "selectableValues": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "label": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "value": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": "Required when the field type is ValueSelect or MultiValueSelect. An array of selectable values for the field."
+            },
+            "isDateOnlyField": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Only applies to fields with an objectType of Date. Whether or not the field includes content other than a date"
+            },
+            "isExposableToCandidate": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Determines whether the field can be exposed to a candidate in certain contexts. In order for a custom field to be available in an email template this value must be true."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'customFieldCreate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/customField.create",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "custom_field_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "fieldType": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "Boolean",
+                "CompensationRange",
+                "Date",
+                "LongText",
+                "MultiValueSelect",
+                "Number",
+                "NumberRange",
+                "String",
+                "ValueSelect",
+                "Url"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of field being created. This value is case-sensitive."
+            },
+            "objectType": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "Application",
+                "Candidate",
+                "Job",
+                "Employee",
+                "Talent_Project",
+                "Opening_Version",
+                "Offer_Version"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of object the field can be associated with."
+            },
+            "title": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the field"
+            },
+            "description": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A description for the field"
+            },
+            "selectableValues": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "label": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "value": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": "Required when the field type is ValueSelect or MultiValueSelect. An array of selectable values for the field."
+            },
+            "isDateOnlyField": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Only applies to fields with an objectType of Date. Whether or not the field includes content other than a date"
+            },
+            "isExposableToCandidate": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Determines whether the field can be exposed to a candidate in certain contexts. In order for a custom field to be available in an email template this value must be true."
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"fieldType\",\n          \"objectType\",\n          \"title\"\n        ],\n        \"properties\": {\n          \"fieldType\": {\n            \"type\": \"string\",\n            \"description\": \"The type of field being created. This value is case-sensitive.\",\n            \"enum\": [\n              \"Boolean\",\n              \"CompensationRange\",\n              \"Date\",\n              \"LongText\",\n              \"MultiValueSelect\",\n              \"Number\",\n              \"NumberRange\",\n              \"String\",\n              \"ValueSelect\",\n              \"Url\"\n            ]\n          },\n          \"objectType\": {\n            \"type\": \"string\",\n            \"description\": \"The type of object the field can be associated with.\",\n            \"enum\": [\n              \"Application\",\n              \"Candidate\",\n              \"Job\",\n              \"Employee\",\n              \"Talent_Project\",\n              \"Opening_Version\",\n              \"Offer_Version\"\n            ]\n          },\n          \"title\": {\n            \"type\": \"string\",\n            \"description\": \"The name of the field\"\n          },\n          \"description\": {\n            \"type\": \"string\",\n            \"description\": \"A description for the field\"\n          },\n          \"selectableValues\": {\n            \"type\": \"array\",\n            \"description\": \"Required when the field type is ValueSelect or MultiValueSelect. An array of selectable values for the field.\",\n            \"items\": {\n              \"properties\": {\n                \"label\": {\n                  \"type\": \"string\"\n                },\n                \"value\": {\n                  \"type\": \"string\"\n                }\n              },\n              \"required\": [\n                \"label\",\n                \"value\"\n              ],\n              \"type\": \"object\"\n            }\n          },\n          \"isDateOnlyField\": {\n            \"type\": \"boolean\",\n            \"description\": \"Only applies to fields with an objectType of Date. Whether or not the field includes content other than a date\"\n          },\n          \"isExposableToCandidate\": {\n            \"type\": \"boolean\",\n            \"description\": \"Determines whether the field can be exposed to a candidate in certain contexts. In order for a custom field to be available in an email template this value must be true.\",\n            \"default\": false\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "name": "ListAllJobs",
+  "fully_qualified_name": "AshbyApi.ListAllJobs@0.1.0",
+  "description": "Retrieve all open, closed, and archived jobs from Ashby.\n\nThis tool is used to list all jobs, including open, closed, and archived ones. It can also include draft jobs if specified in the status parameter. Useful for accessing comprehensive job listings efficiently.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "include_draft_jobs",
+        "required": false,
+        "description": "Include draft jobs in the list by setting this parameter to True.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'jobList'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/job.list",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "include_draft_jobs",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"allOf\": [\n          {\n            \"type\": \"object\",\n            \"description\": \"Schema reference broken: #/paths/~1project.list/post/requestBody/content/application~1json/schema\",\n            \"additionalProperties\": true,\n            \"x-moar-broken-reference\": \"#/paths/~1project.list/post/requestBody/content/application~1json/schema\"\n          },\n          {\n            \"type\": \"object\",\n            \"properties\": {\n              \"status\": {\n                \"type\": \"array\",\n                \"description\": \"When supplied, only jobs with the provided status(es) will be returned.\",\n                \"items\": {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/paths/~1job.setStatus/post/requestBody/content/application~1json/schema/properties/status/allOf/1\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/paths/~1job.setStatus/post/requestBody/content/application~1json/schema/properties/status/allOf/1\"\n                }\n              },\n              \"openedAfter\": {\n                \"type\": \"integer\",\n                \"format\": \"int64\",\n                \"description\": \"Return jobs opened after this date, which is the time since the unix epoch in milliseconds\"\n              },\n              \"openedBefore\": {\n                \"type\": \"integer\",\n                \"format\": \"int64\",\n                \"description\": \"Return jobs opened before this date, which is the time since the unix epoch in milliseconds\"\n              },\n              \"closedAfter\": {\n                \"type\": \"integer\",\n                \"format\": \"int64\",\n                \"description\": \"Return jobs closed after this date, which is the time since the unix epoch in milliseconds\"\n              },\n              \"closedBefore\": {\n                \"type\": \"integer\",\n                \"format\": \"int64\",\n                \"description\": \"Return jobs closed before this date, which is the time since the unix epoch in milliseconds\"\n              },\n              \"includeUnpublishedJobPostingsIds\": {\n                \"type\": \"boolean\",\n                \"description\": \"Include unpublished job posting ids\"\n              },\n              \"expand\": {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1job.info/post/requestBody/content/application~1json/schema/properties/expand\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1job.info/post/requestBody/content/application~1json/schema/properties/expand\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

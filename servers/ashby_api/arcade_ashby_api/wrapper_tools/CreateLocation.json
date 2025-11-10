@@ -1,0 +1,308 @@
+{
+  "name": "CreateLocation",
+  "fully_qualified_name": "AshbyApi.CreateLocation@0.1.0",
+  "description": "Create a location or location hierarchy.\n\nThis tool creates a new location or a location hierarchy within the system. It is useful for adding organizational locations, such as branches or divisions. Requires organizationWrite permission.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "location_details",
+        "required": false,
+        "description": "Details about the location to be created; includes name, type, address, and more.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the location."
+            },
+            "type": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "Location",
+                "LocationHierarchy"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "A Location represents an actual location that jobs and employees can be associated with. A Location Hierarchy is a grouping of locations or other location hierarchies."
+            },
+            "address": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "postalAddress": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "addressCountry": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The country the location is in. Must be a valid country name or two-letter country code."
+                    },
+                    "addressRegion": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The region the location is in (for instance, a state or province)."
+                    },
+                    "addressLocality": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The city or town of the location."
+                    },
+                    "postalCode": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The postal code of the address."
+                    },
+                    "streetAddress": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The street address of the location."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": "The address of the location."
+            },
+            "parentLocationId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The id of the location's parent."
+            },
+            "isRemote": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether the location should be labeled as remote. LocationHierarchies cannot be labeled as remote."
+            },
+            "workplaceType": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'locationcreate'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/location.create",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "location_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the location."
+            },
+            "type": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "Location",
+                "LocationHierarchy"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "A Location represents an actual location that jobs and employees can be associated with. A Location Hierarchy is a grouping of locations or other location hierarchies."
+            },
+            "address": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "postalAddress": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "addressCountry": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The country the location is in. Must be a valid country name or two-letter country code."
+                    },
+                    "addressRegion": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The region the location is in (for instance, a state or province)."
+                    },
+                    "addressLocality": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The city or town of the location."
+                    },
+                    "postalCode": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The postal code of the address."
+                    },
+                    "streetAddress": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The street address of the location."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": "The address of the location."
+            },
+            "parentLocationId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The id of the location's parent."
+            },
+            "isRemote": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether the location should be labeled as remote. LocationHierarchies cannot be labeled as remote."
+            },
+            "workplaceType": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"name\",\n          \"type\"\n        ],\n        \"properties\": {\n          \"name\": {\n            \"type\": \"string\",\n            \"description\": \"The name of the location.\"\n          },\n          \"type\": {\n            \"type\": \"string\",\n            \"description\": \"A Location represents an actual location that jobs and employees can be associated with. A Location Hierarchy is a grouping of locations or other location hierarchies.\",\n            \"enum\": [\n              \"Location\",\n              \"LocationHierarchy\"\n            ]\n          },\n          \"address\": {\n            \"type\": \"object\",\n            \"description\": \"The address of the location.\",\n            \"properties\": {\n              \"postalAddress\": {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"addressCountry\": {\n                    \"type\": \"string\",\n                    \"description\": \"The country the location is in. Must be a valid country name or two-letter country code.\"\n                  },\n                  \"addressRegion\": {\n                    \"type\": \"string\",\n                    \"description\": \"The region the location is in (for instance, a state or province).\"\n                  },\n                  \"addressLocality\": {\n                    \"type\": \"string\",\n                    \"description\": \"The city or town of the location.\"\n                  },\n                  \"postalCode\": {\n                    \"type\": \"string\",\n                    \"description\": \"The postal code of the address.\"\n                  },\n                  \"streetAddress\": {\n                    \"type\": \"string\",\n                    \"description\": \"The street address of the location.\"\n                  }\n                }\n              }\n            }\n          },\n          \"parentLocationId\": {\n            \"type\": \"string\",\n            \"description\": \"The id of the location's parent.\"\n          },\n          \"isRemote\": {\n            \"type\": \"boolean\",\n            \"description\": \"Whether the location should be labeled as remote. LocationHierarchies cannot be labeled as remote.\",\n            \"default\": false\n          },\n          \"workplaceType\": {\n            \"allOf\": [\n              {\n                \"description\": \"The type of workplace. LocationHierarchies cannot be labeled with a workplaceType.\"\n              },\n              {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"OnSite\",\n                  \"Hybrid\",\n                  \"Remote\"\n                ]\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "name": "OfferApprovalAction",
+  "fully_qualified_name": "AshbyApi.OfferApprovalAction@0.1.0",
+  "description": "Approve an offer or a specific step in the approval process.\n\nThis tool approves an entire offer or a specific step within an offer's approval process. Use it to mimic the \"Force Approve\" function in Ashby, requiring the `offersWrite` permission. Call without `approvalStepId` and `userId` to approve the whole process, or provide both to approve a specific step.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "offer_approval_request",
+        "required": false,
+        "description": "JSON object containing 'offerVersionId', and optionally 'approvalStepId' and 'userId' for approving an offer or specific step.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "offerVersionId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "approvalStepId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "userId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'offerApprove'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/offer.approve",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "offer_approval_request",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "offerVersionId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "approvalStepId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "userId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"offerVersionId\": {\n            \"allOf\": [\n              {\n                \"description\": \"The id of the offer version that needs approval. This can be obtained as the `entityId` from the `approval.list` endpoint.\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              }\n            ]\n          },\n          \"approvalStepId\": {\n            \"allOf\": [\n              {\n                \"description\": \"The id of the specific approval step to approve. If provided, `userId` must also be provided.\\nIf omitted, the entire offer approval process will be approved. This can be obtained from the `approval.list` endpoint.\\n\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              }\n            ]\n          },\n          \"userId\": {\n            \"allOf\": [\n              {\n                \"description\": \"The id of the user approving the step. Required if `approvalStepId` is provided.\\nMust be an approver for the specified approval step.\\n\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              }\n            ]\n          }\n        },\n        \"required\": [\n          \"offerVersionId\"\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "name": "StartAssessment",
+  "fully_qualified_name": "AshbyApi.StartAssessment@0.1.0",
+  "description": "Start an assessment using the Ashby API.\n\nThis tool initiates an assessment process via the Ashby platform. It should be called when an assessment needs to be started and provides confirmation once initiated.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "assessment_details",
+        "required": false,
+        "description": "A JSON object containing details for starting the assessment, including 'assessment_type_id', 'candidate', 'application', and 'job'.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "assessment_type_id": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "candidate": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "application": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "job": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'assessmentStart'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/assessment.start",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "assessment_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "assessment_type_id": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "candidate": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "application": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "job": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"assessment_type_id\",\n          \"candidate\",\n          \"application\",\n          \"job\"\n        ],\n        \"properties\": {\n          \"assessment_type_id\": {\n            \"allOf\": [\n              {\n                \"description\": \"The id of the type of assessment to start (retrieved from calling /assessment.list)\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              }\n            ]\n          },\n          \"candidate\": {\n            \"allOf\": [\n              {\n                \"description\": \"Identifier of the assessment being started\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"A description of the candidate\",\n                \"required\": [\n                  \"ashby_id\",\n                  \"first_name\",\n                  \"last_name\",\n                  \"email\",\n                  \"ashby_profile_url\"\n                ],\n                \"properties\": {\n                  \"ashby_id\": {\n                    \"allOf\": [\n                      {\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"description\": \"The identifier of the candidate in Ashby\"\n                      }\n                    ]\n                  },\n                  \"first_name\": {\n                    \"allOf\": [\n                      {\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"description\": \"The first name of the candidate being assessed\"\n                      }\n                    ]\n                  },\n                  \"last_name\": {\n                    \"allOf\": [\n                      {\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"description\": \"The last name of the candidate being assessed\"\n                      }\n                    ]\n                  },\n                  \"email\": {\n                    \"allOf\": [\n                      {\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"description\": \"The email of the candidate being assessed\"\n                      }\n                    ]\n                  },\n                  \"ashby_profile_url\": {\n                    \"allOf\": [\n                      {\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"description\": \"The url back into Ashby of the candidate being assessed\"\n                      }\n                    ]\n                  }\n                }\n              }\n            ]\n          },\n          \"application\": {\n            \"allOf\": [\n              {\n                \"description\": \"The application for which the candidate is being assessed\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"The application for which the candidate is being assessed\",\n                \"required\": [\n                  \"ashby_id\",\n                  \"status\"\n                ],\n                \"properties\": {\n                  \"ashby_id\": {\n                    \"allOf\": [\n                      {\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"description\": \"The id of the application in Ashby\"\n                      }\n                    ]\n                  },\n                  \"status\": {\n                    \"allOf\": [\n                      {\n                        \"type\": \"object\",\n                        \"description\": \"Schema reference broken: #/paths/~1application.list/post/requestBody/content/application~1json/schema/allOf/1/properties/status\",\n                        \"additionalProperties\": true,\n                        \"x-moar-broken-reference\": \"#/paths/~1application.list/post/requestBody/content/application~1json/schema/allOf/1/properties/status\"\n                      },\n                      {\n                        \"description\": \"The status of the application in Ashby\"\n                      }\n                    ]\n                  }\n                }\n              }\n            ]\n          },\n          \"job\": {\n            \"allOf\": [\n              {\n                \"description\": \"The job for which the candidate is being assessed\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"The job for which the candidate is being assessed\",\n                \"required\": [\n                  \"ashby_id\",\n                  \"name\",\n                  \"ashby_job_url\"\n                ],\n                \"properties\": {\n                  \"ashby_id\": {\n                    \"allOf\": [\n                      {\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"description\": \"The id of the job in Ashby\"\n                      }\n                    ]\n                  },\n                  \"name\": {\n                    \"allOf\": [\n                      {\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"description\": \"The name of the job in Ashby\"\n                      }\n                    ]\n                  },\n                  \"req_id\": {\n                    \"allOf\": [\n                      {\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"description\": \"The customer-defined requisition id for the job\"\n                      }\n                    ]\n                  },\n                  \"ashby_job_url\": {\n                    \"allOf\": [\n                      {\n                        \"type\": \"string\"\n                      },\n                      {\n                        \"description\": \"The url of the job, internal to Ashby\"\n                      }\n                    ]\n                  },\n                  \"hiringTeam\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                      \"type\": \"object\",\n                      \"description\": \"Schema reference broken: #/paths/~1hiringTeam.addMember/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results\",\n                      \"additionalProperties\": true,\n                      \"x-moar-broken-reference\": \"#/paths/~1hiringTeam.addMember/post/responses/200/content/application~1json/schema/oneOf/0/allOf/1/properties/results\"\n                    }\n                  }\n                }\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

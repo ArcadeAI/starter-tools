@@ -1,0 +1,104 @@
+{
+  "name": "SubmitApplicationFeedback",
+  "fully_qualified_name": "AshbyApi.SubmitApplicationFeedback@0.1.0",
+  "description": "Submit application feedback forms with various field types.\n\nThis tool allows you to submit application feedback forms supporting multiple field types such as boolean, date, email, number, text, score, phone, and select options. It requires the `candidatesWrite` permission and returns the submitted feedback with the field paths and values.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "feedback_form_data",
+        "required": false,
+        "description": "The JSON object containing key-value pairs for feedback submission fields. Field types include Boolean, Date, Email, Number, PlainText, Score, Phone, String, ValueSelect, and MultiValueSelect. Format and match the content accordingly for each type.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'applicationfeedbacksubmit'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/applicationFeedback.submit",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "feedback_form_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"oneOf\": [\n          {\n            \"type\": \"object\",\n            \"required\": [\n              \"feedbackForm\",\n              \"formDefinitionId\",\n              \"applicationId\"\n            ],\n            \"properties\": {\n              \"feedbackForm\": {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1offer.create/post/requestBody/content/application~1json/schema/properties/offerForm\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1offer.create/post/requestBody/content/application~1json/schema/properties/offerForm\"\n              },\n              \"formDefinitionId\": {\n                \"allOf\": [\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                  },\n                  {\n                    \"description\": \"The id of the feedback form definition associated with the form submission\"\n                  }\n                ]\n              },\n              \"applicationId\": {\n                \"allOf\": [\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                  },\n                  {\n                    \"description\": \"The id of the application you're submitting feedback for\"\n                  }\n                ]\n              },\n              \"userId\": {\n                \"allOf\": [\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                  },\n                  {\n                    \"description\": \"The id of the user the feedback will be credited to.\\nIf a userId is not provided, the feedback will be credited to the API key user.\\n\"\n                  }\n                ]\n              }\n            }\n          },\n          {\n            \"type\": \"object\",\n            \"required\": [\n              \"feedbackForm\",\n              \"formDefinitionId\",\n              \"applicationId\",\n              \"userId\",\n              \"interviewEventId\"\n            ],\n            \"properties\": {\n              \"feedbackForm\": {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1offer.create/post/requestBody/content/application~1json/schema/properties/offerForm\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1offer.create/post/requestBody/content/application~1json/schema/properties/offerForm\"\n              },\n              \"formDefinitionId\": {\n                \"allOf\": [\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                  },\n                  {\n                    \"description\": \"The id of the feedback form definition associated with the form submission\"\n                  }\n                ]\n              },\n              \"applicationId\": {\n                \"allOf\": [\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                  },\n                  {\n                    \"description\": \"The id of the application you're submitting feedback for\"\n                  }\n                ]\n              },\n              \"userId\": {\n                \"allOf\": [\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                  },\n                  {\n                    \"description\": \"The id of the user the feedback will be credited to. \\nThe user must be an interviewer on the interview event that feedback is being submitted for.\\n\"\n                  }\n                ]\n              },\n              \"interviewEventId\": {\n                \"allOf\": [\n                  {\n                    \"type\": \"object\",\n                    \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                    \"additionalProperties\": true,\n                    \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n                  },\n                  {\n                    \"description\": \"The id of the interview event you're submitting feedback for.\\n\"\n                  }\n                ]\n              }\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

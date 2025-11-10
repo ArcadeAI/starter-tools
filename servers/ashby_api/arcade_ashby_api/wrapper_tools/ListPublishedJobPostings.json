@@ -1,0 +1,170 @@
+{
+  "name": "ListPublishedJobPostings",
+  "fully_qualified_name": "AshbyApi.ListPublishedJobPostings@0.1.0",
+  "description": "Retrieve all published and publicly listed job postings.\n\nUse this tool to get a list of job postings that are published and set for public display. Ensure to set the `listedOnly` parameter to `true` to avoid exposing unlisted jobs.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "job_posting_filters",
+        "required": false,
+        "description": "A JSON object to filter job postings by `location`, `department`, `listedOnly`, and `jobBoardId`. Use `listedOnly` as true to exclude unlisted jobs.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "location": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "filter by location name (case sensitive)"
+            },
+            "department": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "filter by department name (case sensitive)"
+            },
+            "listedOnly": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "If true, filter out unlisted job postings."
+            },
+            "jobBoardId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'jobPostingList'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/jobPosting.list",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "job_posting_filters",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "location": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "filter by location name (case sensitive)"
+            },
+            "department": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "filter by department name (case sensitive)"
+            },
+            "listedOnly": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "If true, filter out unlisted job postings."
+            },
+            "jobBoardId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"location\": {\n            \"type\": \"string\",\n            \"description\": \"filter by location name (case sensitive)\"\n          },\n          \"department\": {\n            \"type\": \"string\",\n            \"description\": \"filter by department name (case sensitive)\"\n          },\n          \"listedOnly\": {\n            \"type\": \"boolean\",\n            \"description\": \"If true, filter out unlisted job postings.\",\n            \"default\": false\n          },\n          \"jobBoardId\": {\n            \"allOf\": [\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              },\n              {\n                \"description\": \"If provided, only returns the job postings on the specified job board.  If omitted, this API will return the job postings on the primary external job board.\"\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

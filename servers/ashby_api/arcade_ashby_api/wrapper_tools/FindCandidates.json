@@ -1,0 +1,137 @@
+{
+  "name": "FindCandidates",
+  "fully_qualified_name": "AshbyApi.FindCandidates@0.1.0",
+  "description": "Search for candidates by email or name.\n\nUse this tool to find candidates based on email and/or name for operations requiring a focused candidate set. Useful for building candidate autocompletes. Ensure you have the required permissions.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "candidate_email",
+        "required": false,
+        "description": "The email address of the candidate to search for. Use this to refine the search results and find specific candidates.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The candidate's email"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "email"
+      },
+      {
+        "name": "candidate_name",
+        "required": false,
+        "description": "The name of the candidate to search for in the database.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The candidate's name"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "name"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'candidateSearch'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/candidate.search",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "email",
+        "tool_parameter_name": "candidate_email",
+        "description": "The candidate's email",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The candidate's email"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "name",
+        "tool_parameter_name": "candidate_name",
+        "description": "The candidate's name",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The candidate's name"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"email\": {\n            \"type\": \"string\",\n            \"description\": \"The candidate's email\"\n          },\n          \"name\": {\n            \"type\": \"string\",\n            \"description\": \"The candidate's name\"\n          }\n        },\n        \"example\": {\n          \"email\": \"test@ashbyhq.com\",\n          \"name\": \"Adam Hart\"\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

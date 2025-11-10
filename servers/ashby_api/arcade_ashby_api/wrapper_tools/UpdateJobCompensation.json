@@ -1,0 +1,188 @@
+{
+  "name": "UpdateJobCompensation",
+  "fully_qualified_name": "AshbyApi.UpdateJobCompensation@0.1.0",
+  "description": "Update a job's compensation details.\n\nUse this tool to modify the compensation tiers of an existing job. It requires the 'jobsWrite' permission.",
+  "toolkit": {
+    "name": "ArcadeAshbyApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "job_compensation_details",
+        "required": false,
+        "description": "JSON object with jobId and compensationTiers. Include compensation details such as title, additional information, and components.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "jobId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "compensationTiers": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "title": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "A label that describes the entire range to applicants. Title is required for multi-tier compensation ranges."
+                },
+                "additionalInformation": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Supplementary information about the compensation"
+                },
+                "components": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {},
+                  "description": "The individual components that make up this compensation range"
+                }
+              },
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'jobUpdateCompensation'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ASHBY_API_KEY"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Ashby API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.ashbyhq.com/job.updateCompensation",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "job_compensation_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "jobId": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "compensationTiers": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "title": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "A label that describes the entire range to applicants. Title is required for multi-tier compensation ranges."
+                },
+                "additionalInformation": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Supplementary information about the compensation"
+                },
+                "components": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {},
+                  "description": "The individual components that make up this compensation range"
+                }
+              },
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ASHBY_API_KEY",
+        "parameter_name": "username",
+        "accepted_as": "basic_auth_username",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"jobId\": {\n            \"allOf\": [\n              {\n                \"description\": \"The unique id of the job to update.\"\n              },\n              {\n                \"type\": \"object\",\n                \"description\": \"Schema reference broken: #/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\",\n                \"additionalProperties\": true,\n                \"x-moar-broken-reference\": \"#/paths/~1interviewerPool.addUser/post/requestBody/content/application~1json/schema/properties/userId\"\n              }\n            ]\n          },\n          \"compensationTiers\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"object\",\n              \"description\": \"A valid compensation range that can be offered to candidates\",\n              \"properties\": {\n                \"title\": {\n                  \"type\": \"string\",\n                  \"example\": \"Zone A\",\n                  \"description\": \"A label that describes the entire range to applicants. Title is required for multi-tier compensation ranges.\"\n                },\n                \"additionalInformation\": {\n                  \"type\": \"string\",\n                  \"example\": \"Signing bonus available\",\n                  \"description\": \"Supplementary information about the compensation\"\n                },\n                \"components\": {\n                  \"type\": \"array\",\n                  \"description\": \"The individual components that make up this compensation range\",\n                  \"items\": {\n                    \"allOf\": [\n                      {\n                        \"type\": \"object\",\n                        \"properties\": {\n                          \"compensationType\": {\n                            \"type\": \"string\",\n                            \"enum\": [\n                              \"Salary\",\n                              \"EquityPercentage\",\n                              \"EquityCashValue\",\n                              \"Commission\",\n                              \"Bonus\"\n                            ],\n                            \"example\": \"Salary\",\n                            \"description\": \"The type of compensation this component represents\\n\"\n                          },\n                          \"interval\": {\n                            \"type\": \"string\",\n                            \"enum\": [\n                              \"NONE\",\n                              \"1 TIME\",\n                              \"1 HOUR\",\n                              \"1 DAY\",\n                              \"1 WEEK\",\n                              \"2 WEEK\",\n                              \"1 MONTH\",\n                              \"2 MONTH\",\n                              \"1 YEAR\",\n                              \"6 MONTH\",\n                              \"0.5 MONTH\",\n                              \"3 MONTH\"\n                            ],\n                            \"example\": \"1 YEAR\",\n                            \"description\": \"The frequency at which this compensation is given\"\n                          },\n                          \"currencyCode\": {\n                            \"type\": \"string\",\n                            \"example\": \"EUR\",\n                            \"description\": \"For non `EquityPercentage` components, the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)\\ncurrency code of the compensation range\\n\"\n                          },\n                          \"label\": {\n                            \"type\": \"string\",\n                            \"example\": \"Estimated Salary\",\n                            \"description\": \"An optional label that describes this compensation range to applicants\"\n                          },\n                          \"minValue\": {\n                            \"oneOf\": [\n                              {\n                                \"type\": \"number\"\n                              },\n                              {\n                                \"type\": \"null\"\n                              }\n                            ],\n                            \"example\": 72000.1,\n                            \"description\": \"The lower end of the compensation range\"\n                          },\n                          \"maxValue\": {\n                            \"oneOf\": [\n                              {\n                                \"type\": \"number\"\n                              },\n                              {\n                                \"type\": \"null\"\n                              }\n                            ],\n                            \"example\": 100000,\n                            \"description\": \"The higher end of the compensation range\"\n                          }\n                        },\n                        \"required\": [\n                          \"compensationType\",\n                          \"interval\"\n                        ]\n                      },\n                      {\n                        \"type\": \"object\",\n                        \"required\": [\n                          \"minValue\",\n                          \"maxValue\"\n                        ]\n                      }\n                    ]\n                  },\n                  \"example\": [\n                    {\n                      \"compensationType\": \"Salary\",\n                      \"interval\": \"1 YEAR\",\n                      \"currencyCode\": \"EUR\",\n                      \"minValue\": 72023.45,\n                      \"maxValue\": 100000\n                    },\n                    {\n                      \"compensationType\": \"EquityPercentage\",\n                      \"interval\": \"NONE\",\n                      \"minValue\": 1,\n                      \"maxValue\": 2.511\n                    },\n                    {\n                      \"compensationType\": \"Bonus\",\n                      \"interval\": \"1 YEAR\",\n                      \"minValue\": null,\n                      \"maxValue\": null\n                    }\n                  ]\n                }\n              },\n              \"required\": [\n                \"components\"\n              ]\n            }\n          }\n        },\n        \"required\": [\n          \"jobId\",\n          \"compensationTiers\"\n        ]\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}
