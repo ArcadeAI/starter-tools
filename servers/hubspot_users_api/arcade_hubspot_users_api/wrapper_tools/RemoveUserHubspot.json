@@ -1,0 +1,149 @@
+{
+  "name": "RemoveUserHubspot",
+  "fully_qualified_name": "HubspotUsersApi.RemoveUserHubspot@0.1.0",
+  "description": "Remove a user from HubSpot using their ID or email.\n\nThis tool removes a user from HubSpot, identified by either their user ID or email. It should be called when a user needs to be permanently deleted or archived from the HubSpot system.",
+  "toolkit": {
+    "name": "ArcadeHubspotUsersApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "user_identifier",
+        "required": true,
+        "description": "Identifier of the user to remove from HubSpot. It can be a user ID or an email address.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Identifier of user to delete"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "userId"
+      },
+      {
+        "name": "user_identifier_property",
+        "required": false,
+        "description": "Specify whether to use `USER_ID` or `EMAIL` to identify the user.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "USER_ID",
+            "EMAIL"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The name of a property with unique user values. Valid values are `USER_ID`(default) or `EMAIL`"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "idProperty"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'delete-/settings/v3/users/{userId}_archive'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-hubspot",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "crm.objects.users.write",
+          "settings.users.write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Hubspot Users API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.hubapi.com/settings/v3/users/{userId}",
+    "http_method": "DELETE",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "idProperty",
+        "tool_parameter_name": "user_identifier_property",
+        "description": "The name of a property with unique user values. Valid values are `USER_ID`(default) or `EMAIL`",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "USER_ID",
+            "EMAIL"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The name of a property with unique user values. Valid values are `USER_ID`(default) or `EMAIL`"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "userId",
+        "tool_parameter_name": "user_identifier",
+        "description": "Identifier of user to delete",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Identifier of user to delete"
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

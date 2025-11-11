@@ -1,0 +1,314 @@
+{
+  "name": "UpdateHubspotUserInfo",
+  "fully_qualified_name": "HubspotUsersApi.UpdateHubspotUserInfo@0.1.0",
+  "description": "Update information for a specified Hubspot user.\n\nThis tool modifies the information of a Hubspot user identified by `userId`. It can be called when you need to update user data using their ID or email.",
+  "toolkit": {
+    "name": "ArcadeHubspotUsersApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "user_identifier",
+        "required": true,
+        "description": "The unique identifier for the user. Can be the user's ID or email, based on the `id_property`.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Identifier of user to retrieve"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "userId"
+      },
+      {
+        "name": "user_identifier_property",
+        "required": false,
+        "description": "Specifies if the user is identified by 'USER_ID' or 'EMAIL'. Default is 'USER_ID'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "USER_ID",
+            "EMAIL"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The name of a property with unique user values. Valid values are `USER_ID`(default) or `EMAIL`"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "idProperty"
+      },
+      {
+        "name": "first_name",
+        "required": false,
+        "description": "The first name of the user to update. This should be a string value.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "firstName"
+      },
+      {
+        "name": "last_name",
+        "required": false,
+        "description": "The last name of the user to be modified. This is the new value of the user's last name.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "lastName"
+      },
+      {
+        "name": "user_primary_team_id",
+        "required": false,
+        "description": "The unique ID for the user's primary team.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The user's primary team"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "primaryTeamId"
+      },
+      {
+        "name": "user_role_id",
+        "required": false,
+        "description": "The ID representing the user's role. Used to assign the user a specific role within the system.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The user's role"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "roleId"
+      },
+      {
+        "name": "additional_teams_ids",
+        "required": false,
+        "description": "An array of strings representing the IDs of the user's additional teams.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The user's additional teams"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "secondaryTeamIds"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'put-/settings/v3/users/{userId}_replace'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-hubspot",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "crm.objects.users.write",
+          "settings.users.write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Hubspot Users API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.hubapi.com/settings/v3/users/{userId}",
+    "http_method": "PUT",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "idProperty",
+        "tool_parameter_name": "user_identifier_property",
+        "description": "The name of a property with unique user values. Valid values are `USER_ID`(default) or `EMAIL`",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "USER_ID",
+            "EMAIL"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The name of a property with unique user values. Valid values are `USER_ID`(default) or `EMAIL`"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "userId",
+        "tool_parameter_name": "user_identifier",
+        "description": "Identifier of user to retrieve",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Identifier of user to retrieve"
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "firstName",
+        "tool_parameter_name": "first_name",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "lastName",
+        "tool_parameter_name": "last_name",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "primaryTeamId",
+        "tool_parameter_name": "user_primary_team_id",
+        "description": "The user's primary team",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The user's primary team"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "roleId",
+        "tool_parameter_name": "user_role_id",
+        "description": "The user's role",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The user's role"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "secondaryTeamIds",
+        "tool_parameter_name": "additional_teams_ids",
+        "description": "The user's additional teams",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The user's additional teams"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"firstName\": {\n            \"type\": \"string\"\n          },\n          \"lastName\": {\n            \"type\": \"string\"\n          },\n          \"primaryTeamId\": {\n            \"type\": \"string\",\n            \"description\": \"The user's primary team\"\n          },\n          \"roleId\": {\n            \"type\": \"string\",\n            \"description\": \"The user's role\"\n          },\n          \"secondaryTeamIds\": {\n            \"type\": \"array\",\n            \"description\": \"The user's additional teams\",\n            \"items\": {\n              \"type\": \"string\"\n            }\n          }\n        },\n        \"description\": \"A user to update\",\n        \"example\": {\n          \"roleId\": \"100\",\n          \"primaryTeamId\": \"101\",\n          \"secondaryTeamIds\": [\n            \"102\"\n          ]\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}
