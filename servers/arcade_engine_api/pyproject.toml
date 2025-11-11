@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "arcade_arcade_engine_api"
-version = "0.2.1"
+version = "1.0.0"
 description = "Tools that enable LLMs to interact directly with the engine API."
 requires-python = ">=3.10"
 dependencies = [
@@ -35,9 +35,9 @@ toolkit_name = "arcade_arcade_engine_api"
 
 # Use local path sources for arcade libs when working locally
 [tool.uv.sources]
-arcade-mcp = { path = "../../../arcade-mcp", editable = true }
-arcade-serve = { path = "../../../arcade-mcp/libs/arcade-serve/", editable = true }
-arcade-tdk = { path = "../../../arcade-mcp/libs/arcade-tdk/", editable = true }
+arcade-mcp = { path = "../../", editable = true }
+arcade-serve = { path = "../../libs/arcade-serve/", editable = true }
+arcade-tdk = { path = "../../libs/arcade-tdk/", editable = true }
 [tool.mypy]
 files = [ "arcade_arcade_engine_api/**/*.py",]
 python_version = "3.10"
