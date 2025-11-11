@@ -1,0 +1,3502 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Scheduler Meetings",
+    "description": "Meetings Service For HubSpot Sales",
+    "version": "v3",
+    "x-hubspot-product-tier-requirements": {
+      "marketing": "PROFESSIONAL",
+      "sales": "PROFESSIONAL",
+      "service": "PROFESSIONAL",
+      "cms": "PROFESSIONAL",
+      "commerce": "FREE",
+      "crmHub": "FREE",
+      "dataHub": "FREE"
+    },
+    "x-hubspot-api-use-case": "You need to get a list of meeting links or book meetings, or you need to create an interface so customers can book meetings with your team.",
+    "x-hubspot-related-documentation": [
+      {
+        "name": "Meetings guide",
+        "url": "https://developers.hubspot.com/docs/reference/api/crm/engagements/meetings"
+      }
+    ],
+    "x-hubspot-introduction": "Use the Meetings links API to retrieve information about meetings created through a scheduling page. You can also book a meeting with a scheduling page through the API."
+  },
+  "servers": [
+    {
+      "url": "https://api.hubapi.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Meetings links"
+    },
+    {
+      "name": "External_Calender_Integration"
+    }
+  ],
+  "paths": {
+    "/scheduler/v3/meetings/calendar": {
+      "post": {
+        "tags": [
+          "External_Calender_Integration"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "post-/scheduler/v3/meetings/calendar",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "associations",
+                  "emailReminderSchedule",
+                  "properties",
+                  "timezone"
+                ],
+                "type": "object",
+                "properties": {
+                  "associations": {
+                    "type": "array",
+                    "items": {
+                      "required": [
+                        "to",
+                        "types"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "types": {
+                          "type": "array",
+                          "items": {
+                            "required": [
+                              "associationCategory",
+                              "associationTypeId"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "associationCategory": {
+                                "type": "string",
+                                "description": "The category of the association, such as \"HUBSPOT_DEFINED\".",
+                                "example": "",
+                                "enum": [
+                                  "HUBSPOT_DEFINED",
+                                  "USER_DEFINED",
+                                  "INTEGRATOR_DEFINED"
+                                ]
+                              },
+                              "associationTypeId": {
+                                "type": "integer",
+                                "description": "The ID representing the specific type of association.",
+                                "format": "int32"
+                              }
+                            },
+                            "description": "Defines the type, direction, and details of the relationship between two CRM objects."
+                          }
+                        },
+                        "to": {
+                          "required": [
+                            "id"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "emailReminderSchedule": {
+                    "required": [
+                      "reminders",
+                      "shouldIncludeInviteDescription"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "reminders": {
+                        "type": "array",
+                        "items": {
+                          "required": [
+                            "numberOfTimeUnits",
+                            "timeUnit"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "numberOfTimeUnits": {
+                              "type": "integer",
+                              "format": "int32"
+                            },
+                            "timeUnit": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "shouldIncludeInviteDescription": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "timezone": {
+                    "type": "string"
+                  },
+                  "properties": {
+                    "required": [
+                      "hs_meeting_end_time",
+                      "hs_meeting_outcome",
+                      "hs_meeting_start_time",
+                      "hs_meeting_title",
+                      "hs_timestamp"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "hs_meeting_start_time": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "hs_attachment_ids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "hs_attendee_owner_ids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "hs_meeting_title": {
+                        "type": "string"
+                      },
+                      "hs_internal_meeting_notes": {
+                        "type": "string"
+                      },
+                      "hs_meeting_body": {
+                        "type": "string"
+                      },
+                      "hs_activity_type": {
+                        "type": "string"
+                      },
+                      "hs_meeting_end_time": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "hs_meeting_outcome": {
+                        "type": "string"
+                      },
+                      "hs_timestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "hubspot_owner_id": {
+                        "type": "string"
+                      },
+                      "hs_meeting_location": {
+                        "type": "string"
+                      },
+                      "hs_meeting_location_type": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "createdAt",
+                    "id",
+                    "lastUpdatedAt",
+                    "properties"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "lastUpdatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "properties": {
+                      "required": [
+                        "hs_engagement_source",
+                        "hs_engagement_source_id",
+                        "hs_meeting_end_time",
+                        "hs_meeting_outcome",
+                        "hs_meeting_start_time",
+                        "hs_meeting_title",
+                        "hs_timestamp"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "hs_engagement_source": {
+                          "type": "string",
+                          "enum": [
+                            "UNKNOWN",
+                            "IMPORT",
+                            "API",
+                            "FORM",
+                            "ANALYTICS",
+                            "MIGRATION",
+                            "SALESFORCE",
+                            "INTEGRATION",
+                            "CONTACTS_WEB",
+                            "WAL_INCREMENTAL",
+                            "TASK",
+                            "EMAIL",
+                            "WORKFLOWS",
+                            "CALCULATED",
+                            "SOCIAL",
+                            "BATCH_UPDATE",
+                            "SIGNALS",
+                            "BIDEN",
+                            "DEFAULT",
+                            "COMPANIES",
+                            "DEALS",
+                            "ASSISTS",
+                            "PRESENTATIONS",
+                            "TALLY",
+                            "SIDEKICK",
+                            "CRM_UI",
+                            "MERGE_CONTACTS",
+                            "PORTAL_USER_ASSOCIATOR",
+                            "INTEGRATIONS_PLATFORM",
+                            "BCC_TO_CRM",
+                            "FORWARD_TO_CRM",
+                            "ENGAGEMENTS",
+                            "SALES",
+                            "HEISENBERG",
+                            "LEADIN",
+                            "GMAIL_INTEGRATION",
+                            "ACADEMY",
+                            "SALES_MESSAGES",
+                            "AVATARS_SERVICE",
+                            "MERGE_COMPANIES",
+                            "SEQUENCES",
+                            "COMPANY_FAMILIES",
+                            "MOBILE_IOS",
+                            "MOBILE_ANDROID",
+                            "CONTACTS",
+                            "ASSOCIATIONS",
+                            "EXTENSION",
+                            "SUCCESS",
+                            "BOT",
+                            "INTEGRATIONS_SYNC",
+                            "AUTOMATION_PLATFORM",
+                            "CONVERSATIONS",
+                            "EMAIL_INTEGRATION",
+                            "CONTENT_MEMBERSHIP",
+                            "QUOTES",
+                            "BET_ASSIGNMENT",
+                            "QUOTAS",
+                            "BET_CRM_CONNECTOR",
+                            "MEETINGS",
+                            "MERGE_OBJECTS",
+                            "RECYCLING_BIN",
+                            "ADS",
+                            "AI_GROUP",
+                            "COMMUNICATOR",
+                            "SETTINGS",
+                            "PROPERTY_SETTINGS",
+                            "PIPELINE_SETTINGS",
+                            "COMPANY_INSIGHTS",
+                            "BEHAVIORAL_EVENTS",
+                            "PAYMENTS",
+                            "GOALS",
+                            "PORTAL_OBJECT_SYNC",
+                            "APPROVALS",
+                            "FILE_MANAGER",
+                            "MARKETPLACE",
+                            "INTERNAL_PROCESSING",
+                            "FORECASTING",
+                            "SLACK_INTEGRATION",
+                            "CRM_UI_BULK_ACTION",
+                            "WORKFLOW_CONTACT_DELETE_ACTION",
+                            "ACCEPTANCE_TEST",
+                            "PLAYBOOKS",
+                            "CHATSPOT",
+                            "FLYWHEEL_PRODUCT_DATA_SYNC",
+                            "HELP_DESK",
+                            "BILLING",
+                            "DATA_ENRICHMENT",
+                            "AUTOMATION_JOURNEY",
+                            "MICROAPPS",
+                            "INTENT",
+                            "PROSPECTING_AGENT",
+                            "CENTRAL_EXCHANGE_RATES",
+                            "HELP_DESK_AI",
+                            "CONVERSATIONAL_ENRICHMENT",
+                            "CRM_PROCESSES_PLATFORM",
+                            "CLONE_OBJECTS",
+                            "MARKET_SOURCING",
+                            "DATASET",
+                            "PROPERTY_RESTORE",
+                            "EMAIL_INBOX_IMPORT",
+                            "CUSTOMER_AGENT",
+                            "LEGAL_BASIS_REMEDIATION",
+                            "AUTO_ASSOCIATE_BY_DOMAIN",
+                            "ACTIVITY_AUTO_ASSOCIATE",
+                            "PRIMARY_AUTOMATION",
+                            "DELETE_OBJECTS",
+                            "RESTORE_OBJECTS"
+                          ]
+                        },
+                        "hs_meeting_start_time": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "hs_attendee_owner_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "hs_attachment_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "hs_engagement_source_id": {
+                          "type": "string"
+                        },
+                        "hs_meeting_title": {
+                          "type": "string"
+                        },
+                        "hs_internal_meeting_notes": {
+                          "type": "string"
+                        },
+                        "hs_unique_id": {
+                          "type": "string"
+                        },
+                        "hs_meeting_body": {
+                          "type": "string"
+                        },
+                        "hs_activity_type": {
+                          "type": "string"
+                        },
+                        "hs_include_description_in_reminder": {
+                          "type": "string"
+                        },
+                        "hs_meeting_end_time": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "hs_meeting_outcome": {
+                          "type": "string"
+                        },
+                        "hs_timestamp": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "hubspot_owner_id": {
+                          "type": "string"
+                        },
+                        "hs_meeting_location": {
+                          "type": "string"
+                        },
+                        "hs_meeting_external_url": {
+                          "type": "string"
+                        },
+                        "hs_meeting_location_type": {
+                          "type": "string",
+                          "enum": [
+                            "PHONE",
+                            "ADDRESS",
+                            "CUSTOM"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "security": [
+          {
+            "private_apps": [
+              "crm.objects.listings.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.listings.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.appointments.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.contacts.sensitive.write"
+            ]
+          },
+          {
+            "private_apps_legacy": [
+              "contacts"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.deals.sensitive.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.companies.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.companies.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.contacts.sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.commercepayments.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.contacts.highly_sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.commercepayments.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.contacts.highly_sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.contacts.sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "tickets.highly_sensitive"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.appointments.sensitive.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.appointments.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "tickets"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.deals.sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.companies.highly_sensitive.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.services.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.services.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "tickets.sensitive"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.products.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.companies.sensitive.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "tickets"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.deals.sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "tickets.sensitive.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.deals.highly_sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.companies.highly_sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.deals.highly_sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.companies.highly_sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.deals.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "tickets.sensitive.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.deals.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.products.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.appointments.sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.appointments.sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "tickets.highly_sensitive.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "tickets.highly_sensitive.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.goals.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.courses.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.goals.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.companies.sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.contacts.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.contacts.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.companies.sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.contacts.highly_sensitive.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.line_items.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.line_items.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.courses.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.deals.highly_sensitive.write"
+            ]
+          }
+        ],
+        "x-moar-primitive-count": 20,
+        "x-moar-complexity-skipped": false
+      }
+    },
+    "/scheduler/v3/meetings/meeting-links/book/{slug}": {
+      "get": {
+        "tags": [
+          "Meetings links"
+        ],
+        "summary": "List booking information",
+        "description": "Get details about the initial information necessary for a meeting scheduler.",
+        "operationId": "get-/scheduler/v3/meetings/meeting-links/book/{slug}",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": ".+",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "allUsersBusyTimes",
+                    "customParams",
+                    "isOffline",
+                    "linkId",
+                    "linkType"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "linkId": {
+                      "type": "string"
+                    },
+                    "customParams": {
+                      "required": [
+                        "availability",
+                        "durations",
+                        "formFields",
+                        "legalConsentEnabled",
+                        "meetingBufferTime",
+                        "ownerPrioritized",
+                        "startTimeIncrementMinutes",
+                        "weeksToAdvertise"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "redirectUrl": {
+                          "type": "string"
+                        },
+                        "startTimeIncrementMinutes": {
+                          "type": "string"
+                        },
+                        "guestSettings": {
+                          "required": [
+                            "canAddGuests",
+                            "maxGuestCount"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "maxGuestCount": {
+                              "type": "integer",
+                              "format": "int32"
+                            },
+                            "canAddGuests": {
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "language": {
+                          "type": "string"
+                        },
+                        "availability": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "start": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "end": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          }
+                        },
+                        "locale": {
+                          "type": "string"
+                        },
+                        "ownerPrioritized": {
+                          "type": "boolean"
+                        },
+                        "legalConsentOptions": {
+                          "required": [
+                            "communicationConsentCheckboxes",
+                            "communicationConsentText",
+                            "isLegitimateInterest",
+                            "legitimateInterestSubscriptionTypes",
+                            "privacyPolicyText",
+                            "processingConsentCheckboxLabel",
+                            "processingConsentFooterText",
+                            "processingConsentText",
+                            "processingConsentType"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "legitimateInterestSubscriptionTypes": {
+                              "type": "array",
+                              "items": {
+                                "type": "integer",
+                                "format": "int64"
+                              }
+                            },
+                            "processingConsentCheckboxLabel": {
+                              "type": "string"
+                            },
+                            "communicationConsentText": {
+                              "type": "string"
+                            },
+                            "legitimateInterestLegalBasis": {
+                              "type": "string",
+                              "enum": [
+                                "LEGITIMATE_INTEREST_PQL",
+                                "LEGITIMATE_INTEREST_CLIENT",
+                                "PERFORMANCE_OF_CONTRACT",
+                                "CONSENT_WITH_NOTICE",
+                                "NON_GDPR",
+                                "PROCESS_AND_STORE",
+                                "LEGITIMATE_INTEREST_OTHER"
+                              ]
+                            },
+                            "processingConsentType": {
+                              "type": "string"
+                            },
+                            "privacyPolicyText": {
+                              "type": "string"
+                            },
+                            "processingConsentText": {
+                              "type": "string"
+                            },
+                            "communicationConsentCheckboxes": {
+                              "type": "array",
+                              "items": {
+                                "required": [
+                                  "communicationTypeId",
+                                  "label",
+                                  "required"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                  "communicationTypeId": {
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "type": "string"
+                                  },
+                                  "required": {
+                                    "type": "boolean"
+                                  }
+                                }
+                              }
+                            },
+                            "processingConsentFooterText": {
+                              "type": "string"
+                            },
+                            "isLegitimateInterest": {
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "welcomeScreenInfo": {
+                          "type": "object",
+                          "properties": {
+                            "useCompanyLogo": {
+                              "type": "boolean"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "showWelcomeScreen": {
+                              "type": "boolean"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "logoUrl": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "meetingBufferTime": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "weeksToAdvertise": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "displayInfo": {
+                          "type": "object",
+                          "properties": {
+                            "publicDisplayAvatarOption": {
+                              "type": "string"
+                            },
+                            "companyAvatar": {
+                              "type": "string"
+                            },
+                            "avatar": {
+                              "type": "string"
+                            },
+                            "headline": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "durations": {
+                          "type": "array",
+                          "items": {
+                            "type": "integer",
+                            "format": "int64"
+                          }
+                        },
+                        "location": {
+                          "type": "string"
+                        },
+                        "formFields": {
+                          "type": "array",
+                          "items": {
+                            "required": [
+                              "fieldType",
+                              "isCustom",
+                              "isRequired",
+                              "label",
+                              "name",
+                              "options",
+                              "type"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "isRequired": {
+                                "type": "boolean"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "options": {
+                                "type": "array",
+                                "items": {
+                                  "required": [
+                                    "description",
+                                    "displayOrder",
+                                    "doubleData",
+                                    "hidden",
+                                    "label",
+                                    "readOnly",
+                                    "value"
+                                  ],
+                                  "type": "object",
+                                  "properties": {
+                                    "hidden": {
+                                      "type": "boolean"
+                                    },
+                                    "displayOrder": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                    },
+                                    "doubleData": {
+                                      "type": "number"
+                                    },
+                                    "description": {
+                                      "type": "string"
+                                    },
+                                    "readOnly": {
+                                      "type": "boolean"
+                                    },
+                                    "label": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "isCustom": {
+                                "type": "boolean"
+                              },
+                              "label": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "fieldType": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "legalConsentEnabled": {
+                          "type": "boolean"
+                        },
+                        "customAvailabilityEndDate": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "customAvailabilityStartDate": {
+                          "type": "integer",
+                          "format": "int64"
+                        }
+                      }
+                    },
+                    "linkAvailability": {
+                      "required": [
+                        "hasMore",
+                        "linkAvailabilityByDuration"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "hasMore": {
+                          "type": "boolean"
+                        },
+                        "linkAvailabilityByDuration": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "required": [
+                              "availabilities",
+                              "meetingDurationMillis"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "meetingDurationMillis": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "availabilities": {
+                                "type": "array",
+                                "items": {
+                                  "required": [
+                                    "endMillisUtc",
+                                    "startMillisUtc"
+                                  ],
+                                  "type": "object",
+                                  "properties": {
+                                    "startMillisUtc": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                    },
+                                    "endMillisUtc": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "brandingMetadata": {
+                      "required": [
+                        "logoAltText",
+                        "showMarketingAd",
+                        "showSalesAd"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "logoHeight": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "logoAltText": {
+                          "type": "string"
+                        },
+                        "companyCity": {
+                          "type": "string"
+                        },
+                        "companyAddressLine1": {
+                          "type": "string"
+                        },
+                        "showSalesAd": {
+                          "type": "boolean"
+                        },
+                        "companyAddressLine2": {
+                          "type": "string"
+                        },
+                        "accentColor": {
+                          "type": "string"
+                        },
+                        "companyName": {
+                          "type": "string"
+                        },
+                        "companyState": {
+                          "type": "string"
+                        },
+                        "primaryColor": {
+                          "type": "string"
+                        },
+                        "showMarketingAd": {
+                          "type": "boolean"
+                        },
+                        "accent2Color": {
+                          "type": "string"
+                        },
+                        "companyDomain": {
+                          "type": "string"
+                        },
+                        "logoUrl": {
+                          "type": "string"
+                        },
+                        "logoWidth": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "companyCountry": {
+                          "type": "string"
+                        },
+                        "companyAvatar": {
+                          "type": "string"
+                        },
+                        "companyZip": {
+                          "type": "string"
+                        },
+                        "secondaryColor": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "isOffline": {
+                      "type": "boolean"
+                    },
+                    "linkType": {
+                      "type": "string",
+                      "enum": [
+                        "PERSONAL_LINK",
+                        "GROUP_CALENDAR",
+                        "ROUND_ROBIN_CALENDAR"
+                      ]
+                    },
+                    "allUsersBusyTimes": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "busyTimes",
+                          "isOffline",
+                          "meetingsUser"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "meetingsUser": {
+                            "required": [
+                              "calendarProvider",
+                              "id",
+                              "isSalesStarter",
+                              "userId",
+                              "userProfile"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "isSalesStarter": {
+                                "type": "boolean"
+                              },
+                              "calendarProvider": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "userId": {
+                                "type": "string"
+                              },
+                              "userProfile": {
+                                "required": [
+                                  "email"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                  "firstName": {
+                                    "type": "string"
+                                  },
+                                  "lastName": {
+                                    "type": "string"
+                                  },
+                                  "fullName": {
+                                    "type": "string"
+                                  },
+                                  "email": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "busyTimes": {
+                            "type": "array",
+                            "items": {
+                              "required": [
+                                "end",
+                                "start"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "start": {
+                                  "type": "integer",
+                                  "format": "int32"
+                                },
+                                "end": {
+                                  "type": "integer",
+                                  "format": "int32"
+                                }
+                              }
+                            }
+                          },
+                          "isOffline": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "scheduler.meetings.meeting-link.read"
+            ]
+          },
+          {
+            "private_apps": [
+              "scheduler.meetings.meeting-link.read"
+            ]
+          }
+        ],
+        "x-moar-primitive-count": 0,
+        "x-moar-complexity-skipped": false
+      }
+    },
+    "/scheduler/v3/meetings/meeting-links": {
+      "get": {
+        "tags": [
+          "Meetings links"
+        ],
+        "summary": "Get meeting scheduling pages",
+        "description": "Get a paged list meeting scheduling pages",
+        "operationId": "get-/scheduler/v3/meetings/meeting-links",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "results",
+                    "total"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "paging": {
+                      "type": "object",
+                      "properties": {
+                        "next": {
+                          "required": [
+                            "after"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "link": {
+                              "type": "string",
+                              "description": "A URL that can be used to retrieve the next page results.",
+                              "example": ""
+                            },
+                            "after": {
+                              "type": "string",
+                              "description": "A paging cursor token for retrieving subsequent pages.",
+                              "example": ""
+                            }
+                          },
+                          "description": "Specifies the paging information needed to retrieve the next set of results in a paginated API response"
+                        }
+                      }
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "createdAt",
+                          "defaultLink",
+                          "id",
+                          "link",
+                          "organizerUserId",
+                          "slug",
+                          "type",
+                          "userIdsOfLinkMembers"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "userIdsOfLinkMembers": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "link": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "organizerUserId": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "defaultLink": {
+                            "type": "boolean"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "slug": {
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "scheduler.meetings.meeting-link.read"
+            ]
+          },
+          {
+            "private_apps": [
+              "scheduler.meetings.meeting-link.read"
+            ]
+          }
+        ],
+        "x-moar-primitive-count": 0,
+        "x-moar-complexity-skipped": false
+      }
+    },
+    "/scheduler/v3/meetings/meeting-links/book": {
+      "post": {
+        "tags": [
+          "Meetings links"
+        ],
+        "summary": "Book a meeting\n",
+        "description": "Book a meeting for a specified meeting page.",
+        "operationId": "post-/scheduler/v3/meetings/meeting-links/book",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "duration",
+                  "email",
+                  "firstName",
+                  "formFields",
+                  "lastName",
+                  "legalConsentResponses",
+                  "likelyAvailableUserIds",
+                  "slug",
+                  "startTime"
+                ],
+                "type": "object",
+                "properties": {
+                  "duration": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "likelyAvailableUserIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "timezone": {
+                    "type": "string"
+                  },
+                  "legalConsentResponses": {
+                    "type": "array",
+                    "items": {
+                      "required": [
+                        "communicationTypeId",
+                        "consented"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "communicationTypeId": {
+                          "type": "string"
+                        },
+                        "consented": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  },
+                  "startTime": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "formFields": {
+                    "type": "array",
+                    "items": {
+                      "required": [
+                        "name",
+                        "value"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "locale": {
+                    "type": "string"
+                  },
+                  "slug": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "bookingTimezone",
+                    "calendarEventId",
+                    "contactId",
+                    "duration",
+                    "end",
+                    "formFields",
+                    "guestEmails",
+                    "isOffline",
+                    "legalConsentResponses",
+                    "start",
+                    "subject"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "calendarEventId": {
+                      "type": "string"
+                    },
+                    "contactId": {
+                      "type": "string"
+                    },
+                    "bookingTimezone": {
+                      "type": "string"
+                    },
+                    "legalConsentResponses": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "communicationTypeId",
+                          "consented"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "communicationTypeId": {
+                            "type": "string"
+                          },
+                          "consented": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    },
+                    "subject": {
+                      "type": "string"
+                    },
+                    "start": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "locale": {
+                      "type": "string"
+                    },
+                    "webConferenceUrl": {
+                      "type": "string"
+                    },
+                    "duration": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "guestEmails": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "webConferenceMeetingId": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "isOffline": {
+                      "type": "boolean"
+                    },
+                    "end": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "formFields": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "isCustom",
+                          "label",
+                          "name",
+                          "value"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "translatedLabel": {
+                            "type": "string"
+                          },
+                          "valueLabel": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "isCustom": {
+                            "type": "boolean"
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          },
+                          "fieldType": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "security": [
+          {
+            "private_apps": [
+              "crm.objects.listings.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.listings.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.appointments.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.contacts.sensitive.write"
+            ]
+          },
+          {
+            "private_apps_legacy": [
+              "contacts"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.deals.sensitive.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.companies.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.companies.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.contacts.sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.commercepayments.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.contacts.highly_sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.commercepayments.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.contacts.highly_sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.contacts.sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "tickets.highly_sensitive"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.appointments.sensitive.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.appointments.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "tickets"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.deals.sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.companies.highly_sensitive.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.services.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.services.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "tickets.sensitive"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.products.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.companies.sensitive.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "tickets"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.deals.sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "tickets.sensitive.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.deals.highly_sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.companies.highly_sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.deals.highly_sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.companies.highly_sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.deals.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "tickets.sensitive.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.deals.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.products.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.appointments.sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.appointments.sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "tickets.highly_sensitive.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "tickets.highly_sensitive.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.goals.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.courses.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.goals.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.companies.sensitive.write.v2"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.contacts.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.contacts.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.companies.sensitive.write.v2"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.contacts.highly_sensitive.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.line_items.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.line_items.write"
+            ]
+          },
+          {
+            "oauth2": [
+              "crm.objects.courses.write"
+            ]
+          },
+          {
+            "private_apps": [
+              "crm.objects.deals.highly_sensitive.write"
+            ]
+          }
+        ],
+        "x-moar-primitive-count": 13,
+        "x-moar-complexity-skipped": false
+      }
+    },
+    "/scheduler/v3/meetings/meeting-links/book/availability-page/{slug}": {
+      "get": {
+        "tags": [
+          "Meetings links"
+        ],
+        "summary": "Get the availability for a meeting",
+        "description": "Get the next availability times for a meeting page.",
+        "operationId": "get-/scheduler/v3/meetings/meeting-links/book/availability-page/{slug}",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": ".+",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "allUsersBusyTimes"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "linkAvailability": {
+                      "required": [
+                        "hasMore",
+                        "linkAvailabilityByDuration"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "hasMore": {
+                          "type": "boolean"
+                        },
+                        "linkAvailabilityByDuration": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "required": [
+                              "availabilities",
+                              "meetingDurationMillis"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "meetingDurationMillis": {
+                                "type": "integer",
+                                "format": "int32"
+                              },
+                              "availabilities": {
+                                "type": "array",
+                                "items": {
+                                  "required": [
+                                    "endMillisUtc",
+                                    "startMillisUtc"
+                                  ],
+                                  "type": "object",
+                                  "properties": {
+                                    "startMillisUtc": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                    },
+                                    "endMillisUtc": {
+                                      "type": "integer",
+                                      "format": "int32"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "allUsersBusyTimes": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "busyTimes",
+                          "isOffline",
+                          "meetingsUser"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "meetingsUser": {
+                            "required": [
+                              "calendarProvider",
+                              "id",
+                              "isSalesStarter",
+                              "userId",
+                              "userProfile"
+                            ],
+                            "type": "object",
+                            "properties": {
+                              "isSalesStarter": {
+                                "type": "boolean"
+                              },
+                              "calendarProvider": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "userId": {
+                                "type": "string"
+                              },
+                              "userProfile": {
+                                "required": [
+                                  "email"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                  "firstName": {
+                                    "type": "string"
+                                  },
+                                  "lastName": {
+                                    "type": "string"
+                                  },
+                                  "fullName": {
+                                    "type": "string"
+                                  },
+                                  "email": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "busyTimes": {
+                            "type": "array",
+                            "items": {
+                              "required": [
+                                "end",
+                                "start"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "start": {
+                                  "type": "integer",
+                                  "format": "int32"
+                                },
+                                "end": {
+                                  "type": "integer",
+                                  "format": "int32"
+                                }
+                              }
+                            }
+                          },
+                          "isOffline": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "scheduler.meetings.meeting-link.read"
+            ]
+          },
+          {
+            "private_apps": [
+              "scheduler.meetings.meeting-link.read"
+            ]
+          }
+        ],
+        "x-moar-primitive-count": 0,
+        "x-moar-complexity-skipped": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ExternalCalendarMeetingEventCreateProperties": {
+        "required": [
+          "hs_meeting_end_time",
+          "hs_meeting_outcome",
+          "hs_meeting_start_time",
+          "hs_meeting_title",
+          "hs_timestamp"
+        ],
+        "type": "object",
+        "properties": {
+          "hs_meeting_start_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "hs_attachment_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "hs_attendee_owner_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "hs_meeting_title": {
+            "type": "string"
+          },
+          "hs_internal_meeting_notes": {
+            "type": "string"
+          },
+          "hs_meeting_body": {
+            "type": "string"
+          },
+          "hs_activity_type": {
+            "type": "string"
+          },
+          "hs_meeting_end_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "hs_meeting_outcome": {
+            "type": "string"
+          },
+          "hs_timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "hubspot_owner_id": {
+            "type": "string"
+          },
+          "hs_meeting_location": {
+            "type": "string"
+          },
+          "hs_meeting_location_type": {
+            "type": "string"
+          }
+        }
+      },
+      "ExternalMeetingBooking": {
+        "required": [
+          "duration",
+          "email",
+          "firstName",
+          "formFields",
+          "lastName",
+          "legalConsentResponses",
+          "likelyAvailableUserIds",
+          "slug",
+          "startTime"
+        ],
+        "type": "object",
+        "properties": {
+          "duration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "likelyAvailableUserIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "legalConsentResponses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalLegalConsentResponse"
+            }
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "formFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalBookingFormField"
+            }
+          },
+          "locale": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "ExternalMeetingAvailability": {
+        "required": [
+          "endMillisUtc",
+          "startMillisUtc"
+        ],
+        "type": "object",
+        "properties": {
+          "startMillisUtc": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "endMillisUtc": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ExternalMeetingsLinkSettings": {
+        "required": [
+          "availability",
+          "durations",
+          "formFields",
+          "legalConsentEnabled",
+          "meetingBufferTime",
+          "ownerPrioritized",
+          "startTimeIncrementMinutes",
+          "weeksToAdvertise"
+        ],
+        "type": "object",
+        "properties": {
+          "redirectUrl": {
+            "type": "string"
+          },
+          "startTimeIncrementMinutes": {
+            "type": "string"
+          },
+          "guestSettings": {
+            "$ref": "#/components/schemas/ExternalGuestSettings"
+          },
+          "language": {
+            "type": "string"
+          },
+          "availability": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ExternalClosedRange"
+            }
+          },
+          "locale": {
+            "type": "string"
+          },
+          "ownerPrioritized": {
+            "type": "boolean"
+          },
+          "legalConsentOptions": {
+            "$ref": "#/components/schemas/ExternalLegalConsentOptions"
+          },
+          "welcomeScreenInfo": {
+            "$ref": "#/components/schemas/ExternalMeetingsWelcomeScreenInfo"
+          },
+          "meetingBufferTime": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "weeksToAdvertise": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "displayInfo": {
+            "$ref": "#/components/schemas/ExternalLinkDisplayInfo"
+          },
+          "durations": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "location": {
+            "type": "string"
+          },
+          "formFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalLinkFormField"
+            }
+          },
+          "legalConsentEnabled": {
+            "type": "boolean"
+          },
+          "customAvailabilityEndDate": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "customAvailabilityStartDate": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ExternalClosedRange": {
+        "required": [
+          "end",
+          "start"
+        ],
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "end": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ExternalBookingInfo": {
+        "required": [
+          "allUsersBusyTimes",
+          "customParams",
+          "isOffline",
+          "linkId",
+          "linkType"
+        ],
+        "type": "object",
+        "properties": {
+          "linkId": {
+            "type": "string"
+          },
+          "customParams": {
+            "$ref": "#/components/schemas/ExternalMeetingsLinkSettings"
+          },
+          "linkAvailability": {
+            "$ref": "#/components/schemas/ExternalLinkAvailability"
+          },
+          "brandingMetadata": {
+            "$ref": "#/components/schemas/ExternalBrandingMetadata"
+          },
+          "isOffline": {
+            "type": "boolean"
+          },
+          "linkType": {
+            "type": "string",
+            "enum": [
+              "PERSONAL_LINK",
+              "GROUP_CALENDAR",
+              "ROUND_ROBIN_CALENDAR"
+            ]
+          },
+          "allUsersBusyTimes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalUserBusyTimes"
+            }
+          }
+        }
+      },
+      "ExternalLinkAvailability": {
+        "required": [
+          "hasMore",
+          "linkAvailabilityByDuration"
+        ],
+        "type": "object",
+        "properties": {
+          "hasMore": {
+            "type": "boolean"
+          },
+          "linkAvailabilityByDuration": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ExternalLinkAvailabilityForDuration"
+            }
+          }
+        }
+      },
+      "ExternalTimeRange": {
+        "required": [
+          "end",
+          "start"
+        ],
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "end": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ExternalGuestSettings": {
+        "required": [
+          "canAddGuests",
+          "maxGuestCount"
+        ],
+        "type": "object",
+        "properties": {
+          "maxGuestCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "canAddGuests": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ExternalValidatedFormField": {
+        "required": [
+          "isCustom",
+          "label",
+          "name",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "translatedLabel": {
+            "type": "string"
+          },
+          "valueLabel": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "isCustom": {
+            "type": "boolean"
+          },
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "fieldType": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorDetail": {
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "subCategory": {
+            "type": "string",
+            "description": "A specific category that contains more specific detail about the error"
+          },
+          "code": {
+            "type": "string",
+            "description": "The status code associated with the error detail"
+          },
+          "in": {
+            "type": "string",
+            "description": "The name of the field or parameter in which the error was found."
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Context about the error condition",
+            "example": {
+              "missingScopes": [
+                "scope1",
+                "scope2"
+              ]
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "A human readable message describing the error along with remediation steps where appropriate"
+          }
+        }
+      },
+      "ExternalBookingFormField": {
+        "required": [
+          "name",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "ExternalMeetingsWelcomeScreenInfo": {
+        "type": "object",
+        "properties": {
+          "useCompanyLogo": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string"
+          },
+          "showWelcomeScreen": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          },
+          "logoUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "ForwardPaging": {
+        "type": "object",
+        "properties": {
+          "next": {
+            "$ref": "#/components/schemas/NextPage"
+          }
+        }
+      },
+      "ExternalCalendarMeetingEventCreateRequest": {
+        "required": [
+          "associations",
+          "emailReminderSchedule",
+          "properties",
+          "timezone"
+        ],
+        "type": "object",
+        "properties": {
+          "associations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalAssociationCreateRequest"
+            }
+          },
+          "emailReminderSchedule": {
+            "$ref": "#/components/schemas/ExternalEmailReminderSchedule"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "properties": {
+            "$ref": "#/components/schemas/ExternalCalendarMeetingEventCreateProperties"
+          }
+        }
+      },
+      "ExternalAssociationCreateRequest": {
+        "required": [
+          "to",
+          "types"
+        ],
+        "type": "object",
+        "properties": {
+          "types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssociationSpec"
+            }
+          },
+          "to": {
+            "$ref": "#/components/schemas/PublicObjectId"
+          }
+        }
+      },
+      "ExternalLinkFormField": {
+        "required": [
+          "fieldType",
+          "isCustom",
+          "isRequired",
+          "label",
+          "name",
+          "options",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "isRequired": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalOption"
+            }
+          },
+          "isCustom": {
+            "type": "boolean"
+          },
+          "label": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "fieldType": {
+            "type": "string"
+          }
+        }
+      },
+      "ExternalUserProfile": {
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "ExternalCalenderMeetingEventResponse": {
+        "required": [
+          "createdAt",
+          "id",
+          "lastUpdatedAt",
+          "properties"
+        ],
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastUpdatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "string"
+          },
+          "properties": {
+            "$ref": "#/components/schemas/ExternalCalendarMeetingEventResponseProperties"
+          }
+        }
+      },
+      "ExternalMeetingsUser": {
+        "required": [
+          "calendarProvider",
+          "id",
+          "isSalesStarter",
+          "userId",
+          "userProfile"
+        ],
+        "type": "object",
+        "properties": {
+          "isSalesStarter": {
+            "type": "boolean"
+          },
+          "calendarProvider": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "userProfile": {
+            "$ref": "#/components/schemas/ExternalUserProfile"
+          }
+        }
+      },
+      "ExternalBrandingMetadata": {
+        "required": [
+          "logoAltText",
+          "showMarketingAd",
+          "showSalesAd"
+        ],
+        "type": "object",
+        "properties": {
+          "logoHeight": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "logoAltText": {
+            "type": "string"
+          },
+          "companyCity": {
+            "type": "string"
+          },
+          "companyAddressLine1": {
+            "type": "string"
+          },
+          "showSalesAd": {
+            "type": "boolean"
+          },
+          "companyAddressLine2": {
+            "type": "string"
+          },
+          "accentColor": {
+            "type": "string"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "companyState": {
+            "type": "string"
+          },
+          "primaryColor": {
+            "type": "string"
+          },
+          "showMarketingAd": {
+            "type": "boolean"
+          },
+          "accent2Color": {
+            "type": "string"
+          },
+          "companyDomain": {
+            "type": "string"
+          },
+          "logoUrl": {
+            "type": "string"
+          },
+          "logoWidth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyCountry": {
+            "type": "string"
+          },
+          "companyAvatar": {
+            "type": "string"
+          },
+          "companyZip": {
+            "type": "string"
+          },
+          "secondaryColor": {
+            "type": "string"
+          }
+        }
+      },
+      "ExternalEmailReminderSchedule": {
+        "required": [
+          "reminders",
+          "shouldIncludeInviteDescription"
+        ],
+        "type": "object",
+        "properties": {
+          "reminders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalReminder"
+            }
+          },
+          "shouldIncludeInviteDescription": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PublicObjectId": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "ExternalReminder": {
+        "required": [
+          "numberOfTimeUnits",
+          "timeUnit"
+        ],
+        "type": "object",
+        "properties": {
+          "numberOfTimeUnits": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "timeUnit": {
+            "type": "string"
+          }
+        }
+      },
+      "CollectionResponseWithTotalExternalLinkMetadataForwardPaging": {
+        "required": [
+          "results",
+          "total"
+        ],
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ForwardPaging"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalLinkMetadata"
+            }
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "category",
+          "correlationId",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "subCategory": {
+            "type": "string",
+            "description": "A specific category that contains more specific detail about the error"
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Context about the error condition",
+            "example": {
+              "invalidPropertyName": [
+                "propertyValue"
+              ],
+              "missingScopes": [
+                "scope1",
+                "scope2"
+              ]
+            }
+          },
+          "correlationId": {
+            "type": "string",
+            "description": "A unique identifier for the request. Include this value with any error reports or support tickets",
+            "format": "uuid",
+            "example": "aeb5f871-7f07-4993-9211-075dc63e7cbf"
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "A map of link names to associated URIs containing documentation about the error or recommended remediation steps"
+          },
+          "message": {
+            "type": "string",
+            "description": "A human readable message describing the error along with remediation steps where appropriate",
+            "example": "An error occurred"
+          },
+          "category": {
+            "type": "string",
+            "description": "The error category"
+          },
+          "errors": {
+            "type": "array",
+            "description": "further information about the error",
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            }
+          }
+        },
+        "example": {
+          "message": "Invalid input (details will vary based on the error)",
+          "correlationId": "aeb5f871-7f07-4993-9211-075dc63e7cbf",
+          "category": "VALIDATION_ERROR",
+          "links": {
+            "knowledge-base": "https://www.hubspot.com/products/service/knowledge-base"
+          }
+        }
+      },
+      "ExternalCalendarMeetingEventResponseProperties": {
+        "required": [
+          "hs_engagement_source",
+          "hs_engagement_source_id",
+          "hs_meeting_end_time",
+          "hs_meeting_outcome",
+          "hs_meeting_start_time",
+          "hs_meeting_title",
+          "hs_timestamp"
+        ],
+        "type": "object",
+        "properties": {
+          "hs_engagement_source": {
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "IMPORT",
+              "API",
+              "FORM",
+              "ANALYTICS",
+              "MIGRATION",
+              "SALESFORCE",
+              "INTEGRATION",
+              "CONTACTS_WEB",
+              "WAL_INCREMENTAL",
+              "TASK",
+              "EMAIL",
+              "WORKFLOWS",
+              "CALCULATED",
+              "SOCIAL",
+              "BATCH_UPDATE",
+              "SIGNALS",
+              "BIDEN",
+              "DEFAULT",
+              "COMPANIES",
+              "DEALS",
+              "ASSISTS",
+              "PRESENTATIONS",
+              "TALLY",
+              "SIDEKICK",
+              "CRM_UI",
+              "MERGE_CONTACTS",
+              "PORTAL_USER_ASSOCIATOR",
+              "INTEGRATIONS_PLATFORM",
+              "BCC_TO_CRM",
+              "FORWARD_TO_CRM",
+              "ENGAGEMENTS",
+              "SALES",
+              "HEISENBERG",
+              "LEADIN",
+              "GMAIL_INTEGRATION",
+              "ACADEMY",
+              "SALES_MESSAGES",
+              "AVATARS_SERVICE",
+              "MERGE_COMPANIES",
+              "SEQUENCES",
+              "COMPANY_FAMILIES",
+              "MOBILE_IOS",
+              "MOBILE_ANDROID",
+              "CONTACTS",
+              "ASSOCIATIONS",
+              "EXTENSION",
+              "SUCCESS",
+              "BOT",
+              "INTEGRATIONS_SYNC",
+              "AUTOMATION_PLATFORM",
+              "CONVERSATIONS",
+              "EMAIL_INTEGRATION",
+              "CONTENT_MEMBERSHIP",
+              "QUOTES",
+              "BET_ASSIGNMENT",
+              "QUOTAS",
+              "BET_CRM_CONNECTOR",
+              "MEETINGS",
+              "MERGE_OBJECTS",
+              "RECYCLING_BIN",
+              "ADS",
+              "AI_GROUP",
+              "COMMUNICATOR",
+              "SETTINGS",
+              "PROPERTY_SETTINGS",
+              "PIPELINE_SETTINGS",
+              "COMPANY_INSIGHTS",
+              "BEHAVIORAL_EVENTS",
+              "PAYMENTS",
+              "GOALS",
+              "PORTAL_OBJECT_SYNC",
+              "APPROVALS",
+              "FILE_MANAGER",
+              "MARKETPLACE",
+              "INTERNAL_PROCESSING",
+              "FORECASTING",
+              "SLACK_INTEGRATION",
+              "CRM_UI_BULK_ACTION",
+              "WORKFLOW_CONTACT_DELETE_ACTION",
+              "ACCEPTANCE_TEST",
+              "PLAYBOOKS",
+              "CHATSPOT",
+              "FLYWHEEL_PRODUCT_DATA_SYNC",
+              "HELP_DESK",
+              "BILLING",
+              "DATA_ENRICHMENT",
+              "AUTOMATION_JOURNEY",
+              "MICROAPPS",
+              "INTENT",
+              "PROSPECTING_AGENT",
+              "CENTRAL_EXCHANGE_RATES",
+              "HELP_DESK_AI",
+              "CONVERSATIONAL_ENRICHMENT",
+              "CRM_PROCESSES_PLATFORM",
+              "CLONE_OBJECTS",
+              "MARKET_SOURCING",
+              "DATASET",
+              "PROPERTY_RESTORE",
+              "EMAIL_INBOX_IMPORT",
+              "CUSTOMER_AGENT",
+              "LEGAL_BASIS_REMEDIATION",
+              "AUTO_ASSOCIATE_BY_DOMAIN",
+              "ACTIVITY_AUTO_ASSOCIATE",
+              "PRIMARY_AUTOMATION",
+              "DELETE_OBJECTS",
+              "RESTORE_OBJECTS"
+            ]
+          },
+          "hs_meeting_start_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "hs_attendee_owner_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "hs_attachment_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "hs_engagement_source_id": {
+            "type": "string"
+          },
+          "hs_meeting_title": {
+            "type": "string"
+          },
+          "hs_internal_meeting_notes": {
+            "type": "string"
+          },
+          "hs_unique_id": {
+            "type": "string"
+          },
+          "hs_meeting_body": {
+            "type": "string"
+          },
+          "hs_activity_type": {
+            "type": "string"
+          },
+          "hs_include_description_in_reminder": {
+            "type": "string"
+          },
+          "hs_meeting_end_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "hs_meeting_outcome": {
+            "type": "string"
+          },
+          "hs_timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "hubspot_owner_id": {
+            "type": "string"
+          },
+          "hs_meeting_location": {
+            "type": "string"
+          },
+          "hs_meeting_external_url": {
+            "type": "string"
+          },
+          "hs_meeting_location_type": {
+            "type": "string",
+            "enum": [
+              "PHONE",
+              "ADDRESS",
+              "CUSTOM"
+            ]
+          }
+        }
+      },
+      "ExternalOption": {
+        "required": [
+          "description",
+          "displayOrder",
+          "doubleData",
+          "hidden",
+          "label",
+          "readOnly",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "hidden": {
+            "type": "boolean"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "doubleData": {
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          },
+          "readOnly": {
+            "type": "boolean"
+          },
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "ExternalMeetingBookingResponse": {
+        "required": [
+          "bookingTimezone",
+          "calendarEventId",
+          "contactId",
+          "duration",
+          "end",
+          "formFields",
+          "guestEmails",
+          "isOffline",
+          "legalConsentResponses",
+          "start",
+          "subject"
+        ],
+        "type": "object",
+        "properties": {
+          "calendarEventId": {
+            "type": "string"
+          },
+          "contactId": {
+            "type": "string"
+          },
+          "bookingTimezone": {
+            "type": "string"
+          },
+          "legalConsentResponses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalLegalConsentResponse"
+            }
+          },
+          "subject": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "locale": {
+            "type": "string"
+          },
+          "webConferenceUrl": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "guestEmails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "webConferenceMeetingId": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "isOffline": {
+            "type": "boolean"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "formFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalValidatedFormField"
+            }
+          }
+        }
+      },
+      "ExternalLinkAvailabilityAndBusyTimes": {
+        "required": [
+          "allUsersBusyTimes"
+        ],
+        "type": "object",
+        "properties": {
+          "linkAvailability": {
+            "$ref": "#/components/schemas/ExternalLinkAvailability"
+          },
+          "allUsersBusyTimes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalUserBusyTimes"
+            }
+          }
+        }
+      },
+      "ExternalLinkAvailabilityForDuration": {
+        "required": [
+          "availabilities",
+          "meetingDurationMillis"
+        ],
+        "type": "object",
+        "properties": {
+          "meetingDurationMillis": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "availabilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalMeetingAvailability"
+            }
+          }
+        }
+      },
+      "ExternalLinkDisplayInfo": {
+        "type": "object",
+        "properties": {
+          "publicDisplayAvatarOption": {
+            "type": "string"
+          },
+          "companyAvatar": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "headline": {
+            "type": "string"
+          }
+        }
+      },
+      "AssociationSpec": {
+        "required": [
+          "associationCategory",
+          "associationTypeId"
+        ],
+        "type": "object",
+        "properties": {
+          "associationCategory": {
+            "type": "string",
+            "description": "The category of the association, such as \"HUBSPOT_DEFINED\".",
+            "example": "",
+            "enum": [
+              "HUBSPOT_DEFINED",
+              "USER_DEFINED",
+              "INTEGRATOR_DEFINED"
+            ]
+          },
+          "associationTypeId": {
+            "type": "integer",
+            "description": "The ID representing the specific type of association.",
+            "format": "int32"
+          }
+        },
+        "description": "Defines the type, direction, and details of the relationship between two CRM objects."
+      },
+      "ExternalLegalConsentResponse": {
+        "required": [
+          "communicationTypeId",
+          "consented"
+        ],
+        "type": "object",
+        "properties": {
+          "communicationTypeId": {
+            "type": "string"
+          },
+          "consented": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ExternalUserBusyTimes": {
+        "required": [
+          "busyTimes",
+          "isOffline",
+          "meetingsUser"
+        ],
+        "type": "object",
+        "properties": {
+          "meetingsUser": {
+            "$ref": "#/components/schemas/ExternalMeetingsUser"
+          },
+          "busyTimes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalTimeRange"
+            }
+          },
+          "isOffline": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ExternalLegalConsentOptions": {
+        "required": [
+          "communicationConsentCheckboxes",
+          "communicationConsentText",
+          "isLegitimateInterest",
+          "legitimateInterestSubscriptionTypes",
+          "privacyPolicyText",
+          "processingConsentCheckboxLabel",
+          "processingConsentFooterText",
+          "processingConsentText",
+          "processingConsentType"
+        ],
+        "type": "object",
+        "properties": {
+          "legitimateInterestSubscriptionTypes": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "processingConsentCheckboxLabel": {
+            "type": "string"
+          },
+          "communicationConsentText": {
+            "type": "string"
+          },
+          "legitimateInterestLegalBasis": {
+            "type": "string",
+            "enum": [
+              "LEGITIMATE_INTEREST_PQL",
+              "LEGITIMATE_INTEREST_CLIENT",
+              "PERFORMANCE_OF_CONTRACT",
+              "CONSENT_WITH_NOTICE",
+              "NON_GDPR",
+              "PROCESS_AND_STORE",
+              "LEGITIMATE_INTEREST_OTHER"
+            ]
+          },
+          "processingConsentType": {
+            "type": "string"
+          },
+          "privacyPolicyText": {
+            "type": "string"
+          },
+          "processingConsentText": {
+            "type": "string"
+          },
+          "communicationConsentCheckboxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalCommunicationConsentCheckbox"
+            }
+          },
+          "processingConsentFooterText": {
+            "type": "string"
+          },
+          "isLegitimateInterest": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ExternalLinkMetadata": {
+        "required": [
+          "createdAt",
+          "defaultLink",
+          "id",
+          "link",
+          "organizerUserId",
+          "slug",
+          "type",
+          "userIdsOfLinkMembers"
+        ],
+        "type": "object",
+        "properties": {
+          "userIdsOfLinkMembers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "link": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "organizerUserId": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "defaultLink": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ExternalCommunicationConsentCheckbox": {
+        "required": [
+          "communicationTypeId",
+          "label",
+          "required"
+        ],
+        "type": "object",
+        "properties": {
+          "communicationTypeId": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        }
+      },
+      "NextPage": {
+        "required": [
+          "after"
+        ],
+        "type": "object",
+        "properties": {
+          "link": {
+            "type": "string",
+            "description": "A URL that can be used to retrieve the next page results.",
+            "example": ""
+          },
+          "after": {
+            "type": "string",
+            "description": "A paging cursor token for retrieving subsequent pages.",
+            "example": ""
+          }
+        },
+        "description": "Specifies the paging information needed to retrieve the next set of results in a paginated API response"
+      }
+    },
+    "responses": {
+      "Error": {
+        "description": "An error occurred.",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://app.hubspot.com/oauth/authorize",
+            "tokenUrl": "https://api.hubapi.com/oauth/v1/token",
+            "scopes": {
+              "crm.objects.contacts.highly_sensitive.write.v2": "Change contact records (highly-sensitive)",
+              "tickets": "Read and write tickets",
+              "crm.objects.goals.write": "Write goals",
+              "crm.objects.commercepayments.write": "Write commerce payments",
+              "crm.objects.line_items.write": "Line Items",
+              "crm.objects.contacts.write": "Create or update contact records",
+              "crm.objects.products.write": "Write to my Product Library",
+              "crm.objects.services.write": "Write services",
+              "crm.objects.contacts.sensitive.write.v2": "Create or update sensitive properties on contact records",
+              "crm.objects.deals.sensitive.write.v2": "Create or update sensitive properties on deal records",
+              "tickets.highly_sensitive.v2": "Tickets (highly-sensitive)",
+              "crm.objects.listings.write": "Write listings",
+              "crm.objects.appointments.sensitive.write.v2": "Write appointments (sensitive)",
+              "crm.objects.companies.write": "View company records",
+              "crm.objects.courses.write": "Write courses",
+              "crm.objects.appointments.write": "Write appointments",
+              "tickets.sensitive.v2": "Tickets (sensitive)",
+              "crm.objects.deals.write": "Create or update deal records",
+              "crm.objects.companies.sensitive.write.v2": "Create or update sensitive properties on company records",
+              "crm.objects.deals.highly_sensitive.write.v2": "Change deal records (highly-sensitive)",
+              "crm.objects.companies.highly_sensitive.write.v2": "Change company records (highly-sensitive)",
+              "scheduler.meetings.meeting-link.read": "Read from meeting links"
+            }
+          }
+        }
+      },
+      "private_apps_legacy": {
+        "type": "apiKey",
+        "name": "private-app-legacy",
+        "in": "header"
+      },
+      "private_apps": {
+        "type": "apiKey",
+        "name": "private-app",
+        "in": "header"
+      }
+    }
+  },
+  "x-hubspot-product-tier-requirements": {
+    "marketing": "PROFESSIONAL",
+    "sales": "PROFESSIONAL",
+    "service": "PROFESSIONAL",
+    "cms": "PROFESSIONAL",
+    "commerce": "FREE",
+    "crmHub": "FREE",
+    "dataHub": "FREE"
+  }
+}
