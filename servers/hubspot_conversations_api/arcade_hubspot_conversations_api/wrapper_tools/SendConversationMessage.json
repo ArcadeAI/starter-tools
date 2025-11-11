@@ -1,0 +1,142 @@
+{
+  "name": "SendConversationMessage",
+  "fully_qualified_name": "HubspotConversationsApi.SendConversationMessage@0.1.0",
+  "description": "Send a new message in a conversation thread.\n\nUse this tool to send a new message on an existing conversation thread. Ideal for continuing discussions or replying within a thread.",
+  "toolkit": {
+    "name": "ArcadeHubspotConversationsApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "thread_id",
+        "required": true,
+        "description": "The unique identifier for the conversation thread where the message will be sent. It should be a string that corresponds to the existing thread ID in Hubspot.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "threadId"
+      },
+      {
+        "name": "message_content",
+        "required": true,
+        "description": "The content of the message to be sent within the thread. Provide this as a JSON object containing the message text and any relevant metadata.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post-/conversations/v3/conversations/threads/{threadId}/messages'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-hubspot",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "conversations.write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Hubspot Conversations API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.hubapi.com/conversations/v3/conversations/threads/{threadId}/messages",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "threadId",
+        "tool_parameter_name": "thread_id",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "message_content",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"properties\": {},\n        \"oneOf\": [\n          {\n            \"properties\": {},\n            \"allOf\": [\n              {\n                \"$ref\": \"#/components/schemas/PublicMessageEgg\",\n                \"has_circular_reference\": true\n              },\n              {\n                \"required\": [\n                  \"attachments\",\n                  \"channelAccountId\",\n                  \"channelId\",\n                  \"recipients\",\n                  \"senderActorId\",\n                  \"text\",\n                  \"type\"\n                ],\n                \"type\": \"object\",\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"default\": \"MESSAGE\",\n                    \"enum\": [\n                      \"MESSAGE\"\n                    ]\n                  },\n                  \"text\": {\n                    \"type\": \"string\"\n                  },\n                  \"richText\": {\n                    \"type\": \"string\"\n                  },\n                  \"attachments\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                      \"oneOf\": [\n                        {\n                          \"title\": \"FILE\",\n                          \"required\": [\n                            \"fileId\",\n                            \"type\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"default\": \"FILE\",\n                              \"enum\": [\n                                \"FILE\"\n                              ]\n                            },\n                            \"fileId\": {\n                              \"type\": \"string\"\n                            }\n                          }\n                        },\n                        {\n                          \"title\": \"QUICK_REPLIES\",\n                          \"required\": [\n                            \"quickReplies\",\n                            \"type\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"quickReplies\": {\n                              \"type\": \"array\",\n                              \"items\": {\n                                \"required\": [\n                                  \"value\",\n                                  \"valueType\"\n                                ],\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"valueType\": {\n                                    \"type\": \"string\"\n                                  },\n                                  \"label\": {\n                                    \"type\": \"string\"\n                                  },\n                                  \"value\": {\n                                    \"type\": \"string\"\n                                  }\n                                }\n                              }\n                            },\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"default\": \"QUICK_REPLIES\",\n                              \"enum\": [\n                                \"QUICK_REPLIES\"\n                              ]\n                            }\n                          }\n                        },\n                        {\n                          \"title\": \"SOCIAL_MEDIA_METADATA\",\n                          \"required\": [\n                            \"socialMetadata\",\n                            \"type\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"default\": \"SOCIAL_MEDIA_METADATA\",\n                              \"enum\": [\n                                \"SOCIAL_MEDIA_METADATA\"\n                              ]\n                            },\n                            \"socialMetadata\": {\n                              \"required\": [\n                                \"mediaType\"\n                              ],\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"mediaType\": {\n                                  \"type\": \"string\"\n                                },\n                                \"mediaUrlString\": {\n                                  \"type\": \"string\"\n                                },\n                                \"mediaUrl\": {\n                                  \"type\": \"string\"\n                                },\n                                \"thumbnailUrl\": {\n                                  \"type\": \"string\"\n                                },\n                                \"mediaTitle\": {\n                                  \"type\": \"string\"\n                                },\n                                \"description\": {\n                                  \"type\": \"string\"\n                                },\n                                \"id\": {\n                                  \"type\": \"string\"\n                                }\n                              }\n                            }\n                          }\n                        }\n                      ]\n                    }\n                  },\n                  \"recipients\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                      \"required\": [\n                        \"deliveryIdentifiers\"\n                      ],\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"deliveryIdentifiers\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"required\": [\n                              \"type\",\n                              \"value\"\n                            ],\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"type\": {\n                                \"type\": \"string\",\n                                \"description\": \"The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.\"\n                              },\n                              \"value\": {\n                                \"type\": \"string\",\n                                \"description\": \"A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.\"\n                              }\n                            }\n                          }\n                        },\n                        \"actorId\": {\n                          \"type\": \"string\"\n                        },\n                        \"name\": {\n                          \"type\": \"string\"\n                        },\n                        \"deliveryIdentifier\": {\n                          \"required\": [\n                            \"type\",\n                            \"value\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"description\": \"The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.\"\n                            },\n                            \"value\": {\n                              \"type\": \"string\",\n                              \"description\": \"A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.\"\n                            }\n                          }\n                        },\n                        \"recipientField\": {\n                          \"type\": \"string\"\n                        }\n                      }\n                    }\n                  },\n                  \"senderActorId\": {\n                    \"type\": \"string\"\n                  },\n                  \"channelId\": {\n                    \"type\": \"string\"\n                  },\n                  \"channelAccountId\": {\n                    \"type\": \"string\"\n                  },\n                  \"subject\": {\n                    \"type\": \"string\"\n                  }\n                },\n                \"x-hubspot-sub-type-impl\": true\n              }\n            ]\n          },\n          {\n            \"properties\": {},\n            \"allOf\": [\n              {\n                \"$ref\": \"#/components/schemas/PublicMessageEgg\",\n                \"has_circular_reference\": true\n              },\n              {\n                \"required\": [\n                  \"attachments\",\n                  \"text\",\n                  \"type\"\n                ],\n                \"type\": \"object\",\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"default\": \"COMMENT\",\n                    \"enum\": [\n                      \"COMMENT\"\n                    ]\n                  },\n                  \"text\": {\n                    \"type\": \"string\"\n                  },\n                  \"richText\": {\n                    \"type\": \"string\"\n                  },\n                  \"attachments\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                      \"oneOf\": [\n                        {\n                          \"title\": \"FILE\",\n                          \"required\": [\n                            \"fileId\",\n                            \"type\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"default\": \"FILE\",\n                              \"enum\": [\n                                \"FILE\"\n                              ]\n                            },\n                            \"fileId\": {\n                              \"type\": \"string\"\n                            }\n                          }\n                        },\n                        {\n                          \"title\": \"QUICK_REPLIES\",\n                          \"required\": [\n                            \"quickReplies\",\n                            \"type\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"quickReplies\": {\n                              \"type\": \"array\",\n                              \"items\": {\n                                \"required\": [\n                                  \"value\",\n                                  \"valueType\"\n                                ],\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"valueType\": {\n                                    \"type\": \"string\"\n                                  },\n                                  \"label\": {\n                                    \"type\": \"string\"\n                                  },\n                                  \"value\": {\n                                    \"type\": \"string\"\n                                  }\n                                }\n                              }\n                            },\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"default\": \"QUICK_REPLIES\",\n                              \"enum\": [\n                                \"QUICK_REPLIES\"\n                              ]\n                            }\n                          }\n                        },\n                        {\n                          \"title\": \"SOCIAL_MEDIA_METADATA\",\n                          \"required\": [\n                            \"socialMetadata\",\n                            \"type\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"default\": \"SOCIAL_MEDIA_METADATA\",\n                              \"enum\": [\n                                \"SOCIAL_MEDIA_METADATA\"\n                              ]\n                            },\n                            \"socialMetadata\": {\n                              \"required\": [\n                                \"mediaType\"\n                              ],\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"mediaType\": {\n                                  \"type\": \"string\"\n                                },\n                                \"mediaUrlString\": {\n                                  \"type\": \"string\"\n                                },\n                                \"mediaUrl\": {\n                                  \"type\": \"string\"\n                                },\n                                \"thumbnailUrl\": {\n                                  \"type\": \"string\"\n                                },\n                                \"mediaTitle\": {\n                                  \"type\": \"string\"\n                                },\n                                \"description\": {\n                                  \"type\": \"string\"\n                                },\n                                \"id\": {\n                                  \"type\": \"string\"\n                                }\n                              }\n                            }\n                          }\n                        }\n                      ]\n                    }\n                  }\n                },\n                \"x-hubspot-sub-type-impl\": true\n              }\n            ]\n          }\n        ]\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": false
+  }
+}

@@ -1,0 +1,2292 @@
+{
+  "name": "Hubspot_Events",
+  "spec_source": "openapi_spec",
+  "token_for_http_testing": "",
+  "package_name": "hubspot_events_api",
+  "package_dir_path": "/Users/rb/arcade/starter-tools/servers/hubspot_events_api/arcade_hubspot_events_api",
+  "project_dir_path": "/Users/rb/arcade/starter-tools/servers/hubspot_events_api",
+  "arcade_new_cmd_executed": true,
+  "api_endpoint_selection_customized": false,
+  "api_endpoint_for_http_testing": "",
+  "authorization_type": "oauth",
+  "auth_provider_id": "arcade-hubspot",
+  "where_to_provide_token": "header",
+  "token_key_name": "Authorization",
+  "token_value": "Bearer {authorization}",
+  "secrets": [],
+  "global_base_url": null,
+  "global_headers": {},
+  "edit_operations": [],
+  "uuid": "6b6a6247-774a-4a62-a6ba-38189e285892",
+  "api_endpoints": [
+    {
+      "name": "get-/events/v3/events/_getPage",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "retrieve_event_completions",
+        "description": {
+          "tagline": "Retrieve instances of event completion data.",
+          "detailed": "Use this tool to retrieve all event completions associated with a specific contact. Ideal for tracking event participation and analyzing engagement."
+        },
+        "return_annotation": "Event completion data for contacts.",
+        "arguments": [
+          {
+            "name": "crm_object_type",
+            "alternative_names": [
+              "crm_type",
+              "object_filter_type"
+            ],
+            "description": "Specify the CRM object type to filter event instances (e.g., `contact`).",
+            "endpoint_argument_name": "objectType"
+          },
+          {
+            "name": "event_type_name",
+            "alternative_names": [
+              "event_name",
+              "event_category"
+            ],
+            "description": "The specific name of the event type to retrieve data for. Available event types can be found using the event types endpoint.",
+            "endpoint_argument_name": "eventType"
+          },
+          {
+            "name": "paging_cursor_token",
+            "alternative_names": [
+              "next_page_token",
+              "continuation_token"
+            ],
+            "description": "The token for the next page of results, returned as `paging.next.after` in the previous response.",
+            "endpoint_argument_name": "after"
+          },
+          {
+            "name": "paging_before_token",
+            "alternative_names": [
+              "cursor_before",
+              "previous_page_token"
+            ],
+            "description": "The cursor token to fetch results occurring before this point when paginating results.",
+            "endpoint_argument_name": "before"
+          },
+          {
+            "name": "max_results_per_page",
+            "alternative_names": [
+              "results_per_page_limit",
+              "page_size"
+            ],
+            "description": "The maximum number of results to display per page.",
+            "endpoint_argument_name": "limit"
+          },
+          {
+            "name": "sort_direction",
+            "alternative_names": [
+              "order_by_timestamp",
+              "timestamp_sort"
+            ],
+            "description": "Specify the sort direction for event instances based on the timestamp. Use `ASCENDING` or `DESCENDING`.",
+            "endpoint_argument_name": "sort"
+          },
+          {
+            "name": "filter_occurred_after_datetime",
+            "alternative_names": [
+              "datetime_filter_after",
+              "occurred_after"
+            ],
+            "description": "Filter for event data occurring after a specific datetime, in ISO 8601 format (e.g., '2023-01-01T00:00:00Z').",
+            "endpoint_argument_name": "occurredAfter"
+          },
+          {
+            "name": "filter_events_occurred_before",
+            "alternative_names": [
+              "event_filter_before_date",
+              "before_date_filter"
+            ],
+            "description": "Filter for events that occurred before a specific datetime. Accepts an ISO 8601 formatted date-time string.",
+            "endpoint_argument_name": "occurredBefore"
+          },
+          {
+            "name": "crm_object_id",
+            "alternative_names": [
+              "object_id",
+              "crm_record_id"
+            ],
+            "description": "The ID of the CRM Object to filter event instances on. Must be used with `object_type`.",
+            "endpoint_argument_name": "objectId"
+          },
+          {
+            "name": "unique_identifier_property",
+            "alternative_names": [
+              "contact_email",
+              "identifier_property"
+            ],
+            "description": "Specify a unique identifier for a CRM object. For contacts, use the email property (e.g., `email=name@domain.com`).",
+            "endpoint_argument_name": "objectProperty.{propname}"
+          },
+          {
+            "name": "event_property_filter",
+            "alternative_names": [
+              "event_property_criteria",
+              "filter_by_event_property"
+            ],
+            "description": "Specify a key-value pair to filter event completions by a property (e.g., `hs_city=portland`). Use `%20` or `+` for spaces.",
+            "endpoint_argument_name": "property.{propname}"
+          },
+          {
+            "name": "event_instance_ids",
+            "alternative_names": [
+              "event_ids",
+              "instance_ids"
+            ],
+            "description": "List of event instance IDs. Each ID must uniquely match the event instance, and any additional filters must align with the event instance\u2019s attributes.",
+            "endpoint_argument_name": "id"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/events/v3/events/",
+      "tags": [
+        "Events"
+      ],
+      "summary": "Retrieve event data",
+      "description": "Retrieve instances of event completion data. For example, retrieve all event completions associated with a specific contact.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "oauth"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [
+          {
+            "name": "objectType",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of CRM object to filter event instances on (e.g., `contact`). To retrieve event data for a specific CRM record, include the additional `objectId` query parameter (below). "
+            },
+            "description": "The type of CRM object to filter event instances on (e.g., `contact`). To retrieve event data for a specific CRM record, include the additional `objectId` query parameter (below). ",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "eventType",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The event type name. You can retrieve available event types using the [event types endpoint](#get-%2Fevents%2Fv3%2Fevents%2Fevent-types)."
+            },
+            "description": "The event type name. You can retrieve available event types using the [event types endpoint](#get-%2Fevents%2Fv3%2Fevents%2Fevent-types).",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "after",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The paging cursor token of the last successfully read resource will be returned as the `paging.next.after` JSON property of a paged response containing more results."
+            },
+            "description": "The paging cursor token of the last successfully read resource will be returned as the `paging.next.after` JSON property of a paged response containing more results.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "before",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "limit",
+            "value_schema": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The maximum number of results to display per page."
+            },
+            "description": "The maximum number of results to display per page.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "sort",
+            "value_schema": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Sort direction based on the timestamp of the event instance, `ASCENDING` or `DESCENDING`."
+            },
+            "description": "Sort direction based on the timestamp of the event instance, `ASCENDING` or `DESCENDING`.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "schema_required": false
+          },
+          {
+            "name": "occurredAfter",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Filter for event data that occurred after a specific datetime."
+            },
+            "description": "Filter for event data that occurred after a specific datetime.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "occurredBefore",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Filter for event data that occurred before a specific datetime."
+            },
+            "description": "Filter for event data that occurred before a specific datetime.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "objectId",
+            "value_schema": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The ID of the CRM Object to filter event instances on. When including this parameter, you must also include the `objectType` parameter."
+            },
+            "description": "The ID of the CRM Object to filter event instances on. When including this parameter, you must also include the `objectType` parameter.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "objectProperty.{propname}",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Instead of retrieving event data for a specific object by its ID, you can specify a unique identifier property. For contacts, you can use the `email` property. (e.g., `objectProperty.email=name@domain.com`)."
+            },
+            "description": "Instead of retrieving event data for a specific object by its ID, you can specify a unique identifier property. For contacts, you can use the `email` property. (e.g., `objectProperty.email=name@domain.com`).",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "object",
+              "properties": {}
+            },
+            "schema_required": false
+          },
+          {
+            "name": "property.{propname}",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Filter for event completions that contain a specific value for an event property (e.g., `property.hs_city=portland`). For properties values with spaces, replaces spaces with `%20` or `+` (e.g., `property.hs_city=new+york`)."
+            },
+            "description": "Filter for event completions that contain a specific value for an event property (e.g., `property.hs_city=portland`). For properties values with spaces, replaces spaces with `%20` or `+` (e.g., `property.hs_city=new+york`).",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "object",
+              "properties": {}
+            },
+            "schema_required": false
+          },
+          {
+            "name": "id",
+            "value_schema": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "ID of an event instance. IDs are 1:1 with event instances. If you provide this filter and additional filters, the other filters must match the values on the event instance to yield results."
+            },
+            "description": "ID of an event instance. IDs are 1:1 with event instances. If you provide this filter and additional filters, the other filters must match the values on the event instance to yield results.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "schema_required": false
+          }
+        ],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/events/v3/events/event-types_getTypes",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "list_event_types",
+        "description": {
+          "tagline": "Retrieve a list of visible event type names.",
+          "detailed": "This tool retrieves a list of event type names that are visible to the user, which can be used to query specific event instances."
+        },
+        "return_annotation": "A list of event type names visible to the user.",
+        "arguments": []
+      },
+      "method": "GET",
+      "path": "/events/v3/events/event-types",
+      "tags": [
+        "Events"
+      ],
+      "summary": "Event Types",
+      "description": "This endpoint returns a list of event type names which are visible to you. You may use these event type names to query the API for specific event instances of a desired type.\n\nNote: the `get_types` method is only supported in the Python SDK version `12.0.0-beta.1` or later. ",
+      "requires_security": true,
+      "oauth_scopes": [
+        "oauth"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/events/v3/event-definitions",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "retrieve_custom_event_definitions",
+        "description": {
+          "tagline": "Retrieve existing custom event definitions from Hubspot.",
+          "detailed": "Use this tool to obtain the current list of custom event definitions stored in Hubspot. It helps in understanding or displaying existing events configured within your system."
+        },
+        "return_annotation": "Custom event definitions data.",
+        "arguments": [
+          {
+            "name": "event_name_search_string",
+            "alternative_names": [
+              "event_search_string",
+              "event_name_query"
+            ],
+            "description": "String of characters to search for in event names. This is a simple 'contains' search without fuzzy matching.",
+            "endpoint_argument_name": "searchString"
+          },
+          {
+            "name": "paging_cursor_token",
+            "alternative_names": [
+              "cursor_after",
+              "pagination_token"
+            ],
+            "description": "The token indicating the position after the last successfully read resource for continued paged results.",
+            "endpoint_argument_name": "after"
+          },
+          {
+            "name": "results_per_page_limit",
+            "alternative_names": [
+              "max_results_per_page",
+              "page_size_limit"
+            ],
+            "description": "The maximum number of event definitions to retrieve per page.",
+            "endpoint_argument_name": "limit"
+          },
+          {
+            "name": "sort_order",
+            "alternative_names": [
+              "order",
+              "event_sort_order"
+            ],
+            "description": "Specify the order to sort results. Use 'ASC' for ascending or 'DESC' for descending.",
+            "endpoint_argument_name": "sortOrder"
+          },
+          {
+            "name": "include_event_properties",
+            "alternative_names": [
+              "display_event_properties",
+              "show_event_details"
+            ],
+            "description": "Include event properties in the response. Set to true to include all properties.",
+            "endpoint_argument_name": "includeProperties"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/events/v3/event-definitions",
+      "tags": [
+        "Event definition"
+      ],
+      "summary": "Retrieve event definitions",
+      "description": "Retrieve existing custom event definitions.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "behavioral_events.event_definitions.read_write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [
+          {
+            "name": "searchString",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Characters in the event name that the user is searching for. This search is a naive \u201ccontains\u201d search, no fuzzy matching is done."
+            },
+            "description": "Characters in the event name that the user is searching for. This search is a naive \u201ccontains\u201d search, no fuzzy matching is done.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "after",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The paging cursor token of the last successfully read resource will be returned as the `paging.next.after` JSON property of a paged response containing more results."
+            },
+            "description": "The paging cursor token of the last successfully read resource will be returned as the `paging.next.after` JSON property of a paged response containing more results.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "limit",
+            "value_schema": {
+              "val_type": "integer",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The maximum number of results to display per page."
+            },
+            "description": "The maximum number of results to display per page.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "includeProperties",
+            "value_schema": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "boolean"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "sortOrder",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "query",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          }
+        ],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "post-/events/v3/event-definitions",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "create_custom_event_definition",
+        "description": {
+          "tagline": "Create a custom event definition in HubSpot.",
+          "detailed": "Use this tool to create a custom event definition within the HubSpot Events service when you need to track or define new events."
+        },
+        "return_annotation": "Confirmation of custom event creation.",
+        "arguments": [
+          {
+            "name": "custom_event_definition",
+            "alternative_names": [
+              "event_definition_details",
+              "event_definition_payload"
+            ],
+            "description": "JSON object containing details of the custom event, including properties like name, label, description, primary object, and property definitions.",
+            "endpoint_argument_name": "requestBody"
+          }
+        ]
+      },
+      "method": "POST",
+      "path": "/events/v3/event-definitions",
+      "tags": [
+        "Event definition"
+      ],
+      "summary": "Create custom event definition",
+      "description": "Create a custom event definition.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "behavioral_events.event_definitions.read_write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "requestBody",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "propertyDefinitions": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Internal property name, which must be used when referencing the property from the API"
+                    },
+                    "options": {
+                      "val_type": "array",
+                      "inner_val_type": "json",
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": {
+                        "hidden": {
+                          "val_type": "boolean",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": null
+                        },
+                        "displayOrder": {
+                          "val_type": "integer",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": null
+                        },
+                        "description": {
+                          "val_type": "string",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": "null"
+                        },
+                        "label": {
+                          "val_type": "string",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": "null"
+                        },
+                        "value": {
+                          "val_type": "string",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": "null"
+                        }
+                      },
+                      "description": "A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties."
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "A description of the property that will be shown as help text in HubSpot."
+                    },
+                    "label": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Human readable label for the property. Used in HubSpot UI"
+                    },
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The data type of the property. Can be one of the following: [string, number, enumeration, datetime]"
+                    }
+                  },
+                  "description": "List of custom properties on event"
+                },
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Internal event name, which must be used when referencing the event from this event definitions API. If a name is not supplied, one will be generated based on the label. The `name` value will also be used to automatically generate a `fullyQualifiedName` for the event definition, which you'll use when sending event completions to this event. "
+                },
+                "description": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "A description of the event that will be shown as help text in HubSpot."
+                },
+                "label": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Human readable label for the event. Used in HubSpot UI"
+                },
+                "primaryObject": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The object type to associate this event to. Can be one of CONTACT, COMPANY, DEAL, TICKET. If no primaryObject is supplied, we will default to associating the event to CONTACT objects."
+                }
+              },
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "object",
+              "properties": {
+                "propertyDefinitions": {
+                  "type": "array",
+                  "description": "List of custom properties on event",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Internal property name, which must be used when referencing the property from the API"
+                      },
+                      "options": {
+                        "type": "array",
+                        "description": "A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties.",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "hidden": {
+                              "type": "boolean"
+                            },
+                            "displayOrder": {
+                              "type": "integer",
+                              "format": "int32"
+                            },
+                            "description": {
+                              "type": "string",
+                              "description": "null"
+                            },
+                            "label": {
+                              "type": "string",
+                              "description": "null"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "null"
+                            }
+                          },
+                          "required": [
+                            "displayOrder",
+                            "hidden",
+                            "label",
+                            "value"
+                          ]
+                        }
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "A description of the property that will be shown as help text in HubSpot."
+                      },
+                      "label": {
+                        "type": "string",
+                        "description": "Human readable label for the property. Used in HubSpot UI"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "The data type of the property. Can be one of the following: [string, number, enumeration, datetime]"
+                      }
+                    },
+                    "required": [
+                      "label",
+                      "type"
+                    ]
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Internal event name, which must be used when referencing the event from this event definitions API. If a name is not supplied, one will be generated based on the label. The `name` value will also be used to automatically generate a `fullyQualifiedName` for the event definition, which you'll use when sending event completions to this event. "
+                },
+                "description": {
+                  "type": "string",
+                  "description": "A description of the event that will be shown as help text in HubSpot."
+                },
+                "label": {
+                  "type": "string",
+                  "description": "Human readable label for the event. Used in HubSpot UI"
+                },
+                "primaryObject": {
+                  "type": "string",
+                  "description": "The object type to associate this event to. Can be one of CONTACT, COMPANY, DEAL, TICKET. If no primaryObject is supplied, we will default to associating the event to CONTACT objects."
+                }
+              },
+              "required": [
+                "label",
+                "propertyDefinitions"
+              ]
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"label\",\n          \"propertyDefinitions\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"propertyDefinitions\": {\n            \"type\": \"array\",\n            \"description\": \"List of custom properties on event\",\n            \"items\": {\n              \"required\": [\n                \"label\",\n                \"type\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"name\": {\n                  \"type\": \"string\",\n                  \"description\": \"Internal property name, which must be used when referencing the property from the API\"\n                },\n                \"options\": {\n                  \"type\": \"array\",\n                  \"description\": \"A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties.\",\n                  \"items\": {\n                    \"required\": [\n                      \"displayOrder\",\n                      \"hidden\",\n                      \"label\",\n                      \"value\"\n                    ],\n                    \"type\": \"object\",\n                    \"properties\": {\n                      \"hidden\": {\n                        \"type\": \"boolean\"\n                      },\n                      \"displayOrder\": {\n                        \"type\": \"integer\",\n                        \"format\": \"int32\"\n                      },\n                      \"description\": {\n                        \"type\": \"string\",\n                        \"description\": \"null\"\n                      },\n                      \"label\": {\n                        \"type\": \"string\",\n                        \"description\": \"null\"\n                      },\n                      \"value\": {\n                        \"type\": \"string\",\n                        \"description\": \"null\"\n                      }\n                    }\n                  }\n                },\n                \"description\": {\n                  \"type\": \"string\",\n                  \"description\": \"A description of the property that will be shown as help text in HubSpot.\"\n                },\n                \"label\": {\n                  \"type\": \"string\",\n                  \"description\": \"Human readable label for the property. Used in HubSpot UI\"\n                },\n                \"type\": {\n                  \"type\": \"string\",\n                  \"description\": \"The data type of the property. Can be one of the following: [string, number, enumeration, datetime]\"\n                }\n              }\n            }\n          },\n          \"name\": {\n            \"type\": \"string\",\n            \"description\": \"Internal event name, which must be used when referencing the event from this event definitions API. If a name is not supplied, one will be generated based on the label. The `name` value will also be used to automatically generate a `fullyQualifiedName` for the event definition, which you'll use when sending event completions to this event. \"\n          },\n          \"description\": {\n            \"type\": \"string\",\n            \"description\": \"A description of the event that will be shown as help text in HubSpot.\"\n          },\n          \"label\": {\n            \"type\": \"string\",\n            \"description\": \"Human readable label for the event. Used in HubSpot UI\"\n          },\n          \"primaryObject\": {\n            \"type\": \"string\",\n            \"description\": \"The object type to associate this event to. Can be one of CONTACT, COMPANY, DEAL, TICKET. If no primaryObject is supplied, we will default to associating the event to CONTACT objects.\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": true,
+      "validate_request_body_schema": true,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/events/v3/event-definitions/{eventName}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "fetch_event_definition_by_name",
+        "description": {
+          "tagline": "Fetch details of a custom event definition by name.",
+          "detailed": "Use this tool to retrieve the definition and details of a specific custom event by providing its name."
+        },
+        "return_annotation": "Details of a specific custom event definition.",
+        "arguments": [
+          {
+            "name": "event_name",
+            "alternative_names": [
+              "custom_event_name",
+              "event_title"
+            ],
+            "description": "The internal name of the custom event to fetch its definition.",
+            "endpoint_argument_name": "eventName"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/events/v3/event-definitions/{eventName}",
+      "tags": [
+        "Event definition"
+      ],
+      "summary": "Retrieve a custom event definition",
+      "description": "Fetch a single custom event definition by name.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "behavioral_events.event_definitions.read_write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "eventName",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The internal name of the custom event."
+            },
+            "description": "The internal name of the custom event.",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "delete-/events/v3/event-definitions/{eventName}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "delete_custom_event_definition",
+        "description": {
+          "tagline": "Delete a custom event definition by name.",
+          "detailed": "Use this tool to delete a specified custom event definition in HubSpot by providing the event name. It is useful for managing and organizing event definitions that are no longer needed."
+        },
+        "return_annotation": "Confirmation of deletion of the custom event definition.",
+        "arguments": [
+          {
+            "name": "event_name",
+            "alternative_names": [
+              "custom_event_name",
+              "event_definition_name"
+            ],
+            "description": "The name of the custom event definition to delete.",
+            "endpoint_argument_name": "eventName"
+          }
+        ]
+      },
+      "method": "DELETE",
+      "path": "/events/v3/event-definitions/{eventName}",
+      "tags": [
+        "Event definition"
+      ],
+      "summary": "Delete an event definition",
+      "description": "Delete a custom event definition by name.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "behavioral_events.event_definitions.read_write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "eventName",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The name of the event definition."
+            },
+            "description": "The name of the event definition.",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "patch-/events/v3/event-definitions/{eventName}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "update_custom_event_definition",
+        "description": {
+          "tagline": "Update a specific custom event definition by name.",
+          "detailed": "Use this tool to update the definition of a specific custom event in Hubspot by specifying the event name."
+        },
+        "return_annotation": "Details of the updated event definition.",
+        "arguments": [
+          {
+            "name": "internal_event_name",
+            "alternative_names": [
+              "event_internal_name",
+              "custom_event_name"
+            ],
+            "description": "The internal name of the custom event to be updated in Hubspot.",
+            "endpoint_argument_name": "eventName"
+          },
+          {
+            "name": "event_description",
+            "alternative_names": [
+              "event_help_text",
+              "event_description_text"
+            ],
+            "description": "Provide a description for the custom event to be displayed as help text in HubSpot.",
+            "endpoint_argument_name": "description"
+          },
+          {
+            "name": "event_label",
+            "alternative_names": [
+              "event_display_name",
+              "event_ui_label"
+            ],
+            "description": "The human-readable label for the event, used in the HubSpot UI.",
+            "endpoint_argument_name": "label"
+          }
+        ]
+      },
+      "method": "PATCH",
+      "path": "/events/v3/event-definitions/{eventName}",
+      "tags": [
+        "Event definition"
+      ],
+      "summary": "Update a custom event definition",
+      "description": "Update a specific custom event definition by name.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "behavioral_events.event_definitions.read_write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "eventName",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The internal name of the custom event."
+            },
+            "description": "The internal name of the custom event.",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "description",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A description of the event that will be shown as help text in HubSpot."
+            },
+            "description": "A description of the event that will be shown as help text in HubSpot.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string",
+              "description": "A description of the event that will be shown as help text in HubSpot."
+            },
+            "schema_required": false
+          },
+          {
+            "name": "label",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Human readable label for the event. Used in HubSpot UI"
+            },
+            "description": "Human readable label for the event. Used in HubSpot UI",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string",
+              "description": "Human readable label for the event. Used in HubSpot UI"
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"description\": {\n            \"type\": \"string\",\n            \"description\": \"A description of the event that will be shown as help text in HubSpot.\"\n          },\n          \"label\": {\n            \"type\": \"string\",\n            \"description\": \"Human readable label for the event. Used in HubSpot UI\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": true,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "post-/events/v3/event-definitions/{eventName}/property",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "create_event_property",
+        "description": {
+          "tagline": "Create a new property for an existing event definition.",
+          "detailed": "Use this tool to add a new property to an existing event in Hubspot, enhancing the event's data structure."
+        },
+        "return_annotation": "Confirmation of the property creation for the event.",
+        "arguments": [
+          {
+            "name": "custom_event_internal_name",
+            "alternative_names": [
+              "event_name_internal",
+              "custom_event_name"
+            ],
+            "description": "The internal name of the custom event for which the property is being created.",
+            "endpoint_argument_name": "eventName"
+          },
+          {
+            "name": "event_property_details",
+            "alternative_names": [
+              "property_data",
+              "property_definition"
+            ],
+            "description": "JSON object containing the new event property's details, such as name, type, label, description, and options if applicable.",
+            "endpoint_argument_name": "requestBody"
+          }
+        ]
+      },
+      "method": "POST",
+      "path": "/events/v3/event-definitions/{eventName}/property",
+      "tags": [
+        "Event definition"
+      ],
+      "summary": "Create a property for an event definition",
+      "description": "Create a new property for an existing event definition.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "behavioral_events.event_definitions.read_write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "eventName",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The internal name of the custom event."
+            },
+            "description": "The internal name of the custom event.",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "requestBody",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Internal property name, which must be used when referencing the property from the API"
+                },
+                "options": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "hidden": {
+                      "val_type": "boolean",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "displayOrder": {
+                      "val_type": "integer",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "null"
+                    },
+                    "label": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "null"
+                    },
+                    "value": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "null"
+                    }
+                  },
+                  "description": "A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties."
+                },
+                "description": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "A description of the property that will be shown as help text in HubSpot."
+                },
+                "label": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Human readable label for the property. Used in HubSpot UI"
+                },
+                "type": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The data type of the property. Can be one of the following: [string, number, enumeration, datetime]"
+                }
+              },
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Internal property name, which must be used when referencing the property from the API"
+                },
+                "options": {
+                  "type": "array",
+                  "description": "A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "hidden": {
+                        "type": "boolean"
+                      },
+                      "displayOrder": {
+                        "type": "integer",
+                        "format": "int32"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "null"
+                      },
+                      "label": {
+                        "type": "string",
+                        "description": "null"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "null"
+                      }
+                    },
+                    "required": [
+                      "displayOrder",
+                      "hidden",
+                      "label",
+                      "value"
+                    ]
+                  }
+                },
+                "description": {
+                  "type": "string",
+                  "description": "A description of the property that will be shown as help text in HubSpot."
+                },
+                "label": {
+                  "type": "string",
+                  "description": "Human readable label for the property. Used in HubSpot UI"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The data type of the property. Can be one of the following: [string, number, enumeration, datetime]"
+                }
+              },
+              "required": [
+                "label",
+                "type"
+              ]
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"label\",\n          \"type\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"name\": {\n            \"type\": \"string\",\n            \"description\": \"Internal property name, which must be used when referencing the property from the API\"\n          },\n          \"options\": {\n            \"type\": \"array\",\n            \"description\": \"A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties.\",\n            \"items\": {\n              \"required\": [\n                \"displayOrder\",\n                \"hidden\",\n                \"label\",\n                \"value\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"hidden\": {\n                  \"type\": \"boolean\"\n                },\n                \"displayOrder\": {\n                  \"type\": \"integer\",\n                  \"format\": \"int32\"\n                },\n                \"description\": {\n                  \"type\": \"string\",\n                  \"description\": \"null\"\n                },\n                \"label\": {\n                  \"type\": \"string\",\n                  \"description\": \"null\"\n                },\n                \"value\": {\n                  \"type\": \"string\",\n                  \"description\": \"null\"\n                }\n              }\n            }\n          },\n          \"description\": {\n            \"type\": \"string\",\n            \"description\": \"A description of the property that will be shown as help text in HubSpot.\"\n          },\n          \"label\": {\n            \"type\": \"string\",\n            \"description\": \"Human readable label for the property. Used in HubSpot UI\"\n          },\n          \"type\": {\n            \"type\": \"string\",\n            \"description\": \"The data type of the property. Can be one of the following: [string, number, enumeration, datetime]\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": true,
+      "validate_request_body_schema": true,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "delete-/events/v3/event-definitions/{eventName}/property/{propertyName}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "delete_custom_event_property",
+        "description": {
+          "tagline": "Delete a property from a custom event definition.",
+          "detailed": "Use this tool to remove an existing property from a specific custom event definition in Hubspot."
+        },
+        "return_annotation": "Confirmation of property deletion from the custom event definition.",
+        "arguments": [
+          {
+            "name": "custom_event_internal_name",
+            "alternative_names": [
+              "event_internal_name",
+              "custom_event_name"
+            ],
+            "description": "The internal name of the custom event from which the property will be deleted.",
+            "endpoint_argument_name": "eventName"
+          },
+          {
+            "name": "property_internal_name",
+            "alternative_names": [
+              "property_name_to_delete",
+              "delete_property_name"
+            ],
+            "description": "The internal name of the property to delete from the custom event.",
+            "endpoint_argument_name": "propertyName"
+          }
+        ]
+      },
+      "method": "DELETE",
+      "path": "/events/v3/event-definitions/{eventName}/property/{propertyName}",
+      "tags": [
+        "Event definition"
+      ],
+      "summary": "Delete a property from a custom event definition",
+      "description": "Delete an existing property from a custom event definition.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "behavioral_events.event_definitions.read_write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "eventName",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The internal name of the custom event."
+            },
+            "description": "The internal name of the custom event.",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "propertyName",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The internal name of the property to delete."
+            },
+            "description": "The internal name of the property to delete.",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "patch-/events/v3/event-definitions/{eventName}/property/{propertyName}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "update_event_property",
+        "description": {
+          "tagline": "Update a property in a custom event definition.",
+          "detailed": "This tool updates an existing property within a specified custom event definition in Hubspot. It should be called when there is a need to modify the property of an event."
+        },
+        "return_annotation": "Confirmation of the event property update.",
+        "arguments": [
+          {
+            "name": "custom_event_name",
+            "alternative_names": [
+              "event_internal_name",
+              "event_name_identifier"
+            ],
+            "description": "The internal name of the custom event to be updated. Required to identify which event's property is being modified.",
+            "endpoint_argument_name": "eventName"
+          },
+          {
+            "name": "property_name_to_update",
+            "alternative_names": [
+              "property_internal_name",
+              "event_property_name"
+            ],
+            "description": "The internal name of the property to update within the event definition.",
+            "endpoint_argument_name": "propertyName"
+          },
+          {
+            "name": "property_update_details",
+            "alternative_names": [
+              "event_property_details",
+              "update_event_property_details"
+            ],
+            "description": "JSON object containing updates for the property. Includes options for enumerated properties, description, and label.",
+            "endpoint_argument_name": "requestBody"
+          }
+        ]
+      },
+      "method": "PATCH",
+      "path": "/events/v3/event-definitions/{eventName}/property/{propertyName}",
+      "tags": [
+        "Event definition"
+      ],
+      "summary": "Update an existing custom event property",
+      "description": "Update an existing property in a custom event definition.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "behavioral_events.event_definitions.read_write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "eventName",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The internal name of the custom event."
+            },
+            "description": "The internal name of the custom event.",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "propertyName",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The internal name of the property to update."
+            },
+            "description": "The internal name of the property to update.",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "requestBody",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "options": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "hidden": {
+                      "val_type": "boolean",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "displayOrder": {
+                      "val_type": "integer",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "description": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "null"
+                    },
+                    "label": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "null"
+                    },
+                    "value": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "null"
+                    }
+                  },
+                  "description": "A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties."
+                },
+                "description": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "A description of the property that will be shown as help text in HubSpot."
+                },
+                "label": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Human readable label for the property. Used in HubSpot UI"
+                }
+              },
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "object",
+              "properties": {
+                "options": {
+                  "type": "array",
+                  "description": "A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "hidden": {
+                        "type": "boolean"
+                      },
+                      "displayOrder": {
+                        "type": "integer",
+                        "format": "int32"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "null"
+                      },
+                      "label": {
+                        "type": "string",
+                        "description": "null"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "null"
+                      }
+                    },
+                    "required": [
+                      "displayOrder",
+                      "hidden",
+                      "label",
+                      "value"
+                    ]
+                  }
+                },
+                "description": {
+                  "type": "string",
+                  "description": "A description of the property that will be shown as help text in HubSpot."
+                },
+                "label": {
+                  "type": "string",
+                  "description": "Human readable label for the property. Used in HubSpot UI"
+                }
+              }
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"options\": {\n            \"type\": \"array\",\n            \"description\": \"A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties.\",\n            \"items\": {\n              \"required\": [\n                \"displayOrder\",\n                \"hidden\",\n                \"label\",\n                \"value\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"hidden\": {\n                  \"type\": \"boolean\"\n                },\n                \"displayOrder\": {\n                  \"type\": \"integer\",\n                  \"format\": \"int32\"\n                },\n                \"description\": {\n                  \"type\": \"string\",\n                  \"description\": \"null\"\n                },\n                \"label\": {\n                  \"type\": \"string\",\n                  \"description\": \"null\"\n                },\n                \"value\": {\n                  \"type\": \"string\",\n                  \"description\": \"null\"\n                }\n              }\n            }\n          },\n          \"description\": {\n            \"type\": \"string\",\n            \"description\": \"A description of the property that will be shown as help text in HubSpot.\"\n          },\n          \"label\": {\n            \"type\": \"string\",\n            \"description\": \"Human readable label for the property. Used in HubSpot UI\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": true,
+      "validate_request_body_schema": true,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "post-/events/v3/send/batch_send",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "send_batch_events",
+        "description": {
+          "tagline": "Send multiple event completions in one request.",
+          "detailed": "Use this tool to efficiently send multiple event completions to the Hubspot Events service in a single batch. Call this tool when you need to report multiple events at once to streamline processing and reduce network calls."
+        },
+        "return_annotation": "Confirmation of batch event sending.",
+        "arguments": [
+          {
+            "name": "event_batch",
+            "alternative_names": [
+              "event_collection",
+              "events_payload"
+            ],
+            "description": "A JSON array of event objects, each with details like `occurredAt`, `eventName`, `utk`, `uuid`, `email`, `properties`, and `objectId`, to send multiple event completions.",
+            "endpoint_argument_name": "requestBody"
+          }
+        ]
+      },
+      "method": "POST",
+      "path": "/events/v3/send/batch",
+      "tags": [
+        "Batch"
+      ],
+      "summary": "Send a batch of event completions",
+      "description": "Send multiple event completions at once.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "analytics.behavioral_events.send"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "requestBody",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "inputs": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "occurredAt": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The time when this event occurred. If this isn't set, the current time will be used."
+                    },
+                    "eventName": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The internal name of the event (`pe<portalID>_eventName`). Can be retrieved through the [event definitions API](https://developers.hubspot.com/docs/reference/api/analytics-and-events/custom-events/custom-event-definitions#get-%2Fevents%2Fv3%2Fevent-definitions) or in [HubSpot's UI](https://knowledge.hubspot.com/reports/create-custom-behavioral-events-with-the-code-wizard#find-internal-name). "
+                    },
+                    "utk": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The visitor's usertoken. Used for associating the event data with a CRM record."
+                    },
+                    "uuid": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "Include a universally unique identifier to assign a unique ID to the event completion. Can be useful for matching data between HubSpot and other external systems."
+                    },
+                    "email": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The visitor's email address. Used for associating the event data with a CRM record."
+                    },
+                    "properties": {
+                      "val_type": "json",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The event properties to update. Takes the format of key-value pairs (property internal name and property value). Learn more about [HubSpot's default event properties](https://developers.hubspot.com/docs/guides/api/analytics-and-events/custom-events/custom-event-definitions#hubspot-s-default-event-properties)."
+                    },
+                    "objectId": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The ID of the object that completed the event (e.g., contact ID or visitor ID)."
+                    }
+                  },
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "object",
+              "properties": {
+                "inputs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "occurredAt": {
+                        "type": "string",
+                        "description": "The time when this event occurred. If this isn't set, the current time will be used.",
+                        "format": "date-time"
+                      },
+                      "eventName": {
+                        "type": "string",
+                        "description": "The internal name of the event (`pe<portalID>_eventName`). Can be retrieved through the [event definitions API](https://developers.hubspot.com/docs/reference/api/analytics-and-events/custom-events/custom-event-definitions#get-%2Fevents%2Fv3%2Fevent-definitions) or in [HubSpot's UI](https://knowledge.hubspot.com/reports/create-custom-behavioral-events-with-the-code-wizard#find-internal-name). "
+                      },
+                      "utk": {
+                        "type": "string",
+                        "description": "The visitor's usertoken. Used for associating the event data with a CRM record."
+                      },
+                      "uuid": {
+                        "type": "string",
+                        "description": "Include a universally unique identifier to assign a unique ID to the event completion. Can be useful for matching data between HubSpot and other external systems."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The visitor's email address. Used for associating the event data with a CRM record."
+                      },
+                      "properties": {
+                        "type": "object",
+                        "description": "The event properties to update. Takes the format of key-value pairs (property internal name and property value). Learn more about [HubSpot's default event properties](https://developers.hubspot.com/docs/guides/api/analytics-and-events/custom-events/custom-event-definitions#hubspot-s-default-event-properties).",
+                        "properties": {},
+                        "additionalProperties": {
+                          "type": "string"
+                        }
+                      },
+                      "objectId": {
+                        "type": "string",
+                        "description": "The ID of the object that completed the event (e.g., contact ID or visitor ID)."
+                      }
+                    },
+                    "required": [
+                      "eventName"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "inputs"
+              ]
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"inputs\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"inputs\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"required\": [\n                \"eventName\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"occurredAt\": {\n                  \"type\": \"string\",\n                  \"description\": \"The time when this event occurred. If this isn't set, the current time will be used.\",\n                  \"format\": \"date-time\"\n                },\n                \"eventName\": {\n                  \"type\": \"string\",\n                  \"description\": \"The internal name of the event (`pe<portalID>_eventName`). Can be retrieved through the [event definitions API](https://developers.hubspot.com/docs/reference/api/analytics-and-events/custom-events/custom-event-definitions#get-%2Fevents%2Fv3%2Fevent-definitions) or in [HubSpot's UI](https://knowledge.hubspot.com/reports/create-custom-behavioral-events-with-the-code-wizard#find-internal-name). \"\n                },\n                \"utk\": {\n                  \"type\": \"string\",\n                  \"description\": \"The visitor's usertoken. Used for associating the event data with a CRM record.\"\n                },\n                \"uuid\": {\n                  \"type\": \"string\",\n                  \"description\": \"Include a universally unique identifier to assign a unique ID to the event completion. Can be useful for matching data between HubSpot and other external systems.\"\n                },\n                \"email\": {\n                  \"type\": \"string\",\n                  \"description\": \"The visitor's email address. Used for associating the event data with a CRM record.\"\n                },\n                \"properties\": {\n                  \"type\": \"object\",\n                  \"additionalProperties\": {\n                    \"type\": \"string\"\n                  },\n                  \"description\": \"The event properties to update. Takes the format of key-value pairs (property internal name and property value). Learn more about [HubSpot's default event properties](https://developers.hubspot.com/docs/guides/api/analytics-and-events/custom-events/custom-event-definitions#hubspot-s-default-event-properties).\"\n                },\n                \"objectId\": {\n                  \"type\": \"string\",\n                  \"description\": \"The ID of the object that completed the event (e.g., contact ID or visitor ID).\"\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": true,
+      "validate_request_body_schema": true,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "post-/events/v3/send_send",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "send_event_data",
+        "description": {
+          "tagline": "Send data for a single event completion.",
+          "detailed": "This tool is used to send data related to the completion of a single event. It should be called when there is a need to log or submit event information to Hubspot's system."
+        },
+        "return_annotation": "Confirmation of event data submission.",
+        "arguments": [
+          {
+            "name": "event_data",
+            "alternative_names": [
+              "event_details",
+              "event_information"
+            ],
+            "description": "JSON object containing event details including occurredAt, eventName, utk, uuid, email, properties, and objectId.",
+            "endpoint_argument_name": "requestBody"
+          }
+        ]
+      },
+      "method": "POST",
+      "path": "/events/v3/send",
+      "tags": [
+        "Basic"
+      ],
+      "summary": "Send a custom event completion",
+      "description": "Send data for a single event completion.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "analytics.behavioral_events.send"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "requestBody",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "occurredAt": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The time when this event occurred. If this isn't set, the current time will be used."
+                },
+                "eventName": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The internal name of the event (`pe<portalID>_eventName`). Can be retrieved through the [event definitions API](https://developers.hubspot.com/docs/reference/api/analytics-and-events/custom-events/custom-event-definitions#get-%2Fevents%2Fv3%2Fevent-definitions) or in [HubSpot's UI](https://knowledge.hubspot.com/reports/create-custom-behavioral-events-with-the-code-wizard#find-internal-name). "
+                },
+                "utk": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The visitor's usertoken. Used for associating the event data with a CRM record."
+                },
+                "uuid": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "Include a universally unique identifier to assign a unique ID to the event completion. Can be useful for matching data between HubSpot and other external systems."
+                },
+                "email": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The visitor's email address. Used for associating the event data with a CRM record."
+                },
+                "properties": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The event properties to update. Takes the format of key-value pairs (property internal name and property value). Learn more about [HubSpot's default event properties](https://developers.hubspot.com/docs/guides/api/analytics-and-events/custom-events/custom-event-definitions#hubspot-s-default-event-properties)."
+                },
+                "objectId": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "The ID of the object that completed the event (e.g., contact ID or visitor ID)."
+                }
+              },
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "object",
+              "properties": {
+                "occurredAt": {
+                  "type": "string",
+                  "description": "The time when this event occurred. If this isn't set, the current time will be used.",
+                  "format": "date-time"
+                },
+                "eventName": {
+                  "type": "string",
+                  "description": "The internal name of the event (`pe<portalID>_eventName`). Can be retrieved through the [event definitions API](https://developers.hubspot.com/docs/reference/api/analytics-and-events/custom-events/custom-event-definitions#get-%2Fevents%2Fv3%2Fevent-definitions) or in [HubSpot's UI](https://knowledge.hubspot.com/reports/create-custom-behavioral-events-with-the-code-wizard#find-internal-name). "
+                },
+                "utk": {
+                  "type": "string",
+                  "description": "The visitor's usertoken. Used for associating the event data with a CRM record."
+                },
+                "uuid": {
+                  "type": "string",
+                  "description": "Include a universally unique identifier to assign a unique ID to the event completion. Can be useful for matching data between HubSpot and other external systems."
+                },
+                "email": {
+                  "type": "string",
+                  "description": "The visitor's email address. Used for associating the event data with a CRM record."
+                },
+                "properties": {
+                  "type": "object",
+                  "description": "The event properties to update. Takes the format of key-value pairs (property internal name and property value). Learn more about [HubSpot's default event properties](https://developers.hubspot.com/docs/guides/api/analytics-and-events/custom-events/custom-event-definitions#hubspot-s-default-event-properties).",
+                  "properties": {},
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "objectId": {
+                  "type": "string",
+                  "description": "The ID of the object that completed the event (e.g., contact ID or visitor ID)."
+                }
+              },
+              "required": [
+                "eventName"
+              ]
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"eventName\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"occurredAt\": {\n            \"type\": \"string\",\n            \"description\": \"The time when this event occurred. If this isn't set, the current time will be used.\",\n            \"format\": \"date-time\"\n          },\n          \"eventName\": {\n            \"type\": \"string\",\n            \"description\": \"The internal name of the event (`pe<portalID>_eventName`). Can be retrieved through the [event definitions API](https://developers.hubspot.com/docs/reference/api/analytics-and-events/custom-events/custom-event-definitions#get-%2Fevents%2Fv3%2Fevent-definitions) or in [HubSpot's UI](https://knowledge.hubspot.com/reports/create-custom-behavioral-events-with-the-code-wizard#find-internal-name). \"\n          },\n          \"utk\": {\n            \"type\": \"string\",\n            \"description\": \"The visitor's usertoken. Used for associating the event data with a CRM record.\"\n          },\n          \"uuid\": {\n            \"type\": \"string\",\n            \"description\": \"Include a universally unique identifier to assign a unique ID to the event completion. Can be useful for matching data between HubSpot and other external systems.\"\n          },\n          \"email\": {\n            \"type\": \"string\",\n            \"description\": \"The visitor's email address. Used for associating the event data with a CRM record.\"\n          },\n          \"properties\": {\n            \"type\": \"object\",\n            \"additionalProperties\": {\n              \"type\": \"string\"\n            },\n            \"description\": \"The event properties to update. Takes the format of key-value pairs (property internal name and property value). Learn more about [HubSpot's default event properties](https://developers.hubspot.com/docs/guides/api/analytics-and-events/custom-events/custom-event-definitions#hubspot-s-default-event-properties).\"\n          },\n          \"objectId\": {\n            \"type\": \"string\",\n            \"description\": \"The ID of the object that completed the event (e.g., contact ID or visitor ID).\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": true,
+      "validate_request_body_schema": true,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    }
+  ],
+  "security_scheme_key_selected": "oauth2",
+  "security_scheme_selected": {
+    "type": "oauth2",
+    "flows": {
+      "authorizationCode": {
+        "authorizationUrl": "https://app.hubspot.com/oauth/authorize",
+        "tokenUrl": "https://api.hubapi.com/oauth/v1/token",
+        "scopes": {
+          "oauth": "User and Account Information",
+          "behavioral_events.event_definitions.read_write": "Read from and write to custom behavioral events definitions",
+          "analytics.behavioral_events.send": "Send Behavioral Event Completions"
+        }
+      }
+    }
+  }
+}

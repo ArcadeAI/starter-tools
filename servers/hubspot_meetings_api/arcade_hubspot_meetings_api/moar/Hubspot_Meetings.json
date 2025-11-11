@@ -1,0 +1,1050 @@
+{
+  "name": "Hubspot_Meetings",
+  "spec_source": "openapi_spec",
+  "token_for_http_testing": "",
+  "package_name": "hubspot_meetings_api",
+  "package_dir_path": "/Users/rb/arcade/starter-tools/servers/hubspot_meetings_api/arcade_hubspot_meetings_api",
+  "project_dir_path": "/Users/rb/arcade/starter-tools/servers/hubspot_meetings_api",
+  "arcade_new_cmd_executed": true,
+  "api_endpoint_selection_customized": false,
+  "api_endpoint_for_http_testing": "",
+  "authorization_type": "oauth",
+  "auth_provider_id": "arcade-hubspot",
+  "where_to_provide_token": "header",
+  "token_key_name": "Authorization",
+  "token_value": "Bearer {authorization}",
+  "secrets": [],
+  "global_base_url": null,
+  "global_headers": {},
+  "edit_operations": [],
+  "uuid": "acbdeda0-5818-46bd-abd0-38248fa9c33c",
+  "api_endpoints": [
+    {
+      "name": "post-/scheduler/v3/meetings/calendar",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "schedule_meeting_hubspot",
+        "description": {
+          "tagline": "Schedule a meeting using Hubspot's calendar integration.",
+          "detailed": "This tool allows you to schedule meetings through Hubspot's external calendar integration, streamlining event creation and ensuring synchronization with Hubspot's scheduling system."
+        },
+        "return_annotation": "Confirmation of meeting scheduling with details.",
+        "arguments": [
+          {
+            "name": "meeting_details",
+            "alternative_names": [
+              "meeting_information",
+              "calendar_event_details"
+            ],
+            "description": "JSON object containing details like meeting title, start and end time, timezone, attendees, and reminders for scheduling a meeting via Hubspot.",
+            "endpoint_argument_name": "requestBody"
+          }
+        ]
+      },
+      "method": "POST",
+      "path": "/scheduler/v3/meetings/calendar",
+      "tags": [
+        "External_Calender_Integration"
+      ],
+      "summary": "",
+      "description": "",
+      "requires_security": true,
+      "oauth_scopes": [
+        "crm.objects.listings.write",
+        "crm.objects.companies.sensitive.write.v2",
+        "crm.objects.deals.write",
+        "crm.objects.deals.sensitive.write.v2",
+        "crm.objects.goals.write",
+        "crm.objects.companies.highly_sensitive.write.v2",
+        "crm.objects.appointments.write",
+        "crm.objects.courses.write",
+        "crm.objects.products.write",
+        "crm.objects.appointments.sensitive.write.v2",
+        "crm.objects.commercepayments.write",
+        "crm.objects.services.write",
+        "crm.objects.contacts.highly_sensitive.write.v2",
+        "tickets",
+        "tickets.sensitive.v2",
+        "tickets.highly_sensitive.v2",
+        "crm.objects.contacts.sensitive.write.v2",
+        "crm.objects.companies.write",
+        "crm.objects.contacts.write",
+        "crm.objects.deals.highly_sensitive.write.v2",
+        "crm.objects.line_items.write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps",
+        "private_apps_legacy"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "requestBody",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "associations": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "types": {
+                      "val_type": "array",
+                      "inner_val_type": "json",
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": {
+                        "associationCategory": {
+                          "val_type": "string",
+                          "inner_val_type": null,
+                          "enum": [
+                            "HUBSPOT_DEFINED",
+                            "USER_DEFINED",
+                            "INTEGRATOR_DEFINED"
+                          ],
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": "The category of the association, such as \"HUBSPOT_DEFINED\"."
+                        },
+                        "associationTypeId": {
+                          "val_type": "integer",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": "The ID representing the specific type of association."
+                        }
+                      },
+                      "description": null
+                    },
+                    "to": {
+                      "val_type": "json",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": {
+                        "id": {
+                          "val_type": "string",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": null
+                        }
+                      },
+                      "inner_properties": null,
+                      "description": null
+                    }
+                  },
+                  "description": null
+                },
+                "emailReminderSchedule": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "reminders": {
+                      "val_type": "array",
+                      "inner_val_type": "json",
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": {
+                        "numberOfTimeUnits": {
+                          "val_type": "integer",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": null
+                        },
+                        "timeUnit": {
+                          "val_type": "string",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": null
+                        }
+                      },
+                      "description": null
+                    },
+                    "shouldIncludeInviteDescription": {
+                      "val_type": "boolean",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": null
+                },
+                "timezone": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "properties": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "hs_meeting_start_time": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "hs_attachment_ids": {
+                      "val_type": "array",
+                      "inner_val_type": "string",
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "hs_attendee_owner_ids": {
+                      "val_type": "array",
+                      "inner_val_type": "string",
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "hs_meeting_title": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "hs_internal_meeting_notes": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "hs_meeting_body": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "hs_activity_type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "hs_meeting_end_time": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "hs_meeting_outcome": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "hs_timestamp": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "hubspot_owner_id": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "hs_meeting_location": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "hs_meeting_location_type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "object",
+              "properties": {
+                "associations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "types": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "description": "Defines the type, direction, and details of the relationship between two CRM objects.",
+                          "properties": {
+                            "associationCategory": {
+                              "type": "string",
+                              "description": "The category of the association, such as \"HUBSPOT_DEFINED\".",
+                              "enum": [
+                                "HUBSPOT_DEFINED",
+                                "USER_DEFINED",
+                                "INTEGRATOR_DEFINED"
+                              ],
+                              "example": ""
+                            },
+                            "associationTypeId": {
+                              "type": "integer",
+                              "description": "The ID representing the specific type of association.",
+                              "format": "int32"
+                            }
+                          },
+                          "required": [
+                            "associationCategory",
+                            "associationTypeId"
+                          ]
+                        }
+                      },
+                      "to": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "to",
+                      "types"
+                    ]
+                  }
+                },
+                "emailReminderSchedule": {
+                  "type": "object",
+                  "properties": {
+                    "reminders": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "numberOfTimeUnits": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "timeUnit": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "numberOfTimeUnits",
+                          "timeUnit"
+                        ]
+                      }
+                    },
+                    "shouldIncludeInviteDescription": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "reminders",
+                    "shouldIncludeInviteDescription"
+                  ]
+                },
+                "timezone": {
+                  "type": "string"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "hs_meeting_start_time": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "hs_attachment_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "hs_attendee_owner_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "hs_meeting_title": {
+                      "type": "string"
+                    },
+                    "hs_internal_meeting_notes": {
+                      "type": "string"
+                    },
+                    "hs_meeting_body": {
+                      "type": "string"
+                    },
+                    "hs_activity_type": {
+                      "type": "string"
+                    },
+                    "hs_meeting_end_time": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "hs_meeting_outcome": {
+                      "type": "string"
+                    },
+                    "hs_timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "hubspot_owner_id": {
+                      "type": "string"
+                    },
+                    "hs_meeting_location": {
+                      "type": "string"
+                    },
+                    "hs_meeting_location_type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "hs_meeting_end_time",
+                    "hs_meeting_outcome",
+                    "hs_meeting_start_time",
+                    "hs_meeting_title",
+                    "hs_timestamp"
+                  ]
+                }
+              },
+              "required": [
+                "associations",
+                "emailReminderSchedule",
+                "properties",
+                "timezone"
+              ]
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"associations\",\n          \"emailReminderSchedule\",\n          \"properties\",\n          \"timezone\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"associations\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"required\": [\n                \"to\",\n                \"types\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"types\": {\n                  \"type\": \"array\",\n                  \"items\": {\n                    \"required\": [\n                      \"associationCategory\",\n                      \"associationTypeId\"\n                    ],\n                    \"type\": \"object\",\n                    \"properties\": {\n                      \"associationCategory\": {\n                        \"type\": \"string\",\n                        \"description\": \"The category of the association, such as \\\"HUBSPOT_DEFINED\\\".\",\n                        \"example\": \"\",\n                        \"enum\": [\n                          \"HUBSPOT_DEFINED\",\n                          \"USER_DEFINED\",\n                          \"INTEGRATOR_DEFINED\"\n                        ]\n                      },\n                      \"associationTypeId\": {\n                        \"type\": \"integer\",\n                        \"description\": \"The ID representing the specific type of association.\",\n                        \"format\": \"int32\"\n                      }\n                    },\n                    \"description\": \"Defines the type, direction, and details of the relationship between two CRM objects.\"\n                  }\n                },\n                \"to\": {\n                  \"required\": [\n                    \"id\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"id\": {\n                      \"type\": \"string\"\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"emailReminderSchedule\": {\n            \"required\": [\n              \"reminders\",\n              \"shouldIncludeInviteDescription\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"reminders\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"required\": [\n                    \"numberOfTimeUnits\",\n                    \"timeUnit\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"numberOfTimeUnits\": {\n                      \"type\": \"integer\",\n                      \"format\": \"int32\"\n                    },\n                    \"timeUnit\": {\n                      \"type\": \"string\"\n                    }\n                  }\n                }\n              },\n              \"shouldIncludeInviteDescription\": {\n                \"type\": \"boolean\"\n              }\n            }\n          },\n          \"timezone\": {\n            \"type\": \"string\"\n          },\n          \"properties\": {\n            \"required\": [\n              \"hs_meeting_end_time\",\n              \"hs_meeting_outcome\",\n              \"hs_meeting_start_time\",\n              \"hs_meeting_title\",\n              \"hs_timestamp\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"hs_meeting_start_time\": {\n                \"type\": \"string\",\n                \"format\": \"date-time\"\n              },\n              \"hs_attachment_ids\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"type\": \"string\"\n                }\n              },\n              \"hs_attendee_owner_ids\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"type\": \"string\"\n                }\n              },\n              \"hs_meeting_title\": {\n                \"type\": \"string\"\n              },\n              \"hs_internal_meeting_notes\": {\n                \"type\": \"string\"\n              },\n              \"hs_meeting_body\": {\n                \"type\": \"string\"\n              },\n              \"hs_activity_type\": {\n                \"type\": \"string\"\n              },\n              \"hs_meeting_end_time\": {\n                \"type\": \"string\",\n                \"format\": \"date-time\"\n              },\n              \"hs_meeting_outcome\": {\n                \"type\": \"string\"\n              },\n              \"hs_timestamp\": {\n                \"type\": \"string\",\n                \"format\": \"date-time\"\n              },\n              \"hubspot_owner_id\": {\n                \"type\": \"string\"\n              },\n              \"hs_meeting_location\": {\n                \"type\": \"string\"\n              },\n              \"hs_meeting_location_type\": {\n                \"type\": \"string\"\n              }\n            }\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": true,
+      "validate_request_body_schema": true,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/scheduler/v3/meetings/meeting-links/book/{slug}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "get_meeting_scheduler_details",
+        "description": {
+          "tagline": "Get necessary details for setting up a meeting scheduler.",
+          "detailed": "Use this tool to obtain the essential information required to set up a meeting scheduler via Hubspot. It retrieves the initial data needed to schedule meetings."
+        },
+        "return_annotation": "Provides initial meeting scheduler information.",
+        "arguments": [
+          {
+            "name": "meeting_slug",
+            "alternative_names": [
+              "scheduler_slug",
+              "link_slug"
+            ],
+            "description": "A unique identifier for the meeting link, used to retrieve specific scheduler details.",
+            "endpoint_argument_name": "slug"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/scheduler/v3/meetings/meeting-links/book/{slug}",
+      "tags": [
+        "Meetings links"
+      ],
+      "summary": "List booking information",
+      "description": "Get details about the initial information necessary for a meeting scheduler.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "scheduler.meetings.meeting-link.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "slug",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/scheduler/v3/meetings/meeting-links",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "list_meeting_scheduling_pages",
+        "description": {
+          "tagline": "Retrieve a paged list of meeting scheduling links.",
+          "detailed": "Use this tool to get a paged list of meeting scheduling pages from Hubspot. It is useful when you need to see or manage the scheduling links available."
+        },
+        "return_annotation": "A list of meeting scheduling pages.",
+        "arguments": []
+      },
+      "method": "GET",
+      "path": "/scheduler/v3/meetings/meeting-links",
+      "tags": [
+        "Meetings links"
+      ],
+      "summary": "Get meeting scheduling pages",
+      "description": "Get a paged list meeting scheduling pages",
+      "requires_security": true,
+      "oauth_scopes": [
+        "scheduler.meetings.meeting-link.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "post-/scheduler/v3/meetings/meeting-links/book",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "book_hubspot_meeting",
+        "description": {
+          "tagline": "Book a meeting using Hubspot's scheduling feature.",
+          "detailed": "Use this tool to book a meeting for a specified meeting page through Hubspot. It is ideal for scheduling meetings directly through Hubspot's platform."
+        },
+        "return_annotation": "Confirmation of the meeting booking.",
+        "arguments": [
+          {
+            "name": "meeting_details",
+            "alternative_names": [
+              "meeting_info",
+              "meeting_data"
+            ],
+            "description": "JSON object containing meeting details: duration (integer), firstName (string), lastName (string), likelyAvailableUserIds (array of strings), timezone (string), legalConsentResponses (array of JSON objects with communicationTypeId and consented), startTime (string), formFields (array of JSON objects with name and value), locale (string), slug (string), and email (string).",
+            "endpoint_argument_name": "requestBody"
+          }
+        ]
+      },
+      "method": "POST",
+      "path": "/scheduler/v3/meetings/meeting-links/book",
+      "tags": [
+        "Meetings links"
+      ],
+      "summary": "Book a meeting\n",
+      "description": "Book a meeting for a specified meeting page.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "crm.objects.listings.write",
+        "crm.objects.companies.sensitive.write.v2",
+        "crm.objects.deals.write",
+        "crm.objects.deals.sensitive.write.v2",
+        "crm.objects.goals.write",
+        "crm.objects.companies.highly_sensitive.write.v2",
+        "crm.objects.appointments.write",
+        "crm.objects.courses.write",
+        "crm.objects.products.write",
+        "crm.objects.appointments.sensitive.write.v2",
+        "crm.objects.commercepayments.write",
+        "crm.objects.services.write",
+        "crm.objects.contacts.highly_sensitive.write.v2",
+        "tickets",
+        "tickets.sensitive.v2",
+        "tickets.highly_sensitive.v2",
+        "crm.objects.contacts.sensitive.write.v2",
+        "crm.objects.companies.write",
+        "crm.objects.contacts.write",
+        "crm.objects.deals.highly_sensitive.write.v2",
+        "crm.objects.line_items.write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps",
+        "private_apps_legacy"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "requestBody",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "duration": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "firstName": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "lastName": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "likelyAvailableUserIds": {
+                  "val_type": "array",
+                  "inner_val_type": "string",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "timezone": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "legalConsentResponses": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "communicationTypeId": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "consented": {
+                      "val_type": "boolean",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    }
+                  },
+                  "description": null
+                },
+                "startTime": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "formFields": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "value": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    }
+                  },
+                  "description": null
+                },
+                "locale": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "slug": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "email": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "object",
+              "properties": {
+                "duration": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "likelyAvailableUserIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "timezone": {
+                  "type": "string"
+                },
+                "legalConsentResponses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "communicationTypeId": {
+                        "type": "string"
+                      },
+                      "consented": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "communicationTypeId",
+                      "consented"
+                    ]
+                  }
+                },
+                "startTime": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "formFields": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "value"
+                    ]
+                  }
+                },
+                "locale": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "duration",
+                "email",
+                "firstName",
+                "formFields",
+                "lastName",
+                "legalConsentResponses",
+                "likelyAvailableUserIds",
+                "slug",
+                "startTime"
+              ]
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"duration\",\n          \"email\",\n          \"firstName\",\n          \"formFields\",\n          \"lastName\",\n          \"legalConsentResponses\",\n          \"likelyAvailableUserIds\",\n          \"slug\",\n          \"startTime\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"duration\": {\n            \"type\": \"integer\",\n            \"format\": \"int64\"\n          },\n          \"firstName\": {\n            \"type\": \"string\"\n          },\n          \"lastName\": {\n            \"type\": \"string\"\n          },\n          \"likelyAvailableUserIds\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"string\"\n            }\n          },\n          \"timezone\": {\n            \"type\": \"string\"\n          },\n          \"legalConsentResponses\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"required\": [\n                \"communicationTypeId\",\n                \"consented\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"communicationTypeId\": {\n                  \"type\": \"string\"\n                },\n                \"consented\": {\n                  \"type\": \"boolean\"\n                }\n              }\n            }\n          },\n          \"startTime\": {\n            \"type\": \"string\",\n            \"format\": \"date-time\"\n          },\n          \"formFields\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"required\": [\n                \"name\",\n                \"value\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"name\": {\n                  \"type\": \"string\"\n                },\n                \"value\": {\n                  \"type\": \"string\"\n                }\n              }\n            }\n          },\n          \"locale\": {\n            \"type\": \"string\"\n          },\n          \"slug\": {\n            \"type\": \"string\"\n          },\n          \"email\": {\n            \"type\": \"string\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": true,
+      "validate_request_body_schema": true,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/scheduler/v3/meetings/meeting-links/book/availability-page/{slug}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "get_next_meeting_availability",
+        "description": {
+          "tagline": "Fetch the next availability times for a meeting page.",
+          "detailed": "This tool retrieves the upcoming available time slots for booking a meeting on a specified page using a given slug. It should be called when a user wants to check or display free time slots for a meeting."
+        },
+        "return_annotation": "Next available times for meeting booking.",
+        "arguments": [
+          {
+            "name": "availability_page_slug",
+            "alternative_names": [
+              "page_identifier_slug",
+              "meeting_page_slug"
+            ],
+            "description": "The unique slug identifier for the meeting page to check available time slots.",
+            "endpoint_argument_name": "slug"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/scheduler/v3/meetings/meeting-links/book/availability-page/{slug}",
+      "tags": [
+        "Meetings links"
+      ],
+      "summary": "Get the availability for a meeting",
+      "description": "Get the next availability times for a meeting page.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "scheduler.meetings.meeting-link.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "slug",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    }
+  ],
+  "security_scheme_key_selected": "oauth2",
+  "security_scheme_selected": {
+    "type": "oauth2",
+    "flows": {
+      "authorizationCode": {
+        "authorizationUrl": "https://app.hubspot.com/oauth/authorize",
+        "tokenUrl": "https://api.hubapi.com/oauth/v1/token",
+        "scopes": {
+          "crm.objects.contacts.highly_sensitive.write.v2": "Change contact records (highly-sensitive)",
+          "tickets": "Read and write tickets",
+          "crm.objects.goals.write": "Write goals",
+          "crm.objects.commercepayments.write": "Write commerce payments",
+          "crm.objects.line_items.write": "Line Items",
+          "crm.objects.contacts.write": "Create or update contact records",
+          "crm.objects.products.write": "Write to my Product Library",
+          "crm.objects.services.write": "Write services",
+          "crm.objects.contacts.sensitive.write.v2": "Create or update sensitive properties on contact records",
+          "crm.objects.deals.sensitive.write.v2": "Create or update sensitive properties on deal records",
+          "tickets.highly_sensitive.v2": "Tickets (highly-sensitive)",
+          "crm.objects.listings.write": "Write listings",
+          "crm.objects.appointments.sensitive.write.v2": "Write appointments (sensitive)",
+          "crm.objects.companies.write": "View company records",
+          "crm.objects.courses.write": "Write courses",
+          "crm.objects.appointments.write": "Write appointments",
+          "tickets.sensitive.v2": "Tickets (sensitive)",
+          "crm.objects.deals.write": "Create or update deal records",
+          "crm.objects.companies.sensitive.write.v2": "Create or update sensitive properties on company records",
+          "crm.objects.deals.highly_sensitive.write.v2": "Change deal records (highly-sensitive)",
+          "crm.objects.companies.highly_sensitive.write.v2": "Change company records (highly-sensitive)",
+          "scheduler.meetings.meeting-link.read": "Read from meeting links"
+        }
+      }
+    }
+  }
+}

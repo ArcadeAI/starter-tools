@@ -1,0 +1,216 @@
+{
+  "name": "UpdateMessageStatus",
+  "fully_qualified_name": "HubspotConversationsApi.UpdateMessageStatus@0.1.0",
+  "description": "Update the status of a conversation message.\n\nUse this tool to update the status of a message within a custom channel on Hubspot Conversations. It indicates whether a message was successfully sent, failed, or read. Additionally, for failed messages, you can include an error message for clarification.",
+  "toolkit": {
+    "name": "ArcadeHubspotConversationsApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "channel_identifier",
+        "required": true,
+        "description": "The unique identifier for the custom channel where the message is located. It is required to specify which channel the message belongs to.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "channelId"
+      },
+      {
+        "name": "message_id",
+        "required": true,
+        "description": "Unique identifier of the message to be updated.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "messageId"
+      },
+      {
+        "name": "message_status",
+        "required": true,
+        "description": "Specifies the status of the message. Valid values are SENT, FAILED, and READ.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "SENT",
+            "FAILED",
+            "READ"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Valid status are SENT, FAILED, and READ"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "statusType"
+      },
+      {
+        "name": "error_message_for_failed_status",
+        "required": false,
+        "description": "Provide an error message when the status is FAILED to clarify the reason for failure. Only use this when 'statusType' is 'FAILED'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "errorMessage"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'patch-/conversations/v3/custom-channels/{channelId}/messages/{messageId}'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-hubspot",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "conversations.custom_channels.write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Hubspot Conversations API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.hubapi.com/conversations/v3/custom-channels/{channelId}/messages/{messageId}",
+    "http_method": "PATCH",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "channelId",
+        "tool_parameter_name": "channel_identifier",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "messageId",
+        "tool_parameter_name": "message_id",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "statusType",
+        "tool_parameter_name": "message_status",
+        "description": "Valid status are SENT, FAILED, and READ",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "SENT",
+            "FAILED",
+            "READ"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Valid status are SENT, FAILED, and READ"
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "errorMessage",
+        "tool_parameter_name": "error_message_for_failed_status",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"statusType\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"statusType\": {\n            \"type\": \"string\",\n            \"description\": \"Valid status are SENT, FAILED, and READ\",\n            \"enum\": [\n              \"SENT\",\n              \"FAILED\",\n              \"READ\"\n            ]\n          },\n          \"errorMessage\": {\n            \"type\": \"string\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

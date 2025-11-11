@@ -3,4 +3,8 @@ arcade-ashby-api
 arcade-customerio-api
 arcade-customerio-pipelines-api
 arcade-customerio-track-api
+arcade-hubspot-conversations-api
+arcade-hubspot-events-api
+arcade-hubspot-meetings-api
+arcade-hubspot-users-api
 arcade-intercom-api

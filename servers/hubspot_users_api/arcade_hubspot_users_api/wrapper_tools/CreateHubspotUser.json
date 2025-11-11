@@ -1,0 +1,308 @@
+{
+  "name": "CreateHubspotUser",
+  "fully_qualified_name": "HubspotUsersApi.CreateHubspotUser@0.1.0",
+  "description": "Create a new user in HubSpot with basic permissions.\n\nThis tool creates a new user in HubSpot with minimal permissions (contacts-base). The user will receive a welcome email to set a password and log in.",
+  "toolkit": {
+    "name": "ArcadeHubspotUsersApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "user_email",
+        "required": true,
+        "description": "The email address of the user to be created in HubSpot.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The created user's email"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "email"
+      },
+      {
+        "name": "user_first_name",
+        "required": false,
+        "description": "The first name of the user to be created in HubSpot.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "firstName"
+      },
+      {
+        "name": "last_name",
+        "required": false,
+        "description": "The last name of the user to be created in HubSpot.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "lastName"
+      },
+      {
+        "name": "primary_team_id",
+        "required": false,
+        "description": "The identifier for the user's primary team in HubSpot.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The user's primary team"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "primaryTeamId"
+      },
+      {
+        "name": "user_role_id",
+        "required": false,
+        "description": "A string representing the new user's role within HubSpot.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The user's role"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "roleId"
+      },
+      {
+        "name": "additional_team_ids",
+        "required": false,
+        "description": "List of IDs representing the user's additional teams.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The user's additional teams"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "secondaryTeamIds"
+      },
+      {
+        "name": "send_welcome_email",
+        "required": false,
+        "description": "Set to true to send a welcome email prompting the user to set a password and log in.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether to send a welcome email"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "sendWelcomeEmail"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post-/settings/v3/users/_create'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-hubspot",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "crm.objects.users.write",
+          "settings.users.write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Hubspot Users API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.hubapi.com/settings/v3/users/",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "firstName",
+        "tool_parameter_name": "user_first_name",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "lastName",
+        "tool_parameter_name": "last_name",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "primaryTeamId",
+        "tool_parameter_name": "primary_team_id",
+        "description": "The user's primary team",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The user's primary team"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "sendWelcomeEmail",
+        "tool_parameter_name": "send_welcome_email",
+        "description": "Whether to send a welcome email",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether to send a welcome email"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "roleId",
+        "tool_parameter_name": "user_role_id",
+        "description": "The user's role",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The user's role"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "secondaryTeamIds",
+        "tool_parameter_name": "additional_team_ids",
+        "description": "The user's additional teams",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The user's additional teams"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "email",
+        "tool_parameter_name": "user_email",
+        "description": "The created user's email",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The created user's email"
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"email\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"firstName\": {\n            \"type\": \"string\"\n          },\n          \"lastName\": {\n            \"type\": \"string\"\n          },\n          \"primaryTeamId\": {\n            \"type\": \"string\",\n            \"description\": \"The user's primary team\"\n          },\n          \"sendWelcomeEmail\": {\n            \"type\": \"boolean\",\n            \"description\": \"Whether to send a welcome email\"\n          },\n          \"roleId\": {\n            \"type\": \"string\",\n            \"description\": \"The user's role\"\n          },\n          \"secondaryTeamIds\": {\n            \"type\": \"array\",\n            \"description\": \"The user's additional teams\",\n            \"items\": {\n              \"type\": \"string\"\n            }\n          },\n          \"email\": {\n            \"type\": \"string\",\n            \"description\": \"The created user's email\"\n          }\n        },\n        \"description\": \"A user creation request\",\n        \"example\": {\n          \"email\": \"newUser@email.com\",\n          \"roleId\": \"100\",\n          \"primaryTeamId\": \"101\",\n          \"secondaryTeamIds\": [\n            \"102\"\n          ],\n          \"sendWelcomeEmail\": \"true\"\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

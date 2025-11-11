@@ -1,0 +1,306 @@
+{
+  "name": "CreateEventProperty",
+  "fully_qualified_name": "HubspotEventsApi.CreateEventProperty@0.1.0",
+  "description": "Create a new property for an existing event definition.\n\nUse this tool to add a new property to an existing event in Hubspot, enhancing the event's data structure.",
+  "toolkit": {
+    "name": "ArcadeHubspotEventsApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "custom_event_internal_name",
+        "required": true,
+        "description": "The internal name of the custom event for which the property is being created.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The internal name of the custom event."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "eventName"
+      },
+      {
+        "name": "event_property_details",
+        "required": true,
+        "description": "JSON object containing the new event property's details, such as name, type, label, description, and options if applicable.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Internal property name, which must be used when referencing the property from the API"
+            },
+            "options": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "hidden": {
+                  "val_type": "boolean",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "displayOrder": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "description": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "null"
+                },
+                "label": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "null"
+                },
+                "value": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "null"
+                }
+              },
+              "description": "A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties."
+            },
+            "description": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A description of the property that will be shown as help text in HubSpot."
+            },
+            "label": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Human readable label for the property. Used in HubSpot UI"
+            },
+            "type": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The data type of the property. Can be one of the following: [string, number, enumeration, datetime]"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post-/events/v3/event-definitions/{eventName}/property'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-hubspot",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "behavioral_events.event_definitions.read_write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Hubspot Events API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.hubapi.com/events/v3/event-definitions/{eventName}/property",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "eventName",
+        "tool_parameter_name": "custom_event_internal_name",
+        "description": "The internal name of the custom event.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The internal name of the custom event."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "event_property_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "name": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Internal property name, which must be used when referencing the property from the API"
+            },
+            "options": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "hidden": {
+                  "val_type": "boolean",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "displayOrder": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "description": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "null"
+                },
+                "label": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "null"
+                },
+                "value": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "null"
+                }
+              },
+              "description": "A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties."
+            },
+            "description": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A description of the property that will be shown as help text in HubSpot."
+            },
+            "label": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Human readable label for the property. Used in HubSpot UI"
+            },
+            "type": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The data type of the property. Can be one of the following: [string, number, enumeration, datetime]"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"label\",\n          \"type\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"name\": {\n            \"type\": \"string\",\n            \"description\": \"Internal property name, which must be used when referencing the property from the API\"\n          },\n          \"options\": {\n            \"type\": \"array\",\n            \"description\": \"A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties.\",\n            \"items\": {\n              \"required\": [\n                \"displayOrder\",\n                \"hidden\",\n                \"label\",\n                \"value\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"hidden\": {\n                  \"type\": \"boolean\"\n                },\n                \"displayOrder\": {\n                  \"type\": \"integer\",\n                  \"format\": \"int32\"\n                },\n                \"description\": {\n                  \"type\": \"string\",\n                  \"description\": \"null\"\n                },\n                \"label\": {\n                  \"type\": \"string\",\n                  \"description\": \"null\"\n                },\n                \"value\": {\n                  \"type\": \"string\",\n                  \"description\": \"null\"\n                }\n              }\n            }\n          },\n          \"description\": {\n            \"type\": \"string\",\n            \"description\": \"A description of the property that will be shown as help text in HubSpot.\"\n          },\n          \"label\": {\n            \"type\": \"string\",\n            \"description\": \"Human readable label for the property. Used in HubSpot UI\"\n          },\n          \"type\": {\n            \"type\": \"string\",\n            \"description\": \"The data type of the property. Can be one of the following: [string, number, enumeration, datetime]\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}
