@@ -1,0 +1,307 @@
+{
+  "name": "UpdateEventProperty",
+  "fully_qualified_name": "HubspotEventsApi.UpdateEventProperty@0.1.0",
+  "description": "Update a property in a custom event definition.\n\nThis tool updates an existing property within a specified custom event definition in Hubspot. It should be called when there is a need to modify the property of an event.",
+  "toolkit": {
+    "name": "ArcadeHubspotEventsApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "custom_event_name",
+        "required": true,
+        "description": "The internal name of the custom event to be updated. Required to identify which event's property is being modified.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The internal name of the custom event."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "eventName"
+      },
+      {
+        "name": "property_name_to_update",
+        "required": true,
+        "description": "The internal name of the property to update within the event definition.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The internal name of the property to update."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "propertyName"
+      },
+      {
+        "name": "property_update_details",
+        "required": true,
+        "description": "JSON object containing updates for the property. Includes options for enumerated properties, description, and label.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "options": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "hidden": {
+                  "val_type": "boolean",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "displayOrder": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "description": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "null"
+                },
+                "label": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "null"
+                },
+                "value": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "null"
+                }
+              },
+              "description": "A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties."
+            },
+            "description": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A description of the property that will be shown as help text in HubSpot."
+            },
+            "label": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Human readable label for the property. Used in HubSpot UI"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'patch-/events/v3/event-definitions/{eventName}/property/{propertyName}'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-hubspot",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "behavioral_events.event_definitions.read_write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Hubspot Events API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.hubapi.com/events/v3/event-definitions/{eventName}/property/{propertyName}",
+    "http_method": "PATCH",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "eventName",
+        "tool_parameter_name": "custom_event_name",
+        "description": "The internal name of the custom event.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The internal name of the custom event."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "propertyName",
+        "tool_parameter_name": "property_name_to_update",
+        "description": "The internal name of the property to update.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The internal name of the property to update."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "property_update_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "options": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "hidden": {
+                  "val_type": "boolean",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "displayOrder": {
+                  "val_type": "integer",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "description": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "null"
+                },
+                "label": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "null"
+                },
+                "value": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": "null"
+                }
+              },
+              "description": "A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties."
+            },
+            "description": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A description of the property that will be shown as help text in HubSpot."
+            },
+            "label": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Human readable label for the property. Used in HubSpot UI"
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"options\": {\n            \"type\": \"array\",\n            \"description\": \"A list of available options for the property if it is an enumeration. NOTE: This field is only applicable for enumerated properties.\",\n            \"items\": {\n              \"required\": [\n                \"displayOrder\",\n                \"hidden\",\n                \"label\",\n                \"value\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"hidden\": {\n                  \"type\": \"boolean\"\n                },\n                \"displayOrder\": {\n                  \"type\": \"integer\",\n                  \"format\": \"int32\"\n                },\n                \"description\": {\n                  \"type\": \"string\",\n                  \"description\": \"null\"\n                },\n                \"label\": {\n                  \"type\": \"string\",\n                  \"description\": \"null\"\n                },\n                \"value\": {\n                  \"type\": \"string\",\n                  \"description\": \"null\"\n                }\n              }\n            }\n          },\n          \"description\": {\n            \"type\": \"string\",\n            \"description\": \"A description of the property that will be shown as help text in HubSpot.\"\n          },\n          \"label\": {\n            \"type\": \"string\",\n            \"description\": \"Human readable label for the property. Used in HubSpot UI\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

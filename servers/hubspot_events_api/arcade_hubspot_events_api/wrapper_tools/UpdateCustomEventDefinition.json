@@ -1,0 +1,175 @@
+{
+  "name": "UpdateCustomEventDefinition",
+  "fully_qualified_name": "HubspotEventsApi.UpdateCustomEventDefinition@0.1.0",
+  "description": "Update a specific custom event definition by name.\n\nUse this tool to update the definition of a specific custom event in Hubspot by specifying the event name.",
+  "toolkit": {
+    "name": "ArcadeHubspotEventsApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "internal_event_name",
+        "required": true,
+        "description": "The internal name of the custom event to be updated in Hubspot.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The internal name of the custom event."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "eventName"
+      },
+      {
+        "name": "event_description",
+        "required": false,
+        "description": "Provide a description for the custom event to be displayed as help text in HubSpot.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "A description of the event that will be shown as help text in HubSpot."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "description"
+      },
+      {
+        "name": "event_label",
+        "required": false,
+        "description": "The human-readable label for the event, used in the HubSpot UI.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Human readable label for the event. Used in HubSpot UI"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "label"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'patch-/events/v3/event-definitions/{eventName}'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-hubspot",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "behavioral_events.event_definitions.read_write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Hubspot Events API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.hubapi.com/events/v3/event-definitions/{eventName}",
+    "http_method": "PATCH",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "eventName",
+        "tool_parameter_name": "internal_event_name",
+        "description": "The internal name of the custom event.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The internal name of the custom event."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "description",
+        "tool_parameter_name": "event_description",
+        "description": "A description of the event that will be shown as help text in HubSpot.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "A description of the event that will be shown as help text in HubSpot."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "label",
+        "tool_parameter_name": "event_label",
+        "description": "Human readable label for the event. Used in HubSpot UI",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Human readable label for the event. Used in HubSpot UI"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"description\": {\n            \"type\": \"string\",\n            \"description\": \"A description of the event that will be shown as help text in HubSpot.\"\n          },\n          \"label\": {\n            \"type\": \"string\",\n            \"description\": \"Human readable label for the event. Used in HubSpot UI\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

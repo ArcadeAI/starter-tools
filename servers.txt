@@ -4,4 +4,5 @@ arcade-customerio-api
 arcade-customerio-pipelines-api
 arcade-customerio-track-api
 arcade-hubspot-conversations-api
+arcade-hubspot-events-api
 arcade-intercom-api

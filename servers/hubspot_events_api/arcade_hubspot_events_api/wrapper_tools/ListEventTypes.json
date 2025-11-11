@@ -1,0 +1,74 @@
+{
+  "name": "ListEventTypes",
+  "fully_qualified_name": "HubspotEventsApi.ListEventTypes@0.1.0",
+  "description": "Retrieve a list of visible event type names.\n\nThis tool retrieves a list of event type names that are visible to the user, which can be used to query specific event instances.",
+  "toolkit": {
+    "name": "ArcadeHubspotEventsApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": []
+  },
+  "output": {
+    "description": "Response from the API endpoint 'get-/events/v3/events/event-types_getTypes'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-hubspot",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "oauth"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Hubspot Events API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.hubapi.com/events/v3/events/event-types",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}
