@@ -1,0 +1,530 @@
+{
+  "name": "PublishCustomChannelMessage",
+  "fully_qualified_name": "HubspotConversationsApi.PublishCustomChannelMessage@0.1.0",
+  "description": "Publish a message to a custom channel on HubSpot.\n\nThis tool sends a message over a specified custom channel in HubSpot Conversations. Use this tool to communicate via custom-integrated messaging channels.",
+  "toolkit": {
+    "name": "ArcadeHubspotConversationsApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "custom_channel_id",
+        "required": true,
+        "description": "The unique ID of the custom channel where the message will be published. Must be a string.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "channelId"
+      },
+      {
+        "name": "custom_channel_message_payload",
+        "required": true,
+        "description": "A JSON object containing message details for the custom channel, including message direction, recipients, senders, text, and attachments.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "messageDirection": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "INCOMING",
+                "OUTGOING"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "attachments": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {},
+              "description": null
+            },
+            "preResolvedContacts": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "contacts": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "contactVid": {
+                      "val_type": "integer",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "contactPropertiesLeadingToMatch": {
+                      "val_type": "array",
+                      "inner_val_type": "string",
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    }
+                  },
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": null
+            },
+            "recipients": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "deliveryIdentifier": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+                    },
+                    "value": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": null
+            },
+            "integrationThreadId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "integrationIdempotencyId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "text": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "richText": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "channelAccountId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "senders": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "deliveryIdentifier": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+                    },
+                    "value": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": null
+            },
+            "inReplyToId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "timestamp": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'post-/conversations/v3/custom-channels/{channelId}/messages'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-hubspot",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "conversations.custom_channels.write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Hubspot Conversations API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.hubapi.com/conversations/v3/custom-channels/{channelId}/messages",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "channelId",
+        "tool_parameter_name": "custom_channel_id",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "custom_channel_message_payload",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": {
+            "messageDirection": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "INCOMING",
+                "OUTGOING"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "attachments": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {},
+              "description": null
+            },
+            "preResolvedContacts": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "contacts": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "contactVid": {
+                      "val_type": "integer",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "contactPropertiesLeadingToMatch": {
+                      "val_type": "array",
+                      "inner_val_type": "string",
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    }
+                  },
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": null
+            },
+            "recipients": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "deliveryIdentifier": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+                    },
+                    "value": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": null
+            },
+            "integrationThreadId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "integrationIdempotencyId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "text": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "richText": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "channelAccountId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "senders": {
+              "val_type": "array",
+              "inner_val_type": "json",
+              "enum": null,
+              "properties": null,
+              "inner_properties": {
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "deliveryIdentifier": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "type": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+                    },
+                    "value": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "description": null
+            },
+            "inReplyToId": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            },
+            "timestamp": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": null
+            }
+          },
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"attachments\",\n          \"channelAccountId\",\n          \"integrationThreadId\",\n          \"messageDirection\",\n          \"recipients\",\n          \"senders\",\n          \"text\",\n          \"timestamp\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"messageDirection\": {\n            \"type\": \"string\",\n            \"enum\": [\n              \"INCOMING\",\n              \"OUTGOING\"\n            ]\n          },\n          \"attachments\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"oneOf\": [\n                {\n                  \"title\": \"FILE\",\n                  \"required\": [\n                    \"fileId\",\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"fileUsageType\": {\n                      \"type\": \"string\"\n                    },\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"default\": \"FILE\",\n                      \"enum\": [\n                        \"FILE\"\n                      ]\n                    },\n                    \"fileId\": {\n                      \"type\": \"string\"\n                    }\n                  }\n                },\n                {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/LocationAttachment\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/LocationAttachment\"\n                },\n                {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/ContactAttachment\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/ContactAttachment\"\n                },\n                {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/UnsupportedContentAttachment\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/UnsupportedContentAttachment\"\n                },\n                {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/MessageHeaderAttachment\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/MessageHeaderAttachment\"\n                },\n                {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/QuickRepliesAttachment\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/QuickRepliesAttachment\"\n                },\n                {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/SocialMetadataIntegrationAttachment\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/SocialMetadataIntegrationAttachment\"\n                }\n              ]\n            }\n          },\n          \"preResolvedContacts\": {\n            \"required\": [\n              \"contacts\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"contacts\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"required\": [\n                    \"contactPropertiesLeadingToMatch\",\n                    \"contactVid\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"contactVid\": {\n                      \"type\": \"integer\",\n                      \"format\": \"int32\"\n                    },\n                    \"contactPropertiesLeadingToMatch\": {\n                      \"type\": \"array\",\n                      \"items\": {\n                        \"type\": \"string\"\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"recipients\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"required\": [\n                \"deliveryIdentifier\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"name\": {\n                  \"type\": \"string\"\n                },\n                \"deliveryIdentifier\": {\n                  \"required\": [\n                    \"type\",\n                    \"value\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"description\": \"The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.\"\n                    },\n                    \"value\": {\n                      \"type\": \"string\",\n                      \"description\": \"A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.\"\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"integrationThreadId\": {\n            \"type\": \"string\"\n          },\n          \"integrationIdempotencyId\": {\n            \"type\": \"string\"\n          },\n          \"text\": {\n            \"type\": \"string\"\n          },\n          \"richText\": {\n            \"type\": \"string\"\n          },\n          \"channelAccountId\": {\n            \"type\": \"string\"\n          },\n          \"senders\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"required\": [\n                \"deliveryIdentifier\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"name\": {\n                  \"type\": \"string\"\n                },\n                \"deliveryIdentifier\": {\n                  \"required\": [\n                    \"type\",\n                    \"value\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"description\": \"The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.\"\n                    },\n                    \"value\": {\n                      \"type\": \"string\",\n                      \"description\": \"A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.\"\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"inReplyToId\": {\n            \"type\": \"string\"\n          },\n          \"timestamp\": {\n            \"type\": \"string\",\n            \"format\": \"date-time\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

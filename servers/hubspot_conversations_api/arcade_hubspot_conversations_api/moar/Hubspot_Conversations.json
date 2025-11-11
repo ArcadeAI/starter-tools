@@ -1,0 +1,3834 @@
+{
+  "name": "Hubspot_Conversations",
+  "spec_source": "openapi_spec",
+  "token_for_http_testing": "",
+  "package_name": "hubspot_conversations_api",
+  "package_dir_path": "/Users/rb/arcade/starter-tools/servers/hubspot_conversations_api/arcade_hubspot_conversations_api",
+  "project_dir_path": "/Users/rb/arcade/starter-tools/servers/hubspot_conversations_api",
+  "arcade_new_cmd_executed": true,
+  "api_endpoint_selection_customized": false,
+  "api_endpoint_for_http_testing": "",
+  "authorization_type": "oauth",
+  "auth_provider_id": "arcade-hubspot",
+  "where_to_provide_token": "header",
+  "token_key_name": "Authorization",
+  "token_value": "Bearer {authorization}",
+  "secrets": [],
+  "global_base_url": null,
+  "global_headers": {},
+  "edit_operations": [],
+  "uuid": "8af267d0-a05c-4170-8e6f-3439bc192b2c",
+  "api_endpoints": [
+    {
+      "name": "get-/conversations/v3/conversations/inboxes",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "list_conversation_inboxes",
+        "description": {
+          "tagline": "Retrieve a list of conversation inboxes.",
+          "detailed": "This tool fetches a list of conversation inboxes, allowing for optional filters and sorting to customize the results."
+        },
+        "return_annotation": "List of conversation inboxes with optional filters and sorting.",
+        "arguments": []
+      },
+      "method": "GET",
+      "path": "/conversations/v3/conversations/inboxes",
+      "tags": [
+        "Public_Inbox"
+      ],
+      "summary": "Get conversations inboxes",
+      "description": "Retrieve a list of conversations inboxes, with optional filters and sorting.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/conversations/threads/{threadId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "retrieve_thread_by_id",
+        "description": {
+          "tagline": "Retrieve detailed information about a conversation thread by ID.",
+          "detailed": "Use this to access specific conversation threads and their details for a given thread ID."
+        },
+        "return_annotation": "Detailed information about a specific conversation thread.",
+        "arguments": [
+          {
+            "name": "conversation_thread_id",
+            "alternative_names": [
+              "thread_identifier",
+              "conversation_id"
+            ],
+            "description": "The unique identifier for the conversation thread you wish to retrieve. Provide the specific thread ID to access its details.",
+            "endpoint_argument_name": "threadId"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/conversations/v3/conversations/threads/{threadId}",
+      "tags": [
+        "Public_Thread"
+      ],
+      "summary": "Get a single thread",
+      "description": "Retrieve a single thread by its ID",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "threadId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "delete-/conversations/v3/conversations/threads/{threadId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "archive_conversation_thread",
+        "description": {
+          "tagline": "Archives a conversation thread, marking it for deletion.",
+          "detailed": "Use this tool to archive a conversation thread, which will then be permanently deleted after 30 days. Ideal for managing conversational data efficiently by removing unnecessary threads."
+        },
+        "return_annotation": "Confirmation of thread archiving.",
+        "arguments": [
+          {
+            "name": "thread_identifier",
+            "alternative_names": [
+              "thread_id",
+              "conversation_thread_id"
+            ],
+            "description": "The unique identifier of the conversation thread to archive. This is a required field and should match the specific thread you wish to archive.",
+            "endpoint_argument_name": "threadId"
+          }
+        ]
+      },
+      "method": "DELETE",
+      "path": "/conversations/v3/conversations/threads/{threadId}",
+      "tags": [
+        "Public_Thread"
+      ],
+      "summary": "Archives a thread",
+      "description": "Archives a single thread. The thread will be permanently deleted 30 days after placed in an archived state.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "threadId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "patch-/conversations/v3/conversations/threads/{threadId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "update_conversation_thread",
+        "description": {
+          "tagline": "Update the status or restore a conversation thread.",
+          "detailed": "This tool updates a single thread's status or restores it within Hubspot Conversations. Use it to change the status or restore a thread based on the thread ID provided."
+        },
+        "return_annotation": "Confirmation of thread update or restoration.",
+        "arguments": [
+          {
+            "name": "thread_identifier",
+            "alternative_names": [
+              "thread_id_value",
+              "conversation_thread_id"
+            ],
+            "description": "The unique identifier for the conversation thread to update or restore.",
+            "endpoint_argument_name": "threadId"
+          },
+          {
+            "name": "thread_status",
+            "alternative_names": [
+              "conversation_status",
+              "status_update"
+            ],
+            "description": "Set the thread's status to `OPEN` or `CLOSED`.",
+            "endpoint_argument_name": "status"
+          },
+          {
+            "name": "is_thread_archived",
+            "alternative_names": [
+              "restore_thread",
+              "archive_thread_status"
+            ],
+            "description": "Set to true to archive or false to restore the thread. Determines if the thread is currently archived.",
+            "endpoint_argument_name": "archived"
+          }
+        ]
+      },
+      "method": "PATCH",
+      "path": "/conversations/v3/conversations/threads/{threadId}",
+      "tags": [
+        "Public_Thread"
+      ],
+      "summary": "Update a thread",
+      "description": "Updates a single thread. Either a thread's status can be updated, or the thread can be restored.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "threadId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "archived",
+            "value_schema": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "Whether this thread is archived. Set to false to restore the thread."
+            },
+            "description": "Whether this thread is archived. Set to false to restore the thread.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "boolean",
+              "description": "Whether this thread is archived. Set to false to restore the thread."
+            },
+            "schema_required": false
+          },
+          {
+            "name": "status",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "OPEN",
+                "CLOSED"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "The thread's status: `OPEN` or `CLOSED`."
+            },
+            "description": "The thread's status: `OPEN` or `CLOSED`.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string",
+              "description": "The thread's status: `OPEN` or `CLOSED`.",
+              "enum": [
+                "OPEN",
+                "CLOSED"
+              ]
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"archived\": {\n            \"type\": \"boolean\",\n            \"description\": \"Whether this thread is archived. Set to false to restore the thread.\"\n          },\n          \"status\": {\n            \"type\": \"string\",\n            \"description\": \"The thread's status: `OPEN` or `CLOSED`.\",\n            \"enum\": [\n              \"OPEN\",\n              \"CLOSED\"\n            ]\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": true,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/conversations/threads/{threadId}/messages/{messageId}/original-content",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "retrieve_full_message_content",
+        "description": {
+          "tagline": "Retrieve the original text and rich text of a HubSpot message.",
+          "detailed": "Use this tool to access the full original content of a message within a conversation on HubSpot. Ideal for retrieving untruncated message details when the truncation status indicates it might be truncated."
+        },
+        "return_annotation": "Original text and rich text of a message.",
+        "arguments": [
+          {
+            "name": "conversation_thread_id",
+            "alternative_names": [
+              "thread_identifier",
+              "conversation_id"
+            ],
+            "description": "The unique identifier for the conversation thread containing the message.",
+            "endpoint_argument_name": "threadId"
+          },
+          {
+            "name": "message_id",
+            "alternative_names": [
+              "msg_id",
+              "message_identifier"
+            ],
+            "description": "The unique identifier for the message. Used to retrieve the message's full original content.",
+            "endpoint_argument_name": "messageId"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/conversations/v3/conversations/threads/{threadId}/messages/{messageId}/original-content",
+      "tags": [
+        "Public_Message"
+      ],
+      "summary": "Get the original content of a single message",
+      "description": "Returns the complete original text and rich text bodies of a message. This will be different from the text and rich text in the message itself if the message's `truncationStatus` is anything other than `NOT_TRUNCATED`.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "threadId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "messageId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/conversations/channels",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "list_conversation_channels",
+        "description": {
+          "tagline": "Retrieve a list of conversation channels from Hubspot.",
+          "detailed": "Use this tool to get a list of conversation channels from Hubspot, applying optional filters and sorting if needed."
+        },
+        "return_annotation": "A list of conversation channels with available filters and sorting.",
+        "arguments": []
+      },
+      "method": "GET",
+      "path": "/conversations/v3/conversations/channels",
+      "tags": [
+        "Public_Channel"
+      ],
+      "summary": "Get channels",
+      "description": "Retrieve a list of channels, with optional filters and sorting.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/conversations/actors/{actorId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "retrieve_actor_details",
+        "description": {
+          "tagline": "Retrieve details of a specific actor by actor ID.",
+          "detailed": "Use this tool to get information about a specific actor within Hubspot Conversations by providing their actor ID. It should be called when actor-specific details are needed."
+        },
+        "return_annotation": "Actor details for the specified actor ID.",
+        "arguments": [
+          {
+            "name": "actor_id",
+            "alternative_names": [
+              "actor_identifier",
+              "actor_reference_id"
+            ],
+            "description": "The unique identifier for the actor whose details are to be retrieved.",
+            "endpoint_argument_name": "actorId"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/conversations/v3/conversations/actors/{actorId}",
+      "tags": [
+        "Public_Actor"
+      ],
+      "summary": "Get a single actor",
+      "description": "Retrieve details of a single actor using the actor ID.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "actorId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/conversations/threads",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "retrieve_conversation_threads",
+        "description": {
+          "tagline": "Retrieve conversation threads from Hubspot Conversations.",
+          "detailed": "Use this tool to fetch a list of conversation threads from Hubspot Conversations. You can apply optional filters and sorting to tailor the results."
+        },
+        "return_annotation": "List of conversation threads with optional filters and sorting.",
+        "arguments": []
+      },
+      "method": "GET",
+      "path": "/conversations/v3/conversations/threads",
+      "tags": [
+        "Public_Thread"
+      ],
+      "summary": "Get threads",
+      "description": "Retrieve a list of threads, with optional filters and sorting.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/conversations/threads/{threadId}/messages",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "get_message_history_for_thread",
+        "description": {
+          "tagline": "Retrieve the message history for a specific thread.",
+          "detailed": "This tool retrieves the message history for a given conversation thread by its ID. It should be used when you need to access past messages of a thread in Hubspot Conversations."
+        },
+        "return_annotation": "The message history for a specific conversation thread.",
+        "arguments": [
+          {
+            "name": "thread_id",
+            "alternative_names": [
+              "conversation_thread_id",
+              "message_thread_id"
+            ],
+            "description": "The unique identifier for the conversation thread whose message history is to be retrieved.",
+            "endpoint_argument_name": "threadId"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/conversations/v3/conversations/threads/{threadId}/messages",
+      "tags": [
+        "Public_Message"
+      ],
+      "summary": "Get message history for a thread",
+      "description": "Retrieve the message history for a specific thread.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "threadId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "post-/conversations/v3/conversations/threads/{threadId}/messages",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "send_conversation_message",
+        "description": {
+          "tagline": "Send a new message in a conversation thread.",
+          "detailed": "Use this tool to send a new message on an existing conversation thread. Ideal for continuing discussions or replying within a thread."
+        },
+        "return_annotation": "Confirmation of message sent in the conversation thread.",
+        "arguments": [
+          {
+            "name": "thread_id",
+            "alternative_names": [
+              "conversation_id",
+              "thread_identifier"
+            ],
+            "description": "The unique identifier for the conversation thread where the message will be sent. It should be a string that corresponds to the existing thread ID in Hubspot.",
+            "endpoint_argument_name": "threadId"
+          },
+          {
+            "name": "message_content",
+            "alternative_names": [
+              "thread_message",
+              "conversation_message"
+            ],
+            "description": "The content of the message to be sent within the thread. Provide this as a JSON object containing the message text and any relevant metadata.",
+            "endpoint_argument_name": "requestBody"
+          }
+        ]
+      },
+      "method": "POST",
+      "path": "/conversations/v3/conversations/threads/{threadId}/messages",
+      "tags": [
+        "Public_Message"
+      ],
+      "summary": "Send a message to a thread",
+      "description": "Send a new message on a thread at the current timestamp.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "threadId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "requestBody",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "object",
+              "properties": {},
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {},
+                  "allOf": [
+                    {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "MESSAGE"
+                          ]
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "richText": {
+                          "type": "string"
+                        },
+                        "attachments": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {},
+                            "oneOf": [
+                              {
+                                "type": "object",
+                                "title": "FILE",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "FILE"
+                                    ]
+                                  },
+                                  "fileId": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "fileId",
+                                  "type"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "title": "QUICK_REPLIES",
+                                "properties": {
+                                  "quickReplies": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "valueType": {
+                                          "type": "string"
+                                        },
+                                        "label": {
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "value",
+                                        "valueType"
+                                      ]
+                                    }
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "QUICK_REPLIES"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "quickReplies",
+                                  "type"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "title": "SOCIAL_MEDIA_METADATA",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "SOCIAL_MEDIA_METADATA"
+                                    ]
+                                  },
+                                  "socialMetadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "mediaType": {
+                                        "type": "string"
+                                      },
+                                      "mediaUrlString": {
+                                        "type": "string"
+                                      },
+                                      "mediaUrl": {
+                                        "type": "string"
+                                      },
+                                      "thumbnailUrl": {
+                                        "type": "string"
+                                      },
+                                      "mediaTitle": {
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "mediaType"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "socialMetadata",
+                                  "type"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "recipients": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "deliveryIdentifiers": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+                                    },
+                                    "value": {
+                                      "type": "string",
+                                      "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "value"
+                                  ]
+                                }
+                              },
+                              "actorId": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "deliveryIdentifier": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+                                  },
+                                  "value": {
+                                    "type": "string",
+                                    "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "value"
+                                ]
+                              },
+                              "recipientField": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "deliveryIdentifiers"
+                            ]
+                          }
+                        },
+                        "senderActorId": {
+                          "type": "string"
+                        },
+                        "channelId": {
+                          "type": "string"
+                        },
+                        "channelAccountId": {
+                          "type": "string"
+                        },
+                        "subject": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "attachments",
+                        "channelAccountId",
+                        "channelId",
+                        "recipients",
+                        "senderActorId",
+                        "text",
+                        "type"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {},
+                  "allOf": [
+                    {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "COMMENT"
+                          ]
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "richText": {
+                          "type": "string"
+                        },
+                        "attachments": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {},
+                            "oneOf": [
+                              {
+                                "type": "object",
+                                "title": "FILE",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "FILE"
+                                    ]
+                                  },
+                                  "fileId": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "fileId",
+                                  "type"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "title": "QUICK_REPLIES",
+                                "properties": {
+                                  "quickReplies": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "valueType": {
+                                          "type": "string"
+                                        },
+                                        "label": {
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "value",
+                                        "valueType"
+                                      ]
+                                    }
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "QUICK_REPLIES"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "quickReplies",
+                                  "type"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "title": "SOCIAL_MEDIA_METADATA",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "SOCIAL_MEDIA_METADATA"
+                                    ]
+                                  },
+                                  "socialMetadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "mediaType": {
+                                        "type": "string"
+                                      },
+                                      "mediaUrlString": {
+                                        "type": "string"
+                                      },
+                                      "mediaUrl": {
+                                        "type": "string"
+                                      },
+                                      "thumbnailUrl": {
+                                        "type": "string"
+                                      },
+                                      "mediaTitle": {
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "mediaType"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "socialMetadata",
+                                  "type"
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "attachments",
+                        "text",
+                        "type"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"properties\": {},\n        \"oneOf\": [\n          {\n            \"properties\": {},\n            \"allOf\": [\n              {\n                \"$ref\": \"#/components/schemas/PublicMessageEgg\",\n                \"has_circular_reference\": true\n              },\n              {\n                \"required\": [\n                  \"attachments\",\n                  \"channelAccountId\",\n                  \"channelId\",\n                  \"recipients\",\n                  \"senderActorId\",\n                  \"text\",\n                  \"type\"\n                ],\n                \"type\": \"object\",\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"default\": \"MESSAGE\",\n                    \"enum\": [\n                      \"MESSAGE\"\n                    ]\n                  },\n                  \"text\": {\n                    \"type\": \"string\"\n                  },\n                  \"richText\": {\n                    \"type\": \"string\"\n                  },\n                  \"attachments\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                      \"oneOf\": [\n                        {\n                          \"title\": \"FILE\",\n                          \"required\": [\n                            \"fileId\",\n                            \"type\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"default\": \"FILE\",\n                              \"enum\": [\n                                \"FILE\"\n                              ]\n                            },\n                            \"fileId\": {\n                              \"type\": \"string\"\n                            }\n                          }\n                        },\n                        {\n                          \"title\": \"QUICK_REPLIES\",\n                          \"required\": [\n                            \"quickReplies\",\n                            \"type\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"quickReplies\": {\n                              \"type\": \"array\",\n                              \"items\": {\n                                \"required\": [\n                                  \"value\",\n                                  \"valueType\"\n                                ],\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"valueType\": {\n                                    \"type\": \"string\"\n                                  },\n                                  \"label\": {\n                                    \"type\": \"string\"\n                                  },\n                                  \"value\": {\n                                    \"type\": \"string\"\n                                  }\n                                }\n                              }\n                            },\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"default\": \"QUICK_REPLIES\",\n                              \"enum\": [\n                                \"QUICK_REPLIES\"\n                              ]\n                            }\n                          }\n                        },\n                        {\n                          \"title\": \"SOCIAL_MEDIA_METADATA\",\n                          \"required\": [\n                            \"socialMetadata\",\n                            \"type\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"default\": \"SOCIAL_MEDIA_METADATA\",\n                              \"enum\": [\n                                \"SOCIAL_MEDIA_METADATA\"\n                              ]\n                            },\n                            \"socialMetadata\": {\n                              \"required\": [\n                                \"mediaType\"\n                              ],\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"mediaType\": {\n                                  \"type\": \"string\"\n                                },\n                                \"mediaUrlString\": {\n                                  \"type\": \"string\"\n                                },\n                                \"mediaUrl\": {\n                                  \"type\": \"string\"\n                                },\n                                \"thumbnailUrl\": {\n                                  \"type\": \"string\"\n                                },\n                                \"mediaTitle\": {\n                                  \"type\": \"string\"\n                                },\n                                \"description\": {\n                                  \"type\": \"string\"\n                                },\n                                \"id\": {\n                                  \"type\": \"string\"\n                                }\n                              }\n                            }\n                          }\n                        }\n                      ]\n                    }\n                  },\n                  \"recipients\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                      \"required\": [\n                        \"deliveryIdentifiers\"\n                      ],\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"deliveryIdentifiers\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"required\": [\n                              \"type\",\n                              \"value\"\n                            ],\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"type\": {\n                                \"type\": \"string\",\n                                \"description\": \"The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.\"\n                              },\n                              \"value\": {\n                                \"type\": \"string\",\n                                \"description\": \"A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.\"\n                              }\n                            }\n                          }\n                        },\n                        \"actorId\": {\n                          \"type\": \"string\"\n                        },\n                        \"name\": {\n                          \"type\": \"string\"\n                        },\n                        \"deliveryIdentifier\": {\n                          \"required\": [\n                            \"type\",\n                            \"value\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"description\": \"The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.\"\n                            },\n                            \"value\": {\n                              \"type\": \"string\",\n                              \"description\": \"A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.\"\n                            }\n                          }\n                        },\n                        \"recipientField\": {\n                          \"type\": \"string\"\n                        }\n                      }\n                    }\n                  },\n                  \"senderActorId\": {\n                    \"type\": \"string\"\n                  },\n                  \"channelId\": {\n                    \"type\": \"string\"\n                  },\n                  \"channelAccountId\": {\n                    \"type\": \"string\"\n                  },\n                  \"subject\": {\n                    \"type\": \"string\"\n                  }\n                },\n                \"x-hubspot-sub-type-impl\": true\n              }\n            ]\n          },\n          {\n            \"properties\": {},\n            \"allOf\": [\n              {\n                \"$ref\": \"#/components/schemas/PublicMessageEgg\",\n                \"has_circular_reference\": true\n              },\n              {\n                \"required\": [\n                  \"attachments\",\n                  \"text\",\n                  \"type\"\n                ],\n                \"type\": \"object\",\n                \"properties\": {\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"default\": \"COMMENT\",\n                    \"enum\": [\n                      \"COMMENT\"\n                    ]\n                  },\n                  \"text\": {\n                    \"type\": \"string\"\n                  },\n                  \"richText\": {\n                    \"type\": \"string\"\n                  },\n                  \"attachments\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                      \"oneOf\": [\n                        {\n                          \"title\": \"FILE\",\n                          \"required\": [\n                            \"fileId\",\n                            \"type\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"default\": \"FILE\",\n                              \"enum\": [\n                                \"FILE\"\n                              ]\n                            },\n                            \"fileId\": {\n                              \"type\": \"string\"\n                            }\n                          }\n                        },\n                        {\n                          \"title\": \"QUICK_REPLIES\",\n                          \"required\": [\n                            \"quickReplies\",\n                            \"type\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"quickReplies\": {\n                              \"type\": \"array\",\n                              \"items\": {\n                                \"required\": [\n                                  \"value\",\n                                  \"valueType\"\n                                ],\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"valueType\": {\n                                    \"type\": \"string\"\n                                  },\n                                  \"label\": {\n                                    \"type\": \"string\"\n                                  },\n                                  \"value\": {\n                                    \"type\": \"string\"\n                                  }\n                                }\n                              }\n                            },\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"default\": \"QUICK_REPLIES\",\n                              \"enum\": [\n                                \"QUICK_REPLIES\"\n                              ]\n                            }\n                          }\n                        },\n                        {\n                          \"title\": \"SOCIAL_MEDIA_METADATA\",\n                          \"required\": [\n                            \"socialMetadata\",\n                            \"type\"\n                          ],\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"default\": \"SOCIAL_MEDIA_METADATA\",\n                              \"enum\": [\n                                \"SOCIAL_MEDIA_METADATA\"\n                              ]\n                            },\n                            \"socialMetadata\": {\n                              \"required\": [\n                                \"mediaType\"\n                              ],\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"mediaType\": {\n                                  \"type\": \"string\"\n                                },\n                                \"mediaUrlString\": {\n                                  \"type\": \"string\"\n                                },\n                                \"mediaUrl\": {\n                                  \"type\": \"string\"\n                                },\n                                \"thumbnailUrl\": {\n                                  \"type\": \"string\"\n                                },\n                                \"mediaTitle\": {\n                                  \"type\": \"string\"\n                                },\n                                \"description\": {\n                                  \"type\": \"string\"\n                                },\n                                \"id\": {\n                                  \"type\": \"string\"\n                                }\n                              }\n                            }\n                          }\n                        }\n                      ]\n                    }\n                  }\n                },\n                \"x-hubspot-sub-type-impl\": true\n              }\n            ]\n          }\n        ]\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": true,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "post-/conversations/v3/conversations/actors/batch/read",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "resolve_conversation_actors",
+        "description": {
+          "tagline": "Resolve ActorIds to conversation participants.",
+          "detailed": "Use this tool to retrieve detailed information about participants in a conversation given their ActorIds. Typically called when there's a need to understand who the participants in a conversation are by resolving their IDs."
+        },
+        "return_annotation": "Details of actors/participants from given ActorIds.",
+        "arguments": [
+          {
+            "name": "actor_ids",
+            "alternative_names": [
+              "participant_ids",
+              "conversation_actor_ids"
+            ],
+            "description": "A list of Actor IDs to resolve into detailed participant information. Each entry should be a string representing an Actor ID.",
+            "endpoint_argument_name": "inputs"
+          }
+        ]
+      },
+      "method": "POST",
+      "path": "/conversations/v3/conversations/actors/batch/read",
+      "tags": [
+        "Public_Actor"
+      ],
+      "summary": "Get a group of actors",
+      "description": "Resolve a set of `ActorId`s to the underlying actors/participants.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "inputs",
+            "value_schema": {
+              "val_type": "array",
+              "inner_val_type": "string",
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "schema_required": true
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"inputs\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"inputs\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"string\"\n            }\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": true,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/conversations/channel-accounts/{channelAccountId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "get_channel_account_details",
+        "description": {
+          "tagline": "Retrieve details of a HubSpot channel account by ID.",
+          "detailed": "Fetches detailed information about a specific HubSpot channel account using the channel account ID. Use this tool to obtain information about a channel account, such as its status and configuration."
+        },
+        "return_annotation": "Channel account details based on the provided ID.",
+        "arguments": [
+          {
+            "name": "channel_account_id",
+            "alternative_names": [
+              "channel_id",
+              "account_id"
+            ],
+            "description": "The unique ID of the HubSpot channel account to retrieve details for. This ID is required to fetch the channel account's information.",
+            "endpoint_argument_name": "channelAccountId"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/conversations/v3/conversations/channel-accounts/{channelAccountId}",
+      "tags": [
+        "Public_Channel_Account"
+      ],
+      "summary": "Get a single channel account",
+      "description": "Retrieve details of a single channel account using the channel account ID.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelAccountId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/conversations/channel-accounts",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "retrieve_channel_accounts",
+        "description": {
+          "tagline": "Retrieve a list of channel accounts from Hubspot.",
+          "detailed": "This tool calls the Hubspot Conversations API to retrieve a list of channel accounts. It supports optional filters and sorting to refine the results."
+        },
+        "return_annotation": "List of channel accounts with optional filters and sorting.",
+        "arguments": []
+      },
+      "method": "GET",
+      "path": "/conversations/v3/conversations/channel-accounts",
+      "tags": [
+        "Public_Channel_Account"
+      ],
+      "summary": "Get channel accounts",
+      "description": "Retrieve a list of channel accounts, with optional filters and sorting.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/conversations/channels/{channelId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "retrieve_channel_details",
+        "description": {
+          "tagline": "Retrieve details of a channel using its ID.",
+          "detailed": "Use this tool to get comprehensive details about a specific channel in Hubspot Conversations by providing the channel ID."
+        },
+        "return_annotation": "Details of a specific channel by ID.",
+        "arguments": [
+          {
+            "name": "channel_id",
+            "alternative_names": [
+              "channel_identifier",
+              "channel_reference"
+            ],
+            "description": "The unique ID of the channel to retrieve details for in Hubspot Conversations.",
+            "endpoint_argument_name": "channelId"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/conversations/v3/conversations/channels/{channelId}",
+      "tags": [
+        "Public_Channel"
+      ],
+      "summary": "Get a single channel",
+      "description": "Retrieve details of a single channel using the channel ID.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/conversations/inboxes/{inboxId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "get_inbox_details",
+        "description": {
+          "tagline": "Retrieve details of a conversation inbox by ID.",
+          "detailed": "Use this tool to obtain detailed information about a specific conversation inbox by providing the inbox ID."
+        },
+        "return_annotation": "Details of a specific conversation inbox.",
+        "arguments": [
+          {
+            "name": "inbox_id",
+            "alternative_names": [
+              "conversation_inbox_id",
+              "inbox_identifier"
+            ],
+            "description": "The unique identifier for the conversation inbox you wish to retrieve details for. It should be a string representing the inbox ID.",
+            "endpoint_argument_name": "inboxId"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/conversations/v3/conversations/inboxes/{inboxId}",
+      "tags": [
+        "Public_Inbox"
+      ],
+      "summary": "Get a single conversations inbox",
+      "description": "Retrieve details of a single conversations inbox using the inbox ID.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "inboxId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/conversations/threads/{threadId}/messages/{messageId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "retrieve_thread_message",
+        "description": {
+          "tagline": "Retrieve a single message from a conversation thread.",
+          "detailed": "Call this tool to get the details of a specific message within a conversation thread using the message ID. Useful for accessing conversation content for review or processing."
+        },
+        "return_annotation": "Details of a specific message from a conversation thread.",
+        "arguments": [
+          {
+            "name": "thread_id",
+            "alternative_names": [
+              "conversation_thread_id",
+              "thread_identifier"
+            ],
+            "description": "The unique identifier of the conversation thread from which to retrieve the message.",
+            "endpoint_argument_name": "threadId"
+          },
+          {
+            "name": "message_id",
+            "alternative_names": [
+              "msg_id",
+              "conversation_message_id"
+            ],
+            "description": "The unique identifier for the specific message within a thread. Used to retrieve message details.",
+            "endpoint_argument_name": "messageId"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/conversations/v3/conversations/threads/{threadId}/messages/{messageId}",
+      "tags": [
+        "Public_Message"
+      ],
+      "summary": "Get a single message",
+      "description": "Retrieve a single message from a thread using the message ID.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "threadId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "messageId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/custom-channels/{channelId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": false,
+      "should_skip": true,
+      "skip_reason": "Security scheme 'oauth2' not available. Available: [['developer_hapikey']]",
+      "wrapper_tool": null,
+      "method": "GET",
+      "path": "/conversations/v3/custom-channels/{channelId}",
+      "tags": [
+        "External_Channels"
+      ],
+      "summary": "Get a custom channel",
+      "description": "Retrieve the details about a custom channel. This API allows you to see a custom channel's current capabilties and other configuration metadata",
+      "requires_security": true,
+      "oauth_scopes": [],
+      "security_schemes": [
+        "developer_hapikey"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "delete-/conversations/v3/custom-channels/{channelId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": false,
+      "should_skip": true,
+      "skip_reason": "Security scheme 'oauth2' not available. Available: [['developer_hapikey']]",
+      "wrapper_tool": null,
+      "method": "DELETE",
+      "path": "/conversations/v3/custom-channels/{channelId}",
+      "tags": [
+        "External_Channels"
+      ],
+      "summary": "Archive a custom channel",
+      "description": "Archive an existing registered custom channel",
+      "requires_security": true,
+      "oauth_scopes": [],
+      "security_schemes": [
+        "developer_hapikey"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "patch-/conversations/v3/custom-channels/{channelId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": false,
+      "should_skip": true,
+      "skip_reason": "Security scheme 'oauth2' not available. Available: [['developer_hapikey']]",
+      "wrapper_tool": null,
+      "method": "PATCH",
+      "path": "/conversations/v3/custom-channels/{channelId}",
+      "tags": [
+        "External_Channels"
+      ],
+      "summary": "Update a custom channel",
+      "description": "Update the capabilities for an existing. You can also use it to update the channel's webhookUri and its channelAccountConnectionRedirectUrl.",
+      "requires_security": true,
+      "oauth_scopes": [],
+      "security_schemes": [
+        "developer_hapikey"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "requestBody",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "channelDescription": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "capabilities": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "channelAccountConnectionRedirectUrl": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "channelLogoUrl": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "name": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "webhookUrl": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "object",
+              "properties": {
+                "channelDescription": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "capabilities": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                },
+                "channelAccountConnectionRedirectUrl": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "channelLogoUrl": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "name": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "webhookUrl": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "required": [
+                "capabilities",
+                "channelDescription",
+                "channelLogoUrl"
+              ]
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/custom-channels/{channelId}/messages/{messageId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "get_custom_channel_message_details",
+        "description": {
+          "tagline": "Retrieve details for a specific message in a custom channel.",
+          "detailed": "Use this tool to get the details of a specific message sent through a custom channel in Hubspot Conversations. Ideal for obtaining message content, sender information, and timestamps."
+        },
+        "return_annotation": "Details of a specific message in a custom channel.",
+        "arguments": [
+          {
+            "name": "channel_id",
+            "alternative_names": [
+              "channel_identifier",
+              "conversation_channel_id"
+            ],
+            "description": "The unique identifier for the custom channel from which the message was sent. Required to fetch specific message details.",
+            "endpoint_argument_name": "channelId"
+          },
+          {
+            "name": "message_id",
+            "alternative_names": [
+              "message_identifier",
+              "msg_id"
+            ],
+            "description": "The unique identifier of the message to retrieve details for. This ID is used to specify the exact message in the custom channel.",
+            "endpoint_argument_name": "messageId"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/conversations/v3/custom-channels/{channelId}/messages/{messageId}",
+      "tags": [
+        "External_Messages"
+      ],
+      "summary": "Get a message",
+      "description": "Get the details for a specific message sent over a custom channel",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.custom_channels.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "messageId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "patch-/conversations/v3/custom-channels/{channelId}/messages/{messageId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "update_message_status",
+        "description": {
+          "tagline": "Update the status of a conversation message.",
+          "detailed": "Use this tool to update the status of a message within a custom channel on Hubspot Conversations. It indicates whether a message was successfully sent, failed, or read. Additionally, for failed messages, you can include an error message for clarification."
+        },
+        "return_annotation": "Details of the updated message status.",
+        "arguments": [
+          {
+            "name": "channel_identifier",
+            "alternative_names": [
+              "channel_id",
+              "communication_channel_id"
+            ],
+            "description": "The unique identifier for the custom channel where the message is located. It is required to specify which channel the message belongs to.",
+            "endpoint_argument_name": "channelId"
+          },
+          {
+            "name": "message_id",
+            "alternative_names": [
+              "msg_id",
+              "message_identifier"
+            ],
+            "description": "Unique identifier of the message to be updated.",
+            "endpoint_argument_name": "messageId"
+          },
+          {
+            "name": "message_status",
+            "alternative_names": [
+              "status_update",
+              "update_status"
+            ],
+            "description": "Specifies the status of the message. Valid values are SENT, FAILED, and READ.",
+            "endpoint_argument_name": "statusType"
+          },
+          {
+            "name": "error_message_for_failed_status",
+            "alternative_names": [
+              "failed_status_error_message",
+              "message_failure_reason"
+            ],
+            "description": "Provide an error message when the status is FAILED to clarify the reason for failure. Only use this when 'statusType' is 'FAILED'.",
+            "endpoint_argument_name": "errorMessage"
+          }
+        ]
+      },
+      "method": "PATCH",
+      "path": "/conversations/v3/custom-channels/{channelId}/messages/{messageId}",
+      "tags": [
+        "External_Messages"
+      ],
+      "summary": "Update a message ",
+      "description": "Update a message's status to indicate if it was successfully sent, failed to send, or was read. For failed messages, this can also include the error message for the failure.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.custom_channels.write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "messageId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "statusType",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": [
+                "SENT",
+                "FAILED",
+                "READ"
+              ],
+              "properties": null,
+              "inner_properties": null,
+              "description": "Valid status are SENT, FAILED, and READ"
+            },
+            "description": "Valid status are SENT, FAILED, and READ",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string",
+              "description": "Valid status are SENT, FAILED, and READ",
+              "enum": [
+                "SENT",
+                "FAILED",
+                "READ"
+              ]
+            },
+            "schema_required": true
+          },
+          {
+            "name": "errorMessage",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"statusType\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"statusType\": {\n            \"type\": \"string\",\n            \"description\": \"Valid status are SENT, FAILED, and READ\",\n            \"enum\": [\n              \"SENT\",\n              \"FAILED\",\n              \"READ\"\n            ]\n          },\n          \"errorMessage\": {\n            \"type\": \"string\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": true,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "patch-/conversations/v3/custom-channels/{channelId}/channel-account-staging-tokens/{accountToken}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "update_channel_account_staging",
+        "description": {
+          "tagline": "Update channel account staging token details for public apps.",
+          "detailed": "This tool updates the account name and delivery identifier of a channel account staging token in Hubspot Conversations. Use it when you need to modify these details for a specific channel account created from a staging token."
+        },
+        "return_annotation": "Updated channel account staging token details.",
+        "arguments": [
+          {
+            "name": "channel_id",
+            "alternative_names": [
+              "channel_identifier",
+              "channel_ref_id"
+            ],
+            "description": "The unique identifier for the channel to update. This is necessary to specify which channel's staging token details are being modified.",
+            "endpoint_argument_name": "channelId"
+          },
+          {
+            "name": "account_token",
+            "alternative_names": [
+              "channel_account_token",
+              "staging_token"
+            ],
+            "description": "The unique token identifying the specific channel account staging. Required for updating account details.",
+            "endpoint_argument_name": "accountToken"
+          },
+          {
+            "name": "account_name",
+            "alternative_names": [
+              "account_title",
+              "account_label"
+            ],
+            "description": "The name of the account to be updated for the channel account staging token.",
+            "endpoint_argument_name": "accountName"
+          },
+          {
+            "name": "delivery_identifier_type",
+            "alternative_names": [
+              "identifier_type",
+              "delivery_type"
+            ],
+            "description": "Type of delivery identifier: HS_EMAIL_ADDRESS, HS_PHONE_NUMBER, or CHANNEL_SPECIFIC_OPAQUE_ID.",
+            "endpoint_argument_name": "deliveryIdentifier.type"
+          },
+          {
+            "name": "delivery_identifier_value",
+            "alternative_names": [
+              "delivery_id",
+              "identifier_value"
+            ],
+            "description": "The PublicDeliveryIdentifier in string format, such as an E.164 phone number, an email address, or a channel-specific identifier.",
+            "endpoint_argument_name": "deliveryIdentifier.value"
+          }
+        ]
+      },
+      "method": "PATCH",
+      "path": "/conversations/v3/custom-channels/{channelId}/channel-account-staging-tokens/{accountToken}",
+      "tags": [
+        "External_Channel_Account_Staging_Tokens"
+      ],
+      "summary": "Update a channel account staging token",
+      "description": "Update a channel account staging token's account name and delivery identifier. This information will be applied to the channel account created from this staging token. This is used for public apps.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.custom_channels.write",
+        "conversations.custom_channels.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "accountToken",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "accountName",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": true
+          },
+          {
+            "name": "deliveryIdentifier.type",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+            },
+            "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string",
+              "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+            },
+            "schema_required": true
+          },
+          {
+            "name": "deliveryIdentifier.value",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+            },
+            "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string",
+              "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+            },
+            "schema_required": true
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"accountName\",\n          \"deliveryIdentifier\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"accountName\": {\n            \"type\": \"string\"\n          },\n          \"deliveryIdentifier\": {\n            \"required\": [\n              \"type\",\n              \"value\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"type\": {\n                \"type\": \"string\",\n                \"description\": \"The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.\"\n              },\n              \"value\": {\n                \"type\": \"string\",\n                \"description\": \"A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.\"\n              }\n            }\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": true,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/custom-channels/{channelId}/channel-accounts",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "get_custom_channel_accounts",
+        "description": {
+          "tagline": "Retrieve accounts for a specified custom channel.",
+          "detailed": "This tool is used to fetch a list of accounts associated with a specific custom channel in Hubspot Conversations, identified by the channel ID."
+        },
+        "return_annotation": "List of accounts for the specified custom channel.",
+        "arguments": [
+          {
+            "name": "custom_channel_id",
+            "alternative_names": [
+              "channel_identifier",
+              "channel_id_number"
+            ],
+            "description": "The unique identifier of the custom channel to retrieve accounts for. Must be a valid string.",
+            "endpoint_argument_name": "channelId"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/conversations/v3/custom-channels/{channelId}/channel-accounts",
+      "tags": [
+        "External_Channel_Accounts"
+      ],
+      "summary": "Get accounts for a channel",
+      "description": "Retrieve a list of accounts for a custom channel.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.custom_channels.write",
+        "conversations.custom_channels.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "post-/conversations/v3/custom-channels/{channelId}/channel-accounts",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "create_channel_account",
+        "description": {
+          "tagline": "Create a new account for a specified communication channel.",
+          "detailed": "This tool is used to create a new account within a specific communication channel using Hubspot. It enables multiple accounts to communicate over a single channel with different delivery identifiers."
+        },
+        "return_annotation": "Confirmation of account creation for a channel.",
+        "arguments": [
+          {
+            "name": "channel_id",
+            "alternative_names": [
+              "channel_identifier",
+              "channel_unique_id"
+            ],
+            "description": "The unique identifier for the communication channel where the account will be created. This should be a string value.",
+            "endpoint_argument_name": "channelId"
+          },
+          {
+            "name": "account_name",
+            "alternative_names": [
+              "profile_name",
+              "display_name"
+            ],
+            "description": "The name of the account to be created for the channel. It identifies the account within the specified communication channel.",
+            "endpoint_argument_name": "name"
+          },
+          {
+            "name": "inbox_id",
+            "alternative_names": [
+              "mailbox_id",
+              "email_inbox_id"
+            ],
+            "description": "The unique identifier for the inbox where the channel account will be created. This should be a string that corresponds to an existing inbox in Hubspot.",
+            "endpoint_argument_name": "inboxId"
+          },
+          {
+            "name": "is_authorized",
+            "alternative_names": [
+              "authorization_status",
+              "authorize"
+            ],
+            "description": "Boolean to indicate if the account should be authorized. Set to true for authorized accounts, false otherwise.",
+            "endpoint_argument_name": "authorized"
+          },
+          {
+            "name": "delivery_identifier_type",
+            "alternative_names": [
+              "identifier_type",
+              "id_type"
+            ],
+            "description": "Type of identifier: HS_EMAIL_ADDRESS, HS_PHONE_NUMBER, or CHANNEL_SPECIFIC_OPAQUE_ID.",
+            "endpoint_argument_name": "deliveryIdentifier.type"
+          },
+          {
+            "name": "delivery_identifier_value",
+            "alternative_names": [
+              "identifier_value",
+              "public_identifier"
+            ],
+            "description": "A string representation of the delivery identifier. Can be an E.164 phone number, an email address, or a channel-specific identifier.",
+            "endpoint_argument_name": "deliveryIdentifier.value"
+          }
+        ]
+      },
+      "method": "POST",
+      "path": "/conversations/v3/custom-channels/{channelId}/channel-accounts",
+      "tags": [
+        "External_Channel_Accounts"
+      ],
+      "summary": "Create a channel account",
+      "description": "Create a new account for a channel. Multiple accounts can communicate over a single channel using different delivery identifiers.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.custom_channels.write",
+        "conversations.custom_channels.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "authorized",
+            "value_schema": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "boolean"
+            },
+            "schema_required": true
+          },
+          {
+            "name": "name",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": true
+          },
+          {
+            "name": "deliveryIdentifier.type",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+            },
+            "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string",
+              "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+            },
+            "schema_required": false
+          },
+          {
+            "name": "deliveryIdentifier.value",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+            },
+            "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string",
+              "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+            },
+            "schema_required": false
+          },
+          {
+            "name": "inboxId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": true
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"authorized\",\n          \"inboxId\",\n          \"name\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"authorized\": {\n            \"type\": \"boolean\"\n          },\n          \"name\": {\n            \"type\": \"string\"\n          },\n          \"deliveryIdentifier\": {\n            \"required\": [\n              \"type\",\n              \"value\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"type\": {\n                \"type\": \"string\",\n                \"description\": \"The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.\"\n              },\n              \"value\": {\n                \"type\": \"string\",\n                \"description\": \"A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.\"\n              }\n            }\n          },\n          \"inboxId\": {\n            \"type\": \"string\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": true,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/custom-channels/{channelId}/channel-accounts/{channelAccountId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "retrieve_channel_account_details",
+        "description": {
+          "tagline": "Retrieve details for a specific channel account.",
+          "detailed": "Use this tool to get detailed metadata about a channel account, including its channel, inbox ID, and delivery identifiers. Ideal for understanding the configuration and associations of a channel account in Hubspot."
+        },
+        "return_annotation": "Details of a specific channel account including metadata and identifiers.",
+        "arguments": [
+          {
+            "name": "channel_identifier",
+            "alternative_names": [
+              "channel_id",
+              "channel_reference"
+            ],
+            "description": "The unique identifier for the channel. Used to specify which channel's account details to retrieve.",
+            "endpoint_argument_name": "channelId"
+          },
+          {
+            "name": "channel_account_id",
+            "alternative_names": [
+              "account_id",
+              "channel_id"
+            ],
+            "description": "Unique identifier for the specific channel account to retrieve details about. Provided as a string.",
+            "endpoint_argument_name": "channelAccountId"
+          }
+        ]
+      },
+      "method": "GET",
+      "path": "/conversations/v3/custom-channels/{channelId}/channel-accounts/{channelAccountId}",
+      "tags": [
+        "External_Channel_Accounts"
+      ],
+      "summary": "Get a channel account by id",
+      "description": "Retrieve the details for a specific channel account. This contains all the metadata about your channel account, including its channel, associated inbox id, and delivery identifier information.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.custom_channels.write",
+        "conversations.custom_channels.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "channelAccountId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "patch-/conversations/v3/custom-channels/{channelId}/channel-accounts/{channelAccountId}",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "update_channel_account_info",
+        "description": {
+          "tagline": "Update channel account name and authorization status.",
+          "detailed": "Use this tool to modify the name and authorization status of a channel account in Hubspot Conversations. This is useful for managing channel accounts, including disabling them by setting the isAuthorized flag to False."
+        },
+        "return_annotation": "Confirmation of channel account update status.",
+        "arguments": [
+          {
+            "name": "channel_id",
+            "alternative_names": [
+              "channel_identifier",
+              "channel_reference_id"
+            ],
+            "description": "The unique identifier for the channel in Hubspot Conversations. Required to specify which channel account to update.",
+            "endpoint_argument_name": "channelId"
+          },
+          {
+            "name": "channel_account_id",
+            "alternative_names": [
+              "channel_account_identifier",
+              "account_id"
+            ],
+            "description": "The unique identifier for the channel account to be updated. It is required for specifying which channel account to modify.",
+            "endpoint_argument_name": "channelAccountId"
+          },
+          {
+            "name": "channel_account_name",
+            "alternative_names": [
+              "account_display_name",
+              "channel_name"
+            ],
+            "description": "The new name for the channel account. This updates the display name associated with the account.",
+            "endpoint_argument_name": "name"
+          },
+          {
+            "name": "set_authorization_status",
+            "alternative_names": [
+              "update_authorization",
+              "change_account_status"
+            ],
+            "description": "Boolean value to update the channel account's authorization. Set to False to disable the account.",
+            "endpoint_argument_name": "authorized"
+          }
+        ]
+      },
+      "method": "PATCH",
+      "path": "/conversations/v3/custom-channels/{channelId}/channel-accounts/{channelAccountId}",
+      "tags": [
+        "External_Channel_Accounts"
+      ],
+      "summary": "Update a channel account",
+      "description": "This API is used to update the name of the channel account and it's isAuthorized status. Setting to isAuthorized flag to False disables the channel account.",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.custom_channels.write",
+        "conversations.custom_channels.read"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "channelAccountId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "authorized",
+            "value_schema": {
+              "val_type": "boolean",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "boolean"
+            },
+            "schema_required": false
+          },
+          {
+            "name": "name",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": false,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "string"
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"authorized\": {\n            \"type\": \"boolean\"\n          },\n          \"name\": {\n            \"type\": \"string\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": true,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "get-/conversations/v3/custom-channels/",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": false,
+      "should_skip": true,
+      "skip_reason": "Security scheme 'oauth2' not available. Available: [['developer_hapikey']]",
+      "wrapper_tool": null,
+      "method": "GET",
+      "path": "/conversations/v3/custom-channels/",
+      "tags": [
+        "External_Channels"
+      ],
+      "summary": "Get all channels for app",
+      "description": "Retrieve all custom channels associated with the app.",
+      "requires_security": true,
+      "oauth_scopes": [],
+      "security_schemes": [
+        "developer_hapikey"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": []
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "post-/conversations/v3/custom-channels/",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": false,
+      "should_skip": true,
+      "skip_reason": "Security scheme 'oauth2' not available. Available: [['developer_hapikey']]",
+      "wrapper_tool": null,
+      "method": "POST",
+      "path": "/conversations/v3/custom-channels/",
+      "tags": [
+        "External_Channels"
+      ],
+      "summary": "Create a custom channel",
+      "description": "Register a new channel along with its capabilities and the webhook url that will be used to receive messages published over the channel",
+      "requires_security": true,
+      "oauth_scopes": [],
+      "security_schemes": [
+        "developer_hapikey"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "requestBody",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "channelDescription": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "capabilities": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "channelAccountConnectionRedirectUrl": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "channelLogoUrl": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "name": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "webhookUrl": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "object",
+              "properties": {
+                "channelDescription": {
+                  "type": "string"
+                },
+                "capabilities": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                },
+                "channelAccountConnectionRedirectUrl": {
+                  "type": "string"
+                },
+                "channelLogoUrl": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "webhookUrl": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "capabilities",
+                "name"
+              ]
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": null,
+      "use_request_body_schema_mode": false,
+      "validate_request_body_schema": false,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    },
+    {
+      "name": "post-/conversations/v3/custom-channels/{channelId}/messages",
+      "selected_for_wrapping": false,
+      "spec_built": true,
+      "wrap_finished": true,
+      "should_skip": false,
+      "skip_reason": null,
+      "wrapper_tool": {
+        "name": "publish_custom_channel_message",
+        "description": {
+          "tagline": "Publish a message to a custom channel on HubSpot.",
+          "detailed": "This tool sends a message over a specified custom channel in HubSpot Conversations. Use this tool to communicate via custom-integrated messaging channels."
+        },
+        "return_annotation": "Confirms successful publishing of the message.",
+        "arguments": [
+          {
+            "name": "custom_channel_id",
+            "alternative_names": [
+              "channel_identifier",
+              "custom_channel_identifier"
+            ],
+            "description": "The unique ID of the custom channel where the message will be published. Must be a string.",
+            "endpoint_argument_name": "channelId"
+          },
+          {
+            "name": "custom_channel_message_payload",
+            "alternative_names": [
+              "message_payload",
+              "channel_message_body"
+            ],
+            "description": "A JSON object containing message details for the custom channel, including message direction, recipients, senders, text, and attachments.",
+            "endpoint_argument_name": "requestBody"
+          }
+        ]
+      },
+      "method": "POST",
+      "path": "/conversations/v3/custom-channels/{channelId}/messages",
+      "tags": [
+        "External_Messages"
+      ],
+      "summary": "Publish a message",
+      "description": "Publish a message over your custom channel",
+      "requires_security": true,
+      "oauth_scopes": [
+        "conversations.custom_channels.write"
+      ],
+      "security_schemes": [
+        "oauth2",
+        "private_apps"
+      ],
+      "parameters": {
+        "query": [],
+        "path": [
+          {
+            "name": "channelId",
+            "value_schema": {
+              "val_type": "string",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": null,
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "path",
+            "content_type": null,
+            "json_schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "schema_required": false
+          }
+        ],
+        "header": [],
+        "cookie": [],
+        "body": [
+          {
+            "name": "requestBody",
+            "value_schema": {
+              "val_type": "json",
+              "inner_val_type": null,
+              "enum": null,
+              "properties": {
+                "messageDirection": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": [
+                    "INCOMING",
+                    "OUTGOING"
+                  ],
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "attachments": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {},
+                  "description": null
+                },
+                "preResolvedContacts": {
+                  "val_type": "json",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": {
+                    "contacts": {
+                      "val_type": "array",
+                      "inner_val_type": "json",
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": {
+                        "contactVid": {
+                          "val_type": "integer",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": null
+                        },
+                        "contactPropertiesLeadingToMatch": {
+                          "val_type": "array",
+                          "inner_val_type": "string",
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": null
+                        }
+                      },
+                      "description": null
+                    }
+                  },
+                  "inner_properties": null,
+                  "description": null
+                },
+                "recipients": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "deliveryIdentifier": {
+                      "val_type": "json",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": {
+                        "type": {
+                          "val_type": "string",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+                        },
+                        "value": {
+                          "val_type": "string",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+                        }
+                      },
+                      "inner_properties": null,
+                      "description": null
+                    }
+                  },
+                  "description": null
+                },
+                "integrationThreadId": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "integrationIdempotencyId": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "text": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "richText": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "channelAccountId": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "senders": {
+                  "val_type": "array",
+                  "inner_val_type": "json",
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": {
+                    "name": {
+                      "val_type": "string",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": null,
+                      "inner_properties": null,
+                      "description": null
+                    },
+                    "deliveryIdentifier": {
+                      "val_type": "json",
+                      "inner_val_type": null,
+                      "enum": null,
+                      "properties": {
+                        "type": {
+                          "val_type": "string",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+                        },
+                        "value": {
+                          "val_type": "string",
+                          "inner_val_type": null,
+                          "enum": null,
+                          "properties": null,
+                          "inner_properties": null,
+                          "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+                        }
+                      },
+                      "inner_properties": null,
+                      "description": null
+                    }
+                  },
+                  "description": null
+                },
+                "inReplyToId": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                },
+                "timestamp": {
+                  "val_type": "string",
+                  "inner_val_type": null,
+                  "enum": null,
+                  "properties": null,
+                  "inner_properties": null,
+                  "description": null
+                }
+              },
+              "inner_properties": null,
+              "description": ""
+            },
+            "description": "",
+            "required": true,
+            "deprecated": false,
+            "default": null,
+            "location": "body",
+            "content_type": "application/json",
+            "json_schema": {
+              "type": "object",
+              "properties": {
+                "messageDirection": {
+                  "type": "string",
+                  "enum": [
+                    "INCOMING",
+                    "OUTGOING"
+                  ]
+                },
+                "attachments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "title": "FILE",
+                        "properties": {
+                          "fileUsageType": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "FILE"
+                            ]
+                          },
+                          "fileId": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "fileId",
+                          "type"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "description": "Schema reference broken: #/components/schemas/LocationAttachment",
+                        "properties": {},
+                        "additionalProperties": true,
+                        "x-moar-broken-reference": "#/components/schemas/LocationAttachment"
+                      },
+                      {
+                        "type": "object",
+                        "description": "Schema reference broken: #/components/schemas/ContactAttachment",
+                        "properties": {},
+                        "additionalProperties": true,
+                        "x-moar-broken-reference": "#/components/schemas/ContactAttachment"
+                      },
+                      {
+                        "type": "object",
+                        "description": "Schema reference broken: #/components/schemas/UnsupportedContentAttachment",
+                        "properties": {},
+                        "additionalProperties": true,
+                        "x-moar-broken-reference": "#/components/schemas/UnsupportedContentAttachment"
+                      },
+                      {
+                        "type": "object",
+                        "description": "Schema reference broken: #/components/schemas/MessageHeaderAttachment",
+                        "properties": {},
+                        "additionalProperties": true,
+                        "x-moar-broken-reference": "#/components/schemas/MessageHeaderAttachment"
+                      },
+                      {
+                        "type": "object",
+                        "description": "Schema reference broken: #/components/schemas/QuickRepliesAttachment",
+                        "properties": {},
+                        "additionalProperties": true,
+                        "x-moar-broken-reference": "#/components/schemas/QuickRepliesAttachment"
+                      },
+                      {
+                        "type": "object",
+                        "description": "Schema reference broken: #/components/schemas/SocialMetadataIntegrationAttachment",
+                        "properties": {},
+                        "additionalProperties": true,
+                        "x-moar-broken-reference": "#/components/schemas/SocialMetadataIntegrationAttachment"
+                      }
+                    ]
+                  }
+                },
+                "preResolvedContacts": {
+                  "type": "object",
+                  "properties": {
+                    "contacts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "contactVid": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "contactPropertiesLeadingToMatch": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "contactPropertiesLeadingToMatch",
+                          "contactVid"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "contacts"
+                  ]
+                },
+                "recipients": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "deliveryIdentifier": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "value"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "deliveryIdentifier"
+                    ]
+                  }
+                },
+                "integrationThreadId": {
+                  "type": "string"
+                },
+                "integrationIdempotencyId": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "richText": {
+                  "type": "string"
+                },
+                "channelAccountId": {
+                  "type": "string"
+                },
+                "senders": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "deliveryIdentifier": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat."
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier."
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "value"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "deliveryIdentifier"
+                    ]
+                  }
+                },
+                "inReplyToId": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "attachments",
+                "channelAccountId",
+                "integrationThreadId",
+                "messageDirection",
+                "recipients",
+                "senders",
+                "text",
+                "timestamp"
+              ]
+            },
+            "schema_required": false
+          }
+        ]
+      },
+      "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"attachments\",\n          \"channelAccountId\",\n          \"integrationThreadId\",\n          \"messageDirection\",\n          \"recipients\",\n          \"senders\",\n          \"text\",\n          \"timestamp\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"messageDirection\": {\n            \"type\": \"string\",\n            \"enum\": [\n              \"INCOMING\",\n              \"OUTGOING\"\n            ]\n          },\n          \"attachments\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"oneOf\": [\n                {\n                  \"title\": \"FILE\",\n                  \"required\": [\n                    \"fileId\",\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"fileUsageType\": {\n                      \"type\": \"string\"\n                    },\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"default\": \"FILE\",\n                      \"enum\": [\n                        \"FILE\"\n                      ]\n                    },\n                    \"fileId\": {\n                      \"type\": \"string\"\n                    }\n                  }\n                },\n                {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/LocationAttachment\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/LocationAttachment\"\n                },\n                {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/ContactAttachment\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/ContactAttachment\"\n                },\n                {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/UnsupportedContentAttachment\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/UnsupportedContentAttachment\"\n                },\n                {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/MessageHeaderAttachment\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/MessageHeaderAttachment\"\n                },\n                {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/QuickRepliesAttachment\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/QuickRepliesAttachment\"\n                },\n                {\n                  \"type\": \"object\",\n                  \"description\": \"Schema reference broken: #/components/schemas/SocialMetadataIntegrationAttachment\",\n                  \"additionalProperties\": true,\n                  \"x-moar-broken-reference\": \"#/components/schemas/SocialMetadataIntegrationAttachment\"\n                }\n              ]\n            }\n          },\n          \"preResolvedContacts\": {\n            \"required\": [\n              \"contacts\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"contacts\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"required\": [\n                    \"contactPropertiesLeadingToMatch\",\n                    \"contactVid\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"contactVid\": {\n                      \"type\": \"integer\",\n                      \"format\": \"int32\"\n                    },\n                    \"contactPropertiesLeadingToMatch\": {\n                      \"type\": \"array\",\n                      \"items\": {\n                        \"type\": \"string\"\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"recipients\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"required\": [\n                \"deliveryIdentifier\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"name\": {\n                  \"type\": \"string\"\n                },\n                \"deliveryIdentifier\": {\n                  \"required\": [\n                    \"type\",\n                    \"value\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"description\": \"The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.\"\n                    },\n                    \"value\": {\n                      \"type\": \"string\",\n                      \"description\": \"A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.\"\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"integrationThreadId\": {\n            \"type\": \"string\"\n          },\n          \"integrationIdempotencyId\": {\n            \"type\": \"string\"\n          },\n          \"text\": {\n            \"type\": \"string\"\n          },\n          \"richText\": {\n            \"type\": \"string\"\n          },\n          \"channelAccountId\": {\n            \"type\": \"string\"\n          },\n          \"senders\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"required\": [\n                \"deliveryIdentifier\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"name\": {\n                  \"type\": \"string\"\n                },\n                \"deliveryIdentifier\": {\n                  \"required\": [\n                    \"type\",\n                    \"value\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"description\": \"The type of identifier. HS_EMAIL_ADDRESS for email addresses; HS_PHONE_NUMBER for a phone number; CHANNEL_SPECIFIC_OPAQUE_ID for channels that use their own proprietary identifiers, like Facebook Messenger or LiveChat.\"\n                    },\n                    \"value\": {\n                      \"type\": \"string\",\n                      \"description\": \"A string representation of the PublicDeliveryIdentifier, either an an E.164 phone number, an email address, or a channel-specific identifier.\"\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"inReplyToId\": {\n            \"type\": \"string\"\n          },\n          \"timestamp\": {\n            \"type\": \"string\",\n            \"format\": \"date-time\"\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+      "use_request_body_schema_mode": true,
+      "validate_request_body_schema": true,
+      "use_flatten_mode": false,
+      "base_url": "https://api.hubapi.com",
+      "original_servers": [
+        {
+          "url": "https://api.hubapi.com"
+        }
+      ]
+    }
+  ],
+  "security_scheme_key_selected": "oauth2",
+  "security_scheme_selected": {
+    "type": "oauth2",
+    "flows": {
+      "authorizationCode": {
+        "authorizationUrl": "https://app.hubspot.com/oauth/authorize",
+        "tokenUrl": "https://api.hubapi.com/oauth/v1/token",
+        "scopes": {
+          "conversations.read": "Read from conversations",
+          "conversations.write": "Write to conversations",
+          "conversations.custom_channels.read": "Read messages and manage Channel Accounts for an included Custom Channel.",
+          "conversations.custom_channels.write": "Publish messages into HubSpot and manage Channel Accounts for an included Custom Channel."
+        }
+      }
+    }
+  }
+}

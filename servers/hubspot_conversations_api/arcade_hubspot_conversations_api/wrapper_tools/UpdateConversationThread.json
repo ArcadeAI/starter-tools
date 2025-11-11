@@ -1,0 +1,181 @@
+{
+  "name": "UpdateConversationThread",
+  "fully_qualified_name": "HubspotConversationsApi.UpdateConversationThread@0.1.0",
+  "description": "Update the status or restore a conversation thread.\n\nThis tool updates a single thread's status or restores it within Hubspot Conversations. Use it to change the status or restore a thread based on the thread ID provided.",
+  "toolkit": {
+    "name": "ArcadeHubspotConversationsApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "thread_identifier",
+        "required": true,
+        "description": "The unique identifier for the conversation thread to update or restore.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "threadId"
+      },
+      {
+        "name": "thread_status",
+        "required": false,
+        "description": "Set the thread's status to `OPEN` or `CLOSED`.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "OPEN",
+            "CLOSED"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The thread's status: `OPEN` or `CLOSED`."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "status"
+      },
+      {
+        "name": "is_thread_archived",
+        "required": false,
+        "description": "Set to true to archive or false to restore the thread. Determines if the thread is currently archived.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether this thread is archived. Set to false to restore the thread."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "archived"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'patch-/conversations/v3/conversations/threads/{threadId}'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-hubspot",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "conversations.write"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Hubspot Conversations API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.hubapi.com/conversations/v3/conversations/threads/{threadId}",
+    "http_method": "PATCH",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "threadId",
+        "tool_parameter_name": "thread_identifier",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "archived",
+        "tool_parameter_name": "is_thread_archived",
+        "description": "Whether this thread is archived. Set to false to restore the thread.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Whether this thread is archived. Set to false to restore the thread."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "status",
+        "tool_parameter_name": "thread_status",
+        "description": "The thread's status: `OPEN` or `CLOSED`.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "OPEN",
+            "CLOSED"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "The thread's status: `OPEN` or `CLOSED`."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"archived\": {\n            \"type\": \"boolean\",\n            \"description\": \"Whether this thread is archived. Set to false to restore the thread.\"\n          },\n          \"status\": {\n            \"type\": \"string\",\n            \"description\": \"The thread's status: `OPEN` or `CLOSED`.\",\n            \"enum\": [\n              \"OPEN\",\n              \"CLOSED\"\n            ]\n          }\n        }\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

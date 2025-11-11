@@ -1,0 +1,142 @@
+{
+  "name": "RetrieveFullMessageContent",
+  "fully_qualified_name": "HubspotConversationsApi.RetrieveFullMessageContent@0.1.0",
+  "description": "Retrieve the original text and rich text of a HubSpot message.\n\nUse this tool to access the full original content of a message within a conversation on HubSpot. Ideal for retrieving untruncated message details when the truncation status indicates it might be truncated.",
+  "toolkit": {
+    "name": "ArcadeHubspotConversationsApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "conversation_thread_id",
+        "required": true,
+        "description": "The unique identifier for the conversation thread containing the message.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "threadId"
+      },
+      {
+        "name": "message_id",
+        "required": true,
+        "description": "The unique identifier for the message. Used to retrieve the message's full original content.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "messageId"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint 'get-/conversations/v3/conversations/threads/{threadId}/messages/{messageId}/original-content'.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "arcade-hubspot",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": {
+        "scopes": [
+          "conversations.read"
+        ]
+      }
+    },
+    "secrets": null,
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Hubspot Conversations API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://api.hubapi.com/conversations/v3/conversations/threads/{threadId}/messages/{messageId}/original-content",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "threadId",
+        "tool_parameter_name": "conversation_thread_id",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "messageId",
+        "tool_parameter_name": "message_id",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}
