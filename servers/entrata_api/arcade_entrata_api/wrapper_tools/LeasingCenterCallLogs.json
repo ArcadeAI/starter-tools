@@ -1,0 +1,253 @@
+{
+  "name": "LeasingCenterCallLogs",
+  "fully_qualified_name": "EntrataApi.LeasingCenterCallLogs@0.1.0",
+  "description": "Retrieve leasing center call logs for analysis.\n\nUse this tool to access call logs from the leasing center, supporting pagination for detailed data retrieval.",
+  "toolkit": {
+    "name": "EntrataApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "client_subdomain",
+        "required": true,
+        "description": "The subdomain of the client organization. This is required to identify the client's data for retrieving call logs.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "orgs"
+      },
+      {
+        "name": "request_body_payload",
+        "required": true,
+        "description": "An array of JSON objects to be included in the request. Typically used for specifying additional data or filters for the API call.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "json",
+          "enum": null,
+          "properties": null,
+          "inner_properties": {},
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      },
+      {
+        "name": "page_number",
+        "required": false,
+        "description": "The page number to retrieve in a paginated response from the leasing center call logs.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The page number of paginated respons."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "page_no"
+      },
+      {
+        "name": "items_per_page",
+        "required": false,
+        "description": "Number of items to return per page in the response. Use for pagination.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of items returned in the respnose"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "per_page"
+      },
+      {
+        "name": "include_pagination_links",
+        "required": false,
+        "description": "Set to 1 to include pagination links in the response; set to 0 to exclude them.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": [
+            "0",
+            "1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Send Pagination Links in Response Body."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "X-Send-Pagination-Links"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ENTRATA_API_KEY"
+      },
+      {
+        "key": "ENTRATA_DOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Entrata API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://apis.{ENTRATA_DOMAIN}/ext/orgs/{orgs}/v1/leasingcenter",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "page_no",
+        "tool_parameter_name": "page_number",
+        "description": "The page number of paginated respons.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The page number of paginated respons."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "per_page",
+        "tool_parameter_name": "items_per_page",
+        "description": "The number of items returned in the respnose",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The number of items returned in the respnose"
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "orgs",
+        "tool_parameter_name": "client_subdomain",
+        "description": "Client subdomain.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "X-Send-Pagination-Links",
+        "tool_parameter_name": "include_pagination_links",
+        "description": "Send Pagination Links in Response Body.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": [
+            "0",
+            "1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "Send Pagination Links in Response Body."
+        },
+        "accepted_as": "header",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "request_body_payload",
+        "description": "",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "json",
+          "enum": null,
+          "properties": null,
+          "inner_properties": {},
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ENTRATA_API_KEY",
+        "parameter_name": "X-Api-Key",
+        "accepted_as": "header",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "ENTRATA_DOMAIN",
+        "parameter_name": "entrata_domain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"required\": true,\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"array\",\n        \"items\": {\n          \"oneOf\": [\n            {\n              \"required\": [\n                \"auth\",\n                \"method\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"auth\": {\n                  \"required\": [\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"apikey\"\n                      ]\n                    }\n                  }\n                },\n                \"requestId\": {\n                  \"type\": \"string\",\n                  \"description\": \"an arbitary value to relate with response.\"\n                },\n                \"method\": {\n                  \"required\": [\n                    \"name\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"name\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"getCallLogs\"\n                      ]\n                    },\n                    \"version\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"r1\"\n                      ]\n                    },\n                    \"params\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"propertyIds\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"example\": \"123456,5678\",\n                          \"description\": \"This is a required field. This field accepts comma seperated multiple values. This node should accept property Id`s.\"\n                        },\n                        \"callSourceId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"example\": 3,\n                          \"description\": \"This is an optional field. This field accepts single value. Supported values (1, 2, 7)\"\n                        },\n                        \"callTypeIds\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"example\": \"3,8\",\n                          \"description\": \"This is an optional field. This field accepts comma seperated multiple values.\"\n                        },\n                        \"callResultIds\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"example\": \"8,1\",\n                          \"description\": \"  This is an optional field. This field accepts comma seperated multiple values.\"\n                        },\n                        \"answerStatus\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"example\": 1,\n                          \"description\": \"  This is an optional field. This field accepts single value. Supports only 1 (ANSWERED) & 2 (UNANSWERED)\"\n                        },\n                        \"voiceMailTypeId\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"example\": 2,\n                          \"description\": \"This is an optional field. This field accepts single value. Supported values are 1 (VOICE_MESSAGE) or 2 (UNPLAYED_VOICE_MESSAGE) o r 3 (NO_VOICE_MESSAGE).\"\n                        },\n                        \"callAnalyzed\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"example\": 1,\n                          \"description\": \"This is an optional field. This field accepts single value. Supports 1 (ANALYZED) or 0 (NON_ANALYZED)\"\n                        },\n                        \"callState\": {\n                          \"type\": \"integer\",\n                          \"format\": \"integer\",\n                          \"example\": 2,\n                          \"description\": \"This is an optional field. This field accepts single value. Supports 1 (NON-ARCHIVED) or 2 (ARCHIVED).\"\n                        },\n                        \"startDate\": {\n                          \"type\": \"string\",\n                          \"format\": \"date\",\n                          \"example\": \"MM/DD/YYYY\",\n                          \"description\": \"This is an optional field. This field accepts single value. This field accepts value in MM/DD/YYYY format.\"\n                        },\n                        \"endDate\": {\n                          \"type\": \"string\",\n                          \"format\": \"date\",\n                          \"example\": \"MM/DD/YYYY\",\n                          \"description\": \"This is an optional field. This field accepts single value. This field accepts value in MM/DD/YYYY format.\"\n                        }\n                      },\n                      \"required\": [\n                        \"propertyIds\"\n                      ]\n                    }\n                  }\n                }\n              }\n            },\n            {\n              \"required\": [\n                \"auth\",\n                \"method\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"auth\": {\n                  \"required\": [\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"apikey\"\n                      ]\n                    }\n                  }\n                },\n                \"requestId\": {\n                  \"type\": \"string\",\n                  \"description\": \"an arbitary value to relate with response.\"\n                },\n                \"method\": {\n                  \"required\": [\n                    \"name\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"name\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"getLeasingCenterPickLists\"\n                      ]\n                    },\n                    \"version\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"r1\"\n                      ]\n                    }\n                  }\n                }\n              }\n            }\n          ]\n        }\n      },\n      \"examples\": {\n        \"getCallLogs\": {\n          \"$ref\": \"#/components/examples/getCallLogsRequest\"\n        },\n        \"getLeasingCenterPickLists\": {\n          \"$ref\": \"#/components/examples/getLeasingCenterPickListsRequest\"\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

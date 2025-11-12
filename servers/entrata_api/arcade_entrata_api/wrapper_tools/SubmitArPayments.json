@@ -1,0 +1,430 @@
+{
+  "name": "SubmitArPayments",
+  "fully_qualified_name": "EntrataApi.SubmitArPayments@0.1.0",
+  "description": "Submits accounts receivable payments for processing.\n\nUse this tool to submit accounts receivable payments to Entrata for processing. It confirms the successful submission of payment data.",
+  "toolkit": {
+    "name": "EntrataApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "client_subdomain",
+        "required": true,
+        "description": "The subdomain of the client organization using the Entrata service.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "orgs"
+      },
+      {
+        "name": "authentication_type",
+        "required": true,
+        "description": "Set the type of authentication. Accepted value: 'apikey'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "apikey"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "auth.type"
+      },
+      {
+        "name": "method_name_for_ar_payments",
+        "required": true,
+        "description": "Specifies the method name for accounts receivable payments. Use 'getArPayments' to retrieve AR payments.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "getArPayments"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "method.name"
+      },
+      {
+        "name": "response_correlation_id",
+        "required": false,
+        "description": "An arbitrary value used to correlate and track the response.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "an arbitary value to relate with response."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestId"
+      },
+      {
+        "name": "api_version",
+        "required": false,
+        "description": "Specify the version of the API to use, options: ['r1'].",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "r1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "method.version"
+      },
+      {
+        "name": "ar_payment_ids",
+        "required": false,
+        "description": "Optional. Comma-separated list of accounts receivable payment IDs for processing.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "This is an optional field. This field accepts comma seperated multiple values. Comma separated ar payment ids."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "method.params.arPaymentIds"
+      },
+      {
+        "name": "payment_status_type_identifiers",
+        "required": false,
+        "description": "Optional. Comma-separated IDs representing payment status types.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "This is an optional field. This field accepts comma seperated multiple values. Comma separated payment status type ids."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "method.params.paymentStatusTypeIds"
+      },
+      {
+        "name": "from_date",
+        "required": false,
+        "description": "Optional. Accepts a single date value that represents the starting point for the query in YYYY-MM-DD format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "This is an optional field. This field accepts single value. From date."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "method.params.fromDate"
+      },
+      {
+        "name": "to_date",
+        "required": false,
+        "description": "Optional field specifying the end date for the request. Accepts a single date value.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "This is an optional field. This field accepts single value. To date"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "method.params.toDate"
+      },
+      {
+        "name": "include_allocations",
+        "required": false,
+        "description": "Optional. Set to 1 to include allocations details of payment; 0 otherwise.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": [
+            "0",
+            "1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "This is an optional field. This field accepts single value. This node should include allocations details of payment"
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "method.params.isIncludeAllocations"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ENTRATA_API_KEY"
+      },
+      {
+        "key": "ENTRATA_DOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Entrata API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://apis.{ENTRATA_DOMAIN}/ext/orgs/{orgs}/v1/arpayments",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "orgs",
+        "tool_parameter_name": "client_subdomain",
+        "description": "Client subdomain.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "auth.type",
+        "tool_parameter_name": "authentication_type",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "apikey"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestId",
+        "tool_parameter_name": "response_correlation_id",
+        "description": "an arbitary value to relate with response.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "an arbitary value to relate with response."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "method.name",
+        "tool_parameter_name": "method_name_for_ar_payments",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "getArPayments"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "method.version",
+        "tool_parameter_name": "api_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "r1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "method.params.arPaymentIds",
+        "tool_parameter_name": "ar_payment_ids",
+        "description": "This is an optional field. This field accepts comma seperated multiple values. Comma separated ar payment ids.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "This is an optional field. This field accepts comma seperated multiple values. Comma separated ar payment ids."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "method.params.paymentStatusTypeIds",
+        "tool_parameter_name": "payment_status_type_identifiers",
+        "description": "This is an optional field. This field accepts comma seperated multiple values. Comma separated payment status type ids.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "This is an optional field. This field accepts comma seperated multiple values. Comma separated payment status type ids."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "method.params.fromDate",
+        "tool_parameter_name": "from_date",
+        "description": "This is an optional field. This field accepts single value. From date.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "This is an optional field. This field accepts single value. From date."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "method.params.toDate",
+        "tool_parameter_name": "to_date",
+        "description": "This is an optional field. This field accepts single value. To date",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "This is an optional field. This field accepts single value. To date"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "method.params.isIncludeAllocations",
+        "tool_parameter_name": "include_allocations",
+        "description": "This is an optional field. This field accepts single value. This node should include allocations details of payment",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": [
+            "0",
+            "1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": "This is an optional field. This field accepts single value. This node should include allocations details of payment"
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ENTRATA_API_KEY",
+        "parameter_name": "X-Api-Key",
+        "accepted_as": "header",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "ENTRATA_DOMAIN",
+        "parameter_name": "entrata_domain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"required\": true,\n  \"description\": \"Retrieves AR payments details with reference to a Payment ID and for a selected date range.\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"auth\",\n          \"method\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"auth\": {\n            \"required\": [\n              \"type\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"type\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"apikey\"\n                ]\n              }\n            }\n          },\n          \"requestId\": {\n            \"type\": \"string\",\n            \"description\": \"an arbitary value to relate with response.\"\n          },\n          \"method\": {\n            \"required\": [\n              \"name\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"name\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"getArPayments\"\n                ]\n              },\n              \"version\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"r1\"\n                ]\n              },\n              \"params\": {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"arPaymentIds\": {\n                    \"type\": \"string\",\n                    \"format\": \"string\",\n                    \"example\": 123456,\n                    \"description\": \"This is an optional field. This field accepts comma seperated multiple values. Comma separated ar payment ids.\"\n                  },\n                  \"paymentStatusTypeIds\": {\n                    \"type\": \"string\",\n                    \"format\": \"string\",\n                    \"example\": 123456,\n                    \"description\": \"This is an optional field. This field accepts comma seperated multiple values. Comma separated payment status type ids.\"\n                  },\n                  \"fromDate\": {\n                    \"type\": \"string\",\n                    \"format\": \"date\",\n                    \"example\": \"MM/DD/YYYY\",\n                    \"description\": \"This is an optional field. This field accepts single value. From date.\"\n                  },\n                  \"toDate\": {\n                    \"type\": \"string\",\n                    \"format\": \"date\",\n                    \"example\": \"MM/DD/YYYY\",\n                    \"description\": \"This is an optional field. This field accepts single value. To date\"\n                  },\n                  \"isIncludeAllocations\": {\n                    \"type\": \"integer\",\n                    \"format\": \"integer\",\n                    \"enum\": [\n                      0,\n                      1\n                    ],\n                    \"description\": \"This is an optional field. This field accepts single value. This node should include allocations details of payment\"\n                  }\n                },\n                \"required\": [\n                  \"applicationId\",\n                  \"propertyId\"\n                ]\n              }\n            }\n          }\n        }\n      },\n      \"examples\": {\n        \"getArPayments\": {\n          \"$ref\": \"#/components/examples/getArPaymentsRequest\"\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

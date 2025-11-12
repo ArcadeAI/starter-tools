@@ -1,0 +1,259 @@
+{
+  "name": "CheckApiHealth",
+  "fully_qualified_name": "EntrataApi.CheckApiHealth@0.1.0",
+  "description": "Check the health status of the API service.\n\nUse this tool to verify the current health status of the API service. This can help in determining if the service is operational and responsive.",
+  "toolkit": {
+    "name": "EntrataApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "client_subdomain",
+        "required": true,
+        "description": "The subdomain of the client organization to check the API health for.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "orgs"
+      },
+      {
+        "name": "authentication_type",
+        "required": true,
+        "description": "The authentication method used, typically 'apikey'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "apikey"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "auth.type"
+      },
+      {
+        "name": "method_name",
+        "required": true,
+        "description": "The method name for the API operation. Use 'getStatus' to check health.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "getStatus"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "method.name"
+      },
+      {
+        "name": "response_identifier",
+        "required": false,
+        "description": "An arbitrary string value to link the request with its corresponding response.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "an arbitary value to relate with response."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestId"
+      },
+      {
+        "name": "api_method_version",
+        "required": false,
+        "description": "Specify the version of the API method to use. The default and only supported value is 'r1'.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "r1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "method.version"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ENTRATA_API_KEY"
+      },
+      {
+        "key": "ENTRATA_DOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Entrata API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://apis.{ENTRATA_DOMAIN}/ext/orgs/{orgs}/v1/status",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "orgs",
+        "tool_parameter_name": "client_subdomain",
+        "description": "Client subdomain.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "auth.type",
+        "tool_parameter_name": "authentication_type",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "apikey"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestId",
+        "tool_parameter_name": "response_identifier",
+        "description": "an arbitary value to relate with response.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "an arbitary value to relate with response."
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "method.name",
+        "tool_parameter_name": "method_name",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "getStatus"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "method.version",
+        "tool_parameter_name": "api_method_version",
+        "description": "",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": [
+            "r1"
+          ],
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ENTRATA_API_KEY",
+        "parameter_name": "X-Api-Key",
+        "accepted_as": "header",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "ENTRATA_DOMAIN",
+        "parameter_name": "entrata_domain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"required\": true,\n  \"description\": \"This API will specify the API health status whether it is running or not.\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"required\": [\n          \"auth\",\n          \"method\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"auth\": {\n            \"required\": [\n              \"type\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"type\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"apikey\"\n                ]\n              }\n            }\n          },\n          \"requestId\": {\n            \"type\": \"string\",\n            \"description\": \"an arbitary value to relate with response.\"\n          },\n          \"method\": {\n            \"required\": [\n              \"name\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"name\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"getStatus\"\n                ]\n              },\n              \"version\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"r1\"\n                ]\n              }\n            }\n          }\n        }\n      },\n      \"examples\": {\n        \"getStatus\": {\n          \"$ref\": \"#/components/examples/getStatusRequest\"\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

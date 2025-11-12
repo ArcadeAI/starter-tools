@@ -1,0 +1,148 @@
+{
+  "name": "GetAccessibleClients",
+  "fully_qualified_name": "EntrataApi.GetAccessibleClients@0.1.0",
+  "description": "Retrieve accessible client information for a given organization.\n\nUse this tool to get information about clients accessible to an organization. Call it when you need to retrieve details about clients linked to the organization using the `rsync` value for `orgs`.",
+  "toolkit": {
+    "name": "EntrataApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "organization_subdomain",
+        "required": true,
+        "description": "The subdomain of the client organization. Use 'rsync' as the value to access relevant client information.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "orgs"
+      },
+      {
+        "name": "request_body_data",
+        "required": true,
+        "description": "An array of JSON objects to include in the request body for additional data required by the API.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "json",
+          "enum": null,
+          "properties": null,
+          "inner_properties": {},
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": null,
+    "secrets": [
+      {
+        "key": "ENTRATA_API_KEY"
+      },
+      {
+        "key": "ENTRATA_DOMAIN"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Entrata API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "https://apis.{ENTRATA_DOMAIN}/ext/orgs/{orgs}/v1/appinfo",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "orgs",
+        "tool_parameter_name": "organization_subdomain",
+        "description": "Client subdomain.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "Client subdomain."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "request_body_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "json",
+          "enum": null,
+          "properties": null,
+          "inner_properties": {},
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "ENTRATA_API_KEY",
+        "parameter_name": "X-Api-Key",
+        "accepted_as": "header",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "ENTRATA_DOMAIN",
+        "parameter_name": "entrata_domain",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      }
+    ],
+    "request_body_spec": "{\n  \"required\": true,\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"type\": \"array\",\n        \"items\": {\n          \"oneOf\": [\n            {\n              \"required\": [\n                \"auth\",\n                \"method\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"auth\": {\n                  \"required\": [\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"apikey\"\n                      ]\n                    }\n                  }\n                },\n                \"requestId\": {\n                  \"type\": \"string\",\n                  \"description\": \"an arbitary value to relate with response.\"\n                },\n                \"method\": {\n                  \"required\": [\n                    \"name\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"name\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"getAccessibleClients\"\n                      ]\n                    },\n                    \"version\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"r1\"\n                      ]\n                    }\n                  }\n                }\n              }\n            },\n            {\n              \"required\": [\n                \"auth\",\n                \"method\"\n              ],\n              \"type\": \"object\",\n              \"properties\": {\n                \"auth\": {\n                  \"required\": [\n                    \"type\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"type\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"apikey\"\n                      ]\n                    }\n                  }\n                },\n                \"requestId\": {\n                  \"type\": \"string\",\n                  \"description\": \"an arbitary value to relate with response.\"\n                },\n                \"method\": {\n                  \"required\": [\n                    \"name\"\n                  ],\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"name\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"getAccessibleServices\"\n                      ]\n                    },\n                    \"version\": {\n                      \"type\": \"string\",\n                      \"enum\": [\n                        \"r1\"\n                      ]\n                    }\n                  }\n                }\n              }\n            }\n          ]\n        }\n      },\n      \"examples\": {\n        \"getAccessibleClients\": {\n          \"$ref\": \"#/components/examples/getAccessibleClientsRequest\"\n        },\n        \"getAccessibleServices\": {\n          \"$ref\": \"#/components/examples/getAccessibleServicesRequest\"\n        }\n      }\n    }\n  }\n}",
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}
