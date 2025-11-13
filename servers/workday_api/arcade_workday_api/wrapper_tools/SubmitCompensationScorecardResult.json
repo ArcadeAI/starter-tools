@@ -1,0 +1,117 @@
+{
+  "name": "SubmitCompensationScorecardResult",
+  "fully_qualified_name": "WorkdayApi.SubmitCompensationScorecardResult@0.1.0",
+  "description": "Submit a Compensation Scorecard result for evaluation.\n\nUse this tool to submit a Compensation Scorecard result with a specified evaluation date in 'yyyy-mm-dd' format. Ensure you have the Workday ID from a Compensation Scorecard. This is secured by 'Set Up: Merit and Bonus' and requires the 'Advanced Compensation' scope.",
+  "toolkit": {
+    "name": "ArcadeWorkdayApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "compensation_scorecard_data",
+        "required": true,
+        "description": "JSON object containing 'compensationScorecard' ID and 'evaluationDate' in 'yyyy-mm-dd' format.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "workday",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "workday_base_url"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Workday API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "{workday_base_url}/compensation/v2/scorecardResults",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "compensation_scorecard_data",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "workday_base_url",
+        "parameter_name": "workday_base_url",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"allOf\": [\n          {\n            \"required\": [\n              \"evaluationDate\",\n              \"scorecardID\"\n            ],\n            \"type\": \"object\",\n            \"properties\": {\n              \"scorecardName\": {\n                \"type\": \"string\",\n                \"description\": \"The \\\\~goal\\\\~ name of the scorecard criteria result.\",\n                \"readOnly\": true,\n                \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                \"x-workday-type\": \"Text\"\n              },\n              \"evaluationDate\": {\n                \"type\": \"string\",\n                \"description\": \"Scorecard Result Evaluation Date\",\n                \"format\": \"date\",\n                \"x-workday-type\": \"Date\"\n              },\n              \"scorecardID\": {\n                \"description\": \"Returns the Default Scorecard for the Scorecard Result Instance\",\n                \"allOf\": [\n                  {\n                    \"allOf\": [\n                      {\n                        \"type\": \"object\",\n                        \"properties\": {\n                          \"id\": {\n                            \"type\": \"string\",\n                            \"description\": \"Id of the instance\"\n                          }\n                        }\n                      }\n                    ]\n                  },\n                  {\n                    \"type\": \"object\"\n                  }\n                ]\n              },\n              \"descriptor\": {\n                \"type\": \"string\",\n                \"description\": \"The display name of the instance\",\n                \"example\": \"Lorem ipsum dolor sit ame\"\n              },\n              \"id\": {\n                \"type\": \"string\",\n                \"description\": \"Id of the instance\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "name": "GetMinimumWageRates",
+  "fully_qualified_name": "WorkdayApi.GetMinimumWageRates@0.1.0",
+  "description": "Retrieve minimum wage rates by country or tax authority.\n\nThis tool retrieves minimum wage rates for specified countries or tax authorities. It should be called when users need detailed information about minimum wage regulations in a specific region.",
+  "toolkit": {
+    "name": "ArcadeWorkdayApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "effective_date",
+        "required": false,
+        "description": "Specify the date (yyyy-mm-dd) to retrieve minimum wage rates effective on that day.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The minimum wage rates that are effective on the date specified using the yyyy-mm-dd format."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "asOfDate"
+      },
+      {
+        "name": "country_workday_id",
+        "required": false,
+        "description": "The Workday ID of the country for minimum wage rates. Specify 1 country ID. Retrieve ID using GET /values/minimumWageRatesGroup/countries.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the country for the minimum wages rates. You can use a returned id from GET /values/minimumWageRatesGroup/countries. You can specify 1 country query parameter. Example: country=country."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "country"
+      },
+      {
+        "name": "response_limit",
+        "required": false,
+        "description": "Specifies the maximum number of minimum wage rates to return in a single response. Defaults to 20, with a maximum of 100.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "limit"
+      },
+      {
+        "name": "response_offset_index",
+        "required": false,
+        "description": "The zero-based index of the first object to return. Use with 'limit' for paging.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "offset"
+      },
+      {
+        "name": "payroll_tax_authorities_ids",
+        "required": false,
+        "description": "A list of Workday IDs for payroll tax authorities to retrieve minimum wage rates. Specify one or more IDs.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the payroll tax authority for the minimum wages rates. You can use a returned id from GET /values/minimumWageRatesGroup/taxAuthorities. You can specify 1 or more tax authority query parameters. Example: taxAuthority=taxAuthority1&taxAuthority=taxAuthority2."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "taxAuthority"
+      },
+      {
+        "name": "include_local_tax_authorities",
+        "required": false,
+        "description": "Set to true to include local tax authority wage rates along with federal and state rates. Defaults to false.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, returns minimum wage rates for local tax authorities, such as cities and counties, in addition to federal and state rates. If false (default), only returns federal and state minimum wage rates."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "includeLocalTaxAuthorities"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "workday",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "workday_base_url"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Workday API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "{workday_base_url}/payroll/v2/minimumWageRates",
+    "http_method": "GET",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "asOfDate",
+        "tool_parameter_name": "effective_date",
+        "description": "The minimum wage rates that are effective on the date specified using the yyyy-mm-dd format.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The minimum wage rates that are effective on the date specified using the yyyy-mm-dd format."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "country",
+        "tool_parameter_name": "country_workday_id",
+        "description": "The Workday ID of the country for the minimum wages rates. You can use a returned id from GET /values/minimumWageRatesGroup/countries. You can specify 1 country query parameter. Example: country=country.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the country for the minimum wages rates. You can use a returned id from GET /values/minimumWageRatesGroup/countries. You can specify 1 country query parameter. Example: country=country."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "includeLocalTaxAuthorities",
+        "tool_parameter_name": "include_local_tax_authorities",
+        "description": "If true, returns minimum wage rates for local tax authorities, such as cities and counties, in addition to federal and state rates. If false (default), only returns federal and state minimum wage rates.",
+        "value_schema": {
+          "val_type": "boolean",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "If true, returns minimum wage rates for local tax authorities, such as cities and counties, in addition to federal and state rates. If false (default), only returns federal and state minimum wage rates."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "limit",
+        "tool_parameter_name": "response_limit",
+        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "offset",
+        "tool_parameter_name": "response_offset_index",
+        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+        "value_schema": {
+          "val_type": "integer",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "taxAuthority",
+        "tool_parameter_name": "payroll_tax_authorities_ids",
+        "description": "The Workday ID of the payroll tax authority for the minimum wages rates. You can use a returned id from GET /values/minimumWageRatesGroup/taxAuthorities. You can specify 1 or more tax authority query parameters. Example: taxAuthority=taxAuthority1&taxAuthority=taxAuthority2.",
+        "value_schema": {
+          "val_type": "array",
+          "inner_val_type": "string",
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the payroll tax authority for the minimum wages rates. You can use a returned id from GET /values/minimumWageRatesGroup/taxAuthorities. You can specify 1 or more tax authority query parameters. Example: taxAuthority=taxAuthority1&taxAuthority=taxAuthority2."
+        },
+        "accepted_as": "query",
+        "required": false,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "workday_base_url",
+        "parameter_name": "workday_base_url",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": null,
+    "use_request_body_schema_mode": false,
+    "validate_request_body_schema": false
+  }
+}

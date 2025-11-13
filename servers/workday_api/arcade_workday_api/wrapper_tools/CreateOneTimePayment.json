@@ -1,0 +1,150 @@
+{
+  "name": "CreateOneTimePayment",
+  "fully_qualified_name": "WorkdayApi.CreateOneTimePayment@0.1.0",
+  "description": "Initiates a one-time payment process for a specified worker.\n\nThis tool is used to create a one-time payment for a worker by specifying necessary information such as reason, position, and payment details. It's part of the Request One-Time Payment business process in Core Compensation, secured by the REST service.",
+  "toolkit": {
+    "name": "ArcadeWorkdayApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "worker_id",
+        "required": true,
+        "description": "The Workday ID of the worker for whom the one-time payment is being initiated.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the resource."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "ID"
+      },
+      {
+        "name": "payment_request_details",
+        "required": true,
+        "description": "A JSON object detailing payment info, including reason, position, and payment amount. Required fields: reason{id}, position{id}, oneTimePayments{paymentCurrency{id}, oneTimePaymentPlan{id}}.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "workday",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "workday_base_url"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Workday API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "{workday_base_url}/compensation/v2/workers/{ID}/requestOneTimePayment",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "ID",
+        "tool_parameter_name": "worker_id",
+        "description": "The Workday ID of the resource.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the resource."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "payment_request_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "workday_base_url",
+        "parameter_name": "workday_base_url",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"allOf\": [\n          {\n            \"type\": \"object\",\n            \"properties\": {\n              \"oneTimePayments\": {\n                \"type\": \"array\",\n                \"description\": \"All one-time payments associated with the event.\",\n                \"items\": {\n                  \"allOf\": [\n                    {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"additionalInformation\": {\n                          \"type\": \"string\",\n                          \"description\": \"Additional information for this compensation payment\",\n                          \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                          \"x-workday-type\": \"Text\"\n                        },\n                        \"coverageEndDate\": {\n                          \"type\": \"string\",\n                          \"description\": \"The end date of the Coverage Period for the payment, which enables Workday Payroll or Payroll Integration to associate dates with the one-time payment for Fair Labor Standards Act (FLSA) reporting requirements.\",\n                          \"format\": \"date\",\n                          \"x-workday-type\": \"Date\"\n                        },\n                        \"oneTimePaymentPlan\": {\n                          \"description\": \"The one-time payment plan name for this one-time payment. Displays only if the payment is a one-time payment.\",\n                          \"allOf\": [\n                            {\n                              \"required\": [\n                                \"id\"\n                              ],\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"id\": {\n                                  \"pattern\": \"^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\\\$[0-9]+)|(\\\\S+=\\\\S+))$\",\n                                  \"type\": \"string\",\n                                  \"description\": \"wid / id / reference id\"\n                                },\n                                \"descriptor\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"The display name of the instance\",\n                                  \"readOnly\": true\n                                },\n                                \"href\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"A link to the instance\",\n                                  \"readOnly\": true\n                                }\n                              }\n                            },\n                            {\n                              \"type\": \"object\"\n                            }\n                          ]\n                        },\n                        \"paymentPercent\": {\n                          \"type\": \"integer\",\n                          \"description\": \"The actual amount for the \\\\~bonus\\\\~ payment represented as a percentage.  The percentage is usually calculated as a percentage of base pay, but on the \\\\~bonus\\\\~ plan setup it is possible to override the calculation basis to calculate as a percentage of a set of compensation elements.\",\n                          \"x-workday-type\": \"Numeric\"\n                        },\n                        \"sendToPayroll\": {\n                          \"type\": \"boolean\",\n                          \"description\": \"This is true if you selected Send to Payroll on the \\\\~bonus\\\\~ payment, future payment, or one-time payment. If false, Workday Payroll doesn't process the payment.\",\n                          \"example\": true,\n                          \"x-workday-type\": \"Boolean\"\n                        },\n                        \"scheduledPaymentDate\": {\n                          \"type\": \"string\",\n                          \"description\": \"The payment date scheduled for the one-time payment request.\",\n                          \"format\": \"date\",\n                          \"x-workday-type\": \"Date\"\n                        },\n                        \"payrollWorktags\": {\n                          \"type\": \"array\",\n                          \"description\": \"One-Time Payment Worktags for REST API\",\n                          \"items\": {\n                            \"allOf\": [\n                              {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"descriptor\": {\n                                    \"type\": \"string\",\n                                    \"description\": \"The display name of the instance\",\n                                    \"example\": \"Lorem ipsum dolor sit ame\"\n                                  },\n                                  \"id\": {\n                                    \"type\": \"string\",\n                                    \"description\": \"Id of the instance\"\n                                  }\n                                }\n                              }\n                            ]\n                          },\n                          \"x-workday-type\": \"Multi-instance\"\n                        },\n                        \"coverageStartDate\": {\n                          \"type\": \"string\",\n                          \"description\": \"The start date of the Coverage Period for the payment, which enables Workday Payroll or Payroll Integration to associate dates with the one-time payment for Fair Labor Standards Act (FLSA) reporting requirements.\",\n                          \"format\": \"date\",\n                          \"x-workday-type\": \"Date\"\n                        },\n                        \"paymentCurrency\": {\n                          \"description\": \"The currency for this compensation payment\",\n                          \"allOf\": [\n                            {\n                              \"required\": [\n                                \"id\"\n                              ],\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"id\": {\n                                  \"pattern\": \"^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\\\$[0-9]+)|(\\\\S+=\\\\S+))$\",\n                                  \"type\": \"string\",\n                                  \"description\": \"wid / id / reference id\"\n                                },\n                                \"descriptor\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"The display name of the instance\",\n                                  \"readOnly\": true\n                                },\n                                \"href\": {\n                                  \"type\": \"string\",\n                                  \"description\": \"A link to the instance\",\n                                  \"readOnly\": true\n                                }\n                              }\n                            },\n                            {\n                              \"type\": \"object\"\n                            }\n                          ]\n                        },\n                        \"paymentAmount\": {\n                          \"type\": \"object\",\n                          \"properties\": {},\n                          \"description\": \"Amount of compensation payment\",\n                          \"example\": \"99999999999.999999\",\n                          \"x-workday-type\": \"Currency\"\n                        },\n                        \"descriptor\": {\n                          \"type\": \"string\",\n                          \"description\": \"The display name of the instance\",\n                          \"example\": \"Lorem ipsum dolor sit ame\"\n                        },\n                        \"id\": {\n                          \"type\": \"string\",\n                          \"description\": \"Id of the instance\"\n                        }\n                      }\n                    }\n                  ]\n                },\n                \"x-workday-type\": \"Multi-instance\"\n              },\n              \"position\": {\n                \"description\": \"Position Element\",\n                \"allOf\": [\n                  {\n                    \"required\": [\n                      \"id\"\n                    ],\n                    \"type\": \"object\",\n                    \"properties\": {\n                      \"id\": {\n                        \"pattern\": \"^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\\\$[0-9]+)|(\\\\S+=\\\\S+))$\",\n                        \"type\": \"string\",\n                        \"description\": \"wid / id / reference id\"\n                      },\n                      \"descriptor\": {\n                        \"type\": \"string\",\n                        \"description\": \"The display name of the instance\",\n                        \"readOnly\": true\n                      },\n                      \"href\": {\n                        \"type\": \"string\",\n                        \"description\": \"A link to the instance\",\n                        \"readOnly\": true\n                      }\n                    }\n                  },\n                  {\n                    \"type\": \"object\"\n                  }\n                ]\n              },\n              \"reason\": {\n                \"description\": \"The business process type, reason category and reason associated with the business process (e.g. Hire \\\\~Employee\\\\~ > New Hire > New Position).\",\n                \"allOf\": [\n                  {\n                    \"required\": [\n                      \"id\"\n                    ],\n                    \"type\": \"object\",\n                    \"properties\": {\n                      \"id\": {\n                        \"pattern\": \"^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\\\$[0-9]+)|(\\\\S+=\\\\S+))$\",\n                        \"type\": \"string\",\n                        \"description\": \"wid / id / reference id\"\n                      },\n                      \"descriptor\": {\n                        \"type\": \"string\",\n                        \"description\": \"The display name of the instance\",\n                        \"readOnly\": true\n                      },\n                      \"href\": {\n                        \"type\": \"string\",\n                        \"description\": \"A link to the instance\",\n                        \"readOnly\": true\n                      }\n                    }\n                  },\n                  {\n                    \"type\": \"object\"\n                  }\n                ]\n              },\n              \"effectiveDate\": {\n                \"type\": \"string\",\n                \"description\": \"The date this business process takes effect.\",\n                \"format\": \"date\",\n                \"x-workday-type\": \"Date\"\n              },\n              \"employeeVisibilityDate\": {\n                \"type\": \"string\",\n                \"description\": \"Returns the date that a compensation change is visible to a \\\\~worker\\\\~.\",\n                \"format\": \"date\",\n                \"x-workday-type\": \"Date\"\n              },\n              \"descriptor\": {\n                \"type\": \"string\",\n                \"description\": \"The display name of the instance\",\n                \"example\": \"Lorem ipsum dolor sit ame\"\n              },\n              \"id\": {\n                \"type\": \"string\",\n                \"description\": \"Id of the instance\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}

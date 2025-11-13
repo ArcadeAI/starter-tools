@@ -1,0 +1,150 @@
+{
+  "name": "AddProspectExperience",
+  "fully_qualified_name": "WorkdayApi.AddProspectExperience@0.1.0",
+  "description": "Add a new work experience entry for a prospect.\n\nThis tool is used to add a new work experience to a prospect's record in Workday. It requires specifying essential details like company name, title, and start year. Use this to update candidate profiles with their professional history.",
+  "toolkit": {
+    "name": "ArcadeWorkdayApi",
+    "description": null,
+    "version": "0.1.0"
+  },
+  "input": {
+    "parameters": [
+      {
+        "name": "resource_workday_id",
+        "required": true,
+        "description": "The unique Workday ID representing the prospect resource to add the work experience to.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the resource."
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "ID"
+      },
+      {
+        "name": "experience_details",
+        "required": true,
+        "description": "JSON object containing details like companyName, title, startYear for the prospect's work experience. Required fields must be included.",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "inferrable": true,
+        "http_endpoint_parameter_name": "requestBody"
+      }
+    ]
+  },
+  "output": {
+    "description": "Response from the API endpoint ''.",
+    "available_modes": [
+      "value",
+      "error",
+      "null"
+    ],
+    "value_schema": {
+      "val_type": "json",
+      "inner_val_type": null,
+      "enum": null,
+      "properties": null,
+      "inner_properties": null,
+      "description": null
+    }
+  },
+  "requirements": {
+    "authorization": {
+      "provider_id": "workday",
+      "provider_type": "oauth2",
+      "id": null,
+      "oauth2": null
+    },
+    "secrets": [
+      {
+        "key": "workday_base_url"
+      }
+    ],
+    "metadata": null
+  },
+  "deprecation_message": null,
+  "metadata": {
+    "object_type": "api_wrapper_tool",
+    "version": "1.1.0",
+    "description": "Tools that enable LLMs to interact directly with the Workday API"
+  },
+  "http_endpoint": {
+    "metadata": {
+      "object_type": "http_endpoint",
+      "version": "1.2.0",
+      "description": ""
+    },
+    "url": "{workday_base_url}/recruiting/v4/prospects/{ID}/experiences",
+    "http_method": "POST",
+    "headers": {},
+    "parameters": [
+      {
+        "name": "ID",
+        "tool_parameter_name": "resource_workday_id",
+        "description": "The Workday ID of the resource.",
+        "value_schema": {
+          "val_type": "string",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": "The Workday ID of the resource."
+        },
+        "accepted_as": "path",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      },
+      {
+        "name": "requestBody",
+        "tool_parameter_name": "experience_details",
+        "description": "",
+        "value_schema": {
+          "val_type": "json",
+          "inner_val_type": null,
+          "enum": null,
+          "properties": null,
+          "inner_properties": null,
+          "description": ""
+        },
+        "accepted_as": "body",
+        "required": true,
+        "deprecated": false,
+        "default": null,
+        "documentation_urls": []
+      }
+    ],
+    "documentation_urls": [],
+    "secrets": [
+      {
+        "arcade_key": "workday_base_url",
+        "parameter_name": "workday_base_url",
+        "accepted_as": "path",
+        "formatted_value": null,
+        "description": "",
+        "is_auth_token": false
+      },
+      {
+        "arcade_key": "auth_token",
+        "parameter_name": "Authorization",
+        "accepted_as": "header",
+        "formatted_value": "Bearer {authorization}",
+        "description": "The OAuth token to use for authentication.",
+        "is_auth_token": true
+      }
+    ],
+    "request_body_spec": "{\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {\n        \"allOf\": [\n          {\n            \"type\": \"object\",\n            \"properties\": {\n              \"description\": {\n                \"type\": \"string\",\n                \"description\": \"Any responsibilities or accomplishments that the candidate gained at the associated company.\",\n                \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                \"x-workday-type\": \"Text\"\n              },\n              \"location\": {\n                \"type\": \"string\",\n                \"description\": \"The location of this company.\",\n                \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                \"x-workday-type\": \"Text\"\n              },\n              \"currentlyWorkHere\": {\n                \"type\": \"boolean\",\n                \"description\": \"If true, the candidate currently works at this company.\",\n                \"example\": true,\n                \"x-workday-type\": \"Boolean\"\n              },\n              \"startYear\": {\n                \"type\": \"string\",\n                \"description\": \"The year the candidate started employment at this company.\",\n                \"format\": \"date\",\n                \"x-workday-type\": \"Date\"\n              },\n              \"startMonth\": {\n                \"type\": \"integer\",\n                \"description\": \"The month the candidate started employment at this company.\",\n                \"example\": 99,\n                \"x-workday-type\": \"Numeric\"\n              },\n              \"title\": {\n                \"type\": \"string\",\n                \"description\": \"The business title for the candidate's work experience.\",\n                \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                \"x-workday-type\": \"Text\"\n              },\n              \"endMonth\": {\n                \"type\": \"integer\",\n                \"description\": \"The month the candidate ended employment at this company.\",\n                \"example\": 99,\n                \"x-workday-type\": \"Numeric\"\n              },\n              \"endYear\": {\n                \"type\": \"string\",\n                \"description\": \"The year the candidate ended employment at this company.\",\n                \"format\": \"date\",\n                \"x-workday-type\": \"Date\"\n              },\n              \"companyName\": {\n                \"type\": \"string\",\n                \"description\": \"The company name the candidate entered in their job history.\",\n                \"example\": \"Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.\",\n                \"x-workday-type\": \"Text\"\n              },\n              \"id\": {\n                \"type\": \"string\",\n                \"description\": \"Id of the instance\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  },\n  \"required\": true\n}",
+    "use_request_body_schema_mode": true,
+    "validate_request_body_schema": true
+  }
+}
